@@ -1,0 +1,5 @@
+*git*
+git
+    $ git pull --rebase # rebase prevents merge commits
+    $ git stash; git stash pop
+    $ git reset HEAD^; git push -f # resets last commit in local repo and remote

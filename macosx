@@ -1,0 +1,8 @@
+*Mac OSX*
+Mac OSX
+    Reset SMC: shutdown and unplug all cables for a few minutes
+    Boot in safe mode: shift
+    Reset NVRAM: Boot + CMD + Option + P + R
+    Boot in recovery mode: Boot + CMD +R
+    Boot in verbose mode: Boot + CMD + V
+    Boot in diagnostics mode: Boot + CMD + D
