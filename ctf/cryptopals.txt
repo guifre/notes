@@ -1,0 +1,67 @@
+*CTF Protostar solutions*narrative
+
+Convert hex to base64
+    The string:
+    *49276d206b696c6c696e6720796f757220627261696e206c696b65206120706f69736f6e6f7573206d757368726f6f6d*
+
+    Should produce:
+    *SSdtIGtpbGxpbmcgeW91ciBicmFpbiBsaWtlIGEgcG9pc29ub3VzIG11c2hyb29t*
+
+    As simple as that, hexadecimal decode it and later base64 encode it as follows:
+    *python -c "
+    '49276d206b696c6c696e6720796f757220627261696e206c696b65206120706f69736f6e6f7573206d757368726f6f6d'
+    .decode('hex')
+    .encode(base64')
+    "*
+
+Fixed XOR
+    Write a function that takes two equal-length buffers and produces their XOR combination. If your function works properly, then when you feed it the string:
+
+    *1c0111001f010100061a024b53535009181c*
+
+    ... after hex decoding, and when XOR'd against:
+    *686974207468652062756c6c277320657965*
+
+    ... should produce:
+    *746865206b696420646f6e277420706c6179*
+
+    Solution:
+
+    *import sys
+
+    key = 686974207468652062756c6c277320657965'
+    data = 1c0111001f010100061a024b53535009181c'
+    for i in range(len(key)):
+        sys.stdout.write(str(int(str(int(data[i], 16) ^ int(key[i], 16)), 16)))
+    print*
+
+Find the key
+
+    The hex encoded string:
+
+    *1b37373331363f78151b7f2b783431333d78397828372d363c78373e783a393b3736*
+
+    Has been XOR'd against a single character. Find the key, decrypt the message.
+
+    *with open("english_words.txt") as word_file:
+        english_words = set(word.strip().lower() for word in word_file)
+
+        def decrypt(chiper_text, key):
+            return ''.join(chr(ord(t) ^ key) for t in chiper_text)
+
+        def is_english_word(word):
+            return word.lower() in english_words
+
+        def score(sentence):
+            return sum(1 for word in sentence.split(' ') if is_english_word(word))
+
+        hex_input = '1b37373331363f78151b7f2b783431333d78397828372d363c78373e783a393b3736'.decode('hex')
+        best_score = -1
+        best_key = -1
+        for key in range(256):
+            key_score = score(decrypt(hex_input, key))
+            if key_score > best_score:
+                best_score = key_score
+                best_key = key
+
+        print 'Key[%d] score[%d] plaintext[%s] ' % (best_score, best_key, decrypt(hex_input, best_key))*
