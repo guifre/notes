@@ -60,7 +60,6 @@ SSH hardening
     This should be enough to reduce to almost zero all non-targeted attacks.
 
 
-
 Future work
 
     Future work involves implementing *Public key certificate pinning* and adding *Network layer DoS mitigations* if
