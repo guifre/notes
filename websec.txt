@@ -1,0 +1,67 @@
+*Web server hardening*narrative
+Threat model
+
+    This page provides some notes on steps taken to make users that visit it safer.
+
+    Since this page serves only static content, lacks any user sensitive data, and does not contain run any server side code, the main threats involve:
+
+    Compromising the *integrity* of the materials served, tampering contents.
+    Eavesdropping traffic, violating the *confidentiality* of the users visiting it.
+
+    Availability is not considered a major issue as the static content is protected against application layer DoS attacks. Network layer protections might be considered in future.
+
+
+Transport Layer Security (TLS)
+
+    The web sever is configured to server encrypted traffic only. HTTP is redirected to port 443, where the content is served using *TLS 1.2*. Earlier versions such as SSL 2.0, SSL 3.0 have been disabled to avoid POODLE, BEAST, and downgrading attacks. The certificated has been issued by Let's Encrypt CA.
+
+    The *key exchange* algorithms supported to establish the session key used during transmission are Diffie-Hellman and the elliptic-curve variant. The previous algorithms provide a very interesting cryptography property; The parties involved can establish a shared secret without having to transmit the key. This allows *perfect forward secrecy*. An adversary capturing and analyzing the traffic, won't be able to decrypt the data, even after compromising the private key of the server. Diffie-Hellman prime numbers of 4096 have been pre-generated to increase encryption robsutness.
+
+    Once the key has been established, the *ciphers* supported to encrypt the traffic are Advanced Encryption Standard (AES) 256 bits. This is considered safe enough, as there is no known attack better than bruteforcing the entire key space.
+
+
+Security headers
+
+    Even though in normal circumstances users are redirected from HTTP to a HTTPS, an adversary in a position of MITM their connection, like an insecure wifi of a cafe, could tamper with the HTTP response. To mitigate this attack, guif.re uses the HTTP header *Strict-Transport Security*. This header instructs the browser to only load the page through HTTPS. Browser having visited once the site and seen the header will load the page through HTTPS and refuse to load the page through HTTP, even if tampering occurss. The syntax is as follows:
+
+    *Strict-Transport-Security: max-age=31536000*
+
+    UI redress attacks, or Clickjacking occur when an attacker builds a malicious site that contains multiple layered iframes, one of those is the targeted domain. If a user visits the page, and clicks in the visible iframe, the click is instead happening in the targeted site, and potentially carring out uninteded actions. The countermeasure of this attack is the use the *X-Frame-Options* header, that instructs the browser to not load guif.re through an iframe.
+
+    *X-Frame-Options: DENY*
+
+    Many threats arise when user-supplied data is reflected back the UI. Sometimes a user can trigger content sniffing in browsers, and trick them into thinking that an image or a document is HTML, introducing XSS vulnerabilties. To mitigte this type of issues, you can include in the response the *X-Content-Type-Options* to instruct the browser that the content type provided by the web server should be enforced, and not to trigger content sniffing. The syntax is as follows:
+
+    *X-Content-Type-Options: nosniff*
+
+    The most common web attacks involve XSS and injection based vectors. To help mitigate this problem, *Content-Security-Policy* limits the same origin policy to only allow certain white-listed CSS, Javascript resources. You can configure it to block non-white listed resources or to just report the violation of the policy. The CSP policy used in this site is as follows:
+
+    *Content-Security-Policy: default-src 'none'; script-src 'self'; object-src 'none'; style-src 'self'; img-src 'self';
+    media-src 'none'; frame-src 'none'; font-src 'none'; connect-src 'none'; report-uri https://guif.re/report-csp*
+
+
+SSH hardening
+
+    The web server had ssh service exposed, it was getting a few hundred opportunistic password guessing attacks every day, until one Christmas afternoon someone made more than 20K attempts. Then I decided to put some mitigations in place:
+
+    First, white-list the users we want to grant SSH access to and disable password authentication. Only key-based authentication is allowed, a successful attack would need to compromise the private key, guess its password and the web server username. You can achieve that by changing in */etc/ssh/sshd_config*:
+
+    *PermitRootLogin no
+    PasswordAuthentication no
+    Match User !youruser*
+
+    I also reduce pretty much all brute force attempts by running SSH in a non-standard port and rate limiting the login attempts to four every two minutes with the following iptables rule:
+
+    *# iptables -I INPUT -p tcp --dport 22 \
+        -i eth0 -m state --state NEW -m recent --set
+    # iptables -I INPUT -p tcp --dport 22 -i eth0 -m state \
+        --state NEW -m recent --update --seconds 120 --hitcount 4 -j DROP*
+
+    This should be enough to reduce to almost zero all non-targeted attacks.
+
+
+
+Future work
+
+    Future work involves implementing *Public key certificate pinning* and adding *Network layer DoS mitigations* if
+    needed.
