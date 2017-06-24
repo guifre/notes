@@ -1,0 +1,43 @@
+*Infrastructure*
+Disks layouts
+    RAID 0
+        Data evenly splitted accross disks.
+        No fault tolerance or redundancy.
+        RAID 0 of n drives provide read/write n times quicker.
+
+    RAID 1
+        An exact copy in two drives.
+        Good read performance.
+        Write speed as slow as the slowest disk.
+
+    RAID 2
+        bit-level stripping, not used nowadays.
+
+    RAID 3
+        byte-level stripping, not used.
+
+    RAID 4
+        block-level stripping, not used.
+
+    RAID 5
+        block level stripping, parity information distribute among the drives.
+        If one drive fails, the others can reconstruct the data based on the parity.
+
+    RAID 5
+        block level stripping, doubleparity information distribute among the drives.
+        If two drives fail, the others can reconstruct the data based on the parity.
+
+Internet addresses
+
+    32 bits per IPv4 address
+
+    Each IP is broken into four 8 bit blocks or octets
+
+    11111111 = 255
+    00000000 = 0
+
+    private addresses
+
+    10.0.0.0 -10.255.255.255
+    172.16.0.0 - 172.31.255.255
+    192.168.0.0 - 192.168.255.255
