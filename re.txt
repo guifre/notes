@@ -1,0 +1,119 @@
+*Reverse engineering*
+
+ASM basic syntax
+    Intel-syntax: <instruction> <destination operand> <source operand>
+    AT&T syntax: <instruction> <source operand> <destination operand>
+    AT&T: Before register names, a percent sign must be written (%) and before numbers a dollar sign ($). Parentheses are used instead of brackets.
+    AT&T: A suffix is added to instructions to define the operand size:
+        – q — quad (64 bits)
+        – l — long (32 bits)
+        – w — word (16 bits)
+        – b — byte (8 bits)
+
+    mov ebp,esp # moves the value from ESP to EBP
+    sub esp,0x8 # substracts 8 from the RSP
+    cmp DWORD PTR [ebp-4],0x9 # compares a 4 byte value located in the EBP - 4 with number 9
+    jle 8048383 <main+0x1f> # if previous comparsion less or equal to 9 instruction jumps to 0x8048383
+    jmp 80483a6 <main+0x32> # unconditional jump to 0x80483a6
+
+
+General Purpose Registers
+    Aimed at doing math operations
+    EAX results register (accumulator)
+    EBX pointer to data
+    ECX counter
+    EDX pointer to data
+    they can hold 16 bits
+
+
+Memory pointers
+    ESP stack pointer register. Points to the memory address where the next stack operation will take place (top of the stack).
+    EBP stack data pointer. It is a registry used to calculate addresses relative to other addresses
+    ESI source index
+    EDI destination index
+
+
+Control registers
+    They control the function of the processor
+    EIP, extended instruction pointer next instruction to be executed
+    Useful commands
+        $ gcc a.c -i a -m32 # compile for 32 bits
+        $ gcc a.c    -fno-stack-protector # disables stack protection
+        $ objdump -d bin # get the ASM of a binary
+        $ gdb overflow core # examine core dump
+            > info registers # examine EIP, etc
+
+    NOP is \0x90 useful for shellcodes to add the padding. Higher chance of guessing the right address
+
+    The stack grows down the address space: as more data is added to the stack, it is added at increasingly lower address value
+
+    4 bytes per char, i.e. array[5] allocates 0x20 = 30 bytes
+
+    The order of the bytes is reversed because IA32 machines are little-endian, reverse the address to use in the payload
+
+
+
+The address problem
+
+  Finding the address you have to inject in the payload is tricky, since for every program the address starts in a different position. You can use NOPTs to increase the chance to find a valid address that will end up executing your shellcode
+
+
+Shellcodes
+
+    Instructions written in assembler translated into hexadecimal opcodes. System calls in linux are  performed using interrupts, as follows:
+        1. Specific syscall number is loaded in EAX
+        2. the argument to the sys call function in placed into registers
+        3. the instruction 0x80 is executed
+        4. cpu switches to kernel mode
+        5. syscall is executed
+
+    You can specify up to six arguments per syscall (EBX, ECX, ESI, EDI, EPB)
+
+    To check the system calls used by a binary you can use:
+        $ gcc –static # prevents gcc from dynamically linking and preserves syscalls.
+
+    Then, we can use $ strace ./bin to see the syscalls used by a binary
+
+    Test the shellcode with
+
+    *char shellcode[] = "\x55"
+    "\x48\x89\xe5"
+    "\xbf\xe4\x65\x49\x00"
+    "\xe8\xd2\x0e\x00\x00i"
+    "\x5d"
+    "\xc3";
+    int main()
+    {
+        int  *ret;
+        ret = (int *) &ret + 2;
+        (*ret) = (int)shellcode;
+    }*
+
+    You can not put nulls \x00 in a shellcode
+
+    *0000000000401110 <main>:
+    401110: 55                   push   %rbp
+    401111: 48 89 e5             mov    %rsp,%rbp
+    401114: bf e4 65 49 00       mov    $0x4965e4,%edi
+    401119: e8 d2 0e 00 00       callq  401ff0 <__libc_system>
+    40111e: 5d                   pop    %rbp
+    40111f: c3                   retq*
+
+   The middle column is the hex opcodex we want \x55 etc
+
+
+Format strings
+  Format string is a C string null terminated.
+
+  We pass a format argument %s, and the printf function will pop the next element of the stack as a corresponding text pair. If we have not provided one, we will have read an arbitrary stack entry.
+
+  You can use the dollar sign qualifier to acces a specific element of the stack and %x to read the hex memory position, i.e. %4$x (forth element of the stack).
+
+Analyzing firmware images
+    *$ binwalk -e file.bin # extract compress bin images*
+    *$ unyaffs file # extract .unyaffs2 filesystem mount points*
+    *$ dd if=image.zip of=firmware.zip bs=64 skip=1 # extract firmware images*
+    *$ fcrackzip file # cracks zip file*
+
+
+

@@ -1,7 +1,0 @@
-*Reverse engineering*
-
-Analyzing firmware images
-    $ binwalk -e file.bin # extract compress bin images
-    $ unyaffs file # extract .unyaffs2 filesystem mount points
-    $ dd if=image.zip of=firmware.zip bs=64 skip=1 # extract firmware images
-    $ fcrackzip file # cracks zip file
