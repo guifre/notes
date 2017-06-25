@@ -1,7 +1,7 @@
 *git*
 git
-    $ git pull --rebase # rebase prevents merge commits
-    $ git stash; git stash pop
-    $ git reset HEAD^; git push -f # resets last commit in local repo and remote
-    $ git merge --abort # aborts merge status
-    $ git reset --hard origin # sets head to origin after diverged paths
+    *$ git pull --rebase # rebase prevents merge commits*
+    *$ git stash; git stash pop*
+    *$ git reset HEAD^; git push -f # resets last commit in local repo and remote*
+    *$ git merge --abort # aborts merge status*
+    *$ git reset --hard origin # sets head to origin after diverged paths*
