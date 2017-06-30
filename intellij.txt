@@ -1,0 +1,64 @@
+*Shortcuts*
+Refactor
+    F6 # Move
+    Shift + F6 # Rename
+    CMD + F6 # Refactor
+    Shift + F6 # Rename
+    CMD + SHIFT + C # move to a constant
+    CMD + SHIFT + F # move to a field
+    CMD + SHIFT + P # move to a parameter
+    CMD + SHIFT + M # move to a method
+    CMD + SHIFT + V # move to a local variable
+
+
+
+Move
+    ALT+SHIFT + UP/DOWN # move line up down
+    ALT+SHIFT + UP/DOWN # move line up down
+    CMD+SHIFT + UP/DOWN # move block up down
+
+
+    ALT + F7 # find usages
+    ALT + UP/DOWN # select/deselect within string/method invocation
+
+Menus
+    CMD + E # menu of recently opened files
+    CMD + N # menu to create constructor, getters, override methods
+
+
+Git
+    CMD + K # git commit
+    CMD + T # git pull
+
+
+Find
+    CMD + R # replace
+    CMD + F # find
+
+Open
+    CMD + O # open class by name
+    CMD + SHIFT + O # open file by name
+    CMD + SHIFT + A # find action by name
+
+
+    ALT + ENTER # suggestions about fixing compiling error
+    CTRL + SPACE # find reference in classpath
+
+
+Run test
+    CTRL + R # run last run test
+    CTRL + SHIFT + R # run selected test / test class / files.
+
+
+Move
+    FN + left/right # go to start line / end line
+    ALT + left/right # move word
+    CMD + L # goto line
+
+MultiCursor
+    CTRL + G # select next that matches current selection
+    CTRL + SHIFT + G # deselect previous next that matches current selection
+    CTRL + CMD + G # select all that matches current selection
+    ALT + DOWN # multi line cursor
+
+        CMD + backspace # delete line
