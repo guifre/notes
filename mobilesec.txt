@@ -4,6 +4,8 @@ IOS Security
 
     Secure Boot Chain
 
+        The boot loading mechanism works as follows. First, instructions from read only boot room are executed, they bootstrap the system. It contains the public key of apple's ca. Verifies and launches the low level boot loader. The low level boot loader launches a second stage, called iBoot. Then the device boots the kernel or recovery mode.
+
         ROM -> LLB -> iBoot -> IOS kernel
 
         ROM is read only data, contains the Apple CA public key and code to load the LLB
@@ -21,7 +23,7 @@ IOS Security
 
     Code Singing
 
-        App signatures are validated before executing them agains the Apple CA.
+        Signature of apps is verified and have to be signed by Apple CCA. Attacking chain of trust is how jailbreaks work. Best ones attack rom, which can not be patched.
 
 
     Process Level SandBoxing
@@ -33,20 +35,77 @@ IOS Security
 
         The filesystem is encrypted with AES using hardware.
 
-        Individial files can also be encrypted with a key derivated from a pass code.
+        Individual files can also be encrypted with a key derived from a pass code.
+
+        When the filesystem is wiped, the key is removed and nothing more.
+
 
     Exploit Mitigation
 
-        Write or Execute Memory: writtable memory is not executable, executable memory is not writable.
+        ALSR, apps addresses is randomised at execution time. Shared libraries addresses is randomized at at boot time.
 
-        ASLR: random mapped memory.
+        Write or Execute Memory: writable memory is not executable (xn), executable memory is not writable. Only apps that have been signed with apple own code signing entitlement can have memory with write and execution permissions. This is why safari works better than chrome in IOS.
+
+        Every heap and stack app is not executable by default.
 
         Mandatory singing of apps.
 
+        Mandatory access control (mac) is apples sandbox. Manages mostly file system access with more flexibility for network, resources, etc...
+
+
     File Crypto
+        iOS has full disk encryption and additionally offers and api for encrypting directories for apps.
+
 
         Per file encryption, each key managed by secure enclabe, uses PBKDF2
 
+    Jailbreak detection
+        It is used by apps to detect devices that can run unsigned code, and therefore are less trusted.
+            - fork popen, look at exit code. Function calls are prevented by the sandbox.
+            - Read a file path outside the sandbox, it should fail if non-jailbroken
+            - Run unsigned code, or count loaded shared libraries.
+
+    Bypassing apple apps store review:
+        - running rogue JavaScript, serve malicious JavaScript after the app has passed the review.
+        - If a bug is found in iOS in the memory layout and app can use dynamic patching to overwrite memory with data not signed by apple and execute it
+
+
+    Automatic reference counting
+        Objective c inserts at compile time reference increase and decrease to know when an object can be freed from memory. But the programmer can still use Malloc free cfretain crrelease
+
+    App file system layout
+
+        App bundle is
+        - app name
+        - Documents
+        - Library
+        - - app support
+        - - cookies
+        - - preferences
+        - - Caches
+        - - Saved app state
+        - Tmp
+
+        Configuration files are stored in plist files that can be xml of binary. Might contain sensitive data. $ plutil -convert changes one format to another
+
+        The applications can share data with other apps by writing to the shared directory
+
+    Security testing
+
+        See all files in Finder:
+
+        defaults write NSGlobalDomain AppleShowAllExtensions -book true
+        chflags nohidden ~/Library
+
+        You might wanna use two devices for testing one jailbroken to easily inspect the file system and one without to have all the security features
+
+        The iOS simulator for Xcode does not run iOS it is just a simulator, so it lacks some features such as SMS and cellular camera libraries are slightly different...
+
+        First step to test an iOS app is to run it through a proxy and inspect traffic such as. Burp
+
+        You should install the PortSwigger ca to the preference store to make the mint work
+
+        On an iOS device you can go to settings network proxy and set the config
 
 Analyzing Android Apps
 
