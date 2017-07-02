@@ -1,4 +1,4 @@
 *Linux*
 
 Crontab
-    1 * * * * $ cmd # runs every minute
+    1 \* \* \* \* $ cmd # runs every minute
