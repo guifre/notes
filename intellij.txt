@@ -17,6 +17,8 @@ Move
     *CMD + SHIFT + UP/DOWN # move block up down*
     *CMD + SHIFT + UP/DOWN # move block up down*
     *ALT + SHIFT + J # join lines
+    *CMD + backspace* # deletes line
+    *CMD + shift + N* # move selected text to a scratch file
 
     *ALT + F7 # find usages*
     *ALT + UP/DOWN # select/deselect within string/method invocation*
