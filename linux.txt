@@ -2,3 +2,48 @@
 
 Crontab
     1 \* \* \* \* $ cmd # runs every minute
+
+
+Extracting archives
+    *$ tar xvfj test.tar.bz2*
+    *$ tar zxvf test.tar.gz*
+    *$ tar zxvf test.tar*
+    *$ gzip -d test.gz*
+    *$ unzip test.zip*
+    *$ zcat rockyou.txt.gz > rockyou.txt*
+
+Compressing archives
+    *$ tar -zcvf test.tar test*
+    *$ gzip test*
+    *$ zip -9 test.zip test*
+    *$ zip -r test.zip test/*
+
+
+Copy files remotely
+    *$ scp /path/to/local/file.txt user@targetIP:/path/to/share # local to remote*
+    *$ scp -r user@targetIP:/path/to/share /local/share # remote to local*
+    *$ cat ~/.ssh/id_rsa.pub | ssh user@targetIP 'cat >> .ssh/authorized_keys'*
+
+File Permissions
+    t rwx rwx rwx     type / owner / group / world
+    Type is directory (d) or file (-).
+
+    read    (r)     4
+    write   (w)     2
+    execute (e)     1
+
+    chmod 755 test.sh                  Make a file executable
+    find . -name "*.php" -type f -exec chmod 755 {} \;
+
+Finding Files
+    *$ updatedb                     # Update the database of file names on the system*
+    *$ locate file                  # Reads the database and shows the location of a file*
+    *$ which app                    # Show the path where the app is executed from*
+    *$ find / -name sbd*            # Show all the files that start with sbd*
+    *$ find / -perm -o+w -type d    # Show all world readable directories*
+    *$ find / -perm -o+e -type d    # Show all world executable directories*
+
+Searching within files
+    *$ grep xxx file                # Search for the pattern xxx in a file
+    *$ grep -r                      # Search recursively for a pattern in a directory
+    *$ zgrep                        # Search for a pattern in a zip file
