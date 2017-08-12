@@ -61,9 +61,9 @@ IOS Security
 
     Jailbreak detection
         It is used by apps to detect devices that can run unsigned code, and therefore are less trusted.
-            - fork popen, look at exit code. Function calls are prevented by the sandbox.
-            - Read a file path outside the sandbox, it should fail if non-jailbroken
-            - Run unsigned code, or count loaded shared libraries.
+        - fork popen, look at exit code. Function calls are prevented by the sandbox.
+        - Read a file path outside the sandbox, it should fail if non-jailbroken
+        - Run unsigned code, or count loaded shared libraries.
 
     Bypassing apple apps store review:
         - running rogue JavaScript, serve malicious JavaScript after the app has passed the review.

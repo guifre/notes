@@ -13,7 +13,7 @@ Threat model
 
 Transport Layer Security (TLS)
 
-    The web sever is configured to server encrypted traffic only. HTTP is redirected to port 443, where the content is served using *TLS 1.2*. Earlier versions such as SSL 2.0, SSL 3.0 have been disabled to avoid POODLE, BEAST, and downgrading attacks. The certificated has been issued by Let's Encrypt CA.
+    The web sever is configured to server encrypted traffic only. HTTP is redirected to port 443, where the content is served using *TLS-1.2*. Earlier versions such as SSL 2.0, SSL 3.0 have been disabled to avoid POODLE, BEAST, and downgrading attacks. The certificated has been issued by Let's Encrypt CA.
 
     The *key exchange* algorithms supported to establish the session key used during transmission are Diffie-Hellman and the elliptic-curve variant. The previous algorithms provide a very interesting cryptography property; The parties involved can establish a shared secret without having to transmit the key. This allows *perfect forward secrecy*. An adversary capturing and analyzing the traffic, won't be able to decrypt the data, even after compromising the private key of the server. Diffie-Hellman prime numbers of 4096 have been pre-generated to increase encryption robsutness.
 

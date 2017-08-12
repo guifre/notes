@@ -27,10 +27,10 @@ General Purpose Registers
 
 
 Memory pointers
-    ESP stack pointer register. Points to the memory address where the next stack operation will take place (top of the stack).
-    EBP stack data pointer. It is a registry used to calculate addresses relative to other addresses
-    ESI source index
-    EDI destination index
+    *ESP* stack pointer register. Points to the memory address where the next stack operation will take place (top of the stack).
+    *EBP* stack data pointer. It is a registry used to calculate addresses relative to other addresses
+    *ESI* source index
+    *EDI* destination index
 
 
 Control registers
@@ -41,7 +41,7 @@ Control registers
         $ gcc a.c    -fno-stack-protector # disables stack protection
         $ objdump -d bin # get the ASM of a binary
         $ gdb overflow core # examine core dump
-            > info registers # examine EIP, etc
+        > info registers # examine EIP, etc
 
     NOP is \0x90 useful for shellcodes to add the padding. Higher chance of guessing the right address
 
@@ -55,7 +55,7 @@ Control registers
 
 The address problem
 
-  Finding the address you have to inject in the payload is tricky, since for every program the address starts in a different position. You can use NOPTs to increase the chance to find a valid address that will end up executing your shellcode
+    Finding the address you have to inject in the payload is tricky, since for every program the address starts in a different position. You can use NOPTs to increase the chance to find a valid address that will end up executing your shellcode
 
 
 Shellcodes
@@ -99,15 +99,15 @@ Shellcodes
     40111e: 5d                   pop    %rbp
     40111f: c3                   retq*
 
-   The middle column is the hex opcodex we want \x55 etc
+    The middle column is the hex opcodex we want \x55 etc
 
 
 Format strings
-  Format string is a C string null terminated.
+    Format string is a C string null terminated.
 
-  We pass a format argument %s, and the printf function will pop the next element of the stack as a corresponding text pair. If we have not provided one, we will have read an arbitrary stack entry.
+    We pass a format argument %s, and the printf function will pop the next element of the stack as a corresponding text pair. If we have not provided one, we will have read an arbitrary stack entry.
 
-  You can use the dollar sign qualifier to acces a specific element of the stack and %x to read the hex memory position, i.e. %4$x (forth element of the stack).
+    You can use the dollar sign qualifier to acces a specific element of the stack and %x to read the hex memory position, i.e. %4$x (forth element of the stack).
 
 Analyzing firmware images
     *$ binwalk -e file.bin # extract compress bin images*
