@@ -2,7 +2,7 @@
 Registration
     The first challenge is to actually registering on the site.
     The page for the registration is https://www.hackthebox.eu/en/invite where there is a form to submit an invite code.
-    If we proxy the browser through Burp or read the HTML, we can see and interesting JS library loaded: *https://www.hackthebox.eu/js/inviteapi.min.js*. The code is obfuscated, we can use any online beautifier and it unpacks to the following:
+    If we proxy the browser through Burp or read the HTML, we can see and interesting JS library loaded: https://www.hackthebox.eu/js/inviteapi.min.js. The code is obfuscated, we can use any online beautifier and it unpacks to the following:
     *function verifyInviteCode(code) {
     var formData = {
         "code": code
@@ -35,7 +35,7 @@ function makeInviteCode() {
     })
 }*
 
-    */api/invite/verify* is the REST endpoint used to validate the invite code when the form is submitted. In addition, we can see there is a second REST endpoint, which is not used in the main page: */api/invite/how/to/generate*. Making a post request to *https://www.hackthebox.eu/api/invite/how/to/generate* returns the following response:
+    The REST endpoint to validate the invite code when the form is submitted is */api/invite/verify*. In addition, we can see there is a second REST endpoint, which is not used in the main page: */api/invite/how/to/generate*. Making a post request to *https://www.hackthebox.eu/api/invite/how/to/generate* returns the following response:
     *$ curl -X POST https://www.hackthebox.eu/api/invite/how/to/generate
 {"success":1,"data":{"data":"SW4gb3JkZXIgdG8gZ2VuZXJhdGUgdGhlIGludml0ZSBjb2RlLCBtYWtlIGEgUE9TVCByZXF1ZXN0IHRvIC9hcGkvaW52aXRlL2dlbmVyYXRl","enctype":"BASE64"},"0":200}*
 
@@ -151,8 +151,7 @@ meterpreter > cat ../../../Users/Administrator/Desktop/root.txt.txt
 e621a0b5041708797c4fc4728bc72b4b*
 
 Optimum 10.10.10.8
-    Reconnaissance
-    Same methodology as carried out in previous machines, quick syn port scan:
+    Reconnaissance: Same methodology as carried out in previous machines, quick syn port scan:
     *root@kali:~# nmap -T5 -sS 10.10.10.8
 
 Starting Nmap 7.50 ( https://nmap.org ) at 2017-08-19 15:15 BST
