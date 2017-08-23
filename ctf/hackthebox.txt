@@ -41,7 +41,7 @@ function makeInviteCode() {
 
     It appears that the data object has been encrypted using ROT13. We can decrypt it at rot13.com, and we get the following message:
 
-    *In order to generate the invite code, make a POST request to /api/invite/generate*
+    In order to generate the invite code, make a POST request to /api/invite/generate
 
     *$ curl -X POST https://www.hackthebox.eu/api/invite/generate
 {"success":1,"data":{"code":"T01KUlYtWE1LQU4tWkNHQVYtV0dJRkctTkRWSFA=","format":"encoded"},"0":200}*
