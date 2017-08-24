@@ -1,8 +1,8 @@
 *HackTheBox*narrative
 Registration
-    The first challenge is to actually registering on the site.
+    The first challenge is to register on the site.
     The page for the registration is https://www.hackthebox.eu/en/invite where there is a form to submit an invite code.
-    If we proxy the browser through Burp or read the HTML, we can see and interesting JS library loaded: https://www.hackthebox.eu/js/inviteapi.min.js. The code is obfuscated, we can use any online beautifier and it unpacks to the following:
+    In the landing page, we can see and interesting JS library loaded: https://www.hackthebox.eu/js/inviteapi.min.js. The code is obfuscated, we can use any online beautifier and it unpacks to the following code:
     *function verifyInviteCode(code) {
     var formData = {
         "code": code
@@ -35,7 +35,7 @@ function makeInviteCode() {
     })
 }*
 
-    The REST endpoint to validate the invite code when the form is submitted is */api/invite/verify*. In addition, we can see there is a second REST endpoint, which is not used in the main page: */api/invite/how/to/generate*. Making a post request to *https://www.hackthebox.eu/api/invite/how/to/generate* returns the following response:
+    We can easily identify the function makeInviteCode() that talks to the REST endpoint */api/invite/how/to/generate*. Making a post request to *https://www.hackthebox.eu/api/invite/how/to/generate* returns the following response:
     *$ curl -X POST https://www.hackthebox.eu/api/invite/how/to/generate
 {"success":1,"data":{"data":"SW4gb3JkZXIgdG8gZ2VuZXJhdGUgdGhlIGludml0ZSBjb2RlLCBtYWtlIGEgUE9TVCByZXF1ZXN0IHRvIC9hcGkvaW52aXRlL2dlbmVyYXRl","enctype":"BASE64"},"0":200}*
 
