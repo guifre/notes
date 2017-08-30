@@ -11,7 +11,7 @@ Insertions
 
     The function *$addtoset* has the same behaviour as *$push* but it only adds the element if it is not there
 
-    *$pop* will remove a single element from an array. You can specify 1 to delete the last element or -1 to delete the first one.
+    The function *$pop* will remove a single element from an array. You can specify 1 to delete the last element or -1 to delete the first one.
     *> db.collection.update({{}, { $pop : {key : 1}}})*
 
     Delete all the elements that match:
