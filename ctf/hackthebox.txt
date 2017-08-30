@@ -35,7 +35,7 @@ function makeInviteCode() {
     })
 }*
 
-    We can easily identify the function makeInviteCode() that talks to the REST endpoint */api/invite/how/to/generate*. Making a post request to *https://www.hackthebox.eu/api/invite/how/to/generate* returns the following response:
+    We can easily identify the function makeInviteCode() that talks to the REST endpoint */api/invite/how/to/generate*. Making a post request to https://www.hackthebox.eu/api/invite/how/to/generate returns the following response:
     *$ curl -X POST https://www.hackthebox.eu/api/invite/how/to/generate
 {"success":1,"data":{"data":"SW4gb3JkZXIgdG8gZ2VuZXJhdGUgdGhlIGludml0ZSBjb2RlLCBtYWtlIGEgUE9TVCByZXF1ZXN0IHRvIC9hcGkvaW52aXRlL2dlbmVyYXRl","enctype":"BASE64"},"0":200}*
 

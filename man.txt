@@ -94,6 +94,17 @@ Metaslpoit
         *> sessions -l*
         Switch to session
         *> session -i 1*
+        Token stealing
+        *> use incognito
+        >list_tokens -u*
+        Search files:
+        *> meterpeter search -f *pass*.txt*
+        Upload files
+        *> upload local remote*
+        Invoke a command shell
+        *> shell *
+
+
 
 Netcat
     Listens for incoming connections
