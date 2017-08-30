@@ -3,13 +3,13 @@ Insertions
     You can update all match entries with:
     *> db.collection.update({key : 'matchcriteria'}, {key : 'newvalue'})*
 
-    You can delete a specific field with $unset you can add a new key with $set. You can add a new entry to an array with $push and $pushall:
+    You can delete a specific field with *$unset* you can add a new key with *$se*t. You can add a new entry to an array with *$push* and $pushall:
     *> db.collection.update({}, { $unset : { key : 'alpha'}})*
 
     You can add multiple values to an array that matches:
     *> db.collection.update({}, { $push : { key : { $each : ['alpha', 'bravo']}}})*
 
-    *$addtoset* has the same behaviour as *$push* but it only adds the element if it is not there
+    The function *$addtoset* has the same behaviour as *$push* but it only adds the element if it is not there
 
     *$pop* will remove a single element from an array. You can specify 1 to delete the last element or -1 to delete the first one.
     *> db.collection.update({{}, { $pop : {key : 1}}})*
