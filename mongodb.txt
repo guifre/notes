@@ -9,9 +9,9 @@ Insertions
     You can add multiple values to an array that matches:
     *> db.collection.update({}, { $push : { key : { $each : ['alpha', 'bravo']}}})*
 
-    $addtoset has the same behaviour as $push but it only adds the element if it is not there
+    *$addtoset* has the same behaviour as *$push* but it only adds the element if it is not there
 
-    $pop will remove a single element from an array. You can specify 1 to delete the last element or -1 to delete the first one.
+    *$pop* will remove a single element from an array. You can specify 1 to delete the last element or -1 to delete the first one.
     *> db.collection.update({{}, { $pop : {key : 1}}})*
 
     Delete all the elements that match:
@@ -64,10 +64,10 @@ Search
     You can use the in operator to specify an array of possible values to match. Nin es the same but you specify the elements missing.
     *> db.collection.find({ key : { $in : [10, 15]}})*
 
-    You can use the $or and $and operators:
+    You can use the *$or* and *$and* operators:
     *> db.collection.find({$or : [ {key : 'alpha'}, {key : 'bravo'})*
 
-    You can use the $not operator to negate a search.
+    You can use the *$not* operator to negate a search.
 
 
 
