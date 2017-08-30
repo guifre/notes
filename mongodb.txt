@@ -31,7 +31,7 @@ Search
     Find all elements in collection
     *> db.collection.find()*
 
-     Find filtering elements:
+    Find filtering elements:
     *> db.collection.find({key : 'value'})*
 
     Find skipping keys in the result:
@@ -40,7 +40,7 @@ Search
     Find showing a single key in the result:
     *> db.collection.find({}, {key : 1})*
 
-     Find filtering nested elements:
+    Find filtering nested elements:
     *> db.collection.find({obj.key : 'value'})*
 
     Sort ascending by key:
