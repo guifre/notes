@@ -1,0 +1,75 @@
+*mongodb*
+Insertions
+    You can update all match entries with:
+    *> db.collection.update({key : 'matchcriteria'}, {key : 'newvalue'})*
+
+    You can delete a specific field with $unset you can add a new key with $set. You can add a new entry to an array with $push and $pushall:
+    *> db.collection.update({}, { $unset : { key : 'alpha'}})*
+
+    You can add multiple values to an array that matches:
+    *> db.collection.update({}, { $push : { key : { $each : ['alpha', 'bravo']}}})*
+
+    $addtoset has the same behaviour as $push but it only adds the element if it is not there
+
+    $pop will remove a single element from an array. You can specify 1 to delete the last element or -1 to delete the first one.
+    *> db.collection.update({{}, { $pop : {key : 1}}})*
+
+    Delete all the elements that match:
+    *> db.collection.update({{}, { $pull : {key : 'alpha'}})*
+
+    drop a collection
+    *> db.collection.drop()*
+
+    Drop a database:
+    *> db.dropDatabase()*
+
+Search
+    *show collections*
+
+    *> db.collection.insert(document)*
+
+    Find all elements in collection
+    *> db.collection.find()*
+
+     Find filtering elements:
+    *> db.collection.find({key : 'value'})*
+
+    Find skipping keys in the result:
+    *> db.collection.find({}, {key : 0})*
+
+    Find showing a single key in the result:
+    *> db.collection.find({}, {key : 1})*
+
+     Find filtering nested elements:
+    *> db.collection.find({obj.key : 'value'})*
+
+    Sort ascending by key:
+    *> db.collection.find().sort(key: 1)*
+
+    Sort descending by key:
+    *> db.collection.find().sort(key: -1)*
+
+    Limit the results to the first N:
+    *> db.collection.find().limit(10)*
+
+    Skip the first N results:
+    *> db.collection.find().skip(10)*
+
+    Return the number of elements that match:
+    *> db.collection.count()*
+
+    Return collection with key greater than:
+    *> db.collection.find({key : { $gt : 10 }})*
+
+    You can use the in operator to specify an array of possible values to match. Nin es the same but you specify the elements missing.
+    *> db.collection.find({ key : { $in : [10, 15]}})*
+
+    You can use the $or and $and operators:
+    *> db.collection.find({$or : [ {key : 'alpha'}, {key : 'bravo'})*
+
+    You can use the $not operator to negate a search.
+
+
+
+
+
