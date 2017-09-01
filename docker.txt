@@ -1,0 +1,28 @@
+*Docker*
+Basic Docker Commands
+    List all available images
+    *$ docker images*
+
+    List all the running containers
+    *$ docker ps*
+
+    Run a command within the container
+    *$ docker exec -ti [container_name/container_id] /bin/bash*
+
+    Run an image
+    *$ docker run -t [image_name] .*
+
+    Stop a container
+    *$ docker stop/kill [container_name]
+
+    Show logs
+    *$ docker logs [container]*
+
+    Build an image
+    *$ docker build -t [image_name] .*
+
+    Push image to registry
+    *$ docker push -t [registry/image_name:version]*
+
+    Pull an image from registry
+    *$ docker pull -t [registry/image_name:version]*
