@@ -193,3 +193,25 @@ Others
         *<?xml version="1.0" encoding="ISO-8859-1"?>
     <!DOCTYPE svg [<!ENTITY elem "">]>
     <svg onload="alert(document.domain);" height="16" width="16">&elem;</svg>*
+
+Bash quoting
+    * # | Expression  | Result      | Comments
+---+-------------+-------------+--------------------------------------------------------------------
+ 1 | "$a"        | apple       | variables are expanded inside ""
+ 2 | '$a'        | $a          | variables are not expanded inside ''
+ 3 | "'$a'"      | 'apple'     | '' has no special meaning inside ""
+ 4 | '"$a"'      | "$a"        | "" is treated literally inside ''
+ 5 | '\''        | \*\*invalid\*\* | can not escape a ' within ''; use "'" or $'\'' (ANSI-C quoting)
+ 6 | "red$arocks"| red         | $arocks does not expand $a; use ${a}rocks to preserve $a
+ 7 | "redapple$" | redapple$   | $ followed by no variable name evaluates to $
+ 8 | '\"'        | \"          | \ has no special meaning inside ''
+ 9 | "\'"        | '           | \' is interpreted inside ""
+10 | "\""        | "           | \" is interpreted inside ""
+11 | "\*"         | \*           | glob does not work inside "" or ''
+12 | "\t\n"      | \t\n        | \t and \n have no special meaning inside "" or ''; use ANSI-C quoting
+13 | "`echo hi`" | hi          | `` and $() are evaluated inside ""
+14 | '`echo hi`' | `echo hi`   | `` and $() are not evaluated inside ''
+15 | '${arr[0]}' | ${arr[0]}   | array access not possible inside ''
+16 | "${arr[0]}" | apple       | array access works inside ""
+17 | $'$a\''     | $a'         | single quotes can be escaped inside ANSI-C quoting
+---+-------------+-------------+--------------------------------------------------------------------*
