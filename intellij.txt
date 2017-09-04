@@ -1,6 +1,6 @@
 *Shortcuts*
 Refactor
-    *F6 # Move*
+    *F6 # Move element (class/field/static method/...)*
     *Shift + F6 # Rename*
     *CMD + F6 # Refactor*
     *Shift + F6 # Rename*
@@ -20,9 +20,10 @@ Move
     *CMD + backspace* # deletes line
     *CMD + shift + N* # move selected text to a scratch file
 
-    *ALT + F7 # find usages*
+    *ALT + F7 # Find usages*
+   	*CMD + B # Go to declaration*
     *ALT + UP/DOWN # select/deselect within string/method invocation*
-    **
+	*CMD + F8 # Enable/disable break point*
 
 Menus
     *CMD + E # menu of recently opened files*
@@ -43,6 +44,8 @@ Open
     *CMD + O # open class by name*
     *CMD + SHIFT + O # open file by name*
     *CMD + SHIFT + A # find action by name*
+	*CMD + NUMBER (3-9) # Go to tab with that number (debug, run, version control, ...)*
+	*CMD + J # shows shortcuts*
 
 
 Errors

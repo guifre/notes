@@ -44,7 +44,9 @@ nmap
         -A Enable OS detection, version detection, script scanning, and traceroute
 
 Metaslpoit
-    MSFconsole
+   	Statring metasploit
+	*$ service postgesql start && service metasploit start*
+     MSFconsole
         Entry point for the framework
         *$ msfconsole*
         *> help*
@@ -78,6 +80,11 @@ Metaslpoit
         *> sysinfo*
         tries to elevate privileges
         *> use priv*
+        Route all traffic to a specific IP through a session 2:
+        *> route add 10.10.10.10 255.255.255.0 2*
+        Common payloads
+        *generic/shell_reverse_tcp
+        windows/meterpreter/reverse_tcp*
 
     MSFcli
         non interactive client.
@@ -103,6 +110,8 @@ Metaslpoit
         *> upload local remote*
         Invoke a command shell
         *> shell *
+        Get the hash from windows users:
+        *> hashdump*
 
 
 
