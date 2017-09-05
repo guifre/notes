@@ -21,9 +21,9 @@ Move
     *CMD + shift + N* # move selected text to a scratch file
 
     *ALT + F7 # Find usages*
-   	*CMD + B # Go to declaration*
+    *CMD + B # Go to declaration*
     *ALT + UP/DOWN # select/deselect within string/method invocation*
-	*CMD + F8 # Enable/disable break point*
+    *CMD + F8 # Enable/disable break point*
 
 Menus
     *CMD + E # menu of recently opened files*
@@ -34,6 +34,7 @@ Menus
 Git
     *CMD + K # git commit*
     *CMD + T # git pull*
+    *CMD + ALT + Z # revert file*
 
 
 Find
@@ -44,8 +45,8 @@ Open
     *CMD + O # open class by name*
     *CMD + SHIFT + O # open file by name*
     *CMD + SHIFT + A # find action by name*
-	*CMD + NUMBER (3-9) # Go to tab with that number (debug, run, version control, ...)*
-	*CMD + J # shows shortcuts*
+    *CMD + NUMBER (3-9) # Go to tab with that number (debug, run, version control, ...)*
+    *CMD + J # shows shortcuts*
 
 
 Errors

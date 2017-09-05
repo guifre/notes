@@ -45,8 +45,8 @@ nmap
 
 Metaslpoit
    	Statring metasploit
-	*$ service postgesql start && service metasploit start*
-     MSFconsole
+    *$ service postgesql start && service metasploit start*
+    MSFconsole
         Entry point for the framework
         *$ msfconsole*
         *> help*
