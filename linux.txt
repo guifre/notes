@@ -1,6 +1,8 @@
 *Linux*
 
 Crontab
+    Sytanx:
+    *minute hour day-month month day-week CMD*
     1 \* \* \* \* $ cmd # runs every minute
 
 
