@@ -1,83 +1,136 @@
 *Shortcuts*
 Refactor
-    *F6 # Move element (class/field/static method/...)*
-    *Shift + F6 # Rename*
-    *CMD + F6 # Refactor*
-    *Shift + F6 # Rename*
-    *CMD + SHIFT + C # move to a constant*
-    *CMD + SHIFT + F # move to a field*
-    *CMD + SHIFT + P # move to a parameter*
-    *CMD + SHIFT + M # move to a method*
-    *CMD + SHIFT + V # move to a local variable*
+    Move element (class/field/static method/...)
+    *F6*
+    Rename
+    *Shift* + F6
+    Refactor
+    *CMD + F*6
+    Rename
+    *Shift* + F6
+    Move to a constant
+    *CMD + SHIFT + C*
+    Move to a field
+    *CMD + SHIFT + *F
+    Move to a parameter
+    *CMD + SHIFT + P*
+    Move to a method
+    *CMD + SHIFT + M*
+    Move to a local variable
+    *CMD + SHIFT + V*
 
 
 Move
-    *ALT + SHIFT + UP/DOWN # move line up down*
-    *ALT + SHIFT + UP/DOWN # move line up down*
-    *CMD + SHIFT + UP/DOWN # move block up down*
-    *CMD + SHIFT + UP/DOWN # move block up down*
-    *ALT + SHIFT + J # join lines
-    *CMD + backspace* # deletes line
-    *CMD + shift + N* # move selected text to a scratch file
+    Move line up down
+    *ALT + SHIFT + UP*/DOWN
+    Move line up down
+    *ALT + SHIFT + UP*/DOWN
+    Move block up down
+    *CMD + SHIFT + UP/*DOWN
+    Move block up down
+    *CMD + SHIFT + UP/*DOWN
+    Join line
+    *ALT + SHsIFT + J
+    Deletes lin
+    *CMD + backespace*
+    Move selected text to a scratch fil
+    *CMD + shift + N*e
 
-    *ALT + F7 # Find usages*
-    *CMD + B # Go to declaration*
-    *ALT + UP/DOWN # select/deselect within string/method invocation*
-    *CMD + F8 # Enable/disable break point*
+    Find usages
+    *ALT + F7*
+    Go to declaration
+    *CMD + B*
+    Select/deselect within string/method invocation
+    *ALT + UP/DOWN*
+    Enable/disable break point
+    *CMD + F8*
 
 Menus
-    *CMD + E # menu of recently opened files*
+    Menu of recently opened files
+    *CMD + E*
     *CMD + N # menu to create constructor, getters, override methods*
-    *CMD + shift + T # create new test class*
+    Create new test class
+    *CMD + shift + T*
 
 
 Git
-    *CMD + K # git commit*
-    *CMD + T # git pull*
-    *CMD + ALT + Z # revert file*
+    Git commit
+    *CMD + K*
+    Git pull
+    *CMD + T*
+    Revert file
+    *CMD + ALT *+ Z
 
 
 Find
-    *CMD + R # replace*
-    *CMD + F # find*
+    Replace
+    *CMD + *R
+    Find
+    *CMD* + F
 
 Open
-    *CMD + O # open class by name*
-    *CMD + SHIFT + O # open file by name*
-    *CMD + SHIFT + A # find action by name*
-    *CMD + NUMBER (3-9) # Go to tab with that number (debug, run, version control, ...)*
-    *CMD + J # shows shortcuts*
+    Open class by name
+    *CMD + O*
+    Open file by name
+    *CMD + SHIFT + O*
+    Find action by name
+    *CMD + SHIFT + A*
+    Go to tab with that number (debug, run, version control, ...)
+    *CMD + NUMBER (3-9)*
+    Shows shortcuts
+    *CMD + J*
 
 
 Errors
-    *ALT + ENTER # suggestions about fixing compiling error*
-    *CTRL + SPACE # find reference in classpath*
+    Suggestions about fixing compiling error
+    *ALT + ENTER*
+    Find reference in classpath
+    *CTRL + SPACE*
 
 
 Run test
-    *CTRL + R # run last run test*
-    *CTRL + SHIFT + R # run selected test / test class / files.*
-    *CTRL + D # debug last test*
-    *CTRL + SHIFT + D # debug selected test / test class / files.*
+    Run last run test
+    *CTRL + R*
+    Run selected test / test class / files.
+    *CTRL + SHIFT + R*
+    Debug last test
+    *CTRL + D*
+    Debug selected test / test class / files.
+    *CTRL + SHIFT + D*
 
 
 Move
-    *FN + left/right # go to start line / end line*
-    *ALT + left/right # move word*
-    *CMD + L # goto line*
-    *F2 # go to next error/warning *
-    *CMD + alt + up/down # go to next element in list*
+    Go to start line / end line
+    *FN + left/right*
+    Move word
+    *ALT + le*ft/right
+    Goto line
+    *CMD + L*
+    Go to next error/warning 
+    *F2*
+    Go to next element in list
+    *CMD + alt + up/down*
 
 MultiCursor
-    *CTRL + G # select next that matches current selection*
-    *CTRL + SHIFT + G # deselect previous next that matches current selection*
-    *CTRL + CMD + G # select all that matches current selection*
-    *ALT + DOWN # multi line cursor*
-    *CMD + D # duplicate selected text*
-    *CMD + backspace # delete line*
-    *   CMD + shift + U # change case of selected text*
+    Select next that matches current selection
+    *CTRL + G*
+    Deselect previous next that matches current selection
+    *CTRL + SHIFT + G*
+    Select all that matches current selection
+    *CTRL + CMD + G*
+    Multi line cursor
+    *ALT + DOWN*
+    Duplicate selected text
+    *CMD + D*
+    Delete line
+    *CMD + back*space
+    Change case of selected text
+    *CMD + shift + U*
 
 Autocomplete
-    *Tab  # finishes line (adds bracket and semicolon)*
-    *Shift + ALT + Enter # finish if (adds bracket, new line and curly bracket)*
-    *psf + enter # public static final*
+    Finishes line (adds bracket and semicolon)
+    *Tab *
+    Finish if (adds bracket, new line and curly bracket)
+    *Shift + ALT + Enter*
+    Public static final
+    *psf + enter*
