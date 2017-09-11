@@ -328,7 +328,7 @@ Host is up (0.000072s latency).
 MAC Address: 00:0C:29:88:0D:15 (VMware)*
 
     Service identification scan:
-    *s# nmap -A -sS -T5 192.168.0.9
+    *# nmap -A -sS -T5 192.168.0.9
 Nmap scan report for 192.168.0.9
 Host is up (0.00033s latency).
 PORT   STATE SERVICE VERSION
