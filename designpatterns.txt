@@ -1,0 +1,66 @@
+Structural patterns
+    Help manage how classes organize
+
+Command
+    Allows you to encapsulate Requests as an object letting you parametrize clients with different requests. It is used in UI  panels (actions).
+
+Interpreter
+    Defines the grammar of a language and is able to interpret it. I.E the southest city given a set of them.
+
+Iterator
+    Mechanisk to access aggregated elements without exposing its representation (next/hasnext/remove).
+
+Mediator
+    It is an object that encapsulates how a set of objects interact. Promotes loos coupling by keeping objects from referencing each other.
+
+FLyweight
+    It's a factory class, that allows creating multiple objects, buffering the ones you already created to avoid having to create them again (i.e.in a map).
+
+Proxy
+    Provides a place holder to control an access an object. This is useful if you don't want to modify the object itself. For instance, a very time consuming method can be run a thread of the proxy.
+
+Behavioural patterns
+    Help manage what classes actually do
+
+Chain of responsability
+    Each element of the chain does a small task of work and delegate to the next one.
+
+Adapter
+    Convert a given interface to another interface.
+
+Bridge
+    Separates abstraction from implementation so that they can vary independently.
+
+Composite
+    Different objects that have to be dealt with.
+
+Decorator
+    Attach additional responsabilities to an object dynamically.
+
+Facade
+    Higher level interface that groups a set of interfaces to facilitat client code's work.
+
+Builder
+    Separate construction of complex object from its representation.
+
+Factory
+    Interface for creating an object, let subclasses decide which one.
+
+Prototype
+    When creating new instances is expensive, you can extend clonable and use a single instance you can clone.
+
+Singleton
+    A class that has a single instance.
+
+Creational Patterns
+    They facilitate creating other classes
+
+Abstract factory
+    Creates families or related objects without specifying concrete classes.
+
+Simple Factory
+    Delegating instantiation of objects to a specific class, useful when the creation of the object is complex (strategies/states/...).
+
+Null Object
+    Specific dummy implementation of an interface, provides no behaviour, used to avoid having to check for actual null objects.
+
