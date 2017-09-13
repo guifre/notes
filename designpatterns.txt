@@ -13,7 +13,7 @@ Iterator
 Mediator
     It is an object that encapsulates how a set of objects interact. Promotes loos coupling by keeping objects from referencing each other.
 
-FLyweight
+Flyweight
     It's a factory class, that allows creating multiple objects, buffering the ones you already created to avoid having to create them again (i.e.in a map).
 
 Proxy

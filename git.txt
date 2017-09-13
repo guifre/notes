@@ -11,3 +11,13 @@ git
     *$ git reset --hard origin*
     Keeps indexes
     *$ git reset --soft origin*
+    Delete a branch
+    *$ git branch -D branch_name*
+    Checkout a specific revision to new branch
+    *$ git checkout -b branch_name revision_id*
+    Push a revision to branch
+    *$ git push -f origin branch_name*
+    List remotes
+    *$ git remote -v*
+
+
