@@ -355,4 +355,7 @@ OS details: Linux 2.6.9 - 2.6.33*
 
     *http://192.168.0.9/index.php?system=system("cat /etc/passwd");*
 
-    I go to the main vendor site http://www.lotuscms.org/ and find that their site has the same issue, which means it is probably not the solution to the challenge.
+    I go to the main vendor site http://www.lotuscms.org/ and find that their site has the same issue, which means it is probably not the solution to the challenge. There is a remote code execution exploit available at:
+    *https://packetstormsecurity.com/files/122161/LotusCMS-3.0-PHP-Code-Execution.html*
+
+    But it does not work.

