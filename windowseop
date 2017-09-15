@@ -1,0 +1,32 @@
+*Windows elevation of privileges*narrative
+Windows elevation of privileges
+    Find installed patches, architecture, OS version
+        *systeminfo*
+
+    Hostname.
+    *hostname*
+
+    Find current user.
+    *echo %usernane%
+
+    List all users
+    *net users*
+
+    Information about a user
+    *net users Administrator*
+
+    Network information
+    *ipconfig /all & route print & arp -a*
+
+    List open connections
+    *netstat -aton*
+
+    Firewall information
+    *netsh firewall show state
+netsh firewall show config*
+
+    List scheduled tasks
+    *schtasks /query /fo LIST /v*
+
+    List windows services
+    *net start*
