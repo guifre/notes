@@ -30,3 +30,8 @@ netsh firewall show config*
 
     List windows services
     *net start*
+
+
+Metasploit
+    Module to elevate privileges to SYSTEM by creating a service or hijacking existing ones with incorrect permissions
+    *exploit/windows/local/service_permissions*

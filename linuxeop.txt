@@ -3,6 +3,8 @@
 Post exploitation
     Get a TTY shell after a reverse shell connection
     *python -c 'import pty;pty.spawn("/bin/bash")'*
+    Command to skip ignored lines in config files
+    *alias nonempty="egrep -v '^[ \t]*#|^$'"*
 
 Linux elevation of privileges
 
@@ -55,6 +57,12 @@ find . -name "*.php" -print0 | xargs -0 grep -i -n "var $password"*
     *find / -perm -g=s -o -perm -4000 ! -type l -maxdepth 6 -exec ls -ld {} \; 2>/dev/null
 find / -perm -1000 -type d 2>/dev/null
 find / -perm -g=s -type f 2>/dev/null*
+
+    Adding a binary to PATH, to hijack another SUID binary invokes it without the fully qualified path.
+    *$ function /usr/bin/foo () { /usr/bin/echo "It works"; }
+$ export -f /usr/bin/foo
+$ /usr/bin/foo
+It works*
 
     Find world-readable files:
     *find / -xdev -type d \( -perm -0002 -a ! -perm -1000 \) -print*
