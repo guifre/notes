@@ -1,37 +1,37 @@
 *Windows elevation of privileges*narrative
 Windows elevation of privileges
     Find installed patches, architecture, OS version
-    *systeminfo*
+    *$ systeminfo*
 
     Hostname.
-    *hostname*
+    *$ hostname*
 
     Find current user.
-    *echo %usernane%*
+    *$ echo %usernane%*
 
     List all users
-    *net users*
+    *$ net users*
 
     Information about a user
-    *net users Administrator*
+    *$ net users Administrator*
 
     Network information
-    *ipconfig /all & route print & arp -a*
+    *$ ipconfig /all & route print & arp -a*
 
     List open connections
-    *netstat -aton*
+    *$ netstat -aton*
 
     Firewall information
-    *netsh firewall show state
+    *$ netsh firewall show state
 netsh firewall show config*
 
     List scheduled tasks
-    *schtasks /query /fo LIST /v*
+    *$ schtasks /query /fo LIST /v*
 
     List windows services
-    *net start*
+    *$ net start*
 
 
 Metasploit
     Module to elevate privileges to SYSTEM by creating a service or hijacking existing ones with incorrect permissions
-    *exploit/windows/local/service_perm issions*
+    *$ exploit/windows/local/service_perm issions*
