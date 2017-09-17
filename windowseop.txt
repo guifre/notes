@@ -7,7 +7,7 @@ Windows elevation of privileges
     *$ hostname*
 
     Find current user.
-    *$ echo %usernane%*
+    *$ echo %username%*
 
     List all users
     *$ net users*
