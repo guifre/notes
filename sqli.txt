@@ -100,7 +100,7 @@ Table 'gallery.XXX' doesn't existCould not select category*
 
  Mysql exploitation
     Find current user
-    *SELECT user();*
+    *SELECT user();
 SELECT system_user();*
     List all Users
     *SELECT user FROM mysql.user; — priv*
