@@ -31,6 +31,14 @@ netsh firewall show config*
     List windows services
     *$ net start*
 
+    Once you know the updates installed, you can find known exploits using windows-exploit-suggester.
+    *$ ./windows-exploit-suggester.py -d 2017-02-09-mssb.xls -p ms16-075
+[*] initiating winsploit version 3.2…
+[*] database file detected as xls or xlsx based on extension
+[*] searching all kb’s for bulletin id MS16-075
+[+] relevant kbs [‘3164038’, ‘3163018’, ‘3163017’, ‘3161561’]
+[*] done*
+
 
 Metasploit
     Module to elevate privileges to SYSTEM by creating a service or hijacking existing ones with incorrect permissions

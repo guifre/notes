@@ -7,11 +7,18 @@ recon ng
     > run
 
 nmap
-    Scan Techniques
-        sT tcp connect
-        sY SCTP init scan, scans new protocol STCP that combines UDP and TCP
-        sA tcp ACK, open and closed ports will return RST, if firewall no reply sO IP protocol scan.
-        -sS TCP SYN scan
+    Normal scans
+        -sT TCP connect
+        -sS Stealth scan
+    Discovery scans
+        -sP Ping
+        -sL List Scan
+        -sO Protocol
+        -sV Probe open ports to determine service/version info
+        -sL List scan
+    Other scans
+        -sY SCTP init scan, scans new protocol STCP that combines UDP and TCP
+        -sA tcp ACK, open and closed ports will return RST, if firewall no reply sO IP protocol scan.
         -sT Connect scan
         -sA ACK scan
         -sW Window scan
@@ -24,14 +31,12 @@ nmap
         -p U:PORT Scan UDP ports with Nmap, e.g. -p U:53
         -F Fast mode, scans fewer ports than the default scan
 
-    Service Version Detection
-        -sV Probe open ports to determine service/version info
 
     OS Detection
         -O Enable OS Detection
 
     Timing and Performance
-        -T 0-5 Set timing template - higher is faster (less accurate)
+        -T[0-5] Timing. Higher is faster
 
     Firewalls IDS Evasion and Spoofing
         -f; --mtu VALUE Fragment packets (optionally w/given MTU)
@@ -42,6 +47,7 @@ nmap
 
     Misc Nmap Options
         -A Enable OS detection, version detection, script scanning, and traceroute
+        -P0 Do not ping first
 
 Metaslpoit
    	Statring metasploit
@@ -224,3 +230,7 @@ Bash quoting
 16 | "${arr[0]}" | apple       | array access works inside ""
 17 | $'$a\''     | $a'         | single quotes can be escaped inside ANSI-C quoting
 ---+-------------+-------------+--------------------------------------------------------------------*
+Tcpdump
+options: host, net, and port.
+host:  src, dst
+Proto: tcp, udp, icmp, ah

