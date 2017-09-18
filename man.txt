@@ -231,6 +231,6 @@ Bash quoting
 17 | $'$a\''     | $a'         | single quotes can be escaped inside ANSI-C quoting
 ---+-------------+-------------+--------------------------------------------------------------------*
 Tcpdump
-options: host, net, and port.
-host:  src, dst
-Proto: tcp, udp, icmp, ah
+    options: host, net, and port.
+    host:  src, dst
+    Proto: tcp, udp, icmp, ah
