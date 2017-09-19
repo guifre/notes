@@ -64,3 +64,9 @@ Simple Factory
 Null Object
     Specific dummy implementation of an interface, provides no behaviour, used to avoid having to check for actual null objects.
 
+Curiously recurring generic pattern
+	A builder super class can hold a generic type, bounded to its type. Subclasses can pass its type so the builder methods within the super class return the correct subtype.
+	*Class Builder<T extends Builder>
+		T withFoo(foo)
+			return (T) this;
+	Class SubBuilder extends Builder<SubBuilder>*
