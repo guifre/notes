@@ -1,4 +1,4 @@
-*SickOs*narrative
+*SickOs 1.1*narrative
     This CTF gives a clear analogy how hacking strategies can be performed on a network to compromise it in a safe environment. This vm is very similar to labs I faced in OSCP. The objective being to compromise the network/machine and gain Administrative/root privileges on them. https://www.vulnhub.com/entry/sickos-11,132/
 
 
@@ -60,9 +60,9 @@ BLEHHH!!!
 
     So the machine is running an HTTP server on port 80. I script a connection to every port to see if it is running other service but find nothing interesting.
 
-    We can configure Burp to use 192.168.252.133:3128 as Upstream Proxy and browse http://127.0.0.1. I also run a directory discovery scan with Dist.
+    We can configure Burp to use 192.168.252.133:3128 as Upstream Proxy and browse *http://127.0.0.1*. I also run a directory discovery scan with Dist.
 
-    It finds robots.txt, which contains a dissallow for */wolfcms*. Opening that in the browser shows a CMS with a couple of posts. There is also a login page at http://127.0.0.1/wolfcms/?/admin/login and in the posts it shows it has been posted by Administrator, so I run a brute force attack against the login.
+    It finds robots.txt, which contains a dissallow for */wolfcms*. Opening that in the browser shows a CMS with a couple of posts. There is also a login page at *http://127.0.0.1/wolfcms/?/admin/login* and in the posts it shows it has been posted by Administrator, so I run a brute force attack against the login.
 
     It turns out the system blocks you after 3 attempts. I look on the internet and find a RCE vulnerability due to unrestricted file uploads. The exploit URL is
 
@@ -70,7 +70,7 @@ BLEHHH!!!
 
     But the service requires user authentication.
 
-    Some other interesting files are http://127.0.0.1/connect
+    Some other interesting files are *http://127.0.0.1/connect*
 
     *#!/usr/bin/python
 
@@ -100,4 +100,17 @@ www-data@SickOs:/usr/lib/cgi-bin$ id
 
 uid=33(www-data) gid=33(www-data) groups=33(www-data)*
 
+    The kernel is outdated. I try a couple of local exploits but there are many gcc dependencies missing. Probably it is not the right root, I keep looking though the filesystem for unusual files, binaries with SUID bit and finally in the root of the CMS there is the *config.php* file with the following:
+    *define('DB_DSN', 'mysql:dbname=wolf;host=localhost;port=3306');
+define('DB_USER', 'root');
+define('DB_PASS', 'john@123');*
 
+    I try logging in through SSH as root, running sudo and su.
+
+    I connect to the database but theere is nothing useful there. I look in home folders, nothing. After a few attempts I find out there is a user in */etc/passwd* called *sickos*. I try the previous credentials and get a shell. Sickos is in the sudoers group, so I can just sudo with the same password.
+    *root@kali:/# ssh sickos@192.168.252.133
+sickos@192.168.252.133's password:
+Welcome to Ubuntu 12.04.4 LTS (GNU/Linux 3.11.0-15-generic i686)
+sickos@SickOs:~$ sudo su
+[sudo] password for sickos:
+root@SickOs:/home/sickos#*
