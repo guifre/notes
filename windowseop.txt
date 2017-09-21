@@ -43,3 +43,5 @@ netsh firewall show config*
 Metasploit
     Module to elevate privileges to SYSTEM by creating a service or hijacking existing ones with incorrect permissions
     *$ exploit/windows/local/service_perm issions*
+    Other scripts
+    *https://github.com/GDSSecurity/Windows-Exploit-Suggester*

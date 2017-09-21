@@ -105,9 +105,9 @@ uid=33(www-data) gid=33(www-data) groups=33(www-data)*
 define('DB_USER', 'root');
 define('DB_PASS', 'john@123');*
 
-    I try logging in through SSH as root, running sudo and su.
+    I try logging in through SSH as root, running sudo and su, no luck.
 
-    I connect to the database but theere is nothing useful there. I look in home folders, nothing. After a few attempts I find out there is a user in */etc/passwd* called *sickos*. I try the previous credentials and get a shell. Sickos is in the sudoers group, so I can just sudo with the same password.
+    I connect to the database but there is nothing useful there. I look in home folders, nothing. After a few attempts I find out there is a user in */etc/passwd* called *sickos*. I try the previous credentials and get a shell. Sickos is in the sudoers group, so I can just sudo with the same password.
     *root@kali:/# ssh sickos@192.168.252.133
 sickos@192.168.252.133's password:
 Welcome to Ubuntu 12.04.4 LTS (GNU/Linux 3.11.0-15-generic i686)

@@ -81,3 +81,6 @@ It works*
     *$ find / -xdev -type d \( -perm -0002 -a ! -perm -1000 \) -print*
     Find nobody owned files
     *$ find /dir -xdev \( -nouser -o -nogroup \) -print*
+
+    Other scripts
+    *https://github.com/sleventyeleven/linuxprivchecker/blob/master/linuxprivchecker.py*
