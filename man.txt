@@ -49,6 +49,9 @@ nmap
         -A Enable OS detection, version detection, script scanning, and traceroute
         -P0 Do not ping first
 
+    Update scripts:
+    *$ nmap --script-updatedb*
+
 Metaslpoit
    	Statring metasploit
     *$ service postgesql start && service metasploit start*
