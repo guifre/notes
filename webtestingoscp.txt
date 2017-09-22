@@ -1,20 +1,20 @@
 *Web Testing on OSCP*narrative
 Test
-	Test OPTIONS against every folder/file.
-	Test every GET/POST parameter against SQLI and RCE.
+    Test OPTIONS against every folder/file.
+    Test every GET/POST parameter against SQLI and RCE.
 
 Find hardcoded credentials
-	JBoss
-	*JMX Console http://<IP>:8080/jmxconcole/
-	War File*
-	Joomla
-	*configuration.php
-	diagnostics.php
-	joomla.inc.php
-	config.inc.php*
-	Mambo
-	*configuration.php
-	config.inc.php*
-	Wordpress
-	*setup-config.php
-	wp-config.php*
+    JBoss
+    *JMX Console http://<IP>:8080/jmxconcole/
+    War File*
+    Joomla
+    *configuration.php
+    diagnostics.php
+    joomla.inc.php
+    config.inc.php*
+    Mambo
+    *configuration.php
+    config.inc.php*
+    Wordpress
+    *setup-config.php
+    wp-config.php*
