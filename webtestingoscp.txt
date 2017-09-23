@@ -1,4 +1,7 @@
 *Web Testing on OSCP*narrative
+Web enumeration
+    Good directory discovery tool:
+    *$ git clone https://github.com/maurosoria/dirsearch.git;  cd dirsearch; python3 dirsearch.py  -u http://10.10.10.10/ -e .php*
 Test
     Test OPTIONS against every folder/file.
     Test every GET/POST parameter against SQLI and RCE.
@@ -18,3 +21,8 @@ Find hardcoded credentials
     Wordpress
     *setup-config.php
     wp-config.php*
+
+Bruteforcing
+    Good password list
+    *https://raw.githubusercontent.com/danielmiessler/SecLists/master/Passwords/10_million_password_list_top_1000.txt*
+
