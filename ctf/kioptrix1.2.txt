@@ -21,7 +21,7 @@ PORT   STATE SERVICE VERSION
 OS CPE: cpe:/o:linux:linux_kernel:2.6
 OS details: Linux 2.6.9 - 2.6.33*
 
-    So it runs SSH, and a web server, smaller attack surcace than the previous machines. We connect to the web server using the browser and we see it runs a CMS called LotusCMS.
+    So it runs SSH, and a web server, smaller attack surface than the previous machines. We connect to the web server using the browser and we see it runs a CMS called LotusCMS.
     I run Nikto and Dirb against it and find a phpMyAdmin interface at *http://192.168.0.9/phpmyadmin/*I look for known exploits for PhpMyAdmin 2.11.3, Suhosin-Patch, Php 5.5.25, Apache 2.4.12, but do not find anything useful.
 
     I play a bit with the web interface and there are a couple of interesting parameter the first URL is
@@ -48,7 +48,7 @@ HTTP/1.1 200 OK
 ....
     You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' order by parentid,sort,name' at line 1Could not select category*
 
-    Looks like we found SQL injection, to confirm it is a errror based in numeric context within the where clause we can send:
+    Looks like we found SQL injection, to confirm it is a error based in numeric context within the where clause we can send:
     *?id=1+or+1=1
 ?id=1+or+1=2*
     We see we get difference responses caused by a True vs False where clause. To exploit this, we want to use the union operator to make a subquery and leak sensitive data. First, we find the number of columns by sending the following payloads:

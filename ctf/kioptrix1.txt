@@ -28,7 +28,7 @@ PORT    STATE SERVICE    VERSION
 443/tcp  open  ssl/https   Apache/1.3.20 (Unix)  (Red-Hat/Linux) mod_ssl/2.8.4 OpenSSL/0.9.6b
 1024/tcp open  status     1 (RPC #100024)*
 
-    So we know the host runs SSH (OpenSSH 2.9p2 (protocol 1.99)), HTTP (Apache httpd 1.3.20 mod_ssl/2.8.4 OpenSSL/0.9.6b) samba, and HTTPS. We connect to the web server with Firfox and see the default installation page of Apache. We can run a folder discovery attack and Nikito:
+    So we know the host runs SSH (OpenSSH *2.9p2* (protocol 1.99)), HTTP (Apache httpd *1.3.20* *mod_ssl/2.8.4* *OpenSSL/0.9.6b*) samba, and HTTPS. We connect to the web server with Firefox and see the default installation page of Apache. We can run a folder discovery attack and Nikito:
 
     *# dirb http://192.168.252.131 /usr/share/dirb/wordlists/big.txt
 # nikto -h 192.168.252.131*
@@ -37,7 +37,7 @@ PORT    STATE SERVICE    VERSION
     *$ enum4linux 192.168.252.131
 $ nbtscan 192.168.252.131*
 
-    We don't find anything useful so far. The directory enumeration attack finished and also did not find anything interesting. However, Nikito output the following:
+    We don't find anything useful so far. The directory enumeration attack finished and also did not find anything interesting. However, Nikto output the following:
     *+ Apache/1.3.20 appears to be outdated (current is at least Apache/2.4.12). Apache 2.0.65 (final release) and 2.2.29 are also current.
 + OSVDB-27487: Apache is vulnerable to XSS via the Expect header
 + OSVDB-838: Apache/1.3.20 - Apache 1.x up 1.2.34 are vulnerable to a remote DoS and possible code execution. CAN-2002-0392.

