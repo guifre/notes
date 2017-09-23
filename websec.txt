@@ -36,8 +36,7 @@ Security headers
 
     The most common web attacks involve XSS and injection based vectors. To help mitigate this problem, *Content-Security-Policy* limits the same origin policy to only allow certain white-listed CSS, Javascript resources. You can configure it to block non-white listed resources or to just report the violation of the policy. The CSP policy used in this site is as follows:
 
-    *Content-Security-Policy: default-src 'none'; script-src 'self'; object-src 'none'; style-src 'self'; img-src 'self';
-    media-src 'none'; frame-src 'none'; font-src 'none'; connect-src 'none'; report-uri https://guif.re/report-csp*
+    *Content-Security-Policy: default-src 'none'; script-src 'self'; object-src 'none'; style-src 'self'; img-src 'self'; media-src 'none'; frame-src 'none'; font-src 'none'; connect-src 'none'; report-uri https://guif.re/report-csp*
 
 
 SSH hardening
@@ -47,20 +46,17 @@ SSH hardening
     First, white-list the users we want to grant SSH access to and disable password authentication. Only key-based authentication is allowed, a successful attack would need to compromise the private key, guess its password and the web server username. You can achieve that by changing in */etc/ssh/sshd_config*:
 
     *PermitRootLogin no
-    PasswordAuthentication no
-    Match User !youruser*
+PasswordAuthentication no
+Match User !youruser*
 
     I also reduce pretty much all brute force attempts by running SSH in a non-standard port and rate limiting the login attempts to four every two minutes with the following iptables rule:
 
-    *# iptables -I INPUT -p tcp --dport 22 \
-        -i eth0 -m state --state NEW -m recent --set
-    # iptables -I INPUT -p tcp --dport 22 -i eth0 -m state \
-        --state NEW -m recent --update --seconds 120 --hitcount 4 -j DROP*
+    *# iptables -I INPUT -p tcp --dport 22 -i eth0 -m state --state NEW -m recent --set
+# iptables -I INPUT -p tcp --dport 22 -i eth0 -m state --state NEW -m recent --update --seconds 120 --hitcount 4 -j DROP*
 
     This should be enough to reduce to almost zero all non-targeted attacks.
 
 
 Future work
 
-    Future work involves implementing *Public key certificate pinning* and adding *Network layer DoS mitigations* if
-    needed.
+    Future work involves implementing Public key certificate pinning (*HPKP*) and adding network layer DoS mitigations if needed.
