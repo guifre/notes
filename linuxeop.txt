@@ -43,10 +43,10 @@ Linux elevation of privileges
 https://raw.githubusercontent.com/rebootuser/LinEnum/master/LinEnum.sh*
 
 
-   If Mysql is running as root, you can run commands using *sys_exec()*. For instance, to add user to sudoers:
-   *sys_exec('usermod -a -G admin username')*
-   More about mysql:
-   *https://www.adampalmer.me/iodigitalsec/2013/08/13/mysql-root-to-system-root-with-udf-for-windows-and-linux/*
+    If Mysql is running as root, you can run commands using *sys_exec()*. For instance, to add user to sudoers:
+    *sys_exec('usermod -a -G admin username')*
+    More about mysql:
+    *https://www.adampalmer.me/iodigitalsec/2013/08/13/mysql-root-to-system-root-with-udf-for-windows-and-linux/*
 
     Find linux distribution & version
     *$ cat /etc/issue; cat /etc/*-release; cat /etc/lsb-release; cat /etc/redhat-release;*
