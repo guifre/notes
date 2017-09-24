@@ -1,14 +1,20 @@
 *Web Testing on OSCP*narrative
 Web enumeration
     Good directory discovery tool:
-    *$ git clone https://github.com/maurosoria/dirsearch.git;  cd dirsearch; python3 dirsearch.py  -u http://10.10.10.10/ -e .php*
+    *$ git clone https://github.com/maurosoria/dirsearch.git;  cd dirsearch; python3 dirsearch.py  -u http://$ip/ -e .php*
+    Directory discovery
+    *$ gobuster -w /usr/share/wordlists/dirb/common.txt -u $ip*
+    Nmap HTTP Form Fuzzer 
+    *$ nmap --script http-form-fuzzer --script-args 'http-form-fuzzer.targets={1={path=/},2={path=/register.html}}' -p 80 $ip*
 Test
+ 	Nmap Check the server methods
+ 	* nmap --script http-methods --script-args http-methods.url-path='/test' $ip *
     Test OPTIONS against every folder/file.
     Test every GET/POST parameter against SQLI and RCE.
 
 Find hardcoded credentials
     JBoss
-    *JMX Console http://<IP>:8080/jmxconcole/
+    *JMX Console http://$ip:8080/jmxconcole/
     War File*
     Joomla
     *configuration.php
