@@ -7,8 +7,8 @@ Web enumeration
     Nmap HTTP Form Fuzzer 
     *$ nmap --script http-form-fuzzer --script-args 'http-form-fuzzer.targets={1={path=/},2={path=/register.html}}' -p 80 $ip*
 Test
- 	Nmap Check the server methods
- 	* nmap --script http-methods --script-args http-methods.url-path='/test' $ip *
+    Nmap Check the server methods
+    * nmap --script http-methods --script-args http-methods.url-path='/test' $ip *
     Test OPTIONS against every folder/file.
     Test every GET/POST parameter against SQLI and RCE.
 
