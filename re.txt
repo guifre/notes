@@ -60,7 +60,6 @@ The address problem
 
 
 Shellcodes
-
     Instructions written in assembler translated into hexadecimal opcodes. System calls in linux are  performed using interrupts, as follows:
         1. Specific syscall number is loaded in EAX
         2. the argument to the sys call function in placed into registers

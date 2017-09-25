@@ -28,6 +28,10 @@ Find hardcoded credentials
     *setup-config.php
     wp-config.php*
 
+RFI/LFI
+    Test it:
+    *$ fimap -u "http://$ip/example.php?test="*
+
 Bruteforcing
     Good password list
     *https://raw.githubusercontent.com/danielmiessler/SecLists/master/Passwords/10_million_password_list_top_1000.txt*

