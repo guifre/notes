@@ -36,3 +36,16 @@ Bruteforcing
     Good password list
     *https://raw.githubusercontent.com/danielmiessler/SecLists/master/Passwords/10_million_password_list_top_1000.txt*
 
+
+File uploads
+    Avoid extension checks using tricks like:
+    *.php5.jpeg
+.php5%00.jpeg*
+    Different file formats
+    *https://en.wikipedia.org/wiki/List_of_file_signatures*
+PHP
+    You can usually bypass file include filters with payloads like:
+    *php://filter/convert.base64-encode/resource=file*
+    If you control an include statenent such as
+    *include("lang/".$_COOKIE['lang']);*
+    You can set a cookie pointing to an arbitrary PHP file and have it executed in your page.
