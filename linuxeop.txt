@@ -212,4 +212,4 @@ Open an xterm remotely
     Then, bind it to xterm, again in your machine:
     *$ xterm -display 127.0.0.1:1*
     Finally, run the follwing in the remote machine:
-    *$ /usr/openwin/bin/xterm -display yourip:1
+    *$ /usr/openwin/bin/xterm -display yourip:1*

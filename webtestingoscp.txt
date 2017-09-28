@@ -31,6 +31,11 @@ Find hardcoded credentials
 RFI/LFI
     Test it:
     *$ fimap -u "http://$ip/example.php?test="*
+    Interesting payloads:
+    */etc/passwd | /etc/shadow #insta-win
+/var/www/html/config.php # or similar paths to get SQL etc creds
+?page=php://filter/convert.base64-encode/resource=../config.php
+../../../../../boot.ini # to find out windows version*
 
 Bruteforcing
     Good password list
@@ -49,3 +54,12 @@ PHP
     If you control an include statenent such as
     *include("lang/".$_COOKIE['lang']);*
     You can set a cookie pointing to an arbitrary PHP file and have it executed in your page.
+
+SSL certificates
+    Find out potential correct vhost to GET
+    is the clock skewed
+    Any names that could be usernames for bruteforce/guessing.
+
+
+Files
+    Run strings against every file
