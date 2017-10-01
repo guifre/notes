@@ -1,4 +1,8 @@
 *Buffers overflow*
+Protection techniques
+    Data Execution Prevention (DEP) prevents executing instructions in data pages.
+    Address Space Layout Randomization (ASLR) randomizes addresses of loaded apps, libraries and os.
+    Both the operating system and the binary needs to support it.
 Buffers overflow
 Exploitation
     Determine length of overflow trigger w/ binary search "A"x1000

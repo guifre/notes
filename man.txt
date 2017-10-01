@@ -1,5 +1,9 @@
 *Manuals*
 
+Bash tricks
+    Append a character at the end of every line of the file:
+    *$ sed '/.*?/ ! s/$/new_suffix/' in.txt > out.txt*
+
 recon ng
     > show modules
     > use recon/domains-vulnerabilities/xssed
