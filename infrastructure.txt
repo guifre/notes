@@ -41,3 +41,7 @@ Internet addresses
     10.0.0.0 -10.255.255.255
     172.16.0.0 - 172.31.255.255
     192.168.0.0 - 192.168.255.255
+
+Iptables
+    Drop incoming connections from any interface other than loopback port 444:
+    *$ iptables -A INPUT -p tcp --destination-port 4444 \! -d 127.0.0.1 -j DROP*

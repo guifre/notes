@@ -43,6 +43,9 @@ Control registers
         $ objdump -d bin # get the ASM of a binary
         $ gdb overflow core # examine core dump
         > info registers # examine EIP, etc
+    Compile windows executable in linux:
+    *$ apt-get install mingw32;
+i586-mingw32msvc-gcc slmail-win-fixed.c -lws2_32 –o s.exe*
 
     NOP is \0x90 useful for shellcodes to add the padding. Higher chance of guessing the right address
 

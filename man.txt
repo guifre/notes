@@ -204,6 +204,21 @@ gdb
 
     info functions # all functions
 
+    Display Register Values : (Decimal , Binary , Hex )
+    *print /d –> Decimal
+print /t –> Binary
+print /x –> Hex*
+    Print *EAX* as decimal:
+    *(gdb) print /d $eax
+$17 = 13*
+
+    Display memory location, syntax:
+    *x/nyz (Examine)
+n –> Number of fields to display ==>
+y –> Format for output ==> c (character) , d (decimal) , x (Hexadecimal)
+z –> Size of field to be displayed ==> b (byte) , h (halfword), w (word 32 Bit)*
+
+
 filter your ssh traffic
     $ tcpdump -lt -i eth0 not \( host my.src.address and tcp port 22 \)
 
@@ -256,3 +271,10 @@ Tcpdump
     options: host, net, and port.
     host:  src, dst
     Proto: tcp, udp, icmp, ah
+
+
+File parsing
+    Print the 9th line of a  file that matches a regex.
+    *$ awk ‘$9 ~ /404/ { print }’ access.log*
+    Get the usernames from */etc/passwd* and dump them into a file for bruteforcing
+    *$ awk -F':' '{ print $1}' /etc/passwd > users.txt*

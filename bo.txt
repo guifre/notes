@@ -1,7 +1,8 @@
 *Buffers overflow*
 Protection techniques
-    Data Execution Prevention (*DEP*) prevents executing instructions in data pages.
-    Address Space Layout Randomization (*ASLR*) randomizes addresses of loaded apps, libraries and os.
+    Data Execution Prevention *DEP* prevents executing instructions in data pages.
+    Address Space Layout Randomization *ASLR* randomizes addresses of loaded apps, libraries and os.
+    Stack cookies: nonces placed before *ESP* to prevent overwriting the *EIP*.
     Both the operating system and the binary needs to support it.
 
 Identification
