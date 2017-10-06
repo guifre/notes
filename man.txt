@@ -278,3 +278,7 @@ File parsing
     *$ awk ‘$9 ~ /404/ { print }’ access.log*
     Get the usernames from */etc/passwd* and dump them into a file for bruteforcing
     *$ awk -F':' '{ print $1}' /etc/passwd > users.txt*
+    Sort count and print line occurrences of a file
+    *$ cat file | sort  | uniq -c | sort -n*
+    Grep a regex and print only matched area
+    *$ grep -E -o regex file*

