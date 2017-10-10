@@ -152,8 +152,8 @@ Wireshark
     network -> capture filters -> capture engine -> display filters
     follow TCP stream
     *tcp.port == 21
-    ip.src == 10.43.54.65 or ip.dst == 10.43.54.65
-    ip.addr != 10.43.54.65*
+ip.src == 10.43.54.65 or ip.dst == 10.43.54.65
+ip.addr != 10.43.54.65*
 
 
 
