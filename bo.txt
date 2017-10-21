@@ -13,7 +13,6 @@ Identification
     Send the payload and find the value of EIP, and find the exact length needed with:
     *$ /usr/share/metasploit-framework/tools/exploit/pattern_offset.rb -l STRING_LENGTH(2700) -q EIP_VALUE(37694236)
 [*] Exact match at offset 2606*
-    Next step is to generate a shellcode. Before doing that, we need to know what characters the application allows. Run *badchars.py* and find potential bad characters that the application truncates. (I.E 0x00, in Pop3 new line char(0xA) as it is the command separator, etc..).
 
     Our objective is to inject a shellcode in beginning of the stack, replace the0 *EIP* with the address of the *ESP* and get the execution flow redirected to our shellcode. The problem is that the amount of data loaded changes every time and we can not predict the value of the ESP address. We can work around this by finding a JMP ESP instruction in memory from a module that has no *DES* or *ASLR*
 
@@ -27,7 +26,13 @@ nasm >*
     Now you can find *FFE4* with:
     *!mona find -s '\xff\xe4' -m module.dll*
     It will find some addrs such as *0x5f4a358f*, since x86 is little endian you need to encode it as * \x8f\x35\x4a\x5f*.
-    To generate the payload
+
+    You should be able to send a buffer that looks like
+    *'A'*2606 + \x8f\x35\x4a\x5f + 'C'*400*
+
+    Setting a breakpoint (F2 ImmunityDebugger) in at memory location *5f4a358f*, the debugger should pause when sending the payload, and stepping into the next instruction (F7) should jump to a the top of the stack, where there should be 400 C. If there are less 'C', then the input has been truncated and you will probably need a bigger buffer to fit your shellcode.
+
+    Next step is to generate a shellcode. Before doing that, we need to know what characters the application allows. Run *badchars.py* and find potential bad characters that the application truncates. (I.E 0x00, in Pop3 new line char(0xA) as it is the command separator, etc..).
 
     So we know how much padding we need to add to the stack to overwrite the EIP, we know an address that will get the execution flow redirected to the start of the stack, we just need to create a shellcode.
 
