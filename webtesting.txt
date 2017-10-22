@@ -37,6 +37,9 @@ RFI/LFI
     *?page=php://filter/convert.base64-encode/resource=../config.php*
     *../../../../../boot.ini # to find out windows version**
 
+Drupal
+    *$droopescan scan -u $ip*
+
 Wordpress
     Scan for known bugs:
     *$ wpscan http://$ip*
