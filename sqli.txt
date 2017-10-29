@@ -88,7 +88,7 @@ Tricks to read data
 Generic blind SQLI exploitation
     First, identify vulnerable parameter by causing true and false conditions:
     *or 1=1 vs or 1=2
-    and 1=2 vs and 1=1*
+and 1=2 vs and 1=1*
     If the query is a select, the true should return all rows of the table and the other empty results.
     Next step is to gess the number of columns, you can do that by sending an union statement, you will get an error until you guess it:
     *id=1 union all select 1

