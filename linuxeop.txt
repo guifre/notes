@@ -199,6 +199,8 @@ Exploits worth running
     Cross compiling exploits
     *$ gcc -m32 -o output32 hello.c #(32 bit)
 $  gcc -m64 -o output hello.c # (64 bit)*
+    Linux 2.6.32
+    *https://www.exploit-db.com/exploits/15285/*
 
 Open an xterm remotely
     First, run an xserver in your machine

@@ -78,6 +78,9 @@ logs/access.log
 /var/log/httpd-access.log
 /var/log/httpd/access_log
 /var/log/httpd/access.log
+/var/www/html/index.php
+/var/www/index.php
+/var/www/manual/index.html
 ...*
 
 Drupal

