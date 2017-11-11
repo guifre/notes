@@ -12,7 +12,7 @@ EoP0: System info
     *$ systeminfo*
 
     Get system version
-    *$ type C:/Windows/system32/eula.txt
+    *$ type C:/Windows/system32/eula.txt*
 
     Hostname.
     *$ hostname*
