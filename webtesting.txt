@@ -28,6 +28,11 @@ config.inc.php*
     *setup-config.php
 wp-config.php*
 
+Authentication
+       Tomcat manager, try default credentials: tomcat/tomcat
+       Try password reuse between services
+       Google default credentials for app
+
 RFI/LFI
     Test it:
     *$ fimap -u "http://$ip/example.php?test="*
