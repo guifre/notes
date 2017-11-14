@@ -31,6 +31,8 @@ wp-config.php*
 RFI/LFI
     Test it:
     *$ fimap -u "http://$ip/example.php?test="*
+    Automated scanning
+    *$ https://github.com/lightos/Panoptic/*
     Interesting payloads:
     */etc/passwd | /etc/shadow #instant win*
     */var/www/html/config.php # or similar paths to get SQL etc creds*

