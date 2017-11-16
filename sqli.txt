@@ -1,6 +1,6 @@
 *SQLI Injection*
 
-SQLI methodology
+Testing SQLI
     Test error based sending ' " ; and look for errors.
     Test for boolean based sending ' or '1'='1 and look for differences.
     Other payloads:

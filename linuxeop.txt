@@ -101,6 +101,8 @@ Linux elevation of privileges, manual testing
 grep -i pass [filename]
 grep -C 5 "password" [filename]
 find . -name "*.php" -print0 | xargs -0 grep -i -n "var $password"*
+    if web server run in web root:
+    *$ grep "localhost" ./ -R*
 
     Network configuration
     *$ /sbin/ifconfig -a; cat /etc/network/interfaces; cat /etc/sysconfig/network; cat /etc/resolv.conf; cat /etc/sysconfig/network; cat /etc/networks; iptables -L; hostname; dnsdomainname*
