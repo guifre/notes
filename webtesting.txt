@@ -1,12 +1,12 @@
 *Web Testing on OSCP*narrative
-Web enumeration
+Enumeration
     Good directory discovery tool:
     *$ git clone https://github.com/maurosoria/dirsearch.git;  cd dirsearch; python3 dirsearch.py  -u http://$ip/ -e .php*
     Directory discovery
     *$ gobuster -w /usr/share/wordlists/dirb/common.txt -u $ip*
     Nmap HTTP Form Fuzzer 
     *$ nmap --script http-form-fuzzer --script-args 'http-form-fuzzer.targets={1={path=/},2={path=/register.html}}' -p 80 $ip*
-Test
+Testing
     Nmap Check the server methods
     * $ nmap --script http-methods --script-args http-methods.url-path='/test' $ip *
     Test OPTIONS against every folder/file.
@@ -66,7 +66,8 @@ SSL certificates
 
 Login
     Always try user root, admin, administrator with password letmein admin root
-Files
+
+File downloads
     Run strings against every file
 
 XSS vectors

