@@ -50,6 +50,7 @@ Linux elevation of privileges, manual testing
     *$ sudo su -*
     What can we run with sudo?
     *$ sudo -l*
+    Try su as all users and the username as password
     What services are running as root?:
     *$ ps aux | grep root*
 
@@ -211,6 +212,8 @@ Exploits worth running
   ./mempodipper*
     CVE-2016-5195 - Dirty Cow - Linux Privilege Escalation - Linux Kernel <= 3.19.0-73.8
     *https://dirtycow.ninja/*
+    Compile dirty cow:
+    * g++ -Wall -pedantic -O2 -std=c++11 -pthread -o dcow 40847.cpp -lutil*
     Cross compiling exploits
     *$ gcc -m32 -o output32 hello.c #(32 bit)
 $  gcc -m64 -o output hello.c # (64 bit)*
