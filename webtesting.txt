@@ -11,6 +11,9 @@ Testing
     * $ nmap --script http-methods --script-args http-methods.url-path='/test' $ip *
     Test OPTIONS against every folder/file.
     Test every GET/POST parameter against SQLI and RCE.
+    View code
+    run discovery tools
+    Test params for: sqli, rfi, lfi
 
 Find hardcoded credentials
     JBoss
@@ -169,3 +172,13 @@ logs/access.log
 /var/www/logs/access_log
 /var/www/logs/access.log
 *
+
+Test credentials
+    admin admin
+    admin password
+    admin <blank>
+    admin nameofservice
+    root root
+    root admin
+    root password
+    root nameofservice

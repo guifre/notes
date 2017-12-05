@@ -1,5 +1,12 @@
 *SQLI Injection*
 
+SQLI
+    Bypass auth
+    Leak db
+    Find passwords, reuse in SSH, etc
+    MySql: drop a backdoor, read sensitive files
+    MsSql: code execution
+
 Testing SQLI
     Test error based sending ' " ; and look for errors.
     Test for boolean based sending ' or '1'='1 and look for differences.
