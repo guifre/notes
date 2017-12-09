@@ -5,10 +5,10 @@ ASM basic syntax
     AT&T syntax: <instruction> <source operand> <destination operand>
     AT&T: Before register names, a percent sign must be written (%) and before numbers a dollar sign ($). Parentheses are used instead of brackets.
     AT&T: A suffix is added to instructions to define the operand size:
-        – q — quad (64 bits)
-        – l — long (32 bits)
-        – w — word (16 bits)
-        – b — byte (8 bits)
+        - q — quad (64 bits)
+        - l — long (32 bits)
+        - w — word (16 bits)
+        - b — byte (8 bits)
 
     mov ebp,esp # moves the value from ESP to EBP
     sub esp,0x8 # substracts 8 from the RSP
@@ -45,7 +45,7 @@ Control registers
         > info registers # examine EIP, etc
     Compile windows executable in linux:
     *$ apt-get install mingw32;
-i586-mingw32msvc-gcc slmail-win-fixed.c -lws2_32 –o s.exe*
+i586-mingw32msvc-gcc slmail-win-fixed.c -lws2_32 -o s.exe*
 
     NOP is \0x90 useful for shellcodes to add the padding. Higher chance of guessing the right address
 
@@ -73,7 +73,7 @@ Shellcodes
     You can specify up to six arguments per syscall (EBX, ECX, ESI, EDI, EPB)
 
     To check the system calls used by a binary you can use:
-        $ gcc –static # prevents gcc from dynamically linking and preserves syscalls.
+        $ gcc -static # prevents gcc from dynamically linking and preserves syscalls.
 
     Then, we can use $ strace ./bin to see the syscalls used by a binary
 

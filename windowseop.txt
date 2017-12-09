@@ -64,7 +64,8 @@ FOR /F %i in (services.txt) DO @sc qc %i | findstr "BINARY_PATH_NAME" >> path.tx
 
     You can process each service using cacls:
     *$ cacls "C:\path\to\file.exe"*
-    We are interested in services where we have BUILTIN\Users:(F) or (C) for our group.
+    We are interested in services where we have BUILTIN\Users:(F) or (C) or (M) for our group. More info about permissions::
+    *https://msdn.microsoft.com/en-us/library/bb727008.aspx*
 
     Transfer your binary (reverse shell/add your user to admin group).
     then move new old, and restart the service with:
