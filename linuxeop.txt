@@ -189,14 +189,14 @@ except:
 Scripts to run
     The following script runs exploit suggester and automatically downloads and executes suggested exploits:
     *https://raw.githubusercontent.com/codingo/OSCP-1/master/xploitdeli.py*
+    *wget http://www.securitysift.com/download/linuxprivchecker.py*
+    *wget https://github.com/pentestmonkey/unix-privesc-check*
     Other scripts:
     *wget https://raw.githubusercontent.com/sleventyeleven/linuxprivchecker/master/linuxprivchecker.py*
     *wget https://raw.githubusercontent.com/rebootuser/LinEnum/master/LinEnum.sh*
     *wget https://raw.githubusercontent.com/mzet-/linux-exploit-suggester/master/linux-exploit-suggester.sh*
     *wget https://raw.githubusercontent.com/PenturaLabs/Linux_Exploit_Suggester/master/Linux_Exploit_Suggester.pl*
-    *wget  https://www.rebootuser.com/?p=1758
-    *wget http://www.securitysift.com/download/linuxprivchecker.py*
-    *wget https://github.com/pentestmonkey/unix-privesc-check*
+    *wget  https://www.rebootuser.com/?p=1758*
 
 
 Exploits worth running
