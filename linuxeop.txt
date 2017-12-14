@@ -203,6 +203,9 @@ Exploits worth running
     CVE-2010-3904 - Linux RDS Exploit - Linux Kernel <= 2.6.36-rc8
     *https://www.exploit-db.com/exploits/15285/*
 
+    Linux Kernel <= 2.6.37 'Full-Nelson.c'
+    https://www.exploit-db.com/exploits/15704/
+
     CVE-2012-0056 - Mempodipper - Linux Kernel 2.6.39 < 3.2.2 (Gentoo / Ubuntu x86/x64)
     *https://git.zx2c4.com/CVE-2012-0056/about/*
 
