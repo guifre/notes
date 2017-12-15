@@ -211,3 +211,8 @@ except:
     print "Could not connect"*
 
     We run nc -lvp 443, and we should get a reverse shell, we can debug the previous memory address to identify potential problems.
+
+
+MsfPayloads
+    staged payload is send in two parts to the victim. The first part is a small primary payload that do that the victim machine connect to the attacker machine and later the attack machine sends the second part of the payload. It is useful when the buffer has not a big length. (eg. linux/x64/shell/reverse_tcp)
+    Non-staged (linux/x64/shell_reverse_tcp), larger but full shell.
