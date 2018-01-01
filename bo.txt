@@ -210,7 +210,9 @@ try:
 except:
     print "Could not connect"*
 
-    We run nc -lvp 443, and we should get a reverse shell, we can debug the previous memory address to identify potential problems.
+    We run:
+    *$ nc -lvp 443*
+    We should get a reverse shell, we can debug the previous memory address to identify potential problems.
 
 
 MsfPayloads

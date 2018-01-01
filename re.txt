@@ -73,7 +73,8 @@ Shellcodes
     You can specify up to six arguments per syscall (EBX, ECX, ESI, EDI, EPB)
 
     To check the system calls used by a binary you can use:
-        $ gcc -static # prevents gcc from dynamically linking and preserves syscalls.
+        *$ gcc -static *
+        It prevents gcc from dynamically linking and preserves syscalls
 
     Then, we can use $ strace ./bin to see the syscalls used by a binary
 
