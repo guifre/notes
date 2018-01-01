@@ -11,7 +11,7 @@ Refactor
     Move to a constant
     *CMD + SHIFT + C*
     Move to a field
-    *CMD + SHIFT + *F
+    *CMD + SHIFT + F*
     Move to a parameter
     *CMD + SHIFT + P*
     Move to a method
@@ -30,7 +30,7 @@ Move
     Move block up down
     *CMD + SHIFT + UP/DOWN*
     Join line
-    *ALT + SHIFT + J
+    *ALT + SHIFT + J*
     Deletes lin
     *CMD + backspace*
     Move selected text to a scratch fil
@@ -48,7 +48,8 @@ Move
 Menus
     Menu of recently opened files
     *CMD + E*
-    *CMD + N # menu to create constructor, getters, override methods*
+    Menu to create constructor, getters, override methods, create tests
+    *CMD + N*
     Create new test class
     *CMD + shift + T*
 
@@ -123,7 +124,7 @@ MultiCursor
     Duplicate selected text
     *CMD + D*
     Delete line
-    *CMD + back*space
+    *CMD + backspace*
     Change case of selected text
     *CMD + shift + U*
 
