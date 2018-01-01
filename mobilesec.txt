@@ -129,3 +129,29 @@ Attacking Android Apps
 
     Activity Graphical interface of app for users
 
+Install app
+    adb install diva-beta.apk
+
+
+Decompile classes
+    First get the jar:
+    *$ sh dex2jar.sh diva-beta.apk
+    dex2jar diva-beta.apk -> diva-beta_dex2jar.jar*
+    You can use *JD-GUI* to decompile the classes
+
+Getting AndroidManifest.xml and smali code
+    *$ java -jar apktool_2.0.3.jar d diva-beta.apk -o output8
+
+Manual test
+    Test the app and check the output of the command:
+    *$adb logcat*
+    It will show written files, activities, etc..
+
+Inspecting the system
+    You can run the following command to inspect the files created by the app:
+    *$ adb shell
+    > cd /data/data/*
+    Copying files
+    *$ adb pull file*
+    Reading DBs:
+    *$ sqlite3 ids2*

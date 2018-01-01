@@ -3,11 +3,11 @@ Refactor
     Move element (class/field/static method/...)
     *F6*
     Rename
-    *Shift* + F6
+    *Shift + F6*
     Refactor
-    *CMD + F*6
+    *CMD + F6*
     Rename
-    *Shift* + F6
+    *Shift + F6*
     Move to a constant
     *CMD + SHIFT + C*
     Move to a field
@@ -22,19 +22,19 @@ Refactor
 
 Move
     Move line up down
-    *ALT + SHIFT + UP*/DOWN
+    *ALT + SHIFT + UP/DOWN*
     Move line up down
-    *ALT + SHIFT + UP*/DOWN
+    *ALT + SHIFT + UP/DOWN*
     Move block up down
-    *CMD + SHIFT + UP/*DOWN
+    *CMD + SHIFT + UP/DOWN*
     Move block up down
-    *CMD + SHIFT + UP/*DOWN
+    *CMD + SHIFT + UP/DOWN*
     Join line
-    *ALT + SHsIFT + J
+    *ALT + SHIFT + J
     Deletes lin
-    *CMD + backespace*
+    *CMD + backspace*
     Move selected text to a scratch fil
-    *CMD + shift + N*e
+    *CMD + shift + Ne*
 
     Find usages
     *ALT + F7*
@@ -59,14 +59,14 @@ Git
     Git pull
     *CMD + T*
     Revert file
-    *CMD + ALT *+ Z
+    *CMD + ALT+ Z*
 
 
 Find
     Replace
-    *CMD + *R
+    *CMD + R*
     Find
-    *CMD* + F
+    *CMD + F*
 
 Open
     Open class by name

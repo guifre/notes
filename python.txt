@@ -1,0 +1,7 @@
+Use Map reduce to divide CPU intensive tasks:
+    *def get_paths():
+    return []
+    *def get_inpus():
+    return []
+pool = Pool(4)
+paths = pool.map(get_paths, get_input())*
