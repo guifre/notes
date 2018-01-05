@@ -157,8 +157,22 @@ Wireshark
     *tcp.port == 21
 ip.src == 10.43.54.65 or ip.dst == 10.43.54.65
 ip.addr != 10.43.54.65*
+	Find packets with specific flags set/unset:
+	*tcp.flags.syn == 1
+tcp.flags.push == 1
+tcp.flags.reset == 0*
+	Find packet containg string/filter:
+	*CRTL+F*
+	Find packet with specific sequence number:
+	*tcp.seq == xxxx*
 
-
+Vi
+	Delete the 10 following characters:
+	*10x*
+	Delete the 10 following words:
+	*10dw*
+	Delete 10 lines:
+	*6dd*
 
 Tcpdump
     *$ tcpdump -r file.pcap # saves output to file.pcap*

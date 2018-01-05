@@ -1,4 +1,4 @@
-Paylaods
+Payloads
     inband payload
     *<!DOCTYPE foo [
 <!ELEMENT foo ANY >
