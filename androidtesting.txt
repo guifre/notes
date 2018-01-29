@@ -1,0 +1,108 @@
+*Android Testing on OSCP
+
+1. Application Mapping
+    Understand what the application does:
+        Does it connect to any backend?
+        Does it store any data on the device?
+        What phone features it uses (GPS/camera..)?
+
+2. Client attacks
+    Verify how protected the app is from someone stealing the phone.
+
+3. Network attacks
+    Use Burp to evaluate SSL issues.
+
+4. Server attacks
+    Vulnerabilities on the servers.
+
+M1 - Improper platform usage
+    Miss-configuration in *AndroidManifest.xml*, check *https://developer.android.com/guide/topics/permissions/requesting.html#normal-dangerous*.
+    If the application uses the fingerprint, test this *https://www.blackhat.com/docs/us-15/materials/us-15-Zhang-Fingerprints-On-Mobile-Devices-Abusing-And-Leaking-wp.pdf*
+
+M2 - Insecure Data storage
+    Consider XML or SQL injection if the application uses this formats.
+    Check for sensitive data unencrypted.
+    Check for XSS if the app reads and displays data.
+
+M3 - Insufficient Transport Layer (on server side)
+    Identify all ssl endpoints.
+    Perform SSL Cipher Scan using (sslscan)[1] or similar software.
+    SSLv2, SSLv3 is disabled
+    TLS 1.2 and 1.1 is supported (1.2 is essential to ensure highest possible secure connection)
+    RC4 and CBC Based Ciphers are disabled
+    DH Params are >2048 Bits
+    SSL Certificate is signed with atleast sha2 / sha256
+    ECDHE Ciphers / Ciphers supporting Perfect forward secrecy are preferred
+    SSL Certificate is from Trusted RootCA
+    SSL Certificate is not expired
+    Verify Interprocess communication implementation
+
+M3 - Insufficient Transport Layer (on device side)
+    Ensure application is working correctly by navigating around.
+    Put a proxy in between the application and remote server. If application fails to load. Application might be doing cert validation. Refer logcat if any message is printed.
+    Place Proxy RootCA in trusted root CA list in device. (Burp)[2] (OWASP-ZAP)[3]
+    Try using application again. If application still doesn't connect, application might be doing cert pinning.
+    You could bypass the certification pinning by Hooking or changing the Smali code:
+
+
+M4 - Insecure Authentication
+    Analyze session management and workflow
+    Analyze API authentication using an attack proxy
+    Insecure WebViews
+    Check if Credentials are being stored in the Datastore or Server side
+    Misuse or access to Account Manager
+    Authenticating Callers of Components
+    Check and validate Sessions on the Backend
+    Check for session Timeout Protection
+    Check for improper Cookies configuration
+    Insecure Token Creation
+    Insecure implementation of WebView
+
+M5 - Insufficient Cryptography
+    Type SSL/TLS encryption used
+    Retrieving files securely using HTTPS URI or a secure tunnel such as implementing HttpsURLConnection or SSLSocket
+    Authentication Session Tokens
+    Data storage containing sensitive information in clear text
+    Access to encryption keys or improper key management
+    Usage of known weak crypto algo's like Rot13, MD4, MD5, RC2, RC4, SHA1
+    Do it Yourself / let me design my own algo for encryption
+    Secret key hard coded in the application code itself.
+    Implementation of own protocol
+    Insecure use of Random Generators
+
+M6 - Insecure Authorization
+    Handling credentials: does the application make use of authorization tokens instead of asking Credentials all the time?
+    Verify that the application allows access only to the allowed roles
+    Storing username and password in the data storage instead of using AccountManager
+
+M8 - Code Tampering
+    Decompile APK using tools such as apktool, dex2jar / enjarify, Bytecodeviewer or commercial tools such as JEB
+    Analyze code using decompiler such as JD-GUI or Bytecodeviewer. Commercial version such as JEB allows you to even debug the decompiled application but not in all cases
+    After analyzing the code, attempt to bypass functionalities whether by changing the Smali code or Hooking methods using Xposed or Frida frameworks
+    Verify if the application has been obfuscated and verify the level of obfuscation searching for specific strings.
+    Decompile APK and change Smali, (check this tool which automates the process of decompiling , compiling and signing the application: https://github.com/voider1/a2scomp)
+    Android Binaries are basically dex classes, which if not protected can result in an easy decompilation of source code. This could lead to code / logic leakage.
+    Jailbreak, Device Rooted- Detection Controls
+    Checksum Controls
+    Certificate Pinning Controls
+    Debugger Detection Controls
+    Xposed Detection Controls
+    Dynamic loading code
+    use of Native code with Android NDK
+
+M9 -Reverse Engineering
+    Android Studio with SDK tools installed
+    A rooted Android Device or Emulator
+    For a rooted emulator you can use CuckoDroid which has Xposed installed
+    Different tools installed for decompiling the APK such as apktool,Dex2Jar / enjarify or if you are looking for a total one use Bytecodeviewer or JEB
+    IDA pro (for analyzing code flow)
+    Smali decompiler/compiler and signer : https://github.com/voider1/a2scomp
+    Verify that:
+
+    Has the application be obfuscated?
+    Search for key strings and keywords with tools like Bytecodeviewer or JEB
+    Search for implantation of SSL pinning , Device rooted or connections to API's (search for words like 'TrustManager' , 'SHA256', X509 ,SHA, SSL , for more info see Android Security Guidelines
+
+M10 - Extraneous Functionality
+    For testing this part, it will be necessary to do a code review or Reverse engineer the APK (if code is not available)
+
