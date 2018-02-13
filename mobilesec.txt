@@ -1,5 +1,44 @@
 *Mobile security*narrative
 
+Threats
+    Apps perform network communication, which can occur through unsecure networks such as cafe wifi.
+    The phone can be lost or stolen, no app data should be available in the filesystem
+    Unofficial markets provide malware threats
+    Big attack surface (NFC, bluetooth, camera, SMS, USB, QR, ...)
+
+Common vulnerabilities
+    Insecure data storage: data in cleartext, hardcoded keys, or other means that can be reversed engineered.
+    Insecure transmission of data: not using TLS or implemented incorrectly
+    Lack of binary protections: No having protections against debugging, tampering, reverse engineering.
+    Client-side injection: untrusted data in handled in an unsafe manner
+    Hard-coded passwords: in the app code or data.
+    Leakage of sensitive data: leaking data through OS or frameworks.
+
+Mobile OWASP top 10
+    M1 - Improper platform usage
+    M3 - Insufficient Transport Layer (on server side)
+    M2 - Insecure Data storage
+    M4 - Insecure Authentication
+    M5 - Insufficient Cryptography
+    M6 - Insecure Authorization
+    M8 - Code Tampering
+    M9 -Reverse Engineering
+    M10 - Extraneous Functionality
+
+
+Mobile pentest
+
+Static analysis
+    Use **http://jd.benow.ca/** to decompile to APK classes. Read the code to understand what libraries it uses, how communication is handled and obvious flaws.
+
+Network traffic
+    Intercept requests using Burp
+
+Data storage
+    Encrypted?
+
+
+
 IOS Security
 
     Secure Boot Chain
@@ -137,7 +176,7 @@ Decompile classes
     First get the jar:
     *$ sh dex2jar.sh diva-beta.apk
 dex2jar diva-beta.apk -> diva-beta_dex2jar.jar*
-    You can use *JD-GUI* to decompile the classes
+    You can use **JD-GUI** to decompile the classes
 
 Getting AndroidManifest.xml and smali code
     *$ java -jar apktool_2.0.3.jar d diva-beta.apk -o output8*

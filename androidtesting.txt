@@ -16,8 +16,8 @@
     Vulnerabilities on the servers.
 
 M1 - Improper platform usage
-    Miss-configuration in *AndroidManifest.xml*, check *https://developer.android.com/guide/topics/permissions/requesting.html#normal-dangerous*.
-    If the application uses the fingerprint, test this *https://www.blackhat.com/docs/us-15/materials/us-15-Zhang-Fingerprints-On-Mobile-Devices-Abusing-And-Leaking-wp.pdf*
+    Miss-configuration in **AndroidManifest.xml**, check **https://developer.android.com/guide/topics/permissions/requesting.html#normal-dangerous**.
+    If the application uses the fingerprint, test this **https://www.blackhat.com/docs/us-15/materials/us-15-Zhang-Fingerprints-On-Mobile-Devices-Abusing-And-Leaking-wp.pdf**
 
 M2 - Insecure Data storage
     Consider XML or SQL injection if the application uses this formats.
