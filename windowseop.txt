@@ -505,6 +505,12 @@ Access Check
     You will probably need to accept the eula first:
     *$ accesschk.exe /accepteula*
 
+Windows hashes
+    NTLM and LM passwords are located in the SAM file in C:\\Windows\SYSTEM32\CONFIG
+    LAN Manager (LM): Windows XP and prior use LAN manager protocol. Uses DES but the key space is small (only uppercase, not salted, 14 chars or padded to 14).
+    NTLM/NTLM2: It does not split the password, also stored in uppercase
+    Kerberos: Default protocol for active directory envs.
+
 PoCs
     Add user to administrator group
     *#include <stdlib.h>

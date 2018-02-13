@@ -8,7 +8,6 @@ SQLI impact
     MsSql: Code execution
 
 Taxonomy
-
     Inband error based
         The syntax error is shown in the response and it can be used to get results, may be enough to enumerate the db.
 
@@ -250,4 +249,5 @@ system_user*
 Object to relational mapping (ORM) injection
     Try vectors like
     *\'
-\"*
+\"
+OR 1--*

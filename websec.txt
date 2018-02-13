@@ -38,6 +38,14 @@ Security headers
 
     *Content-Security-Policy: default-src 'none'; script-src 'self'; object-src 'none'; style-src 'self'; img-src 'self'; media-src 'none'; frame-src 'none'; font-src 'none'; connect-src 'none'; report-uri https://guif.re/report-csp*
 
+    *X-XSS-Protection: 1; mode=block*
+
+    The browser auditor is turned on.
+
+    *Cache-Control: no-cache, no-store*
+
+    Caching is disabled to prevent cache poisoning attacks.
+
 
 SSH hardening
 

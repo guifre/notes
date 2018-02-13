@@ -5,7 +5,6 @@ Crontab
     *minute hour day-month month day-week CMD*
     1 \* \* \* \* $ cmd # runs every minute
 
-
 Extracting archives
     *$ tar xvfj test.tar.bz2*
     *$ tar zxvf test.tar.gz*
@@ -38,14 +37,23 @@ File Permissions
     find . -name "*.php" -type f -exec chmod 755 {} \;
 
 Finding Files
-    *$ updatedb                     # Update the database of file names on the system*
-    *$ locate file                  # Reads the database and shows the location of a file*
-    *$ which app                    # Show the path where the app is executed from*
-    *$ find / -name sbd*            # Show all the files that start with sbd*
-    *$ find / -perm -o+w -type d    # Show all world readable directories*
-    *$ find / -perm -o+e -type d    # Show all world executable directories*
+    Update the database of file names on the system
+    *$ updatedb*
+    Reads the database and shows the location of a file
+    *$ locate file*
+    Show the path where the app is executed from
+    *$ which app*
+    Show all the files that start with sbd
+    *$ find / -name sbd**
+    Show all world readable directories
+    *$ find / -perm -o+w -type d*
+    Show all world executable directories
+    *$ find / -perm -o+e -type d*
 
 Searching within files
-    *$ grep xxx file                # Search for the pattern xxx in a file
-    *$ grep -r                      # Search recursively for a pattern in a directory
-    *$ zgrep                        # Search for a pattern in a zip file
+    Search for the pattern xxx in a fil
+    *$ grep xxx file*
+    Search recursively for a pattern in a director
+    *$ grep -r*
+    Search for a pattern in a zip fil
+    *$ zgrep*

