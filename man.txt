@@ -168,11 +168,11 @@ tcp.flags.reset == 0*
 
 Vi
     Delete the 10 following characters:
-    *10x*
+    **10x**
     Delete the 10 following words:
-    *10dw*
+    **10dw**
     Delete 10 lines:
-    *6dd*
+    **6dd**
 
 Tcpdump
     *$ tcpdump -r file.pcap # saves output to file.pcap*
