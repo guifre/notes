@@ -32,16 +32,27 @@ Internet addresses
     32 bits per IPv4 address
 
     Each IP is broken into four 8 bit blocks or octets
+    *11111111 = 255
+00000000 = 0*
 
-    11111111 = 255
-    00000000 = 0
+    Ip ranges
+    *A 0.0.0.0 - 127.255.255.255
+B 128.0.0.0 - 191.255.255.255
+c 192.0.0.0 - 223.255.255.255
+D 224.0.0.0- 239.255.255.255
+E 240.0.0.0 - 255.255.255.255*
 
     private addresses
+    *10.0.0.0 -10.255.255.255
+172.16.0.0 - 172.31.255.255
+192.168.0.0 - 192.168.255.255*
 
-    10.0.0.0 -10.255.255.255
-    172.16.0.0 - 172.31.255.255
-    192.168.0.0 - 192.168.255.255
-
+    Subneting
+    */31 255.255.255.254 1 Host
+/30 255.255.255.252 2 Hosts
+/24 255.255.255.0 254 Hosts
+/22 255.255.252.0 1022 Hosts
+/16 255.255.0.0 65534 Hosts*
 Iptables
     Drop incoming connections from any interface other than loopback port 444:
     *$ iptables -A INPUT -p tcp --destination-port 4444 \! -d 127.0.0.1 -j DROP*

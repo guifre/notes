@@ -218,3 +218,20 @@ except:
 MsfPayloads
     staged payload is send in two parts to the victim. The first part is a small primary payload that do that the victim machine connect to the attacker machine and later the attack machine sends the second part of the payload. It is useful when the buffer has not a big length. (eg. linux/x64/shell/reverse_tcp)
     Non-staged (linux/x64/shell_reverse_tcp), larger but full shell.
+
+
+Countermeasures
+    **Data execution prevention (DEP)** is used to mark writable areas of memory, including the stack and the heap, as non-executable.
+
+    **Address space layout randomization (ASLR)** makes it difficult for an attacker to commandeer logical program flow; however, implementation flaws exist, and some libraries are compiled without ASLR support.
+
+    **Code signing** executable page of memory is signed, and instructions executed only if the signature is correct.
+    **SEHOP** checks the validity of a thread’s exception handler list before allowing any to be called.
+    **Pointer encoding** Function pointers can be encoded (using XOR or other means) within Microsoft Visual Studio and GCC. If encoded pointers are overwritten without applying the correct XOR operation first, they cause a program crash.
+    **Stack canaries** Compilers including Microsoft Visual Studio, GCC, and LLVM Clang place canaries on the stack before important values (e.g., saved eip and function pointers on the stack). The value of the canary is checked before the function returns; if it has been modified, the program crashes.
+
+    **Heap protection** Sanity checking within heap management code. These improvements protect against double free and heap overflows resulting in control structures being overwritten.
+    **Relocation read-only (RELRO)** The GOT, destructors, and constructors entries within the data segment can be protected through instructing the GCC linker to resolve all dynamically linked functions at runtime, and marking the entries read-only.
+    **Format string protection** Most compilers provide protection against format string attacks.
+
+    **Bypassing DEP** DEP prevents the execution of arbitrary instructions from writable areas of memory. As such, you must identify and borrow useful instructions from the executable text segment to achieve your goals. The challenge is one of identifying sequences of useful instructions that can be used to form return-oriented programming (ROP) chains; the following subsections take a closer look at these.
