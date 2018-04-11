@@ -19,30 +19,29 @@ ASM basic syntax
 
 General Purpose Registers
     Aimed at doing math operations
-    EAX results register (accumulator)
-    EBX pointer to data
-    ECX counter
-    EDX pointer to data
+        **EAX** results register (accumulator)
+        **EBX** pointer to data
+        **ECX** counter
+        **EDX** pointer to data
     they can hold 16 bits
 
 
 Memory pointers
-    *ESP* stack pointer register. Points to the memory address where the next stack operation will take place (top of the stack).
-    *EBP* stack data pointer. It is a registry used to calculate addresses relative to other addresses
-    *ESI* source index
-    *EDI* destination index
+    **ESP** stack pointer register. Points to the memory address where the next stack operation will take place (top of the stack).
+    **EBP** stack data pointer. It is a registry used to calculate addresses relative to other addresses
+    **ESI** source index
+    **EDI** destination index
 
 
 Control registers
     They control the function of the processor
     EIP, extended instruction pointer next instruction to be executed
     Useful commands
-        $ gcc a.c -i a -m32 # compile for 32 bits
-        $ gcc a.c -i a -m64 # compile for 64 bits
-        $ gcc a.c    -fno-stack-protector # disables stack protection
-        $ objdump -d bin # get the ASM of a binary
-        $ gdb overflow core # examine core dump
-        > info registers # examine EIP, etc
+    *$ gcc a.c -i a -m32 # compile for 32 bits
+$ gcc a.c -i a -m64 # compile for 64 bits$ gcc a.c    -fno-stack-protector # disables stack protection
+$ objdump -d bin # get the ASM of a binary
+$ gdb overflow core # examine core dump
+> info registers # examine EIP, etc*
     Compile windows executable in linux:
     *$ apt-get install mingw32;
 i586-mingw32msvc-gcc slmail-win-fixed.c -lws2_32 -o s.exe*
