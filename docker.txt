@@ -13,7 +13,7 @@ Basic Docker Commands
     *$ docker run -t [image_name] .*
 
     Stop a container
-    *$ docker stop/kill [container_name]
+    *$ docker stop/kill [container_name]*
 
     Show logs
     *$ docker logs [container]*
