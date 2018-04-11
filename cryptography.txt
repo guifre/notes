@@ -1,0 +1,161 @@
+*Cryptography*
+
+Concepts
+    **Encoding** involves replacing every ASCII character with an equivalent encoded set of characters.
+    **Escaping** is trying to prevent a string from breaking out of a single or double quoted context by adding backslash character sequences. Encoding is way better solution in general.
+    **Confusion** is a property that refers to methods used to hide relationships between the plaintext, the ciphertext, and the key.
+    **Forward Secrecy** is a system that uses ephemeral session keys to do the actual encryption of TLS data so that even if the server’s private key were to be compromised, an attacker could not use it to decrypt captured data that had been sent to that server in the past.
+        Forward secrecy:  ciphers Diffie-Hellman key exchange-based PFSs (DHE-RSA, DHE-DSA) and elliptic curve Diffie-Hellman-based PFSs (ECDHE-RSA, ECDHE-ECDSA): generate a secret without mentioning it, forward secrecy, compromising the private key in the future  does not allow to decrypt the messages. Common problems: weak ciphers, vulnerabilities like Heartbleed, BEAST.
+    **Cryptographic signing**: Cleartext is hashed and the hashed signed with the private key.
+    **Heartbleed** exploits a bug in the heartbeat functionality of OpenSsl, which is used to know if the other party is still alive in the connection. The attacker controls the string that the other party has to reply with and the length, but you can specify a longer buffer than payload in the memcpy, leaking memory of the server process including passwords private keys, user data etc
+    **Hashing**: one way irreversible function of fix size, any small variation in the input causes a very large variation of the output, with the output you can not generate the input, useful to verify passwords without actually storing the password.
+    *Encoding* is designed to protect the integrity of data as it crosses networks and systems, i.e. to keep its original message upon arriving, and it isn’t primarily a security function. It is easily reversible because the system for encoding is almost necessarily and by definition in wide use.
+
+    *Encryption* is designed purely for confidentiality and is reversible only if you have the appropriate key/keys.
+
+    With *hashing* the operation is one-way (non-reversible), and the output is of a fixed length that is usually much smaller than the input.
+
+    Digital signature: allows to verify the authenticity of a message used in asymmetric encryption. It is usually a hash encrypted with the private key and the algorithm used.
+    MACs allow to verify authenticity of a message used in symmetric encryption.
+
+    A **rainbow table** is a precomputed table for reversing cryptographic hash functions, usually for cracking password hashes. Tables are usually used in recovering a plaintext password (or credit card numbers, etc) up to a certain length consisting of a limited set of characters. It is a practical example of a space–time tradeoff, using less computer processing time and more storage than a brute-force attack which calculates a hash on every attempt, but more processing time and less storage than a simple lookup table with one entry per hash. Use of a key derivation function that employs a salt makes this attack infeasible.
+    MD5 is 32 characters long, hex character space.
+
+Numbers generation
+    True Pseudo Random Number Generator (TPRNG): Uses entropy from multiple sources such as keyboard strikes to get a good seed.
+    Pseudo Random Number Generator (PRNG): Given a seed, you get random numbers.
+    Cryptographic Pseudo Random Number Generator (CPRNG): are PDNGs that are unpredictable
+
+
+Symmetric encryption algorithms (128/256 bits is considered safe)
+    Block ciphers: Operates on blocks of fixed sized (64 or 128).
+        **DES**: key size 56 bits, can be bruteforced, no other weakness
+        **Tiple-DES**: concatenates two DES keys (still weak)
+        **Blowfish** (weak).
+        **AES**: Iterative block cipher, very secure. Needs the correct  block cipher mode to be safe.
+    Stream ciphers: useful for encrypting streams of data
+        **RC2**: insecure
+        **RC4**: might be secure dependig on usage**
+
+    Block ciphers
+    They need a mode of operation, which can be:
+    **Electronic Code book ECB**: each block is encrypted separately (less entropy). You should only use it if you have a single block: It produces the same result for the same input so: 1) Patterns in ciphertext will match patterns in plaintext. 2) Attacker can detect repeated messages. 3) An attacker that can submit arbitrary plaintext for encryption and observe the ciphertext will be able to guess the plaintext (BREAST).
+    **Cipher Block Chaining CBC**: Each block is XORed with the previous ciphertext block before being encrypted, more entropy
+    They need an initialization vector that has to be unpredictable.
+
+
+
+Asymmetric encryption algorithms
+    3245 bits is considerd safe
+    Public key encryption provides confidentiality to a message for the key owner and non-repudiation for parties how have public key.
+    **RSA**: difficulty of factoring large numbers.
+    **DSA**: fast at signature creation but slower at validation.
+    Diffe Hellman and Eliptic curves Diffe Hellman.
+
+   **Diffie-Hellman** is a key-exchange protocol used to build a shared secret over a public medium.  allows two parties that have no prior knowledge of each other to jointly establish a shared secret key over an insecure channel. This key can then be used to encrypt subsequent communications using a symmetric key cipher. Works by each party choosing a prime number, sending another number and computing the modulus. It is vulnerable to man in the middle, since neither of the parties are authenticated. Vulnerable to man-in-the-middle, as neither side is authenticated.
+
+Hashing
+    **MD4/MD4/SHA1**: broken
+    **SHA-256/SHA-512**: secure
+    In cryptography, a salt is random data that is used as an additional input to a one-way function that "hashes" data, a password or passphrase. Salts are closely related to the concept of nonce. The primary function of salts is to defend against dictionary attacks or against its hashed equivalent, a pre-computed rainbow table attack.[1]
+
+
+Prevent MITM:
+    SSH uses hosts fingerprint to detect mitm
+    SSL uses certificates to validate identity
+
+Describe the process of a TLS session being set up when someone visits a secure website.
+    The client sending helo with ciphers, server responding with a public key and picking a cipher, agreement on a shared key, etc.
+
+Establishing a Secure Session by Using TLS. The TLS Handshake Protocol involves the following steps:
+    1. The client sends a "Client hello" message to the server, along with the client's random value and supported cipher suites.
+    2. The server responds by sending a "Server hello" message to the client, along with the server's random value.
+    3. The server sends its certificate to the client for authentication and may request a certificate from the client. The server sends the "Server hello done" message.
+    4. If the server has requested a certificate from the client, the client sends it.
+    5. The client creates a random Pre-Master Secret and encrypts it with the public key from the server's certificate, sending the encrypted Pre-Master Secret to the server.
+    6. The server receives the Pre-Master Secret. The server and client each generate the Master Secret and session keys based on the Pre-Master Secret.
+    7. The client sends "Change cipher spec" notification to server to indicate that the client will start using the new session keys for hashing and encrypting messages. Client also sends "Client finished" message.
+    8. Server receives "Change cipher spec" and switches its record layer security state to symmetric encryption using the session keys. Server sends "Server finished" message to the client.
+    9. Client and server can now exchange application data over the secured channel they have established. All messages sent from client to server and from server to client are encrypted using session key.
+
+MAC
+    **Message authentication code (MAC)**  provides authentication and integrity to the message. The plaintext is hashed with a secret symmetric key and sent along it. MACs do not encrypt the message. Instead, the message (encrypted or not) must be sent alongside the hash. Without a MAC an attacker could modify a message encrypted with AES and the recipient could not tell. MACs usually contain the sequence number to prevent reply attacks.
+
+
+    **Hash message authentication code(HMAC)** is a type of MAC. Uses md5, sha1,256... The name is **HMAC_** and the hashing algorithm.
+
+    It is better than MAC because it is robust against length extension attacks as the message is hashed twice. First, the secret key derives two keys inner and outer
+        1) hash(innerkey and message)
+        2) hash(result and outer key)
+    HMAC hashes twice the message.
+    HMAC generation uses two passes of hash computation. The secret key is first used to derive two keys – inner and outer. The first pass of the algorithm produces an internal hash derived from the message and the inner key. The second pass produces the final HMAC code derived from the inner hash result and the outer key
+
+    The most common attack against HMACs is brute force to uncover the secret key. HMACs are substantially less affected by collisions than their underlying hashing algorithms alone
+    **Length extension attacks**: MACs require the text to be padded, if the message length is known, an attacker can add additional text to the message making the hash still valid.
+
+
+Cryptographic Weaknesses
+    Pseudorandom number generators (PRNGs)
+    Protocols providing transport layer security (such as TLS and IPsec)
+    Encryption of data at-rest
+    Signing of data to provide integrity checking (e.g., HMAC calculation)
+
+
+Attacks against cryptosystems:
+
+    Cryptography is not usually broken but bypassed (bruteforce, implementation bug, timing attacks)
+
+    Collisions
+    Message digests used for integrity checking can be circumvented if a collision is found, where two different messages generate the same digest (signature). MD5 collisions can be easily generated.26 A collision can be used to generate malicious material (e.g., a certificate or ticket) which is in turn trusted.
+
+    Modification of ciphertext
+        If ciphertext generated by a stream cipher (e.g., RC4) or certain block ciphers (ECB, CBC, and CTR) lacks integrity checking, an adversary can modify it to generate useful plaintext upon processing by a recipient. Bit flipping and block rearranging can produce predictable changes to plaintext upon decryption.
+
+
+    Replay of ciphertext
+        Many protocols (including older 802.11 WiFi standards) do not track state. Encrypted 802.11 network frames can be replayed to an access point or client with unintended results, for example. In an authentication context, implementations lacking state tracking or use of a cryptographic nonce are also susceptible to replay attack—by which an attacker captures a token and later presents it to authenticate.
+Side channel attacks
+Sensitive material is sometimes leaked through oracles. In most cases, a side channel attack involves interacting with either timing or error oracles. A timing oracle leaks information based on the timing[…]
+
+    Known weak algorithms:
+    **RC4** is only insecure if a long term key is used, and other unrealistic conditions, it is better to use CBC though.
+
+
+TLS
+    Cipher suites are defined as:
+        Key exchange and authentication method
+        Bulk symmetric encryption algorithm, key length, and mode
+        Message authentication code (MAC) algorithm and PRF
+    For example:
+    **TLS_RSA_WITH_RC4_128_MD5** means RSA, 128 bit RC4 and 128 HMAC-MD5.
+    Padding oracle attacks are a weakness in som cipher block chain algorithms where some blocks need to be padded with extra bytes, those bytes are deterministic depending on the plain text, so if you can do a MITM to an SSL session that uses a block cipher of type CBC, you can change those pads, send it to the server to guess the plaintext
+
+Brute force
+    If the character set is 35 characters and password length 5 characters, there are **35^5~=52M** possible combinations
+
+TLS vulnerabilities
+
+    DROWN (CVE-2016-0800)
+        An SSL 2.0 padding oracle attack resulting in RSA private key exposure.
+    Logjam (CVE-2015-4000)
+        Systems supporting DHE and group sizes less than 1,024 bits are vulnerable to MITM, by which a weak group is forced, and encryption attacked to reveal plaintext content.
+    POODLE (CVE-2014-3566)
+        SSL 3.0 using CBC mode ciphers is vulnerable to a padding oracle attack. Exploitation requires network access, along with JavaScript run by the victim browser to generate traffic (performing a chosen-plaintext and chosen-boundary attack). A padding oracle within the CBC decryption mechanism is used to reveal a secret (e.g., session token) byte-by-byte upon modifying plaintext via the JavaScript agent.
+    BEAST (CVE-2011-3389)
+        TLS 1.0 generates predictable IV values when using CBC mode ciphers. It is possible to deduce secrets through undertaking a blockwise chosen-boundary attack upon injecting an agent (e.g., Java applet) into a victim’s browser and monitoring the ciphertext.
+CRIME (CVE-2012-4929)
+Servers running TLS 1.2 and prior that support compression are vulnerable to attack via CRIME. Practical exploitation requires network access, along with JavaScript run by the victim browser to generate ciphertext (performing a chosen-plaintext and chosen-location attack). A side channel introduced by the server compression mechanism is monitored, revealing a secret (e.g., session token) byte-by-byte upon modifying the plaintext.
+BREACH (CVE-2013-3587)33
+Web applications that use HTTP compression and reflect static secrets (e.g., session tokens) to clients via HTML can be targeted through BREACH. As with CRIME, the attack relies upon a JavaScript agent to generate traffic and undertake a chosen-plaintext attack through monitoring response lengths to infer each byte of a secret.
+TIME34
+TIME targets HTTP compression but does not require network access to exploit. After malicious JavaScript is injected into a browser, an adversary can deduce secrets (e.g., session token values) byte-by-byte through monitoring responses to chosen-plaintext values used in particular locations. A timing side channel is used upon aligning HTTP responses to an MTU boundary.
+RC4 byte biases (CVE-2013-2566)35
+The RC4 algorithm has many byte biases, which an adversary can use to recover plaintext bytes at known locations (such as a session token within a cookie) upon encrypting the same plaintext many times and monitoring the ciphertext. The attack requires generation of extremely large data volumes. Thus it is somewhat impractical but highlights a significant flaw within RC4.
+Insecure renegotiation (CVE-2009-3555)
+As demonstrated by Figure 11-8, TLS endpoints might support insecure renegotiation, making it possible for an attacker with network access to prefix legitimate session traffic from a client to server with his own (e.g., a malicious HTTP request). Depending on the configuration of the application, this can result in HTTPS to HTTP downgrade or malicious commands being processed.
+Insecure fallback
+Outdated clients support insecure fallback, which an attacker with network access can exploit to downgrade a session to TLS 1.0 or SSL 3.0. The IETF resolved the issue by introducing a new cipher suite (TLS_FALLBACK_SCSV),36 which prevents downgrade of TLS implementations that support the cipher.
+
+
+
+
