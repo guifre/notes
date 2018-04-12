@@ -1,22 +1,23 @@
 *Cryptography*
 
 Concepts
+    **Cleartext** or **plaintext**: Text to be encrypted
+    **Ciphertext**: Encrypted text.
+    **Passphrase**: password.
     **Encoding** involves replacing every ASCII character with an equivalent encoded set of characters.
     **Escaping** is trying to prevent a string from breaking out of a single or double quoted context by adding backslash character sequences. Encoding is way better solution in general.
     **Confusion** is a property that refers to methods used to hide relationships between the plaintext, the ciphertext, and the key.
-    **Forward Secrecy** is a system that uses ephemeral session keys to do the actual encryption of TLS data so that even if the server’s private key were to be compromised, an attacker could not use it to decrypt captured data that had been sent to that server in the past.
-        Forward secrecy:  ciphers Diffie-Hellman key exchange-based PFSs (DHE-RSA, DHE-DSA) and elliptic curve Diffie-Hellman-based PFSs (ECDHE-RSA, ECDHE-ECDSA): generate a secret without mentioning it, forward secrecy, compromising the private key in the future  does not allow to decrypt the messages. Common problems: weak ciphers, vulnerabilities like Heartbleed, BEAST.
+    **Forward Secrecy** Ciphers like Diffie-Hellman key exchange-based (DHE-RSA, DHE-DSA) and elliptic curve Diffie-Hellman-based (ECDHE-RSA, ECDHE-ECDSA): generate a secret without mentioning it. Therefore, compromising the private key in the future does not allow to decrypt the messages.
     **Cryptographic signing**: Cleartext is hashed and the hashed signed with the private key.
-    **Heartbleed** exploits a bug in the heartbeat functionality of OpenSsl, which is used to know if the other party is still alive in the connection. The attacker controls the string that the other party has to reply with and the length, but you can specify a longer buffer than payload in the memcpy, leaking memory of the server process including passwords private keys, user data etc
     **Hashing**: one way irreversible function of fix size, any small variation in the input causes a very large variation of the output, with the output you can not generate the input, useful to verify passwords without actually storing the password.
-    *Encoding* is designed to protect the integrity of data as it crosses networks and systems, i.e. to keep its original message upon arriving, and it isn’t primarily a security function. It is easily reversible because the system for encoding is almost necessarily and by definition in wide use.
+    **Encoding** is designed to protect the integrity of data as it crosses networks and systems, i.e. to keep its original message upon arriving, and it isn’t primarily a security function. It is easily reversible because the system for encoding is almost necessarily and by definition in wide use.
 
-    *Encryption* is designed purely for confidentiality and is reversible only if you have the appropriate key/keys.
+    **Encryption** is designed purely for confidentiality and is reversible only if you have the appropriate key/keys.
 
-    With *hashing* the operation is one-way (non-reversible), and the output is of a fixed length that is usually much smaller than the input.
+    **Hashing**: the operation is one-way (non-reversible), and the output is of a fixed length that is usually much smaller than the input.
 
-    Digital signature: allows to verify the authenticity of a message used in asymmetric encryption. It is usually a hash encrypted with the private key and the algorithm used.
-    MACs allow to verify authenticity of a message used in symmetric encryption.
+    **Digital signature** allows to verify the authenticity of a message used in asymmetric encryption. It is usually a hash encrypted with the private key and the algorithm used.
+    **MACs** allow to verify authenticity of a message used in symmetric encryption.
 
     A **rainbow table** is a precomputed table for reversing cryptographic hash functions, usually for cracking password hashes. Tables are usually used in recovering a plaintext password (or credit card numbers, etc) up to a certain length consisting of a limited set of characters. It is a practical example of a space–time tradeoff, using less computer processing time and more storage than a brute-force attack which calculates a hash on every attempt, but more processing time and less storage than a simple lookup table with one entry per hash. Use of a key derivation function that employs a salt makes this attack infeasible.
     MD5 is 32 characters long, hex character space.
@@ -134,13 +135,12 @@ Brute force
     If the character set is 35 characters and password length 5 characters, there are **35^5~=52M** possible combinations
 
 TLS vulnerabilities
-
+    **Heartbleed** exploits a bug in the heartbeat functionality of OpenSsl, which is used to know if the other party is still alive in the connection. The attacker controls the string that the other party has to reply with and the length, but you can specify a longer buffer than payload in the memcpy, leaking memory of the server process including passwords private keys, user data etc
     **DROWN (CVE-2016-0800)** An SSL 2.0 padding oracle attack resulting in RSA private key exposure.
     **Logjam (CVE-2015-4000)** Systems supporting DHE and group sizes less than 1,024 bits are vulnerable to MITM, by which a weak group is forced, and encryption attacked to reveal plaintext content.
     **POODLE (CVE-2014-3566)** SSL 3.0 using CBC mode ciphers is vulnerable to a padding oracle attack. Exploitation requires network access, along with JavaScript run by the victim browser to generate traffic (performing a chosen-plaintext and chosen-boundary attack). A padding oracle within the CBC decryption mechanism is used to reveal a secret (e.g., session token) byte-by-byte upon modifying plaintext via the JavaScript agent.
     **BEAST (CVE-2011-3389)** TLS 1.0 generates predictable IV values when using CBC mode ciphers. It is possible to deduce secrets through undertaking a blockwise chosen-boundary attack upon injecting an agent (e.g., Java applet) into a victim’s browser and monitoring the ciphertext.
-CRIME (CVE-2012-4929)
-Servers running TLS 1.2 and prior that support compression are vulnerable to attack via CRIME. Practical exploitation requires network access, along with JavaScript run by the victim browser to generate ciphertext (performing a chosen-plaintext and chosen-location attack). A side channel introduced by the server compression mechanism is monitored, revealing a secret (e.g., session token) byte-by-byte upon modifying the plaintext.
+    **CRIME (CVE-2012-4929)** Servers running TLS 1.2 and prior that support compression are vulnerable to attack via CRIME. Practical exploitation requires network access, along with JavaScript run by the victim browser to generate ciphertext (performing a chosen-plaintext and chosen-location attack). A side channel introduced by the server compression mechanism is monitored, revealing a secret (e.g., session token) byte-by-byte upon modifying the plaintext.
     **BREACH (CVE-2013-3587)** Web applications that use HTTP compression and reflect static secrets (e.g., session tokens) to clients via HTML can be targeted through BREACH. As with CRIME, the attack relies upon a JavaScript agent to generate traffic and undertake a chosen-plaintext attack through monitoring response lengths to infer each byte of a secret.
     **TIME** It targets HTTP compression but does not require network access to exploit. After malicious JavaScript is injected into a browser, an adversary can deduce secrets (e.g., session token values) byte-by-byte through monitoring responses to chosen-plaintext values used in particular locations. A timing side channel is used upon aligning HTTP responses to an MTU boundary.
     **RC4 byte biases (CVE-2013-2566)** The RC4 algorithm has many byte biases, which an adversary can use to recover plaintext bytes at known locations (such as a session token within a cookie) upon encrypting the same plaintext many times and monitoring the ciphertext. The attack requires generation of extremely large data volumes. Thus it is somewhat impractical but highlights a significant flaw within RC4.
