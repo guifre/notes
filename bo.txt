@@ -221,7 +221,7 @@ MsfPayloads
 
 
 Countermeasures
-    **Data execution prevention (DEP)** is used to mark writable areas of memory, including the stack and the heap, as non-executable.
+    **Data execution prevention (DEP)** is used to mark writable areas of memory, including the stack and the heap, as non-executable. CPU can set a bit NX (no-excutable) to portions of the stack.
 
     **Address space layout randomization (ASLR)** makes it difficult for an attacker to commandeer logical program flow; however, implementation flaws exist, and some libraries are compiled without ASLR support.
 
@@ -234,4 +234,6 @@ Countermeasures
     **Relocation read-only (RELRO)** The GOT, destructors, and constructors entries within the data segment can be protected through instructing the GCC linker to resolve all dynamically linked functions at runtime, and marking the entries read-only.
     **Format string protection** Most compilers provide protection against format string attacks.
 
-    **Bypassing DEP** DEP prevents the execution of arbitrary instructions from writable areas of memory. As such, you must identify and borrow useful instructions from the executable text segment to achieve your goals. The challenge is one of identifying sequences of useful instructions that can be used to form return-oriented programming (ROP) chains; the following subsections take a closer look at these.
+    **Bypassing DEP** DEP prevents the execution of arbitrary instructions from writable areas of memory. As such, you must identify and borrow useful instructions from the executable text segment to achieve your goals. The challenge is one of identifying sequences of useful instructions that can be used to form return-oriented programming (ROP) chains. It involves looking for snippets of code called ROP gatgets within the legitimate modules of the application that execute some interesting instructions and return the execution flow. For example, if the first task of the exploit is to pop EAX we will look for a pop eax; ret in the module and we will replace EIP with its address. We can chain multiple gadgets to write an exploit. The goal is to find a memory protection API such as VirtualProtect and mark the stack as executable and then the JMP ESP.
+
+    In order to prevent this, ASLR was developed. ASLR randomizes at runtime/boot time the addresses of the structures and modules to make it difficult to guess the location of ROP gadgets.

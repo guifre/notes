@@ -52,7 +52,7 @@ Asymmetric encryption algorithms
     **DSA**: fast at signature creation but slower at validation.
     Diffe Hellman and Eliptic curves Diffe Hellman.
 
-   **Diffie-Hellman** is a key-exchange protocol used to build a shared secret over a public medium.  allows two parties that have no prior knowledge of each other to jointly establish a shared secret key over an insecure channel. This key can then be used to encrypt subsequent communications using a symmetric key cipher. Works by each party choosing a prime number, sending another number and computing the modulus. It is vulnerable to man in the middle, since neither of the parties are authenticated. Vulnerable to man-in-the-middle, as neither side is authenticated.
+    **Diffie-Hellman** is a key-exchange protocol used to build a shared secret over a public medium.  allows two parties that have no prior knowledge of each other to jointly establish a shared secret key over an insecure channel. This key can then be used to encrypt subsequent communications using a symmetric key cipher. Works by each party choosing a prime number, sending another number and computing the modulus. It is vulnerable to man in the middle, since neither of the parties are authenticated. Vulnerable to man-in-the-middle, as neither side is authenticated.
 
 Hashing
     **MD4/MD4/SHA1**: broken
@@ -135,26 +135,17 @@ Brute force
 
 TLS vulnerabilities
 
-    DROWN (CVE-2016-0800)
-        An SSL 2.0 padding oracle attack resulting in RSA private key exposure.
-    Logjam (CVE-2015-4000)
-        Systems supporting DHE and group sizes less than 1,024 bits are vulnerable to MITM, by which a weak group is forced, and encryption attacked to reveal plaintext content.
-    POODLE (CVE-2014-3566)
-        SSL 3.0 using CBC mode ciphers is vulnerable to a padding oracle attack. Exploitation requires network access, along with JavaScript run by the victim browser to generate traffic (performing a chosen-plaintext and chosen-boundary attack). A padding oracle within the CBC decryption mechanism is used to reveal a secret (e.g., session token) byte-by-byte upon modifying plaintext via the JavaScript agent.
-    BEAST (CVE-2011-3389)
-        TLS 1.0 generates predictable IV values when using CBC mode ciphers. It is possible to deduce secrets through undertaking a blockwise chosen-boundary attack upon injecting an agent (e.g., Java applet) into a victim’s browser and monitoring the ciphertext.
+    **DROWN (CVE-2016-0800)** An SSL 2.0 padding oracle attack resulting in RSA private key exposure.
+    **Logjam (CVE-2015-4000)** Systems supporting DHE and group sizes less than 1,024 bits are vulnerable to MITM, by which a weak group is forced, and encryption attacked to reveal plaintext content.
+    **POODLE (CVE-2014-3566)** SSL 3.0 using CBC mode ciphers is vulnerable to a padding oracle attack. Exploitation requires network access, along with JavaScript run by the victim browser to generate traffic (performing a chosen-plaintext and chosen-boundary attack). A padding oracle within the CBC decryption mechanism is used to reveal a secret (e.g., session token) byte-by-byte upon modifying plaintext via the JavaScript agent.
+    **BEAST (CVE-2011-3389)** TLS 1.0 generates predictable IV values when using CBC mode ciphers. It is possible to deduce secrets through undertaking a blockwise chosen-boundary attack upon injecting an agent (e.g., Java applet) into a victim’s browser and monitoring the ciphertext.
 CRIME (CVE-2012-4929)
 Servers running TLS 1.2 and prior that support compression are vulnerable to attack via CRIME. Practical exploitation requires network access, along with JavaScript run by the victim browser to generate ciphertext (performing a chosen-plaintext and chosen-location attack). A side channel introduced by the server compression mechanism is monitored, revealing a secret (e.g., session token) byte-by-byte upon modifying the plaintext.
-BREACH (CVE-2013-3587)33
-Web applications that use HTTP compression and reflect static secrets (e.g., session tokens) to clients via HTML can be targeted through BREACH. As with CRIME, the attack relies upon a JavaScript agent to generate traffic and undertake a chosen-plaintext attack through monitoring response lengths to infer each byte of a secret.
-TIME34
-TIME targets HTTP compression but does not require network access to exploit. After malicious JavaScript is injected into a browser, an adversary can deduce secrets (e.g., session token values) byte-by-byte through monitoring responses to chosen-plaintext values used in particular locations. A timing side channel is used upon aligning HTTP responses to an MTU boundary.
-RC4 byte biases (CVE-2013-2566)35
-The RC4 algorithm has many byte biases, which an adversary can use to recover plaintext bytes at known locations (such as a session token within a cookie) upon encrypting the same plaintext many times and monitoring the ciphertext. The attack requires generation of extremely large data volumes. Thus it is somewhat impractical but highlights a significant flaw within RC4.
-Insecure renegotiation (CVE-2009-3555)
-As demonstrated by Figure 11-8, TLS endpoints might support insecure renegotiation, making it possible for an attacker with network access to prefix legitimate session traffic from a client to server with his own (e.g., a malicious HTTP request). Depending on the configuration of the application, this can result in HTTPS to HTTP downgrade or malicious commands being processed.
-Insecure fallback
-Outdated clients support insecure fallback, which an attacker with network access can exploit to downgrade a session to TLS 1.0 or SSL 3.0. The IETF resolved the issue by introducing a new cipher suite (TLS_FALLBACK_SCSV),36 which prevents downgrade of TLS implementations that support the cipher.
+    **BREACH (CVE-2013-3587)** Web applications that use HTTP compression and reflect static secrets (e.g., session tokens) to clients via HTML can be targeted through BREACH. As with CRIME, the attack relies upon a JavaScript agent to generate traffic and undertake a chosen-plaintext attack through monitoring response lengths to infer each byte of a secret.
+    **TIME** It targets HTTP compression but does not require network access to exploit. After malicious JavaScript is injected into a browser, an adversary can deduce secrets (e.g., session token values) byte-by-byte through monitoring responses to chosen-plaintext values used in particular locations. A timing side channel is used upon aligning HTTP responses to an MTU boundary.
+    **RC4 byte biases (CVE-2013-2566)** The RC4 algorithm has many byte biases, which an adversary can use to recover plaintext bytes at known locations (such as a session token within a cookie) upon encrypting the same plaintext many times and monitoring the ciphertext. The attack requires generation of extremely large data volumes. Thus it is somewhat impractical but highlights a significant flaw within RC4.
+    **Insecure renegotiation (CVE-2009-3555)** TLS endpoints might support insecure renegotiation, making it possible for an attacker with network access to prefix legitimate session traffic from a client to server with his own (e.g., a malicious HTTP request). Depending on the configuration of the application, this can result in HTTPS to HTTP downgrade or malicious commands being processed.
+    **Insecure fallback** Outdated clients support insecure fallback, which an attacker with network access can exploit to downgrade a session to TLS 1.0 or SSL 3.0. The IETF resolved the issue by introducing a new cipher suite (TLS_FALLBACK_SCSV),36 which prevents downgrade of TLS implementations that support the cipher.
 
 
 
