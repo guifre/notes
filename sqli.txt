@@ -21,8 +21,8 @@ Taxonomy
     Blind **time** based
         Same as Boolean based, but causing a time delay rather than significant response differences.
 
-    **Outband**
-        The query is executed in another thread/process and no side effects in the inband response can be produce. Test it with a ping back.
+    **Outband** or second order
+        The query is executed in another thread/process and no side effects in the inband response can be produce. Test it with a ping back or finding the correct end-point to trigger it.
 
 Identifying SQLI
     Test error based sending **' " ;** and look for errors.

