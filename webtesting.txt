@@ -221,3 +221,15 @@ Test credentials
     root admin
     root password
     root nameofservice
+
+Other tricks
+    If there is a share link or a way to pass a URL that you can manipulate, try duplicating the parameters
+
+    If there is a UID parameter, try to replace it with another users one or do HPP passing both in different orders.
+
+    Intercept all the interesting requests, look for missing CSRF tokens in critical actions and try repeating them with them.
+
+    To bypass XSS filters: try submitting URL encoded strings, if decoded: bingo.
+
+    Restoring javascript functions **javascript:document.write=HTMLDocument.prototype.write;document.write(‘STRUKT’);**
+
