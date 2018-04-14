@@ -25,12 +25,41 @@ Mobile OWASP top 10
     M9 -Reverse Engineering
     M10 - Extraneous Functionality
 
+App Taxonomy
+    Native: developed using the SDK of android or IOs
+    Web: HTML5, run in the browser
+    Hybrid: web view(html5 on steroids, HTML5 with some OS functions) (react native, jquery mobile, ...)
 
 Mobile pentest
+    Whitebox
+    Blackbox
+
+If white/gray:
+    Static analysis
+        auomatic code (SAST)
+        manual review
+
+Dynamic analysis
+    Mapping the app: use the app, entry points, data flows, functions
+    Exploit
+    Report
+
+    Identify sensitive data (rest(datastore), in use, in transit_
+
+
+Env
+    Android SDK and testing on a rooted device
+    set up burp with the CA installed on the phone, certificate pinning killed.
+
+Automated dynamic analysis android Drozer
 
 Static analysis
     Use **http://jd.benow.ca/** to decompile to APK classes. Read the code to understand what libraries it uses, how communication is handled and obvious flaws.
 
+    Automated open source tools android static analysis:
+        QARK
+        Androbugs
+        JAADAS
 Network traffic
     Intercept requests using Burp
 
@@ -194,3 +223,44 @@ Inspecting the system
     *$ adb pull file*
     Reading DBs:
     *$ sqlite3 ids2*
+
+Intend
+
+
+WebView
+    Main classes WebChromeClient WebViewClient
+    Native component provided by the operating system to be able to load web content and interact with the OS. Browser on steroids.
+    connection hijacking, XSS
+    Same Origin Policy (SOP) bypass can lead to device file-system access.
+
+
+Threat modeling
+    Microsoft Threat Modelling (DFDs and STRIDE_
+    Attack trees
+    Cigital Threat Modelling: Assets, Threat Agents, Controls modelled directly,  Component Diagram
+
+
+
+Mobile course
+    Unencrypted sensitive data
+
+
+Types of apps
+    Mobile-aware web site
+        Just a normal web site using file upload, gps. Test as a normal app
+    WebView app
+        Can run some Java/objective c. Can access data store of OS
+
+    Hybrid /framework-based app
+    Full native code app
+        Developing / debugging is like working on a desktop app
+    Real binaries, debuggers
+    Simulators for devices you don’t have
+
+
+Android testing env
+    SDK + phone + USB SDK + System Image
+    Create an Android Virtual Device
+
+IOs
+    XCode

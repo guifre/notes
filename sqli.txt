@@ -246,6 +246,7 @@ or true--
 Other tricks
     If space is filtered, you can use /**/ instead
     Sometimes you can bypassfilter by adding a new line; I.e. 123%0aor 1=1
+    try boolean sqli using **num=123** vs **num=123--** (comments out the rest of the query)
 
 Object to relational mapping (ORM) injection
     Try vectors like

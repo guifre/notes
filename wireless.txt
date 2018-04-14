@@ -21,3 +21,7 @@ Cracking the cap
 
 Cracking WPS
     **$ reaver –i mon0 –b ≤bssid≥ –d 0**
+
+Crypto
+    WPA uses 40 bit keys and WEP2 104bits. Encryption is done per packet basis.
+    Every packet uses CRC32 for error detection and RC4 for encryption.

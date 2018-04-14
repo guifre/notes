@@ -5,3 +5,29 @@ def get_inpus():
     return []
 pool = Pool(4)
 paths = pool.map(get_paths, get_input())*
+
+Comprehensions
+    *EXP for x in seq*
+    With filter
+    *EXP for x in seq if COND *
+    You need to a assign it to a data structure:
+    *x = [COMP] # list
+x = set(COMP)
+x = str(COMP)
+x = iter(COMP)*
+
+
+Python functional
+    Iterators
+    *iter(obj)
+next()
+list(iter), tuple(iter) -> converts iterator to list*
+
+    Generator expressions and list comprehensions: Perform an operation to every element, select a subset of elemnts that meet a condition.
+    *iter = (elem.func() for elem in list)
+list = [elem.func() for elem in list]*
+
+    You can select elements that meet a specific condition:
+    *list = [elem.func() for elem in list
+if elem != ""]*
+

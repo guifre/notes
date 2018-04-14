@@ -70,3 +70,9 @@ Curiously recurring generic pattern
         T withFoo(foo)
             return (T) this;
     Class SubBuilder extends Builder<SubBuilder>*
+
+Concurrency Patterns
+    Facilitate dealing with threads
+
+Double-checked locking
+    Reduces lock contention by testing the locking criterion withouth aquiring the lock, then if the testing is successful it is tested again after acquiring the lock.
