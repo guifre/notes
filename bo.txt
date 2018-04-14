@@ -20,7 +20,7 @@ for fuzz in fuzz_strings:
     print s.recv(1024)
     s.close()*
 
-    We run the script and find that the app crashes when sending a string 2700 long, so we know that the buffer is somewhere between 2500 and 2700.
+    We run the script and find that the app crashes when sending a string **2700** long, so we know that the buffer is somewhere between **2500** and **2700**.
 
 Finding EIP
     Second step is to find the exact size of the buffer before the EIP register. We can achieve this by generating a string with unique sequence of characters and use the debugger to find the value that overwrites the EIP register. We create the string as follows:
@@ -117,7 +117,7 @@ try:
 except:
     print "Could not connect"*
 
-    We run it, right click in the ESP address, and follow  in dump to find potential bad characters that the application truncates. (I.E 0x00, in Pop3 new line char(0xA) as it is the command separator, etc..).
+    We run it, right click in the ESP address, and follow in dump to find potential bad characters that the application truncates. We should see the full ASCII character space. Some characters are more likely to be truncated (i.e. **0x00** as it is the end of string delimiter in C. In Pop3, new line char **0xA** as it is the command separator, etc..).
 
     So we know how much padding we need to add to the stack to overwrite the EIP, we know an address that will get the execution flow redirected to the start of the stack, we just need to create a shellcode.
 
