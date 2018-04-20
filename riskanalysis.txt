@@ -1,0 +1,188 @@
+Information Security concepts
+
+    CIA
+        Confidentiality
+        Integrity
+        Availability
+        Disclosure Alteration and Destruction (DAD) is its opposite.
+
+    Identity and Authentication, Authorization, and Accountability
+        Identity and Authentication: Proving an identity claim
+        Authorization: Describes the actions you can perform on a system once you have identified and authenticated.
+        Accountability: holds users accountable for their actions. This is typically done by logging and analyzing audit data.
+        Non-repudiation: It means a user cannot deny (repudiate) having performed a transaction. It combines authentication and integrity: non-repudiation authenticates the identity of a user who performs a transaction, and ensures the integrity of that transaction
+
+    Least Privilege and Need to Know
+        Least privilege means users should be granted the minimum amount of access
+        (authorization) required to do their jobs, but no more
+        Need to know means Sebastian can access a patient’s record only if he has a
+        business need to do so.
+
+    Defense-in-Depth
+        Defense-in-Depth (also called layered defenses) applies multiple safeguards (also
+    called controls: measures taken to reduce risk) to protect an asset. Any one security
+    control may fail; by deploying multiple controls, you improve the confidentiality,
+    integrity, and availability of your data.
+
+Thread modeling
+    Step 1: Decompose the application into use-cases (DFD) of how the application interacts with external entities to understand attack surface.
+    Step 2: Determine and rank threats to those DFD, using STRIDE or Attack trees, etc..
+    Step 3: Determine countermeasures and mitigation
+
+    STRIDE
+        Spoofing of user identity
+        Tampering
+        Repudiation
+        Information disclosure (privacy breach or data leak)
+        Denial of service (D.o.S)
+        Elevation of privilege
+
+    DREAD is a classification scheme for quantifying, comparing and prioritizing the amount of risk presented by each evaluated threat. The DREAD acronym is formed from the first letter of each category below.
+
+    DREAD modeling influences the thinking behind setting the risk rating, and is also used directly to sort the risks. The DREAD algorithm, shown below, is used to compute a risk value, which is an average of all five categories.
+
+    Risk_DREAD = (DAMAGE + REPRODUCIBILITY + EXPLOITABILITY + AFFECTED USERS + DISCOVERABILITY) / 5
+
+    To understand the practical risks to a system, you might model threats by considering the following:
+        Individual system components: Exploitable vulnerabilities can exist within infrastructure (e.g., hypervisors, software switches, storage nodes, and load balancers), operating systems, server software, client applications, and end users themselves
+
+        Goals of the attacker: Data exposure or modification, Elevation of privilege, Arbitrary code execution
+        Denial of service
+        Exposed system components (the available attack surface) remote access / physical access
+        Economic cost and feasibility of each attack vector
+
+Risk Analysis
+    **Asset** is valuable resources for the business to protect.
+    **Threat** is an action or inaction that could cause harmful occurrence to assets (accidental or deliberate).
+    **Threat agents** intentionally exploit vulnerabilities.
+    **Threat events** are accidental exploitations of vulnerabilities (fire, earthquake).
+    **Impact** is the result of having a vulnerability exploited by a threat.
+    **Risk** is the possibility that a threat will exploit a vulnerability to cause harm to an asset.
+    **Exposure** is being susceptible to asset loss due to a threat; there is the possibility that a vulnerability can or will be exploited by a threat agent or event.
+    **Safeguard/countermeasure** is anything that removes a vulnerability or protects against one or more specific threats.
+    **Attack** is the exploitation of a vulnerability by a threat agent.
+    **Breach** is the occurrence of a security mechanism being bypassed or thwarted by a threat agent.
+    **Vulnerability** is a weakness that allows a threat to cause harm.
+
+    **Risk =Threat * Vulnerability * Impact**
+
+Calculating Annualized Loss Expectancy
+
+    Annualized Loss Expectancy (ALE) calculation allows you to determine the
+    annual cost of a loss due to a risk. Once calculated, ALE allows you to make
+    informed decisions to mitigate the risk.
+
+    Asset value (AV) is the value of the asset you are trying to protect. In this
+    example, each laptop costs $2500
+
+
+    The Exposure Factor (EF) is the percentage of value an asset lost due to an incident.
+    In the case of a stolen laptop with unencrypted PII, the Exposure Factor is
+    100%:
+
+    The Single Loss Expectancy (SLE) is the cost of a single loss. SLE is the Asset
+    Value (AV) times the Exposure Factor (EF). In our case, SLE is $25,000 (Asset
+    Value) times 100% (Exposure Factor), or $25,000.
+
+    The Annual Rate of Occurrence (ARO) is the number of losses you suffer per year.
+    Looking through past events, you discover that you have suffered 11 lost or stolen
+    laptops per year on average. Your ARO is 11.
+
+    The Annualized Loss Expectancy (ALE) is your yearly cost due to a risk. It is calculated
+    by multiplying the Single Loss Expectancy (SLE) times the Annual Rate of
+    Occurrence (ARO). In our case, it is $25,000 (SLE) times 11 (ARO), or $275,000.
+
+    The Total Cost of Ownership (TCO) is the total cost of a mitigating safeguard.
+
+
+    Return on Investment (ROI) is the amount of money saved by implementing a
+    safeguard. If your annual Total Cost of Ownership (TCO) is less than your Annualized
+    Loss Expectancy (ALE), you have a positive ROI (and have made a good
+    choice). If the TCO is higher than your ALE, you have made a poor choice
+
+
+    Risk Choices
+        Accept
+        Mitigate
+        Transfer (insurance)
+        Avoiding the risk (not do the project)
+
+
+    Quantitative and Qualitative Risk Analysis
+        Quantitative Risk Analysis uses hard metrics, such as dollars.
+        Qualitative Risk Analysis uses simple approximate values.
+        Calculating the Annualized Loss Expectancy (ALE) is an example of Quantitative
+    Risk Analysis.
+
+    NIST risk management process
+        System Characterization
+        Threat Identification
+        Vulnerability Identification
+        Control Analysis
+        Likelihood Determination
+        Impact Analysis
+        Risk Determination
+        Control Recommendations
+        Results Documentation
+
+    Access control defensive categories and types
+        Preventive
+        Detective
+        Corrective
+        Recovery
+        Deterrent (“beware of dog”)
+        Compensating
+
+    Authentication Methods
+        Type 1 Authentication: Something You Know (Passwords)
+        Type 2 Authentication: Something You Have (Synchronous Dynamic Token, Asynchronous Dynamic Token)
+        Type 3 Authentication: Something You Are  (Biometric Fairness, Psychological Comfort, and Safety, Biometric Enrollment and Throughput)
+
+Defense models
+    Lollipop model: Perimeter security, protecting the assets
+    Onion model: Defense in depth, multiple layers of defenses (encryption, access control, compartmentalisation, monitoring...)
+    Zones of trust: Segregating computers in different networks according to the trust (dev deparment, office, wifi...)
+
+
+Risk management life cycle
+    Monitor
+    Identify
+    Analyse
+    Treat
+    (repeat)
+
+Treating risk
+    Mitigate
+    Accept
+    Reduce
+    Transfer
+
+
+Security incident management
+    Reporting
+    Investigation
+    Assessment
+    Corrective action
+    Employees need security training and awareness
+
+Network security
+    The company needs a security policy (not plugging phone to computer, password length, etc)
+    Non-repudiation and accountability: users in the organization can not deny actions carried out and are responsible for those.
+    Every job has different responsabilities, duties and access rights.
+    partitioning network
+    encrypted traffic
+    monitoring and detection (IDS, IPS)
+    network usage policy
+    authentication and authorization policies
+
+Data security
+    At Rest
+    in Transit
+    in Use
+
+Software development lifecycle
+    Use of certified products and systems
+    Code review, vuln assessment, continuous testing methodologies
+    Separation of development and live systems
+    Use of escrow to reduce risks of loss of source code
+

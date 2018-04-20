@@ -1,0 +1,14 @@
+Java 8
+    default and static methods in Interfaces
+    forEach() method in Iterable interface
+    *iterable.forEach(() -> ""));*
+    Functional Interfaces and Lambda Expressions
+    * () -> {};*
+    Java Stream API for Bulk Data Operations on Collections
+    *iterable
+.stream()
+.filter()
+.map()
+.collect()*
+    StringJoiner to join string by delimiter
+    *new StringJoiner("-").add("foo").add("bar")*

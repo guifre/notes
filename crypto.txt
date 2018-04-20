@@ -45,13 +45,12 @@ Symmetric encryption algorithms (128/256 bits is considered safe)
 
 
 Asymmetric encryption algorithms
-    3245 bits is considerd safe
-    Public key encryption provides confidentiality to a message for the key owner and non-repudiation for parties how have public key.
+    3245 bits is considered safe
+    Public key encryption provides a protocol for encrypting (confidentiality to a message for the key owner) and signing messages (non-repudiation for parties how have public key).
     **RSA**: difficulty of factoring large numbers.
     **DSA**: fast at signature creation but slower at validation.
-    Diffe Hellman and Eliptic curves Diffe Hellman.
 
-    **Diffie-Hellman** is a key-exchange protocol used to build a shared secret over a public medium.  allows two parties that have no prior knowledge of each other to jointly establish a shared secret key over an insecure channel. This key can then be used to encrypt subsequent communications using a symmetric key cipher. Works by each party choosing a prime number, sending another number and computing the modulus. It is vulnerable to man in the middle, since neither of the parties are authenticated.
+    **Diffie-Hellman** is a key-exchange protocol used to build a shared secret over a public medium. It allows two parties that have no prior knowledge of each other to jointly establish a shared secret key over an insecure channel. This key can then be used to encrypt subsequent communications using a symmetric key cipher. Works by each party choosing a prime number, sending another number and computing the modulus. It is vulnerable to man in the middle, since neither of the parties are authenticated.
 
 Hashing
     **MD4/MD5/SHA1**: broken
@@ -68,11 +67,11 @@ Describe the process of a TLS session being set up when someone visits a secure 
 
 TLS handshake.
     The TLS Handshake Protocol involves the following steps:
-    1. The client sends a "Client hello" message to the server, along with the client's random value and supported cipher suites.
-    2. The server responds by sending a "Server hello" message to the client, along with the server's random value.
-    3. The server sends its certificate to the client for authentication and may request a certificate from the client. The server sends the "Server hello done" message.
+    1. The client sends a "Client hello": Random value, supported cipher suites and protocols.
+    2. The server responds by sending a "Server hello: with the server's random value.
+    3. The server sends its certificate for authentication and may request a certificate from the client. The server sends the "Server hello done" message.
     4. If the server has requested a certificate from the client, the client sends it.
-    5. The client creates a random Pre-Master Secret and encrypts it with the public key from the server's certificate, sending the encrypted Pre-Master Secret to the server.
+    5. The client creates a random Pre-Master Secret and encrypts it with the public key from the server's certificate, sending the encrypted Pre-Master Secret to the server. If DH or other protocol is used, no key is sent over the channel.
     6. The server receives the Pre-Master Secret. The server and client each generate the Master Secret and session keys based on the Pre-Master Secret.
     7. The client sends "Change cipher spec" notification to server to indicate that the client will start using the new session keys for hashing and encrypting messages. Client also sends "Client finished" message.
     8. Server receives "Change cipher spec" and switches its record layer security state to symmetric encryption using the session keys. Server sends "Server finished" message to the client.
@@ -129,6 +128,11 @@ TLS
     For example:
     **TLS_RSA_WITH_RC4_128_MD5** means RSA, 128 bit RC4 and 128 HMAC-MD5.
     Padding oracle attacks are a weakness in som cipher block chain algorithms where some blocks need to be padded with extra bytes, those bytes are deterministic depending on the plain text, so if you can do a MITM to an SSL session that uses a block cipher of type CBC, you can change those pads, send it to the server to guess the plaintext
+    The cert contains:
+        Subject: Contains the domain name
+        Authority Key Identifier: key identifier of the Issuing CA certificate
+        Subject Key Identifier:  This is a hash value of the SSL certificate
+        Validity
 
 Brute force
     If the character set is 35 characters and password length 5 characters, there are **35^5~=52M** possible combinations
