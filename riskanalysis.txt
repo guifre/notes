@@ -1,4 +1,4 @@
-Information Security concepts
+*Information Security concepts*
 
     CIA
         Confidentiality
@@ -7,22 +7,34 @@ Information Security concepts
         Disclosure Alteration and Destruction (DAD) is its opposite.
 
     Identity and Authentication, Authorization, and Accountability
-        Identity and Authentication: Proving an identity claim
-        Authorization: Describes the actions you can perform on a system once you have identified and authenticated.
-        Accountability: holds users accountable for their actions. This is typically done by logging and analyzing audit data.
+        **Identity and Authentication**: Proving an identity claim
+        **Authorization**: Describes the actions you can perform on a system once you have identified and authenticated.
+        **Accountability**: holds users accountable for their actions. This is typically done by logging and analyzing audit data.
         Non-repudiation: It means a user cannot deny (repudiate) having performed a transaction. It combines authentication and integrity: non-repudiation authenticates the identity of a user who performs a transaction, and ensures the integrity of that transaction
 
-    Least Privilege and Need to Know
-        Least privilege means users should be granted the minimum amount of access
-        (authorization) required to do their jobs, but no more
-        Need to know means Sebastian can access a patient’s record only if he has a
-        business need to do so.
 
-    Defense-in-Depth
-        Defense-in-Depth (also called layered defenses) applies multiple safeguards (also
-    called controls: measures taken to reduce risk) to protect an asset. Any one security
-    control may fail; by deploying multiple controls, you improve the confidentiality,
-    integrity, and availability of your data.
+Security Design Principles
+    (My security keeps failing during annual degree exams, lol)
+    **Minimize attack surface area**: Remove unnecessary functionality or make it work authenticated users are possible reductions.
+
+    **Separation of dutties**: To control fraud; Who requests a computer can not sign having recieved it; I.e. administrators of a shop should not be users who can buy.
+
+    **Keep security simple**: avoid double negatives and omples architectures when simple and faster appreaches work.
+
+    **Fail securely**: If unexpected events occurr the application should make sure security can not be bypassed.
+
+    **Defense in depth**:  applies multiple safeguards (also called controls: measures taken to reduce risk) to protect an asset. Any one security     control may fail; by deploying multiple controls, you improve the confidentiality, integrity, and availability of your data.
+
+    **Fix security issues correctly**: Make sure the root cause is identified and the correct fix applied; Similar bugs can be accross the company's products.
+
+    **Avoid security by obscurity**: nearly always fails when it is the only control. Do not hardcode passwords etc..
+
+    **Don't trust services**: If you integrate with third party services you increase your attack surface and your security is as bad as theirs.
+
+    **Establish secure defaults**: Enable security controls by default, require strong password but user might change it for an unsercure one if they want.
+
+    **Least privilege**: Users should be granted the minimum amount of access (authorization) required to do their jobs, but no more.
+
 
 Thread modeling
     Step 1: Decompose the application into use-cases (DFD) of how the application interacts with external entities to understand attack surface.
@@ -51,7 +63,7 @@ Thread modeling
         Exposed system components (the available attack surface) remote access / physical access
         Economic cost and feasibility of each attack vector
 
-Risk Analysis
+Terminology
     **Asset** is valuable resources for the business to protect.
     **Threat** is an action or inaction that could cause harmful occurrence to assets (accidental or deliberate).
     **Threat agents** intentionally exploit vulnerabilities.
@@ -68,38 +80,37 @@ Risk Analysis
 
 Calculating Annualized Loss Expectancy
 
-    Annualized Loss Expectancy (ALE) calculation allows you to determine the
+    **Annualized Loss Expectancy (ALE)** calculation allows you to determine the
     annual cost of a loss due to a risk. Once calculated, ALE allows you to make
     informed decisions to mitigate the risk.
 
-    Asset value (AV) is the value of the asset you are trying to protect. In this
+    **Asset value (AV)** is the value of the asset you are trying to protect. In this
     example, each laptop costs $2500
 
 
-    The Exposure Factor (EF) is the percentage of value an asset lost due to an incident.
+    The **Exposure Factor (EF)** is the percentage of value an asset lost due to an incident.
     In the case of a stolen laptop with unencrypted PII, the Exposure Factor is
     100%:
 
-    The Single Loss Expectancy (SLE) is the cost of a single loss. SLE is the Asset
+    The **Single Loss Expectancy (SLE)** is the cost of a single loss. SLE is the Asset
     Value (AV) times the Exposure Factor (EF). In our case, SLE is $25,000 (Asset
     Value) times 100% (Exposure Factor), or $25,000.
 
-    The Annual Rate of Occurrence (ARO) is the number of losses you suffer per year.
+    The **Annual Rate of Occurrence (ARO)** is the number of losses you suffer per year.
     Looking through past events, you discover that you have suffered 11 lost or stolen
     laptops per year on average. Your ARO is 11.
 
-    The Annualized Loss Expectancy (ALE) is your yearly cost due to a risk. It is calculated
+    The **Annualized Loss Expectancy (ALE)** is your yearly cost due to a risk. It is calculated
     by multiplying the Single Loss Expectancy (SLE) times the Annual Rate of
     Occurrence (ARO). In our case, it is $25,000 (SLE) times 11 (ARO), or $275,000.
 
-    The Total Cost of Ownership (TCO) is the total cost of a mitigating safeguard.
+    The **Total Cost of Ownership (TCO)** is the total cost of a mitigating safeguard.
 
 
-    Return on Investment (ROI) is the amount of money saved by implementing a
+    **Return on Investment (ROI)** is the amount of money saved by implementing a
     safeguard. If your annual Total Cost of Ownership (TCO) is less than your Annualized
     Loss Expectancy (ALE), you have a positive ROI (and have made a good
     choice). If the TCO is higher than your ALE, you have made a poor choice
-
 
     Risk Choices
         Accept
@@ -165,20 +176,36 @@ Security incident management
     Corrective action
     Employees need security training and awareness
 
-Network security
-    The company needs a security policy (not plugging phone to computer, password length, etc)
-    Non-repudiation and accountability: users in the organization can not deny actions carried out and are responsible for those.
-    Every job has different responsabilities, duties and access rights.
-    partitioning network
-    encrypted traffic
-    monitoring and detection (IDS, IPS)
-    network usage policy
-    authentication and authorization policies
-
-Data security
+Data must be secure when it is
     At Rest
     in Transit
     in Use
+
+
+Securing a network
+    The company needs a security policy (not plugging phone to computer, password length, etc)
+    Non-repudiation and accountability: users in the organization can not deny actions carried out and are responsible for those.
+    Every job has different responsabilities, duties and access rights.
+    Partitioning network
+    Encrypted traffic
+    Monitoring and detection (IDS, IPS)
+    Network usage policy
+    Authentication and authorization policies
+
+Securing a box
+    Password protect the boot process before the OS loads (set is BIOS) (important for laptops)
+    Password protect CMOS settings
+    Disable booting from USB/CD
+    Reduce the attack surface of systems by turning off unneeded services.
+    Install secure software.
+    Use Firewall Software
+    Use an Antivirus Scanner (with Real-Time Scanning)
+    Use Encryption (SSH/hard drive)
+    Configure software settings securely.
+    Patch systems regularly and quickly.
+    Segment the network into zones of trust and place systems into those zones based their communication needs and Internet exposure.
+    Strengthen authentication processes.
+    Limit the number (and privileges) of administrators.
 
 Software development lifecycle
     Use of certified products and systems
