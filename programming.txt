@@ -1,6 +1,6 @@
-Type erasure is the process in which the compiler replaces the generic types with their bound or object.
-
-Plain old java object (POJO): is a simple java object that does not require any fancy library in classpath other than the JVM to be instantiated.
+Concepts
+    **Type erasure** is the process in which the compiler replaces the generic types with their bound or object.
+    **Plain old java object (POJO)** is a simple java object that does not require any fancy library in classpath other than the JVM to be instantiated.
 
 SOLID
     Single responsibility principle
