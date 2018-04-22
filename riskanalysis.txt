@@ -1,3 +1,5 @@
+*Risk analysis*
+
 Terminology
     **Asset** is valuable resources for the business to protect.
     **Threat** is an action or inaction that could cause harmful occurrence to assets (accidental or deliberate).
@@ -17,8 +19,7 @@ Terminology
     **Penetration test** exploit all the vulnerabilities
     **Non-repudiation** It means a user cannot deny (repudiate) having performed a transaction. It combines authentication and integrity: non-repudiation authenticates the identity of a user who performs a transaction, and ensures the integrity of that transaction
 
-*Risk analysis models*
-
+Risk analysis models
     CIA (Confidentiality, Integrity, Availability)
     Disclosure Alteration and Destruction (DAD) is its opposite.
 
