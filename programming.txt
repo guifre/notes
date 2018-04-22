@@ -16,7 +16,7 @@ SOLID
 
 
 Given a balanced BST
-    *1
+    *   1
    2      3
  4   5*
     Depth First Traversals
