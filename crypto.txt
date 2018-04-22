@@ -62,9 +62,6 @@ Prevent MITM:
     SSH uses hosts fingerprint to detect mitm
     SSL uses certificates to validate identity
 
-Describe the process of a TLS session being set up when someone visits a secure website.
-    The client sending helo with ciphers, server responding with a public key and picking a cipher, agreement on a shared key, etc.
-
 TLS handshake.
     The TLS Handshake Protocol involves the following steps:
     1. The client sends a "Client hello": Random value, supported cipher suites and protocols.
