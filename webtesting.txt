@@ -133,6 +133,10 @@ XML Injection
     **<!--/-->**
 ORM Injection
     **OR 1--**
+
+Header injection %0d%0a
+    Leads to open redirection and session fixation
+
 RFI/LFI
     Test it:
     *$ fimap -u "http://$ip/example.php?test="*

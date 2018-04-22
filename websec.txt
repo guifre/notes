@@ -46,6 +46,9 @@ Security headers
 
     Caching is disabled to prevent cache poisoning attacks.
 
+    If CDN is used in the future, set up subresource integrity (SRI) to prevent the third party being compromised.
+
+    Handle bruteforce attack by Account Lockouts/timeouts, API rate limiting, IP restrictions, Fail2ban
 
 SSH hardening
 

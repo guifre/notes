@@ -1,16 +1,31 @@
-*Information Security concepts*
+Terminology
+    **Asset** is valuable resources for the business to protect.
+    **Threat** is an action or inaction that could cause harmful occurrence to assets (accidental or deliberate).
+    **Threat agents** intentionally exploit vulnerabilities.
+    **Threat events** are accidental exploitations of vulnerabilities (fire, earthquake).
+    **Impact** is the result of having a vulnerability exploited by a threat.
+    **Risk** is the possibility that a threat will exploit a vulnerability to cause harm to an asset.
+    **Exposure** is being susceptible to asset loss due to a threat; there is the possibility that a vulnerability can or will be exploited by a threat agent or event.
+    **Safeguard/countermeasure** is anything that removes a vulnerability or protects against one or more specific threats.
+    **Attack** is the exploitation of a vulnerability by a threat agent.
+    **Breach** is the occurrence of a security mechanism being bypassed or thwarted by a threat agent.
+    **Vulnerability** is a weakness that allows a threat to cause harm or to gain access to an asset.
+    **Exploit** program/script used to exploit a vulnerability and compromise an asset
+    **Risk** impact resulting from compromising an asset
+    **Risk =Threat * Vulnerability * Impact**
+    **Vulnerabiliy assessment** Process of finding all the vulnerabilities
+    **Penetration test** exploit all the vulnerabilities
+    **Non-repudiation** It means a user cannot deny (repudiate) having performed a transaction. It combines authentication and integrity: non-repudiation authenticates the identity of a user who performs a transaction, and ensures the integrity of that transaction
 
-    CIA
-        Confidentiality
-        Integrity
-        Availability
-        Disclosure Alteration and Destruction (DAD) is its opposite.
+*Risk analysis models*
+
+    CIA (Confidentiality, Integrity, Availability)
+    Disclosure Alteration and Destruction (DAD) is its opposite.
 
     Identity and Authentication, Authorization, and Accountability
-        **Identity and Authentication**: Proving an identity claim
-        **Authorization**: Describes the actions you can perform on a system once you have identified and authenticated.
-        **Accountability**: holds users accountable for their actions. This is typically done by logging and analyzing audit data.
-        Non-repudiation: It means a user cannot deny (repudiate) having performed a transaction. It combines authentication and integrity: non-repudiation authenticates the identity of a user who performs a transaction, and ensures the integrity of that transaction
+        **Identity and Authentication** Proving an identity claim
+        **Authorization** Describes the actions you can perform on a system once you have identified and authenticated.
+        **Accountability** holds users accountable for their actions. This is typically done by logging and analyzing audit data.
 
 
 Security Design Principles
@@ -36,7 +51,7 @@ Security Design Principles
     **Least privilege**: Users should be granted the minimum amount of access (authorization) required to do their jobs, but no more.
 
 
-Thread modeling
+Threat modeling
     Step 1: Decompose the application into use-cases (DFD) of how the application interacts with external entities to understand attack surface.
     Step 2: Determine and rank threats to those DFD, using STRIDE or Attack trees, etc..
     Step 3: Determine countermeasures and mitigation
@@ -63,54 +78,10 @@ Thread modeling
         Exposed system components (the available attack surface) remote access / physical access
         Economic cost and feasibility of each attack vector
 
-Terminology
-    **Asset** is valuable resources for the business to protect.
-    **Threat** is an action or inaction that could cause harmful occurrence to assets (accidental or deliberate).
-    **Threat agents** intentionally exploit vulnerabilities.
-    **Threat events** are accidental exploitations of vulnerabilities (fire, earthquake).
-    **Impact** is the result of having a vulnerability exploited by a threat.
-    **Risk** is the possibility that a threat will exploit a vulnerability to cause harm to an asset.
-    **Exposure** is being susceptible to asset loss due to a threat; there is the possibility that a vulnerability can or will be exploited by a threat agent or event.
-    **Safeguard/countermeasure** is anything that removes a vulnerability or protects against one or more specific threats.
-    **Attack** is the exploitation of a vulnerability by a threat agent.
-    **Breach** is the occurrence of a security mechanism being bypassed or thwarted by a threat agent.
-    **Vulnerability** is a weakness that allows a threat to cause harm.
+Threat modeling drawing
+    Data flow diagrams, showing how data moves through the system
+    Draw trust boundaries [browser] - [web server] - [db]
 
-    **Risk =Threat * Vulnerability * Impact**
-
-Calculating Annualized Loss Expectancy
-
-    **Annualized Loss Expectancy (ALE)** calculation allows you to determine the
-    annual cost of a loss due to a risk. Once calculated, ALE allows you to make
-    informed decisions to mitigate the risk.
-
-    **Asset value (AV)** is the value of the asset you are trying to protect. In this
-    example, each laptop costs $2500
-
-
-    The **Exposure Factor (EF)** is the percentage of value an asset lost due to an incident.
-    In the case of a stolen laptop with unencrypted PII, the Exposure Factor is
-    100%:
-
-    The **Single Loss Expectancy (SLE)** is the cost of a single loss. SLE is the Asset
-    Value (AV) times the Exposure Factor (EF). In our case, SLE is $25,000 (Asset
-    Value) times 100% (Exposure Factor), or $25,000.
-
-    The **Annual Rate of Occurrence (ARO)** is the number of losses you suffer per year.
-    Looking through past events, you discover that you have suffered 11 lost or stolen
-    laptops per year on average. Your ARO is 11.
-
-    The **Annualized Loss Expectancy (ALE)** is your yearly cost due to a risk. It is calculated
-    by multiplying the Single Loss Expectancy (SLE) times the Annual Rate of
-    Occurrence (ARO). In our case, it is $25,000 (SLE) times 11 (ARO), or $275,000.
-
-    The **Total Cost of Ownership (TCO)** is the total cost of a mitigating safeguard.
-
-
-    **Return on Investment (ROI)** is the amount of money saved by implementing a
-    safeguard. If your annual Total Cost of Ownership (TCO) is less than your Annualized
-    Loss Expectancy (ALE), you have a positive ROI (and have made a good
-    choice). If the TCO is higher than your ALE, you have made a poor choice
 
     Risk Choices
         Accept
@@ -145,9 +116,9 @@ Calculating Annualized Loss Expectancy
         Compensating
 
     Authentication Methods
-        Type 1 Authentication: Something You Know (Passwords)
-        Type 2 Authentication: Something You Have (Synchronous Dynamic Token, Asynchronous Dynamic Token)
-        Type 3 Authentication: Something You Are  (Biometric Fairness, Psychological Comfort, and Safety, Biometric Enrollment and Throughput)
+        Something you **Know** (Passwords)
+        Something you **Have** (Synchronous Dynamic Token, Asynchronous Dynamic Token)
+        Something you **Are** (Biometric Fairness, Psychological Comfort, and Safety, Biometric Enrollment and Throughput)
 
 Defense models
     Lollipop model: Perimeter security, protecting the assets
@@ -212,4 +183,38 @@ Software development lifecycle
     Code review, vuln assessment, continuous testing methodologies
     Separation of development and live systems
     Use of escrow to reduce risks of loss of source code
+
+Calculating Annualized Loss Expectancy
+
+    **Annualized Loss Expectancy (ALE)** calculation allows you to determine the
+    annual cost of a loss due to a risk. Once calculated, ALE allows you to make
+    informed decisions to mitigate the risk.
+
+    **Asset value (AV)** is the value of the asset you are trying to protect. In this
+    example, each laptop costs $2500
+
+
+    The **Exposure Factor (EF)** is the percentage of value an asset lost due to an incident.
+    In the case of a stolen laptop with unencrypted PII, the Exposure Factor is
+    100%:
+
+    The **Single Loss Expectancy (SLE)** is the cost of a single loss. SLE is the Asset
+    Value (AV) times the Exposure Factor (EF). In our case, SLE is $25,000 (Asset
+    Value) times 100% (Exposure Factor), or $25,000.
+
+    The **Annual Rate of Occurrence (ARO)** is the number of losses you suffer per year.
+    Looking through past events, you discover that you have suffered 11 lost or stolen
+    laptops per year on average. Your ARO is 11.
+
+    The **Annualized Loss Expectancy (ALE)** is your yearly cost due to a risk. It is calculated
+    by multiplying the Single Loss Expectancy (SLE) times the Annual Rate of
+    Occurrence (ARO). In our case, it is $25,000 (SLE) times 11 (ARO), or $275,000.
+
+    The **Total Cost of Ownership (TCO)** is the total cost of a mitigating safeguard.
+
+
+    **Return on Investment (ROI)** is the amount of money saved by implementing a
+    safeguard. If your annual Total Cost of Ownership (TCO) is less than your Annualized
+    Loss Expectancy (ALE), you have a positive ROI (and have made a good
+    choice). If the TCO is higher than your ALE, you have made a poor choice
 
