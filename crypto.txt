@@ -34,7 +34,7 @@ Symmetric encryption algorithms (128/256 bits is considered safe)
         **AES**: Iterative block cipher, very secure. Needs the correct  block cipher mode to be safe.
     Stream ciphers: useful for encrypting streams of data
         **RC2**: insecure
-        **RC4**: might be secure dependig on usage**
+        **RC4**: might be secure dependig on usage
 
     Block ciphers
     They need a mode of operation, which can be:
@@ -50,7 +50,7 @@ Asymmetric encryption algorithms
     **RSA**: difficulty of factoring large numbers.
     **DSA**: fast at signature creation but slower at validation.
 
-    **Diffie-Hellman** is a key-exchange protocol used to build a shared secret over a public medium. It allows two parties that have no prior knowledge of each other to jointly establish a shared secret key over an insecure channel. This key can then be used to encrypt subsequent communications using a symmetric key cipher. Works by each party choosing a prime number, sending another number and computing the modulus. It is vulnerable to man in the middle, since neither of the parties are authenticated.
+    **Diffie-Hellman** is a key-exchange protocol (not an encryption algorithm) used to build a shared secret over a public medium. It allows two parties that have no prior knowledge of each other to jointly establish a shared secret key over an insecure channel. This key can then be used to encrypt subsequent communications using a symmetric key cipher. Works by each party choosing a prime number, sending another number and computing the modulus. It is vulnerable to man in the middle, since neither of the parties are authenticated.
 
 Hashing
     **MD4/MD5/SHA1**: broken
@@ -77,10 +77,9 @@ TLS handshake.
 MAC
     **Message authentication code (MAC)**  provides authentication and integrity to the message. The plaintext is hashed with a secret symmetric key and sent along it. MACs do not encrypt the message. Instead, the message (encrypted or not) must be sent alongside the hash. Without a MAC an attacker could modify a message encrypted with AES and the recipient could not tell. MACs usually contain the sequence number to prevent reply attacks.
 
-
     **Hash message authentication code(HMAC)** is a type of MAC. Uses md5, sha1,256... The name is **HMAC_** and the hashing algorithm.
 
-    It is better than MAC because it is robust against length extension attacks as the message is hashed twice. First, the secret key derives two keys inner and outer
+    It is better than MAC because it is robust against **length extension attacks** as the message is hashed twice. First, the secret key derives two keys inner and outer
         1) hash(innerkey and message)
         2) hash(result and outer key)
     HMAC hashes twice the message.
