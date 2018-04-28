@@ -238,3 +238,5 @@ Countermeasures
     **Partial EIP overwrite**: Only overwrite part of EIP, or use a reliable information disclosure in the stack to find what the real EIP should be, then use it to calculate your target. We still need a non-ASLR module for this though.
     **NOP spray**: Create a big block of NOPs to increase chance of jump landing on legit memory. Difficult, but possible even when all modules are ASLR-enabled. Won't work if DEP is switched on though.
     **Bruteforce**: If you can try an exploit with a vulnerability that doesn't make the program crash, you can bruteforce 256 different target addresses until it works.
+
+    **Structured Exception Handling (SEH)** Is the normal exception handling (try/catch blocks). Up to windows XP the handlers used to be registered in the stack and an attacker could overwrite them.

@@ -33,24 +33,25 @@ Security Design Principles
     (My security keeps failing during annual degree exams, lol)
     **Minimize attack surface area**: Remove unnecessary functionality or make it work authenticated users are possible reductions.
 
-    **Separation of dutties**: To control fraud; Who requests a computer can not sign having recieved it; I.e. administrators of a shop should not be users who can buy.
+    **Separation of duties**: To control fraud; Who requests a computer can not sign having received it; I.e. administrators of a shop should not be users who can buy.
 
-    **Keep security simple**: avoid double negatives and omples architectures when simple and faster appreaches work.
+    **Keep security simple**: avoid double negatives and complex architectures when simple and faster approaches work.
 
-    **Fail securely**: If unexpected events occurr the application should make sure security can not be bypassed.
+    **Fail securely**: If unexpected events occur the application should make sure security can not be bypassed.
 
     **Defense in depth**:  applies multiple safeguards (also called controls: measures taken to reduce risk) to protect an asset. Any one security     control may fail; by deploying multiple controls, you improve the confidentiality, integrity, and availability of your data.
 
-    **Fix security issues correctly**: Make sure the root cause is identified and the correct fix applied; Similar bugs can be accross the company's products.
+    **Fix security issues correctly**: Make sure the root cause is identified and the correct fix applied; Similar bugs can be across the company's products.
 
-    **Avoid security by obscurity**: nearly always fails when it is the only control. Do not hardcode passwords etc..
+    **Avoid security by obscurity**: nearly always fails when it is the only control. Do not hardcoded passwords etc..
 
     **Don't trust services**: If you integrate with third party services you increase your attack surface and your security is as bad as theirs.
 
-    **Establish secure defaults**: Enable security controls by default, require strong password but user might change it for an unsercure one if they want.
+    **Security by default**: Enable security controls by default, require strong password but user might change it for an insecure one if they want.
 
     **Least privilege**: Users should be granted the minimum amount of access (authorization) required to do their jobs, but no more.
 
+    **Use patterns**: Each bug should be fixed introducing a pattern (template approach) so that it does not happen again.
 
 Threat modeling
     Step 1: Decompose the application into use-cases (DFD) of how the application interacts with external entities to understand attack surface.
@@ -58,12 +59,21 @@ Threat modeling
     Step 3: Determine countermeasures and mitigation
 
     STRIDE
-        Spoofing of user identity
-        Tampering
-        Repudiation
-        Information disclosure (privacy breach or data leak)
-        Denial of service (D.o.S)
-        Elevation of privilege
+        **Spoofing of user identity** Fixed with authentication.
+        For computers IPSec, DNSSEC, SSH host keys, Kerberos authentication, HTTP Digest or Basic authentication, "Windows authentication" (NTLM), PKI systems, such as SSL or TLS with certificates
+        For data: Digital signatures, Hashes.
+        For people: Something you know (password), something you are (biometrics), something you have (auth key card)
+        For maintaining authentication: cookies.
+        **Tampering** Fixed with integrity
+        For files: ACLs or permissions, Digital signatures, Hashes, Windows Mandatory Integrity Control (MIC) feature, Unix immutable bits
+        For network traffic: SSL, SSH, IPSec, Digital signatures
+        **Repudiation** Fixed with non-repudiation: Logging, Log analysis tools, Secured log storage, Digital signatures, Secure time stamps, Trusted third parties, Hash trees, and tools for preventing 3rd party frauds (Validation services, Proprietary data/customer history, Multi-merchant data, Purchase device tracing).
+        **Information disclosure** Fixed with confidentiality
+        For files: ACLs/permissions, Encryption, Appropriate key management
+        Network data: Encryption, Appropriate key management
+        Protecting communication headers or the fact of communication: Mix networks, Onion routing, Steganography
+        **Denial of service** Fixed with availability: ACLs, Filters, Quotas (rate limiting, thresholding, throttling), High-availability design, Extra bandwidth (rate limiting, throttling), Cloud service.
+        **Elevation of privilege** Fixed with authorization:  ACLs, Group or role membership, Role based access control, Claims-based access control, Windows privileges (runas), Unix sudo, Chroot, AppArmor or other unix sandboxes, The "MOICE" Windows sandbox pattern, Input validation for defined purpose.
 
     DREAD is a classification scheme for quantifying, comparing and prioritizing the amount of risk presented by each evaluated threat. The DREAD acronym is formed from the first letter of each category below.
 
@@ -83,43 +93,46 @@ Threat modeling drawing
     Data flow diagrams, showing how data moves through the system
     Draw trust boundaries [browser] - [web server] - [db]
 
+Mitigating Privacy Threats
+    **Minimization** Do not store it, do not send it, dispose the data, do not touch it unless you have to.
+    **Cryptography** hashing or encrypting, split keys systems (multiple keys hold by multiple parties to decrypt), blinding (cryptography technique that allows a party to use a service without the service owner knowing about the input or output even if they have the key or are the CA (used for e-voting etc...)
 
-    Risk Choices
-        Accept
-        Mitigate
-        Transfer (insurance)
-        Avoiding the risk (not do the project)
+Risk Choices
+    Accept
+    Mitigate
+    Transfer (insurance)
+    Avoiding the risk (not do the project or change the design)
 
 
-    Quantitative and Qualitative Risk Analysis
-        Quantitative Risk Analysis uses hard metrics, such as dollars.
-        Qualitative Risk Analysis uses simple approximate values.
-        Calculating the Annualized Loss Expectancy (ALE) is an example of Quantitative
-    Risk Analysis.
+Quantitative and Qualitative Risk Analysis
+    Quantitative Risk Analysis uses hard metrics, such as dollars.
+    Qualitative Risk Analysis uses simple approximate values.
+    Calculating the Annualized Loss Expectancy (ALE) is an example of Quantitative
+Risk Analysis.
 
-    NIST risk management process
-        System Characterization
-        Threat Identification
-        Vulnerability Identification
-        Control Analysis
-        Likelihood Determination
-        Impact Analysis
-        Risk Determination
-        Control Recommendations
-        Results Documentation
+NIST risk management process
+    System Characterization
+    Threat Identification
+    Vulnerability Identification
+    Control Analysis
+    Likelihood Determination
+    Impact Analysis
+    Risk Determination
+    Control Recommendations
+    Results Documentation
 
-    Access control defensive categories and types
-        Preventive
-        Detective
-        Corrective
-        Recovery
-        Deterrent (“beware of dog”)
-        Compensating
+Access control defensive categories and types
+    Preventive
+    Detective
+    Corrective
+    Recovery
+    Deterrent ("beware of dog")
+    Compensating
 
-    Authentication Methods
-        Something you **Know** (Passwords)
-        Something you **Have** (Synchronous Dynamic Token, Asynchronous Dynamic Token)
-        Something you **Are** (Biometric Fairness, Psychological Comfort, and Safety, Biometric Enrollment and Throughput)
+Authentication Methods
+    Something you **Know** (Passwords)
+    Something you **Have** (Synchronous Dynamic Token, Asynchronous Dynamic Token)
+    Something you **Are** (Biometric Fairness, Psychological Comfort, and Safety, Biometric Enrollment and Throughput)
 
 Defense models
     Lollipop model: Perimeter security, protecting the assets
