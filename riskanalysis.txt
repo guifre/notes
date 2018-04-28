@@ -58,22 +58,7 @@ Threat modeling
     Step 2: Determine and rank threats to those DFD, using STRIDE or Attack trees, etc..
     Step 3: Determine countermeasures and mitigation
 
-    STRIDE
-        **Spoofing of user identity** Fixed with authentication.
-        For computers IPSec, DNSSEC, SSH host keys, Kerberos authentication, HTTP Digest or Basic authentication, "Windows authentication" (NTLM), PKI systems, such as SSL or TLS with certificates
-        For data: Digital signatures, Hashes.
-        For people: Something you know (password), something you are (biometrics), something you have (auth key card)
-        For maintaining authentication: cookies.
-        **Tampering** Fixed with integrity
-        For files: ACLs or permissions, Digital signatures, Hashes, Windows Mandatory Integrity Control (MIC) feature, Unix immutable bits
-        For network traffic: SSL, SSH, IPSec, Digital signatures
-        **Repudiation** Fixed with non-repudiation: Logging, Log analysis tools, Secured log storage, Digital signatures, Secure time stamps, Trusted third parties, Hash trees, and tools for preventing 3rd party frauds (Validation services, Proprietary data/customer history, Multi-merchant data, Purchase device tracing).
-        **Information disclosure** Fixed with confidentiality
-        For files: ACLs/permissions, Encryption, Appropriate key management
-        Network data: Encryption, Appropriate key management
-        Protecting communication headers or the fact of communication: Mix networks, Onion routing, Steganography
-        **Denial of service** Fixed with availability: ACLs, Filters, Quotas (rate limiting, thresholding, throttling), High-availability design, Extra bandwidth (rate limiting, throttling), Cloud service.
-        **Elevation of privilege** Fixed with authorization:  ACLs, Group or role membership, Role based access control, Claims-based access control, Windows privileges (runas), Unix sudo, Chroot, AppArmor or other unix sandboxes, The "MOICE" Windows sandbox pattern, Input validation for defined purpose.
+     The "MOICE" Windows sandbox pattern, Input validation for defined purpose.
 
     DREAD is a classification scheme for quantifying, comparing and prioritizing the amount of risk presented by each evaluated threat. The DREAD acronym is formed from the first letter of each category below.
 
@@ -89,9 +74,24 @@ Threat modeling
         Exposed system components (the available attack surface) remote access / physical access
         Economic cost and feasibility of each attack vector
 
-Threat modeling drawing
     Data flow diagrams, showing how data moves through the system
     Draw trust boundaries [browser] - [web server] - [db]
+STRIDE
+    **Spoofing of user identity** Fixed with authentication.
+        For computers IPSec, DNSSEC, SSH host keys, Kerberos authentication, HTTP Digest or Basic authentication, "Windows authentication" (NTLM), PKI systems, such as SSL or TLS with certificates
+        For data: Digital signatures, Hashes.
+        For people: Something you know (password), something you are (biometrics), something you have (auth key card)
+        For maintaining authentication: cookies.
+    **Tampering** Fixed with integrity
+        For files: ACLs or permissions, Digital signatures, Hashes, Windows Mandatory Integrity Control (MIC) feature, Unix immutable bits
+        For network traffic: SSL, SSH, IPSec, Digital signatures
+    **Repudiation** Fixed with non-repudiation: Logging, Log analysis tools, Secured log storage, Digital signatures, Secure time stamps, Trusted third parties, Hash trees, and tools for preventing 3rd party frauds (Validation services, Proprietary data/customer history, Multi-merchant data, Purchase device tracing).
+    **Information disclosure** Fixed with confidentiality
+        For files: ACLs/permissions, Encryption, Appropriate key management
+        Network data: Encryption, Appropriate key management
+        Protecting communication headers or the fact of communication: Mix networks, Onion routing, Steganography
+    **Denial of service** Fixed with availability: ACLs, Filters, Quotas (rate limiting, thresholding, throttling), High-availability design, Extra bandwidth (rate limiting, throttling), Cloud service.
+    **Elevation of privilege** Fixed with authorization:  ACLs, Group or role membership, Role based access control, Claims-based access control, Windows privileges (runas), Unix sudo, Chroot, AppArmor or other unix sandboxes,
 
 Mitigating Privacy Threats
     **Minimization** Do not store it, do not send it, dispose the data, do not touch it unless you have to.
