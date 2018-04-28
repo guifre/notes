@@ -58,8 +58,6 @@ Threat modeling
     Step 2: Determine and rank threats to those DFD, using STRIDE or Attack trees, etc..
     Step 3: Determine countermeasures and mitigation
 
-     The "MOICE" Windows sandbox pattern, Input validation for defined purpose.
-
     DREAD is a classification scheme for quantifying, comparing and prioritizing the amount of risk presented by each evaluated threat. The DREAD acronym is formed from the first letter of each category below.
 
     DREAD modeling influences the thinking behind setting the risk rating, and is also used directly to sort the risks. The DREAD algorithm, shown below, is used to compute a risk value, which is an average of all five categories.
@@ -76,6 +74,7 @@ Threat modeling
 
     Data flow diagrams, showing how data moves through the system
     Draw trust boundaries [browser] - [web server] - [db]
+
 STRIDE
     **Spoofing of user identity** Fixed with authentication.
         For computers IPSec, DNSSEC, SSH host keys, Kerberos authentication, HTTP Digest or Basic authentication, "Windows authentication" (NTLM), PKI systems, such as SSL or TLS with certificates
