@@ -7,7 +7,7 @@ Methodologies
         Environment variables **getenv()**
         Input data files **read(), fscanf(), getc(), fgetc(), fgets(), vfscanf()**
         Keyboard input/stdin **read(), scanf(), getchar(), gets()**
-        Network data ****read(), recv(), recvfrom()**
+        Network data **read(), recv(), recvfrom()**
 
 What to look for
     Weird behavior

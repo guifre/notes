@@ -62,7 +62,7 @@ Hashing
     **MD4/MD5/SHA1**: broken
     **SHA-256/SHA-512**: secure
     MD5 is 32 characters long, hex character space.
-   In cryptography, a salt is random data that is used as an additional input to a one-way function that "hashes" data, a password or passphrase. Salts are closely related to the concept of nonce. The primary function of salts is to defend against dictionary attacks or against its hashed equivalent, a pre-computed rainbow table attack.
+    In cryptography, a salt is random data that is used as an additional input to a one-way function that "hashes" data, a password or passphrase. Salts are closely related to the concept of nonce. The primary function of salts is to defend against dictionary attacks or against its hashed equivalent, a pre-computed rainbow table attack.
 
 
 Prevent MITM:
