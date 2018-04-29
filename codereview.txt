@@ -1,0 +1,85 @@
+*Security Code review**
+Methodologies
+    String matching/Grep for bugs. (i.e. $ grep -R 'system\(\$_' *)
+    Check one functionality at a time (login, password reset...).
+    Following user input (from $_POST / $_GET / $_REQUEST)
+        Command-line parameters argv manipulation
+        Environment variables **getenv()**
+        Input data files **read(), fscanf(), getc(), fgetc(), fgets(), vfscanf()**
+        Keyboard input/stdin **read(), scanf(), getchar(), gets()**
+        Network data ****read(), recv(), recvfrom()**
+
+What to look for
+    Weird behavior
+    Missing checks
+    Complexity
+    Security checks already in place
+    Differences between 2 functions/methods/classes
+    Comparison and conditions (if/else)
+    Regular expressions/string matching
+    What is missing?
+
+
+Common Weaknesses
+    Hardcoded credentials or secrets
+    Information leak
+    Missing security flags
+    Weak password hashing mechanism
+    Cross-Site Scripting
+    No CSRF protection
+    Directory listing
+    Crypto issue
+    Signature bypass
+    Authentication bypass
+    Authorisation bypass
+    Remote Code Execution
+
+
+Types of bugs
+    API based: printf, strcpy, ...
+    programming construct errors (integer signedness, integer boundaries, bad boundary checks, using unsanitized vars)
+    state mechanics (thread safety, global variables, locks, dedlocks, privileges)
+    external resource interaction (sqli, xss, directory traversal, system(), execve(), createprocess())
+
+
+Examples
+    Integer overflow (int casted to a short)
+    *int checkSize(unsigned int inputLength)
+{
+	unsigned short length;
+	length = inputLength; // oops
+	if (length >= 128)
+    ...*
+
+    Stack overflow (blah will overflow as we added 4+256)
+    *char blah[256], buf[256];
+sprintf(blah, "%s", "BLAH");
+recv(socket, buf, 256, 0);
+strncat(blah, buf, 256);*
+    Buffer overflow by one off:
+    *void copyData(char *userId)
+{
+    char smallBufer[10]; // size of 10
+    strncpy(smallBufer, userId, sizeof(smallBufer)); // only copy first 10 elements
+    smallBufer[10] = 0; // Make sure it is terminated.
+}*
+
+
+    Integer overflow (max value + 1)
+    *int main(void)
+{
+    int val;
+    val = 0x7ffff; /* 2147483647*/
+    printf("val = %d (0x%x)\n", val, val);
+    printf("val + 1 = %d (0x%x)\n", val + 1 , val + 1); /*Overflow the int*/
+    return 0;
+}*
+
+    SQLI in PHP. Fix using **real_escape_string()**
+    *$sql="SELECT card FROM users WHERE password = '".$pass."'";
+$result = mysql_query($sql);*
+    SQLI in Java. Fix using **connection.prepareStatement(query).setString(1, firstName);**
+    *String custQuery = SELECT custName, address1 FROM cust_table WHERE custID= '" + request.GetParameter("id") + """*
+    SQLI in .Net
+    *String query = "SELECT name, lastname FROM employees WHERE ei_id = '" + idNumber.Text + ""'";
+SqlDataAdapter thisCommand = new SqlDataAdapter(query, thisConnection);*

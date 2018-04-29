@@ -18,7 +18,6 @@ Concepts
     **Mixes and mix networks** are used to unlink the message form the sender (like btc mixers or TOR).
     **Blinding** allows a system to sign a message without seeing it.
     A **rainbow table** is a precomputed table for reversing cryptographic hash functions, usually for cracking password hashes. Tables are usually used in recovering a plaintext password (or credit card numbers, etc) up to a certain length consisting of a limited set of characters. It is a practical example of a space–time tradeoff, using less computer processing time and more storage than a brute-force attack .
-    MD5 is 32 characters long, hex character space.
     **TOFU** Trust on fist use, like ssh fingerprints.
 
 Numbers generation
@@ -62,7 +61,8 @@ Asymmetric encryption algorithms
 Hashing
     **MD4/MD5/SHA1**: broken
     **SHA-256/SHA-512**: secure
-    In cryptography, a salt is random data that is used as an additional input to a one-way function that "hashes" data, a password or passphrase. Salts are closely related to the concept of nonce. The primary function of salts is to defend against dictionary attacks or against its hashed equivalent, a pre-computed rainbow table attack.[1]
+    MD5 is 32 characters long, hex character space.
+   In cryptography, a salt is random data that is used as an additional input to a one-way function that "hashes" data, a password or passphrase. Salts are closely related to the concept of nonce. The primary function of salts is to defend against dictionary attacks or against its hashed equivalent, a pre-computed rainbow table attack.
 
 
 Prevent MITM:
