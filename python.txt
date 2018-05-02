@@ -12,9 +12,7 @@ Comprehensions
     *EXP for x in seq if COND *
     You need to a assign it to a data structure:
     *x = [COMP] # list
-x = set(COMP)
-x = str(COMP)
-x = iter(COMP)*
+set(COMP) lis(COMP) str(COMP) iter(COMP)*
 
 
 Python functional

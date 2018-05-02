@@ -1,4 +1,11 @@
 *Infrastructure*
+CPU
+    **Scalar processors** execute one instruction per cycle (Rpi 1).
+    **In-order superscalar processor** can ran multiple instructions that have no dependencies at the same time.
+    **Out-of-order processor** can re-order instructions that have no dependencies to keep the pipes busy (Pentium 2, modern cortex).
+    **branch prediction** is a complex CPU component that predicts which conditional branch will be taken to improve performance. It is a very complex mechanism that is trained at runtime. An attacker can miss-train it to take bad decisions.
+    **Speculative execution** will execute instructions that are not needed to keep pipes busy.
+    **Caching** uses temporal locality and spatial locality to store data that will likely be used soon.
 Disks layouts
     RAID 0
         Data evenly splitted accross disks.
