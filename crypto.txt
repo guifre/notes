@@ -24,10 +24,7 @@ Concepts
 owner’s permission
     **DNSSEC** protocol to extend DNS with integrity checking. Each nameserver has associated keys for that zone. DANE is a bridge between DNSSEC and TLS authentication.
     **Online Certificate Status Protocol (OCSP)** is an Internet protocol used for obtaining the revocation status of an X.509 digital certificates.
-
-
-Sidejacking is a special case of web application session hijacking in which session tokens1
- are retrieved from an unencrypted traffic stream. Ž
+    **Sidejacking** is a special case of web application session hijacking in which session tokens are retrieved from an unencrypted traffic stream.
 
 Numbers generation
     True Pseudo Random Number Generator (TPRNG): Uses entropy from multiple sources such as keyboard strikes to get a good seed.
@@ -93,9 +90,9 @@ TLS handshake.
 
 
 Key Exchange
-	**RSA** it is the most widely used **key transport algorithm**, the client generates the premaster secret and encrypts it the server's public key. If the private key is compromised, the attacker eversdroping the network will be able to decrypt all communications. Authentication is implicit, otherwise the server can not decrypt the premaster key.
-	**DHA_RSA** is a **key agreement algorithm** and provides forward secrecy, it is used with RSA for authentication. It allows two parties to establish a shared secre over an insecure channel. The maths is that it is easy to do a power of a primer number but difficult to obtain the original number with the power. The parameters sent by the server are signed with the private key to provide authentication.
-	**ECDHE_RSA**  Ephemeral elliptic cuve Diffie-Hellman is a **key exchange algorithm** that provides forward secrecy and it is faster than DHA. It is simmilar to DH but uses elliptic curves to find big prime numbers. Authentiation is the same as DHA.
+    **RSA** it is the most widely used **key transport algorithm**, the client generates the premaster secret and encrypts it the server's public key. If the private key is compromised, the attacker eversdroping the network will be able to decrypt all communications. Authentication is implicit, otherwise the server can not decrypt the premaster key.
+    **DHA_RSA** is a **key agreement algorithm** and provides forward secrecy, it is used with RSA for authentication. It allows two parties to establish a shared secre over an insecure channel. The maths is that it is easy to do a power of a primer number but difficult to obtain the original number with the power. The parameters sent by the server are signed with the private key to provide authentication.
+    **ECDHE_RSA**  Ephemeral elliptic cuve Diffie-Hellman is a **key exchange algorithm** that provides forward secrecy and it is faster than DHA. It is simmilar to DH but uses elliptic curves to find big prime numbers. Authentiation is the same as DHA.
 
 
 
