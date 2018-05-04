@@ -12,13 +12,22 @@ Concepts
     **Hashing**: one way irreversible function of fix size, any small variation in the input causes a very large variation of the output, with the output you can not generate the input, useful to verify passwords without actually storing the password. The output is of a fixed length that is usually much smaller than the input
     **Encoding** is designed to protect the integrity of data as it crosses networks and systems, i.e. to keep its original message upon arriving, and it isn’t primarily a security function. It is easily reversible because the system for encoding is almost necessarily and by definition in wide use.
     **Encryption** is designed purely for confidentiality and is reversible only if you have the appropriate key/keys.
-    **Digital signature** allows to verify the authenticity of a message used in asymmetric encryption. It is usually a hash encrypted with the private key and the algorithm used.
+    **Digital signature** allows to verify the authenticity of a message used in asymmetric encryption. It is usually a hash encrypted with the private key and  the algorithm used.
     **MACs** allow to verify authenticity of a message used in symmetric encryption.
     **Steganography** This is the art of hiding messages to conceal the existence of the communication.
     **Mixes and mix networks** are used to unlink the message form the sender (like btc mixers or TOR).
     **Blinding** allows a system to sign a message without seeing it.
     A **rainbow table** is a precomputed table for reversing cryptographic hash functions, usually for cracking password hashes. Tables are usually used in recovering a plaintext password (or credit card numbers, etc) up to a certain length consisting of a limited set of characters. It is a practical example of a space–time tradeoff, using less computer processing time and more storage than a brute-force attack .
-    **TOFU** Trust on fist use, like ssh fingerprints.
+    **Certificate transparency** is a proposal to improve PKI by keeping a record of all certificates. The CAs must send them to a public log server and they will receive a signed certificate timestamp to relay to the end users. The log can be monitored and fraudulent ceritificates identified quickly.
+    Certificates contain the public key, subject or distinguished name (DN). The CN is part of it, and it contains the hostname to validate.
+    **Public key pinning** addresses the biggest weakness of the current PKI ecosystem, which is the fact that any CA can issue a certificate for any domain name without the
+owner’s permission
+    **DNSSEC** protocol to extend DNS with integrity checking. Each nameserver has associated keys for that zone. DANE is a bridge between DNSSEC and TLS authentication.
+    **Online Certificate Status Protocol (OCSP)** is an Internet protocol used for obtaining the revocation status of an X.509 digital certificates.
+
+
+Sidejacking is a special case of web application session hijacking in which session tokens1
+ are retrieved from an unencrypted traffic stream. Ž
 
 Numbers generation
     True Pseudo Random Number Generator (TPRNG): Uses entropy from multiple sources such as keyboard strikes to get a good seed.
@@ -31,12 +40,12 @@ Symmetric encryption algorithms (128/256 bits is considered safe)
     Safest is AES in CBC or CTR mode.
     Block ciphers: Operates on blocks of fixed sized (64 or 128)
         **DES**: key size 56 bits, can be bruteforced, no other weakness
-        **Tiple-DES**: concatenates two DES keys (still weak)
+        **Triple-DES**: concatenates two DES keys (still weak)
         **Blowfish** (weak).
         **AES**: Iterative block cipher, very secure. Needs the correct  block cipher mode to be safe.
     Stream ciphers: useful for encrypting streams of data
         **RC2**: insecure
-        **RC4**: might be secure dependig on usage
+        **RC4**: might be secure depending on usage
 
     Block ciphers
     Produce an output of the same size as the input.
@@ -45,6 +54,8 @@ Symmetric encryption algorithms (128/256 bits is considered safe)
     **Electronic Code book ECB**: each block is encrypted separately (less entropy). You should only use it if you have a single block: It produces the same result for the same input so: 1) Patterns in ciphertext will match patterns in plaintext. 2) Attacker can detect repeated messages. 3) An attacker that can submit arbitrary plaintext for encryption and observe the ciphertext will be able to guess the plaintext (BREAST).
     **Cipher Block Chaining CBC**: Each block is XORed with the previous ciphertext block before being encrypted, more entropy
     They need an initialization vector that has to be unpredictable.
+    CTR
+    GCM
 
     Stream ciphers
     Take a key and produce a key stream which can be XORed with a plaintext bit stream to produce ciphertext. The same key stream is used on the other side to XOR and decrypt.
@@ -53,8 +64,9 @@ Asymmetric encryption algorithms
     3245 bits is considered safe
     Provides authentication (in: plaintext, out: signature) and key agreement.
     Public key encryption provides a protocol for encrypting (confidentiality to a message for the key owner) and signing messages (non-repudiation for parties how have public key).
-    **RSA**: difficulty of factoring large numbers.
-    **DSA**: fast at signature creation but slower at validation.
+    **RSA**: difficulty of factoring large numbers. can be used for encryption and signing
+    **DSA**: fast at signature creation but slower at validation. Can only be used for signing?
+
 
     **Diffie-Hellman** is a key-exchange protocol (not an encryption algorithm) used to build a shared secret over a public medium. It allows two parties that have no prior knowledge of each other to jointly establish a shared secret key over an insecure channel. This key can then be used to encrypt subsequent communications using a symmetric key cipher. Works by each party choosing a prime number, sending another number and computing the modulus. It is vulnerable to man in the middle, since neither of the parties are authenticated.
 
@@ -71,15 +83,21 @@ Prevent MITM:
 
 TLS handshake.
     The TLS Handshake Protocol involves the following steps:
-    1. The client sends a "Client hello": Random value, supported cipher suites and protocols.
-    2. The server responds by sending a "Server hello: with the server's random value.
-    3. The server sends its certificate for authentication and may request a certificate from the client. The server sends the "Server hello done" message.
-    4. If the server has requested a certificate from the client, the client sends it.
-    5. The client creates a random Pre-Master Secret and encrypts it with the public key from the server's certificate, sending the encrypted Pre-Master Secret to the server. If DH or other protocol is used, no key is sent over the channel.
-    6. The server receives the Pre-Master Secret. The server and client each generate the Master Secret and session keys based on the Pre-Master Secret.
-    7. The client sends "Change cipher spec" notification to server to indicate that the client will start using the new session keys for hashing and encrypting messages. Client also sends "Client finished" message.
-    8. Server receives "Change cipher spec" and switches its record layer security state to symmetric encryption using the session keys. Server sends "Server finished" message to the client.
-    9. Client and server can now exchange application data over the secured channel they have established. All messages sent from client to server and from server to client are encrypted using session key.
+    **ClientHello**: The client sends the supported protocols, ciphers , random str (to prevent reply attacks), empty session ID, compression and extensions.
+    **ServerHello**: the server responds with the choosen protocol, server time, random bytes, the session ID, extensions.
+    **Certificate**: The server sends the X509. certificate's chain. Main certificate, and the intermediate ones in the right order. The root can be ommited.
+    **ServerHelloDone**: the server sends it to indicate that he has sent all the handshake data.
+    **ClientKeyExchange** is sent by the client and carries information for the key exchange
+    **ChangeCipherSpec** is sent by both server and client to indicate there is enough info to generate the encryption keys.
+    **Finished** is a message that signals that the handshake finished, it is also sent by both, it is encrypted  and contains a MAC of all the messages sent in the handshake.
+
+
+Key Exchange
+	**RSA** it is the most widely used **key transport algorithm**, the client generates the premaster secret and encrypts it the server's public key. If the private key is compromised, the attacker eversdroping the network will be able to decrypt all communications. Authentication is implicit, otherwise the server can not decrypt the premaster key.
+	**DHA_RSA** is a **key agreement algorithm** and provides forward secrecy, it is used with RSA for authentication. It allows two parties to establish a shared secre over an insecure channel. The maths is that it is easy to do a power of a primer number but difficult to obtain the original number with the power. The parameters sent by the server are signed with the private key to provide authentication.
+	**ECDHE_RSA**  Ephemeral elliptic cuve Diffie-Hellman is a **key exchange algorithm** that provides forward secrecy and it is faster than DHA. It is simmilar to DH but uses elliptic curves to find big prime numbers. Authentiation is the same as DHA.
+
+
 
 MAC
     **Message authentication code (MAC)**  provides authentication and integrity (if used correctly)to the message. The plaintext is hashed with a secret symmetric key , generating a signature, which is sent with the message. MACs do not encrypt the message. Instead, the message (encrypted or not) must be sent alongside the hash. Without a MAC an attacker could modify a message encrypted with AES and the recipient could not tell. An MAC by itself does not provide message integrity. You need to hardcore the hash somewhere else or have a sequence number or hash hash the version of the binary to have it. But a normal hash would be ok to do this.MACs usually contain the sequence number to prevent reply attacks. Usually the key and plaintext is concatenated and then hashed. This prevents an attacker who finds a collision from recovering the key. MACs differ from digital signatures as MAC values are both generated and verified using the same secret key.
@@ -94,6 +112,8 @@ MAC
     The most common attack against HMACs is brute force to uncover the secret key. HMACs are substantially less affected by collisions than their underlying hashing algorithms alone
     **Length extension attacks**: MACs require the text to be padded, if the message length is known, and the final hash in known, an attacker can add additional text to the message making the hash still valid. You can set the state of the hashing algorithm to the same as it was when it finished generating the server's signature, then you can append anything to the message and the hash will match. If you do **H(M||K)** the attack is mitigated.
 
+    As we can see, the padding is not maced, so length extension attacks where possible in TLS 1.1.
+    **IV + AES(MAC(Sequence number + header + plainted) + padding)**
 
 Cryptographic Weaknesses
     Pseudorandom number generators (PRNGs)
@@ -102,6 +122,11 @@ Cryptographic Weaknesses
     Signing of data to provide integrity checking (e.g., HMAC calculation)
 
 
+Certificate lifecycle
+    a Certificate signing request is submitted to a CA. The ca validates the domain, organization and then issues the certificate and all the intermediary certificates.
+
+Revocation of certificates
+    It happens through **online certificate status protocol (OCSP)**, which allows real time lookups of certificates. The TLS handshake provides real time OCSP verification called **OCSP stapling**.
 Attacks against cryptosystems:
 
     Cryptography is not usually broken but bypassed (bruteforce, implementation bug, timing attacks)

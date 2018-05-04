@@ -12,6 +12,9 @@ Basic Docker Commands
     Run an image
     *$ docker run -t [image_name] .*
 
+    Run an image and get a shell bash
+    *$ docker run -ti [container_name/container_id] /bin/bash*
+
     Stop a container
     *$ docker stop/kill [container_name]*
 
