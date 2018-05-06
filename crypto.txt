@@ -104,13 +104,13 @@ MAC
         1) hash(innerkey and message)
         2) hash(result and outer key)
     HMAC hashes twice the message.
-    HMAC generation uses two passes of hash computation. The secret key is first used to derive two keys; inner and outer. The first pass of the algorithm produces an internal hash derived from the message and the inner key. The second pass produces the final HMAC code derived from the inner hash result and the outer key
+    HMAC generation uses two passes of hash computation. The secret key is first used to derive two keys; inner and outer. The first pass of the algorithm produces an internal hash derived from the message and the inner key. The second pass produces the final HMAC code derived from the inner hash result and the outer key **H(key || H(key || message))** How the keys are derivated is not too much relevant as long as you have on digit different,
 
     The most common attack against HMACs is brute force to uncover the secret key. HMACs are substantially less affected by collisions than their underlying hashing algorithms alone
     **Length extension attacks**: MACs require the text to be padded, if the message length is known, and the final hash in known, an attacker can add additional text to the message making the hash still valid. You can set the state of the hashing algorithm to the same as it was when it finished generating the server's signature, then you can append anything to the message and the hash will match. If you do **H(M||K)** the attack is mitigated.
 
     As we can see, the padding is not maced, so length extension attacks where possible in TLS 1.1.
-    **IV + AES(MAC(Sequence number + header + plainted) + padding)**
+    **IV + AES(MAC(Sequence number + header + plaintext) + padding)**
 
 Cryptographic Weaknesses
     Pseudorandom number generators (PRNGs)

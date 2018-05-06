@@ -6,6 +6,165 @@ CPU
     **branch prediction** is a complex CPU component that predicts which conditional branch will be taken to improve performance. It is a very complex mechanism that is trained at runtime. An attacker can miss-train it to take bad decisions.
     **Speculative execution** will execute instructions that are not needed to keep pipes busy.
     **Caching** uses temporal locality and spatial locality to store data that will likely be used soon.
+
+
+Terminology
+    **Domain Keys Identified Mail (DKIM)** is an email authentication method designed to detect email spoofing. It allows the receiver to check that an email claimed to have come from a specific domain was indeed authorized by the owner of that domain. Uses a signature signed with a private key that can be verified making a TXT dns query
+    **Sender Policy Framework (SPF)** is a simple email-validation system designed to detect email spoofing by providing a mechanism to allow receiving mail exchangers to check that incoming mail from a domain comes from a host authorized by that domain's administrators.
+    **Syn Cookies** is a technique to prevent SYN DOS attacks, it allows the victim to reconstruct the TCP sequence number or the SYN packet when it recieves a SYN+ACK seq number. This allows the SYN window to be much bigger because it does not have to catch them, so the window is not exasuted
+    **Traceroute** works over UDP or ICMP, sends multiple datagrams with different TTLs, every hop should respond with and ICMP error datagram of type 11 (time exceeded).
+
+
+OSI Model
+    Application. Protocols interact with end user.
+    Presentation. Presents data in a readable format, does encryption and compression
+    Session. Responsible for maintaining connections and sessions.
+    Transport. Safety and security of the path taken between the request and response (TCP). Sends segment/datagrams. (seq number).
+    Network. Routers. This organizes and routes the data (IP). Sends packets (IP from, IP to).
+    Data-Link. Switches ARP. Segments data, encapsulates it and transmits it as packets. Takes care of error correction and flow control. Sends frames (mac from, mac to).
+    Physical Layer (RJ45s and physical cables). Sends bits.
+    (Please do not throw sausage pizza away)
+
+TCP model:
+    Application: FTP, etc
+    Transport: TCP or UDP.
+    Network: IP (ARP and ICMP). Does routing and packaging
+    Physical: Ethernet
+
+TCP Flags
+    SYN initiates connection
+    ACK acknowledges recieved packet
+    RST resets the connection
+    FIN finishes the connection
+
+
+Data types
+    Packet: generic term (TCP, UDP, IP...)
+    Frame: data link unit
+    Datagram: UDP unit
+    Segment: TCP unit, can be splitted in fragments
+
+
+3 way handshake or TCP Handshake:
+    SYN
+    SYN ACK
+    ACK ACK
+    (connection established)
+
+    Seq numbers:
+        Client **SYN** with **SEQ_N** = A
+        Server **SYN ACK** with **ACK_N = A + 1, and the **ACK_N = B**
+        Client **ACK** with **SEQ_N = A + 1**, and the **ACK_N = B + 1**
+
+Connection termination/teardown:
+    FIN client
+    ACK server
+    FIN server
+    ACK client
+    Connection can also be terminated with a 3 way:
+        A FIN
+        B FIN ACK
+        A ACK
+
+TCP protocol
+
+    Error detection
+        **seq numbers** used to discards duplicates
+        **TCP checksum** to detect errors
+        Also, layer 2 adds a CRC
+
+    Flow control
+        **Sliding window** each party specifies a **recieve window**, you can only send up to this size before receiving and ACK.
+
+    Congestion control
+        Senders will use a **retransmission timeout** based on the round trip time (RTT) of the packets.
+
+    Maximum segment size (MSS) is the largest amount of data to recivied by a single segment
+
+
+ICMP
+    Send error messages and operational information, between not to send data or to be used by apps.
+
+TCP properties
+    Connection-oriented
+    Data stream
+    Packets are ordered, and rearranged to be in-order
+    Error Correction
+    Flow Control
+    Lots of overhead
+    High latency
+    Used commonly for FTP, SSH, Telnet, HTTP
+
+UDP properties
+    Connectionless
+    Series of separate datagrams
+    Packets are treated as independent. Applications handle ordering
+    No Error Correction
+    No Flow Control
+    No overhead
+    Low latency
+    Used commonly for DNS, VOIP, P2P filesharing
+    Transaction-oriented, suitable for simple query-response protocols    it is stateless,
+    no retransmission delays, suitable for real-time applications
+
+
+Common ports list
+    FTP 21
+    DNS 53
+    RPC 135
+    SMB 139  445
+    Netbios 139
+    LDAP 389
+    Rdesktop 3389
+    telnet 23
+    SMTP 25
+    POP3 110
+    SNMP 161
+
+
+Internet addresses
+
+    32 bits per IPv4 address
+    There are 4,294,967,296 (2^32) IPv4 addresses
+    There are 588,514,304 reserved addresses
+    3,706,452,992 public addresses.
+
+16-bit unsigned port number (0-65535)
+TCP port range is 0 - 65535. IPv4 (16-bit unsigned). 0 - 1023 are generally reserved for specific purposes
+
+    Each IP is broken into four 8 bit blocks or octets
+    *11111111 = 255
+00000000 = 0*
+
+    Ip ranges
+    *A 0.0.0.0 - 127.255.255.255
+B 128.0.0.0 - 191.255.255.255
+c 192.0.0.0 - 223.255.255.255
+D 224.0.0.0- 239.255.255.255
+E 240.0.0.0 - 255.255.255.255*
+
+    private addresses
+    *10.0.0.0 -10.255.255.255
+172.16.0.0 - 172.31.255.255
+192.168.0.0 - 192.168.255.255*
+
+    Subneting
+    */31 255.255.255.254 1 Host
+/30 255.255.255.252 2 Hosts
+/24 255.255.255.0 254 Hosts
+/22 255.255.252.0 1022 Hosts
+/16 255.255.0.0 65534 Hosts*
+Iptables
+    closed (REJECT)
+    filtered (DROP) prevents ddos
+    Drop incoming connections from any interface other than loopback port 444:
+    *$ iptables -A INPUT -p tcp --destination-port 4444 \! -d 127.0.0.1 -j DROP*
+    Flush all rules
+    *$ iptables -F*
+    List all rules
+    *$ iptables -vn -L*
+
+
 Disks layouts
     RAID 0
         Data evenly splitted accross disks.
@@ -33,37 +192,3 @@ Disks layouts
     RAID 5
         block level stripping, doubleparity information distribute among the drives.
         If two drives fail, the others can reconstruct the data based on the parity.
-
-Internet addresses
-
-    32 bits per IPv4 address
-
-    Each IP is broken into four 8 bit blocks or octets
-    *11111111 = 255
-00000000 = 0*
-
-    Ip ranges
-    *A 0.0.0.0 - 127.255.255.255
-B 128.0.0.0 - 191.255.255.255
-c 192.0.0.0 - 223.255.255.255
-D 224.0.0.0- 239.255.255.255
-E 240.0.0.0 - 255.255.255.255*
-
-    private addresses
-    *10.0.0.0 -10.255.255.255
-172.16.0.0 - 172.31.255.255
-192.168.0.0 - 192.168.255.255*
-
-    Subneting
-    */31 255.255.255.254 1 Host
-/30 255.255.255.252 2 Hosts
-/24 255.255.255.0 254 Hosts
-/22 255.255.252.0 1022 Hosts
-/16 255.255.0.0 65534 Hosts*
-Iptables
-    Drop incoming connections from any interface other than loopback port 444:
-    *$ iptables -A INPUT -p tcp --destination-port 4444 \! -d 127.0.0.1 -j DROP*
-    Flush all rules
-    *$ iptables -F*
-    List all rules
-    *$ iptables -vn -L*

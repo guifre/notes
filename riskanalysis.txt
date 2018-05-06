@@ -39,7 +39,7 @@ Security Design Principles
 
     **Fail securely**: If unexpected events occur the application should make sure security can not be bypassed.
 
-    **Defense in depth**:  applies multiple safeguards (also called controls: measures taken to reduce risk) to protect an asset. Any one security     control may fail; by deploying multiple controls, you improve the confidentiality, integrity, and availability of your data.
+    **Defense in depth**:  applies multiple safeguards (also called controls: measures taken to reduce risk) to protect an asset. Any one security control may fail; by deploying multiple controls, you improve the confidentiality, integrity, and availability of your data. Avoid single point of failure.
 
     **Fix security issues correctly**: Make sure the root cause is identified and the correct fix applied; Similar bugs can be across the company's products.
 
@@ -56,6 +56,9 @@ Security Design Principles
     **Trust on first use (TOFU)** is a security model used by client software which needs to establish a trust relationship with an unknown or not-yet-trusted endpoint. In a TOFU model, the client will try to look up the identifier, usually some kind of public key, in its local trust database. (certificate pinning, ssh fingerprints).
 
 Threat modeling
+    Think about attackers or the assets you want to protect
+    What are you building?  What can go wrong?
+
     Step 1: Decompose the application into use-cases (DFD) of how the application interacts with external entities to understand attack surface.
     Step 2: Determine and rank threats to those DFD, using STRIDE or Attack trees, etc..
     Step 3: Determine countermeasures and mitigation
@@ -78,8 +81,8 @@ Threat modeling
     Draw trust boundaries [browser] - [web server] - [db]
 
 STRIDE
-    **Spoofing of user identity** Fixed with authentication.
-        For computers IPSec, DNSSEC, SSH host keys, Kerberos authentication, HTTP Digest or Basic authentication, "Windows authentication" (NTLM), PKI systems, such as SSL or TLS with certificates
+    **Spoofing of user identity** Fixed with authentication
+        For computers IPSec, DNSSEC, TLS, SSH host keys, Kerberos authentication, HTTP Digest or Basic authentication, "Windows authentication" (NTLM), PKI systems, such as SSL or TLS with certificates
         For data: Digital signatures, Hashes.
         For people: Something you know (password), something you are (biometrics), something you have (auth key card)
         For maintaining authentication: cookies.
