@@ -165,6 +165,14 @@ Security incident management
     Corrective action
     Employees need security training and awareness
 
+Incident response process
+    Identification of the Incident
+    Logging it (Details)
+    Investigation and root cause analysis (RCA)
+    Escalation or keeping the senior management/parties informed
+    Remediation steps
+    Closure report
+
 Data must be secure when it is
     At Rest
     in Transit
@@ -175,11 +183,15 @@ Securing a network
     The company needs a security policy (not plugging phone to computer, password length, etc)
     Non-repudiation and accountability: users in the organization can not deny actions carried out and are responsible for those.
     Every job has different responsabilities, duties and access rights.
-    Partitioning network
+    Partitioning network in VLANs
+    Firewall filter all ports not needed from outside
     Encrypted traffic
-    Monitoring and detection (IDS, IPS)
+    Monitoring and detection (IDS, IPS) such as SNORT
     Network usage policy
     Authentication and authorization policies
+    Segment the network into zones of trust and place systems into those zones based their communication needs and Internet exposure.
+    Run each service in a different box (or virtual box) (db and web)
+    Use a fronted proxy such as cloudflare to mitigate DDOS.
 
 Securing a box
     Password protect the boot process before the OS loads (set is BIOS) (important for laptops)
@@ -187,14 +199,23 @@ Securing a box
     Disable booting from USB/CD
     Reduce the attack surface of systems by turning off unneeded services.
     Install secure software.
-    Use Firewall Software
+    Setup your IPTABLES/firewall
     Use an Antivirus Scanner (with Real-Time Scanning)
-    Use Encryption (SSH/hard drive)
+    Full disk encryption
+    SSH with PKI login only, unique per machine per user.
     Configure software settings securely.
-    Patch systems regularly and quickly.
-    Segment the network into zones of trust and place systems into those zones based their communication needs and Internet exposure.
+    Keep software and OS updated
     Strengthen authentication processes.
     Limit the number (and privileges) of administrators.
+    Least privilege principle for daemons
+    Install fail2ban and monitor daily logs
+    review code running or pentest it.
+    web server: security headers (X-Content-Type-Optionsno sniff, X-Frame-Options: DENY, Strict-Transport-Security Cache-Control: no-cache, no-store)
+    Remove versions from banners (security by obscurity)
+    SELinux with enforcing poly, restricts how apps can interact with kernel, for example file system objects are identified by path name rather tha inode, to prevent symlink attacks to files that would not normally be accessabke
+    Disable USB usage
+    Lock screen
+
 
 Software development lifecycle
     Use of certified products and systems

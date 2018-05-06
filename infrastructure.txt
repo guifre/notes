@@ -62,9 +62,9 @@ Connection termination/teardown:
     FIN server
     ACK client
     Connection can also be terminated with a 3 way:
-        A FIN
-        B FIN ACK
-        A ACK
+        FIN client
+        FIN ACK server
+        ACK client
 
 TCP protocol
 
@@ -164,6 +164,18 @@ Iptables
     List all rules
     *$ iptables -vn -L*
 
+DNS
+    **Zone transfer** First a SOA query is made to determine the serial number and authoritative data of the domain such as email the serial number is used to determine and whether the transfer needs to occur or not. Then every entry of the domain is sent.
+
+
+Verified Boot
+    Root of trust (static in our case)
+    Every byte of code/data loaded is verified
+    Can use a sandbox where this is impractical
+    Prior state must be fully validated
+    Security holes plugged
+    Upgradeable software
+    Rollback protection
 
 Disks layouts
     RAID 0
