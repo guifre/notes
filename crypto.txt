@@ -20,8 +20,7 @@ Concepts
     A **rainbow table** is a precomputed table for reversing cryptographic hash functions, usually for cracking password hashes. Tables are usually used in recovering a plaintext password (or credit card numbers, etc) up to a certain length consisting of a limited set of characters. It is a practical example of a space–time tradeoff, using less computer processing time and more storage than a brute-force attack .
     **Certificate transparency** is a proposal to improve PKI by keeping a record of all certificates. The CAs must send them to a public log server and they will receive a signed certificate timestamp to relay to the end users. The log can be monitored and fraudulent ceritificates identified quickly.
     Certificates contain the public key, subject or distinguished name (DN). The CN is part of it, and it contains the hostname to validate.
-    **Public key pinning** addresses the biggest weakness of the current PKI ecosystem, which is the fact that any CA can issue a certificate for any domain name without the
-owner’s permission
+    **Public key pinning** addresses the biggest weakness of the current PKI ecosystem, which is the fact that any CA can issue a certificate for any domain name without the owner’s permission
     **DNSSEC** protocol to extend DNS with integrity checking. Each nameserver has associated keys for that zone. DANE is a bridge between DNSSEC and TLS authentication.
     **Online Certificate Status Protocol (OCSP)** is an Internet protocol used for obtaining the revocation status of an X.509 digital certificates.
     **Sidejacking** is a special case of web application session hijacking in which session tokens are retrieved from an unencrypted traffic stream.
@@ -97,14 +96,14 @@ Key Exchange
 
 
 MAC
-    **Message authentication code (MAC)**  provides authentication and integrity (if used correctly)to the message. The plaintext is hashed with a secret symmetric key , generating a signature, which is sent with the message. MACs do not encrypt the message. Instead, the message (encrypted or not) must be sent alongside the hash. Without a MAC an attacker could modify a message encrypted with AES and the recipient could not tell. An MAC by itself does not provide message integrity. You need to hardcore the hash somewhere else or have a sequence number or hash hash the version of the binary to have it. But a normal hash would be ok to do this.MACs usually contain the sequence number to prevent reply attacks. Usually the key and plaintext is concatenated and then hashed. This prevents an attacker who finds a collision from recovering the key. MACs differ from digital signatures as MAC values are both generated and verified using the same secret key.
+    **Message authentication code (MAC)**  provides authentication and integrity (if used correctly) to the message. The plaintext is hashed with a secret symmetric key, generating a signature, which is sent with the message. MACs do not encrypt the message. Instead, the message (encrypted or not) must be sent alongside the hash. Without a MAC an attacker could modify a message encrypted with AES and the recipient could not tell. An MAC by itself does not provide message integrity. You need to hardcode the hash somewhere else or have a sequence number or hash the version of the binary. MACs usually contain the sequence number or dates to prevent reply attacks. Usually the key and plaintext is concatenated and then hashed. This prevents an attacker who finds a collision from recovering the key. MACs differ from digital signatures as MAC values are both generated and verified using the same secret key.
     **Hash message authentication code(HMAC)** is a type of MAC. Uses md5, sha1,256... The name is **HMAC_** and the hashing algorithm.
 
     It is better than MAC because it is robust against **length extension attacks** as the message is hashed twice. First, the secret key derives two keys inner and outer
         1) hash(innerkey and message)
         2) hash(result and outer key)
     HMAC hashes twice the message.
-    HMAC generation uses two passes of hash computation. The secret key is first used to derive two keys; inner and outer. The first pass of the algorithm produces an internal hash derived from the message and the inner key. The second pass produces the final HMAC code derived from the inner hash result and the outer key **H(key || H(key || message))** How the keys are derivated is not too much relevant as long as you have on digit different,
+    HMAC generation uses two passes of hash computation. The secret key is first used to derive two keys; inner and outer. The first pass of the algorithm produces an internal hash derived from the message and the inner key. The second pass produces the final HMAC code derived from the inner hash result and the outer key **H(key || H(key || message))** How the keys are derivated is not too much relevant as long as you have a different digit.
 
     The most common attack against HMACs is brute force to uncover the secret key. HMACs are substantially less affected by collisions than their underlying hashing algorithms alone
     **Length extension attacks**: MACs require the text to be padded, if the message length is known, and the final hash in known, an attacker can add additional text to the message making the hash still valid. You can set the state of the hashing algorithm to the same as it was when it finished generating the server's signature, then you can append anything to the message and the hash will match. If you do **H(M||K)** the attack is mitigated.
@@ -128,7 +127,7 @@ Attacks against cryptosystems:
 
     Cryptography is not usually broken but bypassed (bruteforce, implementation bug, timing attacks)
 
-    **Collisions** Message digests used for integrity checking can be circumvented if a collision is found, where two different messages generate the same digest (signature). MD5 collisions can be easily generated.26 A collision can be used to generate malicious material (e.g., a certificate or ticket) which is in turn trusted.
+    **Collisions** Message digests used for integrity checking can be circumvented if a collision is found, where two different messages generate the same digest (signature). MD5 collisions can be easily generated. A collision can be used to generate malicious material (e.g., a certificate or ticket) which is in turn trusted.
 
     **Modification of ciphertext** If ciphertext generated by a stream cipher (e.g., RC4) or certain block ciphers (ECB, CBC, and CTR) lacks integrity checking, an adversary can modify it to generate useful plaintext upon processing by a recipient. Bit flipping and block rearranging can produce predictable changes to plaintext upon decryption.
 
@@ -141,7 +140,7 @@ Attacks against cryptosystems:
     **Downgrade attacks**: MITM against the protocol to an insecure version.
     **Traffic analysis** looking for patterns.
     **Timing attacks** some operations take longer.
-    **MITM** can do replay or just relay ot tampering.
+    **MITM** can do replay or just relay or tampering.
 
 TLS
     Cipher suites are defined as:
