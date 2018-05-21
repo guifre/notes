@@ -56,11 +56,11 @@ Linux elevation of privileges, manual testing
 
     Look for vulnerable/privileged components such as: mysql, sudo, udev, python
 
-    If */etc/exports* if writable, you can add an NFS entry or change and existing entry adding the no_root_squash flag to a root directory, put a binary with SUID bit on, and get root.
-    If there is a *cronjob* that runs as run but it has incorrect file permissions, you can change it to run your SUID binary and get a shell.
+    If **/etc/exports** if writable, you can add an NFS entry or change and existing entry adding the **no_root_squash** flag to a root directory, put a binary with SUID bit on, and get root.
+    If there is a **cronjob** that runs as run but it has incorrect file permissions, you can change it to run your SUID binary and get a shell.
 
     The following command will list processes running by root, permissions and NFS exports.
-    *$ echo 'services runnig as root'; ps aux | grep root;  echo 'permissions'; ps aux | awk '{print $11}'|xargs -r ls -la 2>/dev/null |awk '!x[$0]++'; echo 'nfs info'; ls -la /etc/exports 2>/dev/null; cat /etc/exports 2>/dev/null*
+    *$ echo 'services running as root'; ps aux | grep root;  echo 'permissions'; ps aux | awk '{print $11}'|xargs -r ls -la 2>/dev/null |awk '!x[$0]++'; echo 'nfs info'; ls -la /etc/exports 2>/dev/null; cat /etc/exports 2>/dev/null*
 
     Use netstat to find other machines connected
     *$ netstat -ano*
@@ -68,7 +68,7 @@ Linux elevation of privileges, manual testing
     Command to skip ignored lines in config files
     *$ alias nonempty="egrep -v '^[ \t]*#|^$'"*
 
-    If Mysql is running as root, you can run commands using *sys_exec()*. For instance, to add user to sudoers:
+    If Mysql is running as root, you can run commands using **sys_exec()**. For instance, to add user to sudoers:
     *sys_exec('usermod -a -G admin username')*
     More about mysql:
     *https://www.adampalmer.me/iodigitalsec/2013/08/13/mysql-root-to-system-root-with-udf-for-windows-and-linux/*
@@ -91,7 +91,7 @@ Linux elevation of privileges, manual testing
     Find writable configuration files
     *$ find /etc/ -writable -type f 2>/dev/null*
 
-    Missconfigured services
+    Miss-configured services
     *$ cat /etc/syslog.conf; cat /etc/chttp.conf; cat /etc/lighttpd.conf; cat /etc/cups/cupsd.conf; cat /etc/inetd.conf; cat /etc/apache2/apache2.conf; cat /etc/my.conf; cat /etc/httpd/conf/httpd.conf; cat /opt/lampp/etc/httpd.conf; ls -aRl /etc/ | awk '$1 ~ /^.*r.*/*
 
     Scheduled jobs

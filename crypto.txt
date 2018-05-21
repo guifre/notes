@@ -24,6 +24,7 @@ Concepts
     **DNSSEC** protocol to extend DNS with integrity checking. Each nameserver has associated keys for that zone. DANE is a bridge between DNSSEC and TLS authentication.
     **Online Certificate Status Protocol (OCSP)** is an Internet protocol used for obtaining the revocation status of an X.509 digital certificates.
     **Sidejacking** is a special case of web application session hijacking in which session tokens are retrieved from an unencrypted traffic stream.
+    **Key stretching** involves making a weak key stronger against bruteforce attacks by increasing the time it takes to test every key. Usually it is stretched by appling salts and macing the hash. algorithms are PBKDF2, bcrypt, and scrypt
 
 Numbers generation
     True Pseudo Random Number Generator (TPRNG): Uses entropy from multiple sources such as keyboard strikes to get a good seed.
