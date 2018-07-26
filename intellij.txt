@@ -1,7 +1,7 @@
 *Shortcuts*
 Refactor
     Move element (class/field/static method/...)
-    *F6*
+    **F6**
     Rename
     *Shift + F6*
     Refactor
