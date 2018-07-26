@@ -18,6 +18,10 @@ Refactor
     *CMD + SHIFT + M*
     Move to a local variable
     *CMD + SHIFT + V*
+    Finish refactor
+    *ALT + R*
+    Compile all modules
+    *ALT + F9*
 
 
 Move

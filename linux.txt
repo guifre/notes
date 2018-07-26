@@ -57,3 +57,7 @@ Searching within files
     *$ grep -r*
     Search for a pattern in a zip fil
     *$ zgrep*
+
+Others
+    Import CA in java store
+    *sudo keytool -import -alias foo -trustcacerts -keystore cacerts -file cacert.der*

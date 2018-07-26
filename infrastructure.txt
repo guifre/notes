@@ -204,3 +204,8 @@ Disks layouts
     RAID 5
         block level stripping, doubleparity information distribute among the drives.
         If two drives fail, the others can reconstruct the data based on the parity.
+
+
+DNS
+    *foo.com A?
+[your DNS server] -> [root servers] -> [com.] -> [ns.domain.com]*

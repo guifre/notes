@@ -1,5 +1,8 @@
 *mongodb*
 Insertions
+    Inserting one new element
+    *db.collection.insert_one(obj)
+db.collection.insert_many(arr)*
     You can update all match entries with:
     *> db.collection.update({key : 'matchcriteria'}, {key : 'newvalue'})*
 
@@ -64,10 +67,10 @@ Search
     You can use the in operator to specify an array of possible values to match. Nin es the same but you specify the elements missing.
     *> db.collection.find({ key : { $in : [10, 15]}})*
 
-    You can use the *$or* and *$and* operators:
+    You can use the **$or** and **$and** operators:
     *> db.collection.find({$or : [ {key : 'alpha'}, {key : 'bravo'})*
 
-    You can use the *$not* operator to negate a search.
+    You can use the **$not** operator to negate a search.
 
 
 
