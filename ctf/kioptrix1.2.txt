@@ -65,7 +65,7 @@ HTTP/1.1 200 OK
 ...
 <a href="g.php/0" class="gallery">root</a><div class="desc">*47FB3B1E573D80F44CD198DC65DE7764795F948E</div><strong>Sub Galleries:</strong><table width="100%" cellspacing="0" cellpadding="0"> <tr>  <td class="subs">*
 
-    So we found the hash *47FB3B1E573D80F44CD198DC65DE7764795F948E*. We can use an online rainbow table web site to find the plaintext, which is *fuckeyou*. With the password we can log in at the PhpMyAdmin client locate at http://192.168.0.9/phpmyadmin
+    So we found the hash **47FB3B1E573D80F44CD198DC65DE7764795F948E**. We can use an online rainbow table web site to find the plaintext, which is **fuckeyou**. With the password we can log in at the PhpMyAdmin client locate at http://192.168.0.9/phpmyadmin
 
     I can write arbitrary files using into outfile, I can write my public key into the know_hosts file and SSH into the machine with my private key.
 
@@ -136,7 +136,7 @@ Error opening terminal: xterm-256color.
 loneferret@Kioptrix3:~$ echo $TERM
 xterm-256color*
     We have the wrong terminal, we just need to export the environment variable TERM to xterm and run the app.
-    loneferret@Kioptrix3:~$ export TERM=xterm*
+    *loneferret@Kioptrix3:~$ export TERM=xterm*
 
     Once we open the app, we realize it has the SUID bit set and we can open and write arbitrary files as root. At this point it is game over, we can read the */etc/shadow* file and crack the passwords.
 

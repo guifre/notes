@@ -77,9 +77,9 @@ Please contact your local Administrator
 
     * Warning: include() [function.include]: Failed opening './..php' for inclusion (include_path='.:/usr/share/php:/usr/share/pear') in /var/www/member.php on line 14*
 
-    I run a directory discovery attack and find the directory *http://192.168.0.12/john/*
+    I run a directory discovery attack and find the directory **http://192.168.0.12/john/**
 
-    We can use the authentication bypass to log in using credentials *john* and password *' or '1'='1*. However, we are presented the following page:
+    We can use the authentication bypass to log in using credentials **john** and password **' or '1'='1**. However, we are presented the following page:
     #Kiotrix1.3.password.png#
 
     I try to log in with that username through SSH:

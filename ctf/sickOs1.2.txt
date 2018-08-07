@@ -1,5 +1,5 @@
 *SickOs 1.2*narrative
-    This CTF gives a clear analogy how hacking strategies can be performed on a network to compromise it in a safe environment. This vm is very similar to labs I faced in OSCP. The objective being to compromise the network/machine and gain Administrative/root privileges on them. https://www.vulnhub.com/entry/sickos-11,132/
+    This CTF gives a clear analogy how hacking strategies can be performed on a network to compromise it in a safe environment. This vm is very similar to labs I faced in OSCP. The objective being to compromise the network/machine and gain Administrative/root privileges on them. **https://www.vulnhub.com/entry/sickos-11,132/**
 
 
 Level 1.2
@@ -31,7 +31,7 @@ Nmap done: 1 IP address (1 host up) scanned in 26.75 seconds*
     /index.php
     /~sys~ # forbidden*
 
-    Nothing useful, in a response header, the server claims to be running *PHP/5.3.10-1ubuntu3.21*. It seems an old version of PHP, I look for exploits on the Internet and try a few.
+    Nothing useful, in a response header, the server claims to be running **PHP/5.3.10-1ubuntu3.21**. It seems an old version of PHP, I look for exploits on the Internet and try a few.
 
     I run out of ideas, set up a ssh bruteforce attack:
 
@@ -42,7 +42,7 @@ Nmap done: 1 IP address (1 host up) scanned in 26.75 seconds*
     *nikto -h 192.168.252.134
 nmap -Pn -sV -O -pT:22,80 --script *http* 192.168.252.134*
 
-    Nothing useful. I go back to the web server. The best clues so far are the directories found earlier. I monkey with the requests in Burp repeater, until I try an OPTIONS request and boom something useful.
+    Nothing useful. I go back to the web server. The best clues so far are the directories found earlier. I monkey with the requests in Burp repeater, until I try an **OPTIONS** request and boom something useful.
 
     *OPTIONS /test/ HTTP/1.1
 Host: 192.168.252.134

