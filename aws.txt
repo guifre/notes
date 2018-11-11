@@ -1,3 +1,4 @@
+*AWS services*narrative
 Why cloud
     Global in minutes (deploy in different locations)
     Focus on business differentiations
@@ -6,13 +7,14 @@ Why cloud
     Stop guessing capacity
     Click and go, no need to ship pc
 
-Each region is an independent set of data centres.
+Concepts
+    Each region is an independent set of data centres.
 
-*Availability zones*: interconnected data centres within the same region isolated from failures. They are connected with low latency network.
+    *Availability zones*: interconnected data centres within the same region isolated from failures. They are connected with low latency network.
 
-*Hybrid deployment*: mix of cloud and on premises.
+    *Hybrid deployment*: mix of cloud and on premises.
 
-You can achieve high availability by deploying the data/components in two availability zones within the same region
+    You can achieve high availability by deploying the data/components in two availability zones within the same region
 
 Accessing AWS
     Console
@@ -20,123 +22,112 @@ Accessing AWS
     Sdk
 
 
-Elastic load balancing
-    Distributed load across multiple ec2 instances
+Services
+    * Elastic load balancing*: Distributed load across multiple ec2 instances
 
+    *Elastic beanstalk*: easiest way to get a web app running on AWS. Handles lid balancing, resource provisioning.
 
-*Elastic beanstalk*: easiest way to get a web app running on AWS. Handles lid balancing, resource provisioning.
+    *Amazon private cloud (vpc)*: allows launching AWS resources in virtual networks. You can define sub networks, gateways and route tables.
 
-*Amazon private cloud (vpc)*: allows launching AWS resources in virtual networks. You can define sub networks, gateways and route tables.
+    *AWS direct connect*: dedicated network from organizations to AWS.
 
-*AWS direct connect*: dedicated network from organizations to AWS.
+    *Amazon route 53*: dns web service. You can register your domain names and resolve.
 
-*Amazon route 53*: dns web service. You can register your domain names and resolve.
+    *Amazon simple storage service (s3)*: data storage, access through http.
 
-*Amazon simple storage service (s3)*: data storage, access through http.
+    *Amazon glacier*: low cost storage for archiving and long term backup.
 
-*Amazon glacier*: low cost storage for archiving and long term backup.
+    *Amazon elastic block store (EBS)*: block level volumes for ec2 instances.
 
-*Amazon elastic block store (EBS)*: block level volumes for ec2 instances.
+    *AWS storage gateway*: allows connecting on premises devices with AWS storage solutions.
 
-*AWS storage gateway*: allows connecting on premises devices with AWS storage solutions.
+    *Cloud Front*: CDN, delivers dynamic and static and streaming content from a global network of edge locations.
 
-*Cloud Front*: CDN, delivers dynamic and static and streaming content from a global network of edge locations.
+    Database services:
 
-Database services:
+    *Amazon relational database service (RDS)*: secure, high available, production ready, fault toulerant, db. Provides replications and scalability.
 
-*Amazon relational database service (RDS)*: secure, high available, production ready, fault toulerant, db. Provides replications and scalability.
+    *DynamiDB*: nosql db for low latency apps at any scale. Supports document and key value models.
 
-*DynamiDB*: nosql db for low latency apps at any scale. Supports document and key value models.
+    *Redshift*: petabyte scale data warehouse, standard sql interface
 
-*Redshift*: petabyte scale data warehouse, standard sql interface
+    *Elastic cache*: in memory cache.
 
-*Elastic cache*: in memory cache.
+    *Cloud watch*: monitoring service, collects and tracks metrics
 
-*Cloud watch*: monitoring service, collects and tracks metrics
+    *Cloud formation*: Json templating language to describe AWS resources
 
-*Cloud formation*: Json templating language to describe AWS resources
+    *CloudTrail*: récords api calls and delivers log files for review and audit.
 
-*CloudTrail*: récords api calls and delivers log files for review and audit.
+    *AWS config*: provides resource inventory and configuration history.
 
-*AWS config*: provides resource inventory and configuration history.
+    Security and identity:
 
-Security and identity:
+    *Identity and access management (Iam)*: creation of users and groups and use permissions to allow and deny access to their AWS.
 
-*Identity and access management (Iam)*: creation of users and groups and use permissions to allow and deny access to their AWS.
+    *Key management service (kms)*: creates and controlles encryption keys. Integrates with other services to encrypt data.
 
-*Key management service (kms)*: creates and controlles encryption keys. Integrates with other services to encrypt data.
+    *Directory service*: set up and run Microsoft active directory.
 
-*Directory service*: set up and run Microsoft active directory.
+    *Certificate manager*: provisions, manages and deploys tls certificates.
 
-*Certificate manager*: provisions, manages and deploys tls certificates.
+    *Web application firewall*: blocks malicious traffic.
 
-*Web application firewall*: blocks malicious traffic.
+    *API gateway*: Makes it easy to create and deploy apis.
 
-*API gateway*: Makes it easy to create and deploy apis.
+    *Elastic transcoder*: media transcoder in the cloud.
 
-*Elastic transcoder*: media transcoder in the cloud.
+    *Simple notification system (SNS)*: producer subscriber system to send messages and consume data.
 
-*Simple notification system (SNS)*: producer subscriber system to send messages and consume data.
+    *Simple email service (SES)*: system to send emails.
 
-*Simple email service (SES)*: system to send emails.
+    *Simple workflow service (SWF)*: system to execute tasks, if one fail it reruns.
 
-*Simple workflow service (SWF)*: system to execute tasks, if one fail it reruns.
+    *Simple queue service (SQS)*: cost effective queue.
 
-*Simple queue service (SQS)*: cost effective queue.
+Simple Storage Service (S3)
+    Common use cases:
+        Backup and archive
+        Content and media distribution
+        Big data analysis
+        Static website hosting
+        Disaster recovery
+        Data reside in buckets
+    Each bucket unlimited objects
 
-S3 common use cases:
+    You don’t have to worry about storage limits or capacity planning or durability
 
-backup and archive
+    Each bucket is in one region
 
-Content and media distribution
+    Max obj size 5tb
 
-Big data analysis
+    Each object has metadata associated
 
-Static website hosting
+    Each object is identified with a key
 
-Disaster recovery
+    Rest api with crud (create read update delete)
 
-Data reside in buckets
+    *Reduced redundancy storage*: cheaper price less redundancy
 
-Each bucket unlimited objects
+    Eventual consistency for updated data and read after write for new one.
 
-You don’t have to worry about storage limits or capacity planning or durability
+    *Access control*: iam policies, query string auth and s3 bucket policies.
 
-Each bucket is in one region
+    Good for frequently accessed data.
 
-Max obj size 5tb
+    You can use prefixes for object hiracy aggregation.
 
-Each object has metadata associated
+    *Infrequent access*: policy cheaper and leas bandwidth.
 
-Each object is identified with a key
+    You can set lifecycle rules so infrequently used data is moved to cheaper policies
 
-Rest api with crud (create read update delete)
+    You can turn on versioning if objects
 
-*Reduced redundancy storage*: cheaper price less redundancy
+    *MFA delete*: deleting an object requires an extra token.
 
-Eventual consistency for updated data and read after write for new one.
+    *Cross region replication*: async replicate all objects to another region. Good for lower latency
 
+    *Logging*: logs requests.
 
-
-*Access control*: iam policies, query string auth and s3 bucket policies.
-
-Good for frequently accesse data.
-
-You can use prefixes for object hiracy aggregation.
-
-*Infrequent access*: policy cheaper and leas bandwidth.
-
-
-
-You can set lifecycle rules so infrequently used data is moved to cheaper policies
-
-You can turn on versioning if objects
-
-*MFA delete*: deleting an object requires an extra token.
-
-*Cross region replication*: async replicate all objects to another region. Good for lower latency
-
-*Logging*: logs requests.
-
-Events notifications can be sent after events such as upload. Can be sent to an sqs, sns, or a lambda.
+    Events notifications can be sent after events such as upload. Can be sent to an sqs, sns, or a lambda.
 

