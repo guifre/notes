@@ -170,3 +170,21 @@ Elastic Compute Cloud (EC2)
     **Placement groups** enable applications to particiapte in low-latency 10Gbps network. The instanc must support it.
     **Instance store**
 
+    Instance types
+        *Instance stores**: Ephemeral storage of HDDs or SSDs attached to the host machine. Very cost effective, ideal for temporary storage (caches, buffers). Data is lost if the instance terminates or reboots.
+
+        **Elastic Block Store (EBS)**: Persistent block-level storage to use in EC2. It is automatically replicated in the availability zone. They can be attached to a single instance.
+        Types:
+            **Magnetic volumes**: lowest performance and lowest cost per GB. From 1GB to 1TB, 100 IOPS on average. Good solution for data accessed infrequently, sequential reads.
+
+        **General purpose SSD**: Strong performance, moderate price. From 1GB to 16TB. 3 IOPS per GB, up to 10K IOPS. I.E 1TB-> 3K IOPS. Good for medium sized DBs, boot volumes and dev envs.
+
+        **Provisioned IOPS SSD**: Highest performance, highest price, from 4GB to 16TB. Well suited for business critical apps with large performance, large DBs workloads.
+
+
+    **Snapshots** allow you to backup a EBS volume taking a point in time snapshot. Are stored in S3 technology. You pay for the storage cost. Storage in the same region, you will need to copy it if need an instance in different region.
+
+    EBS offers native encryption, through **Key Management System (KMS)** to handle key management. Data is encrypted using AES256. Snapshots from encrypted volumes are automatically encrypted, as volumes created from snapshots.
+
+
+Virtual Private Cloud (VPC)
