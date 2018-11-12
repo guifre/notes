@@ -148,3 +148,25 @@ Elastic Compute Cloud (EC2)
         Marketplace: Customers can provide and sell their AMIs.
         Generated from existing instances: Facilitates reusing instances.
         Uploaded virtual servers: exported from vmware, virtualbox or others.
+    Addressing
+        DNS: each instance gets a unique domain name
+        Public IP
+        Elastic IP: reserved IP, not tight to an instance.
+    Access is granted through public key authentication.
+    **Security groups**: is a virtual firewall that allows you to allow traffic from or to certain ports and IPs. You can associate it with an EC2 instance or a VPC. By default denies everything.
+    **User data** is a script you can pass to the instance that runs after startup, to do initialization tasks. It is not encrypted.
+    Each instance has metadata associated, it can be found at **http://169.254.169.254/latest/meta-data**. It includes security groups, instance Id, type amd AMI.
+    You can set Tags (key-value) to your instances to easily identify them.
+    You can monitor instances using **Cloudwatch**.
+    Instances can be resized.
+    Pricing
+        **On-demand**:  no upfront commitment, fixed price.
+        **Reserved instances**: You can save up to 75% if you commit to a certain time. Price will vary depending on the time and if you pay upfront. You can improve specs after purchase.
+        **Spot instances**: Customer specified how much he is willing to pay for the instance. If they pricing goes below the requested one, you will get a machine until it goes up again. Cheapest option. Should only be used for workloads tolerant to interruption.
+    Tenancy options
+        **Shared tenancy**: Default option, same host machine might host instances from different customers.
+        **Dedicated instances**: Run on hardware that's dedicated t o a single customer.
+        **Dedicated host**: Customer has more granularity and can specify which host to run the instance. It is also fully dedicated for the customer.
+    **Placement groups** enable applications to particiapte in low-latency 10Gbps network. The instanc must support it.
+    **Instance store**
+
