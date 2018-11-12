@@ -1,5 +1,5 @@
 *AWS services*narrative
-Why cloud
+Advantages of moving to cloud
     Global in minutes (deploy in different locations)
     Focus on business differentiations
     Economies of scale
@@ -23,27 +23,27 @@ Accessing AWS
 
 
 Services
-    ** Elastic load balancing**: Distributed load across multiple ec2 instances
+    ** Elastic load balancing**: Distributed load across multiple EC2 instances
 
     **Elastic beanstalk**: easiest way to get a web app running on AWS. Handles lid balancing, resource provisioning.
 
-    **Amazon private cloud (vpc)**: allows launching AWS resources in virtual networks. You can define sub networks, gateways and route tables.
+    **Amazon private cloud (VPC)**: allows launching AWS resources in virtual networks. You can define sub networks, gateways and route tables.
 
     **AWS direct connect**: dedicated network from organizations to AWS.
 
     **Amazon route 53**: dns web service. You can register your domain names and resolve.
 
-    **Amazon simple storage service (s3)**: data storage, access through http.
+    **Amazon Simple Storage Service (S3)**: data storage, access through http.
 
     **Amazon glacier**: low cost storage for archiving and long term backup.
 
-    **Amazon elastic block store (EBS)**: block level volumes for ec2 instances.
+    **Amazon elastic block store (EBS)**: block level volumes for EC2 instances.
 
     **AWS storage gateway**: allows connecting on premises devices with AWS storage solutions.
 
     **Cloud Front**: CDN, delivers dynamic and static and streaming content from a global network of edge locations.
 
-    Database services:
+Database services
 
     **Amazon relational database service (RDS)**: secure, high available, production ready, fault toulerant, db. Provides replications and scalability.
 
@@ -61,7 +61,7 @@ Services
 
     **AWS config**: provides resource inventory and configuration history.
 
-    Security and identity:
+Security and identity services
 
     **Identity and access management (Iam)**: creation of users and groups and use permissions to allow and deny access to their AWS.
 
@@ -72,6 +72,8 @@ Services
     **Certificate manager**: provisions, manages and deploys tls certificates.
 
     **Web application firewall**: blocks malicious traffic.
+
+Other services
 
     **API gateway**: Makes it easy to create and deploy apis.
 
@@ -93,41 +95,56 @@ Simple Storage Service (S3)
         Static website hosting
         Disaster recovery
         Data reside in buckets
-    Each bucket unlimited objects
 
-    You don’t have to worry about storage limits or capacity planning or durability
+    Provides REST API with CRUD (create read update delete) operations
 
-    Each bucket is in one region
+    You don’t have to worry about storage limits or capacity planning or durability. Efficient for frequently accessed data.
 
-    Max obj size 5tb
+    Each bucket can hold unlimited objects of up to 5TB and lives in a single region.
 
-    Each object has metadata associated
+    Each object is identified with a key and has metadata associated
 
-    Each object is identified with a key
-
-    Rest api with crud (create read update delete)
-
-    **Reduced redundancy storage**: cheaper price less redundancy
-
-    Eventual consistency for updated data and read after write for new one.
+    **Concurrency**: Eventual consistency for updated data and read-after-write for new data.
 
     **Access control**: iam policies, query string auth and s3 bucket policies.
 
-    Good for frequently accessed data.
+    You can use prefixes for object hierarchy aggregation.
 
-    You can use prefixes for object hiracy aggregation.
+    **Reduce Reduncancy Storage (RRS)**: strategy with cheaper price less redundancy
+    **Infrequent Access (IA)**: strategy with les bandwidth.
 
-    **Infrequent access**: policy cheaper and leas bandwidth.
+    You can set lifecycle rules: where data is moved to IA or RRS.
 
-    You can set lifecycle rules so infrequently used data is moved to cheaper policies
+    Supports versioning if objects.
 
-    You can turn on versioning if objects
+    **MFA delete**: Deleting an object requires an extra token.
 
-    **MFA delete**: deleting an object requires an extra token.
+    **Cross region replication**: async replicate all objects to another region. Good to reduce latency
 
-    **Cross region replication**: async replicate all objects to another region. Good for lower latency
+    You can set up **logging** of requests.
 
-    **Logging**: logs requests.
+    **Events notifications** can be sent after events such as upload. Can be sent to an SQS, SNS, or a lambda.
 
-    Events notifications can be sent after events such as upload. Can be sent to an sqs, sns, or a lambda.
+    You can specify world readable, IAM permissions or temporary public URLs that expire.
 
+Amazon Glacier
+    Low-cost storage service, good for long term backups and for infrequently used data storage.
+    Data is stored in *archives**, each can hold up to 40TB of data and is referenced by an **ID**, not a user-friendly key.
+    **Vaults** are containers of archives, you can have up to 1000 vaults. Each vault can have different IAM policies.
+    You can also specify lock policies, such as write once read many (WORM).
+    You can retrieve 5% of the data for free every month.
+    Encryption at rest can not be disabled.
+
+Elastic Compute Cloud (EC2)
+    Resizable compute capacity. Virtual machines are called **instances**.
+     Each instance type has CPU, memory, storage and network performance. There are different instance families (m,t,s...) each scales the price and the property of the family linear. Network performance increases as the family type grows (Up to 10Gbps).
+     Families
+        Compute optimized (c4)
+        Memory optimized (r3)
+        Storage optimized (i2)
+        GPU-based instances (gs)
+     **Amazon machine images (AMIs)**: Is a OS image, usually contains patches and additional apps. Are based on x86 Windows/Linux. Can be:
+        Published by AWS
+        Marketplace: Customers can provide and sell their AMIs.
+        Generated from existing instances: Facilitates reusing instances.
+        Uploaded virtual servers: exported from vmware, virtualbox or others.
