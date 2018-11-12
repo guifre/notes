@@ -137,13 +137,13 @@ Amazon Glacier
 
 Elastic Compute Cloud (EC2)
     Resizable compute capacity. Virtual machines are called **instances**.
-     Each instance type has CPU, memory, storage and network performance. There are different instance families (m,t,s...) each scales the price and the property of the family linear. Network performance increases as the family type grows (Up to 10Gbps).
-     Families
+    Each instance type has CPU, memory, storage and network performance. There are different instance families (m,t,s...) each scales the price and the property of the family linear. Network performance increases as the family type grows (Up to 10Gbps).
+    Families
         Compute optimized (c4)
         Memory optimized (r3)
         Storage optimized (i2)
         GPU-based instances (gs)
-     **Amazon machine images (AMIs)**: Is a OS image, usually contains patches and additional apps. Are based on x86 Windows/Linux. Can be:
+    **Amazon machine images (AMIs)**: Is a OS image, usually contains patches and additional apps. Are based on x86 Windows/Linux. Can be:
         Published by AWS
         Marketplace: Customers can provide and sell their AMIs.
         Generated from existing instances: Facilitates reusing instances.
