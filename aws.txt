@@ -23,7 +23,7 @@ Accessing AWS
 
 
 Services
-    ** Elastic load balancing**: Distributed load across multiple EC2 instances
+    **Elastic load balancing**: Distributed load across multiple EC2 instances
 
     **Elastic beanstalk**: easiest way to get a web app running on AWS. Handles lid balancing, resource provisioning.
 
@@ -171,7 +171,7 @@ Elastic Compute Cloud (EC2)
     **Instance store**
 
     Instance types
-        *Instance stores**: Ephemeral storage of HDDs or SSDs attached to the host machine. Very cost effective, ideal for temporary storage (caches, buffers). Data is lost if the instance terminates or reboots.
+        **Instance stores**: Ephemeral storage of HDDs or SSDs attached to the host machine. Very cost effective, ideal for temporary storage (caches, buffers). Data is lost if the instance terminates or reboots.
 
         **Elastic Block Store (EBS)**: Persistent block-level storage to use in EC2. It is automatically replicated in the availability zone. They can be attached to a single instance.
         Types:
@@ -188,3 +188,141 @@ Elastic Compute Cloud (EC2)
 
 
 Virtual Private Cloud (VPC)
+    Select ipv4 ranges called inter domain routing (CIDR), creating subnets, route tables, network gateways, and security settings.
+    Each VPC belongs to a region. Each VPC is isolated even with the same ip ranges.
+    Mandatory components are: Subnets, Route tables, DHCP, ACLs, Security groups
+
+    Optional components: Internet gateway, Elastic ip, Elastic network interface (eni), Endpoints, Peering, Nat gateways, Virtual private gateways (vpg), Customer gateway (cgw), Virtual private networks (vpn),
+
+
+Subnets
+    AWS reserves the first 4 IPs.
+
+    Each subnet exists in a single availability zone.
+
+    Types
+        public (traffic redirected to Igw)
+        private
+        vpn only.
+
+
+
+Route tables
+    Rules to determine where traffic gets directed
+
+
+Internet gateway igw
+    Vpc component that allows VPC to access the internet. It is a target in your route tables. The EC2 instance also needs a public or EIP address
+
+Elastic IP Addresses (EIP)
+    Public IP address you can assign to a VPC or ec2 instance. You can shutdown a machine and maintain the public ip in your account.
+
+Elastic network interfaces (EINs)
+    Can be attached to a VPC and is associated to a subnet. Has one public IP and multiple private ones. You can use two EINs to have an instance in two subnetworks.
+
+
+Endpoints
+    Allows you to create a private connection between a VPC and another AWS service, such as S3, without requiring internet access or a NAT instance.
+
+Peering
+    Allows connecting two VPCs as if they were the same network. Can be between different accounts but has to be the same region.
+
+Security groups
+    Stateful firewall that controls inbound and outbound traffic to AWS resources. All ec2 instances must be launched with a security group. Supports allow rules only. Stateful: Return traffic is automatically allowed. Applies to individual instances attached.
+
+Network access control list (ACLs)
+    Stateless firewall attached to VPCs. Set of rules that determines if traffic is allowed in or out a subnet. You are expected to create similar rules as the security grups to defensa in depth. Supports allow and deny rules.Stateless: return traffic must be allowed. Applies to all instances in the VPC.
+
+Network address translation (NAT) instances/gateways
+    Allows connecting to the internet instances that are in private subnets. You can use a Nat instance, Eip and Security groups to create instances that can have outbound internet access but no inbound.
+
+
+Identity and Access Management (IAM)
+    Used to control who is authenticated and authorized to access a resource.
+    Provides granular permissions and shared access to your account.
+    **Identity federation**: You can grant access to users who have already authenticated somewhere else (i.e. corporate network).
+    Cloudtrail logs will contains what IAM issues the request
+    IAM supports **PCI compliance**
+    It's free
+    **Principal** is an entity that can make operations on an AWS resource (users, roles, federated users an apps).
+    Request contains:
+        Actions or operations
+        Resource where the action will be performed
+        Principal: user performing the action
+        Environment data: Ip address, user agent, SSL enabled....
+        Resource data: Data about the resource (can be ddb data).
+
+    Authentication
+        username and password from console
+        access key and secret key from API or CLI
+        You might also use **Multi factor authentication (MFA)**
+    Authorization
+        Most policies are stored in JSON documents.
+        Policies define specify the permissions that are allowed or deined for principals.
+        **Identity-based**: grant access to users
+        **Resource-based**: popular for granting cross account access.
+        ACL: todo
+
+Security Token Service (STS)
+    TODO
+
+    When you create your AWS account you get a root user
+    Users
+        Entity that represents a service or person and uses IAM to interact with AWS
+        Can use console or API
+        has a username/password to sign in
+        belongs to a group that has permissions policies attached or by directly attaching it permissions without group
+
+    Groups
+        Collection of IAM users
+        All have same permissions (easier to manage)
+        A group can not be identified as a **Principal** in a **resource based trust policy**
+
+    Roles
+        Same as user but has no credentials (username/password)
+        It is intended to be assumable by anyone who needs it
+        A user can assume a role temporarily for a specific task.
+        Can be assigned to a **federated user**
+
+    Temporary credentials
+
+    When to create user instead of a role
+        You need a user to interact with the CLI
+        When you are the only person using it
+
+    When to create a role instead of a user
+        App running in EC2 instance needs to authenticate to interact(assume role, with the policy attached to it. Not auth as user)
+        App in phone makes requests to AWS (cognito or federate)
+        You want your corporate users to authenticate so they dont have to sign in again (federate into aws)
+
+
+
+    Users
+        Is identified with afirendly name (shown in aws console)
+        **Amazon resource name (ARN)** used to uniquely identify the user across all AWS
+
+    Credentials
+        console password
+        access keys (key id + secres acess key)
+        ssh keys for code commit
+        server certificate to authenticate to some services
+
+
+    AssumeRole
+        Used by API operations that access resources from same or other accounts
+
+        API can assume a role to do specific tasks, specifying an ARN
+
+        1. Create policy that allows production app to access ListBucket:
+*{
+  "Effect": "Allow",
+  "Action": [
+    "s3:ListBucket",
+    "s3:GetBucketLocation"
+   ],
+  "Resource": "arn:aws:s3:::productionapp/*"
+},*
+        2. Create a role with the previous policy
+        3. Switch role CLI (your user needs permissions to assumerole):
+        *aws sts assume-role --role-arn "arn:aws:iam::999999999999:role/UpdateApp" --role-session-name "David-ProdUpdate"*
+
