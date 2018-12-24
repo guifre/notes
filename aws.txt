@@ -175,7 +175,7 @@ Elastic Compute Cloud (EC2)
 
         **Elastic Block Store (EBS)**: Persistent block-level storage to use in EC2. It is automatically replicated in the availability zone. They can be attached to a single instance.
         Types:
-            **Magnetic volumes**: lowest performance and lowest cost per GB. From 1GB to 1TB, 100 IOPS on average. Good solution for data accessed infrequently, sequential reads.
+        **Magnetic volumes**: lowest performance and lowest cost per GB. From 1GB to 1TB, 100 IOPS on average. Good solution for data accessed infrequently, sequential reads.
 
         **General purpose SSD**: Strong performance, moderate price. From 1GB to 16TB. 3 IOPS per GB, up to 10K IOPS. I.E 1TB-> 3K IOPS. Good for medium sized DBs, boot volumes and dev envs.
 
