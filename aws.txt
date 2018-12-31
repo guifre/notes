@@ -45,9 +45,9 @@ Services
 
 Database services
 
-    **Amazon relational database service (RDS)**: secure, high available, production ready, fault toulerant, db. Provides replications and scalability.
+    **Amazon relational database service (RDS)**: secure, high available, production ready, fault tolerant, db. Provides replications and scalability.
 
-    **DynamiDB**: nosql db for low latency apps at any scale. Supports document and key value models.
+    **DynamoDB**: NoSQL db for low latency apps at any scale. Supports document and key value models.
 
     **Redshift**: petabyte scale data warehouse, standard sql interface
 
@@ -57,7 +57,7 @@ Database services
 
     **Cloud formation**: Json templating language to describe AWS resources
 
-    **CloudTrail**: récords api calls and delivers log files for review and audit.
+    **CloudTrail**: records API calls and delivers log files for review and audit.
 
     **AWS config**: provides resource inventory and configuration history.
 
@@ -65,7 +65,7 @@ Security and identity services
 
     **Identity and access management (Iam)**: creation of users and groups and use permissions to allow and deny access to their AWS.
 
-    **Key management service (kms)**: creates and controlles encryption keys. Integrates with other services to encrypt data.
+    **Key management service (kms)**: creates and controls encryption keys. Integrates with other services to encrypt data.
 
     **Directory service**: set up and run Microsoft active directory.
 
@@ -75,7 +75,7 @@ Security and identity services
 
 Other services
 
-    **API gateway**: Makes it easy to create and deploy apis.
+    **API gateway**: Makes it easy to create and deploy APIs.
 
     **Elastic transcoder**: media transcoder in the cloud.
 
@@ -110,7 +110,7 @@ Simple Storage Service (S3)
 
     You can use prefixes for object hierarchy aggregation.
 
-    **Reduce Reduncancy Storage (RRS)**: strategy with cheaper price less redundancy
+    **Reduce Redundancy Storage (RRS)**: strategy with cheaper price less redundancy
     **Infrequent Access (IA)**: strategy with les bandwidth.
 
     You can set lifecycle rules: where data is moved to IA or RRS.
@@ -157,7 +157,7 @@ Elastic Compute Cloud (EC2)
     **User data** is a script you can pass to the instance that runs after startup, to do initialization tasks. It is not encrypted.
     Each instance has metadata associated, it can be found at **http://169.254.169.254/latest/meta-data**. It includes security groups, instance Id, type amd AMI.
     You can set Tags (key-value) to your instances to easily identify them.
-    You can monitor instances using **Cloudwatch**.
+    You can monitor instances using **CloudWatch**.
     Instances can be resized.
     Pricing
         **On-demand**:  no upfront commitment, fixed price.
@@ -167,7 +167,7 @@ Elastic Compute Cloud (EC2)
         **Shared tenancy**: Default option, same host machine might host instances from different customers.
         **Dedicated instances**: Run on hardware that's dedicated t o a single customer.
         **Dedicated host**: Customer has more granularity and can specify which host to run the instance. It is also fully dedicated for the customer.
-    **Placement groups** enable applications to particiapte in low-latency 10Gbps network. The instanc must support it.
+    **Placement groups** enable applications to participate in low-latency 10Gbps network. The instance must support it.
     **Instance store**
 
     Instance types
@@ -177,7 +177,7 @@ Elastic Compute Cloud (EC2)
         Types:
         **Magnetic volumes**: lowest performance and lowest cost per GB. From 1GB to 1TB, 100 IOPS on average. Good solution for data accessed infrequently, sequential reads.
 
-        **General purpose SSD**: Strong performance, moderate price. From 1GB to 16TB. 3 IOPS per GB, up to 10K IOPS. I.E 1TB-> 3K IOPS. Good for medium sized DBs, boot volumes and dev envs.
+        **General purpose SSD**: Strong performance, moderate price. From 1GB to 16TB. 3 IOPS per GB, up to 10K IOPS. I.E 1TB-> 3K IOPS. Good for medium sized DBs, boot volumes and dev environments.
 
         **Provisioned IOPS SSD**: Highest performance, highest price, from 4GB to 16TB. Well suited for business critical apps with large performance, large DBs workloads.
 
@@ -298,12 +298,12 @@ Security Token Service (STS)
 
 
     Users
-        Is identified with afirendly name (shown in aws console)
+        Is identified with a friendly name (shown in aws console)
         **Amazon resource name (ARN)** used to uniquely identify the user across all AWS
 
     Credentials
         console password
-        access keys (key id + secres acess key)
+        access keys (key id + secret access key)
         ssh keys for code commit
         server certificate to authenticate to some services
 

