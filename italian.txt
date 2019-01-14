@@ -1,10 +1,18 @@
 *italian*
 Greeting
-    buongiorno -> good morning
-    buona sera -> good afternoon
-    grazie -> thank you
-    come va -> how are you
-    ciao -> bye
+    Buongiorno -> Good morning
+    Buonasera -> Good afternoon
+    Buonanotte -> Good night
+    Grazie -> Thank you
+    come va -> How are you
+    Va bene e tu -> bien y tu
+    Ciao -> bye
+    Mi scusi -> I’m sorry
+    Arrivederci, alla prossima -> Goodbye, see you next time
+    Non importa -> Never mind
+
+Useful sentences
+    Non parlo italiano molto bene -> I don’t speak Italian very well
 
 Pronouns
     le -> her
