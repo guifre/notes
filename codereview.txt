@@ -76,8 +76,8 @@ strncat(blah, buf, 256);*
 }*
 
     SQLI in PHP. Fix using **real_escape_string()**
-    *$sql="SELECT card FROM users WHERE password = '".$pass."'";
-$result = mysql_query($sql);*
+    *$ sql="SELECT card FROM users WHERE password = '".$pass."'";
+$ result = mysql_query($sql);*
     SQLI in Java. Fix using **connection.prepareStatement(query).setString(1, firstName);**
     *String custQuery = SELECT custName, address1 FROM cust_table WHERE custID= '" + request.GetParameter("id") + """*
     SQLI in .Net
