@@ -10,17 +10,38 @@ Advantages of moving to cloud
 Concepts
     Each region is an independent set of data centres.
 
-    **Availability zones**: interconnected data centres within the same region isolated from failures. They are connected with low latency network.
+    **Availability zones**: interconnected data centres within the same region isolated from failures. They are connected with low latency network. You can achieve high availability by deploying the data/components in two availability zones within the same region.
 
     **Hybrid deployment**: mix of cloud and on premises.
 
-    You can achieve high availability by deploying the data/components in two availability zones within the same region
+    **Durability**: Probability that you will recover some persisted data in a given time.
+    **Availability**: Probability that you will access some data, any time in a given time.
+
+5 Pillars for well architected cloud
+    Operational Excellence
+    Security
+    Reliability
+    Performance Efficiency
+    Cost Optimization
+
+4 support plans
+    Basic
+    Developer
+    Business
+    Enterprise
 
 Accessing AWS
     Console
     Cli
     Sdk
 
+SAML authentication flow
+    Protocol to federate your users to AWS console. The auth flow is:
+    The authenticated user in client's site triggers the federate functionality.
+    The portal generates a SAML authentication response that includes assertions and attributes about the user
+    The client browser is then redirected to the AWS single sign-on endpoint posting the SAML assertion
+    The AWS console endpoint validates the SAML assertion and generates a redirect to access the management console (suing STS)
+    The browser follows the redirect which brings into the AWS console as an authenticated user
 
 Services
     **Elastic load balancing**: Distributed load across multiple EC2 instances
@@ -63,9 +84,9 @@ Database services
 
 Security and identity services
 
-    **Identity and access management (Iam)**: creation of users and groups and use permissions to allow and deny access to their AWS.
+    **Identity and access management (IAM)**: creation of users and groups and use permissions to allow and deny access to their AWS.
 
-    **Key management service (kms)**: creates and controls encryption keys. Integrates with other services to encrypt data.
+    **Key management service (KMS)**: creates and controls encryption keys. Integrates with other services to encrypt data.
 
     **Directory service**: set up and run Microsoft active directory.
 
@@ -98,20 +119,32 @@ Simple Storage Service (S3)
 
     Provides REST API with CRUD (create read update delete) operations
 
-    You don’t have to worry about storage limits or capacity planning or durability. Efficient for frequently accessed data.
+    You don't have to worry about storage limits or capacity planning or durability. Efficient for frequently accessed data.
 
     Each bucket can hold unlimited objects of up to 5TB and lives in a single region.
 
     Each object is identified with a key and has metadata associated
 
-    **Concurrency**: Eventual consistency for updated data and read-after-write for new data.
+    Format: **https://${BUCKET_NAME}.s3.amazonaws.com/${OBJECT_KEY}**
+
+    Can be used to host static websites with **<bucket-name>.s3-website-<AWS-region>.amazonaws.com** You can use Cloudfront as a CDN to make the website fast globally. You can configure redirects
+
+    Only the owner of an Amazon S3 bucket can permanently delete a version.
+
+    S3 can achieve at least 3,500 PUT/POST/DELETE and 5,500 GET requests per second per prefix in a bucket (you can use random prefixes to increase the throughput in data-intensive applications).
+
+    Max object size: 5TB. Min object size: 0bytes, except for S3 IA that has a min size of 128kb. Default maximum number of buckets per region: 100
+
+    You can write objects directly to an edge location to reduce latency to some users.
+
+    **Concurrency**: Eventual consistency for updated data and read-after-write for new data Updates are atomic: requesting a file immediately after an update will give you either the old data or the new data (no partially updated or corrupted data).
 
     **Access control**: iam policies, query string auth and s3 bucket policies.
 
     You can use prefixes for object hierarchy aggregation.
 
-    **Reduce Redundancy Storage (RRS)**: strategy with cheaper price less redundancy
-    **Infrequent Access (IA)**: strategy with les bandwidth.
+    **Reduce Redundancy Storage (RRS)**: cheaper strategy (less redundancy).
+    **Infrequent Access (IA)**: cheaper strategy (less bandwidth).
 
     You can set lifecycle rules: where data is moved to IA or RRS.
 
@@ -119,13 +152,35 @@ Simple Storage Service (S3)
 
     **MFA delete**: Deleting an object requires an extra token.
 
-    **Cross region replication**: async replicate all objects to another region. Good to reduce latency
+    **Cross region replication (CRR)**: async replicate all objects to another region. Good to reduce latency. Requires src and dst with versioning enabled, correct S3 permissions, and different regions.
 
     You can set up **logging** of requests.
 
     **Events notifications** can be sent after events such as upload. Can be sent to an SQS, SNS, or a lambda.
 
     You can specify world readable, IAM permissions or temporary public URLs that expire.
+Durability & Availability table
+    **Class    Durability    Availability
+STANDARD    99,999999999%    99,99%
+STANDARD_IA    99,999999999%    99,9%
+ONEZONE_IA    99,999999999%    99,5%
+GLACIER    99,999999999%    99,99%*
+REDUCED_REDUNDANCY    99,99%    99,99%**
+
+Encryption
+    **SSE-S3**: fully managed encryption at rest.
+    **SSE-C**: encryption at rest with custom encryption keys (to be provided together with the uploaded or download the file). The key is not stored by AWS. Use this option if you want to maintain your own encryption keys, but don't want to implement or leverage a client-side encryption library.
+    **SSE-KMS**: encryption at rest using keys managed through the KMS service. Allows to define fine grained permissions based on the permissions of KMS keys. Best solution for compliance (PCI-DSS, HIPAA, etc.).
+
+Transfer optimizations
+    **S3 transfer acceleration**: Improves latency.
+    HTTP multi-part upload to transfer big files.
+    **Snowball**: For transferring massive amounts of data.
+    **Storage gateway**: If your storage needs to exist also on premise (hybrid cloud storage).
+    Storage gateway offers 2 main volume modes:
+        **Cached volumes**: Stores files in the cloud and keeps a local cache to speed up reads
+        **Stored volumes**: Optimized for low latency, stores files locally and asynchronously sends back up point-in-time snapshots to S3.
+
 
 Amazon Glacier
     Low-cost storage service, good for long term backups and for infrequently used data storage.
@@ -134,6 +189,8 @@ Amazon Glacier
     You can also specify lock policies, such as write once read many (WORM).
     You can retrieve 5% of the data for free every month.
     Encryption at rest can not be disabled.
+    Files can be restored through the web console or the S3 API (RestoreRequest action).
+
 
 Elastic Compute Cloud (EC2)
     Resizable compute capacity. Virtual machines are called **instances**.
@@ -204,7 +261,6 @@ Subnets
         public (traffic redirected to Igw)
         private
         vpn only.
-
 
 
 Route tables

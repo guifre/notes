@@ -58,6 +58,10 @@ Searching within files
     Search for a pattern in a zip fil
     *$ zgrep*
 
+Troubleshoot broken dependencies
+    Show referenced shared libraries and its resolution
+    *$ ldd binary*
+
 Others
     Import CA in java store
     *sudo keytool -import -alias foo -trustcacerts -keystore cacerts -file cacert.der*
