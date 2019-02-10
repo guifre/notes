@@ -1,4 +1,6 @@
-*Structural patterns*narrative
+*Design Patterns*narrative
+
+Structural patterns
     Help manage how classes organize
 
 Command
