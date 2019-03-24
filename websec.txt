@@ -67,6 +67,15 @@ Match User !youruser*
 
     This should be enough to reduce to almost zero all non-targeted attacks.
 
+Content Security Policy (CSP)
+    Helps to mitigate XSS by specifying domains where data can be loaded from, which protocols and policy areas to allow.
+
+    You can configure it with a header ** Content-Security-Policy** or with an HTML meta tag as follows:
+*<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src https://*; child-src 'none';">*
+    The default policy for all resources that are not explicit is **default-src**. For instance, the following policy allows images from any domain, media from media1 and media 2, scripts from example.com. Anything else from the current origin only.
+*Content-Security-Policy: default-src 'self'; img-src *; media-src media1.com media2.com; script-src userscripts.example.com*
+
+    You can test your policy by adding **Content-Security-Policy-Report-Only: policy**
 
 Future work
 
