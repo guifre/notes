@@ -1,0 +1,11 @@
+Ticks
+    Filter out unwanted lines
+    *:%!grep -v foo*
+    Remove duplicates
+    *:%!sort -u*
+    Send output to vim
+    *| vim -*
+    Repeat the last step
+    *.*
+    Vertical selection
+    *CTRL+v*
