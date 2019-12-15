@@ -307,9 +307,9 @@ The 7 Habits of Highly Effective People
     **Habit** is the intersection of knowledge, skill, and desire. This is what to do, how to do it and wanting to do it. You need the three.
     Happiness can be defined as the fruit of the desire and ability to sacrifice what we want now for what we want eventually.
     The following habits are aimed at improving efficiency to maximize long term benefit and growth.
-    *p* is production and *p/c* production capability. You need to keep an *optimal P/PC balance* for efficiency growth.
+    **p** is production and **p/c** production capability. You need to find and keep an **optimal P/PC balance** for efficiency growth.
     Our most important financial asset is our own capacity to earn. Invest in improving your p/c.
-    P/PC can be applied to software development as technical debt.
+    P/PC can be seen in software development as technical debt.
     **Habit 1: Be proactive**. Self-awareness is the ability to think about your thought process. It enables us to examine the way we see ourselves and others.
     A lot of what we are is determined by three factors: **genetic determinism** determined in our DNA, **psychic determinism** or childhood friends and parents, and **environmental determinism** which is your spouse, boss, and economic situation.
     Proactively is taking initiative, being responsible for our own lives, making things happen.
@@ -331,10 +331,9 @@ The 7 Habits of Highly Effective People
     **Habit 2: Begin with the end in mind**
     If this were your funeral and your relatives and friends where making a speech, what'd you like them to say? what type of person would you like their words to reflect? what character would you like them to have seen in you? what achievements? what to remember?
     If the ladder is not leaning against the right wall, very step we take gets us to the wrong place faster.
-    What do you want to be said of you in your funeral?
     **Personal mission statement** or philosophy or creed. It focuses on what you want to be (character) and to do (achievements) and values or principles  in which those are based. Example
     Succeed at home first. Never compromise with honesty. Hear both sides before judging. Defend those who are absent. Be sincere and decisive. Develop a new proficiency every year. Plan tomorrow's work today. Keep sense of humor. Be orderly in person and at work. Do not fear mistakes. Maintain positive attitude. I will try to keep myself free from addictive and destructive habits. Money will be my servant not my master. Seek FI. Use money to make life more enjoyable.
-    People have *centers* in which people focuses: Spouse, family: growth from family traditions, money: economic security, work: workaholics sacrifice other things in life. possession: physical but also intangible like fame glory. pleasure: we live in a world where instant gratification is available and encouraged, friend enemy: belonging to a peer group. church, self, Centeredness
+    People have **centers** in which people focuses: **Spouse**, **Family**: growth from family traditions. **Money**: economic security. **Work**: workaholics sacrifice other things in life. **Possession**: physical but also intangible like fame glory. **Pleasure**: we live in a world where instant gratification is available and encouraged. **Friend enemy**: belonging to a peer group. **Church**. **Self centeredness**.
 
     **Habit 3: But first things first**
     Effective time management if putting first things first. Leadership decides what first things are, management puts them first.
@@ -342,8 +341,8 @@ The 7 Habits of Highly Effective People
     Urgent things act on us (a phone ringing), they press on us, insist on action, easy to do. Often they are also unimportant.
     Important things will involve results and are related to your mission, values and high priority goals.
     We **react** to urgent matters. Important matters require initiative and proactivity.
-    Quadrant 1: are tasks urgent and important (putting out fires). They drive our lives. We want to reduce those. They lead to stress, burnout. It is important to correctly categorize the tasks from Q1 and Q3 (not important).
-    Quadrant 2 is the heart of effective time management. It deals with things that are not urgent but important. I.E building relationships, writing a personal mission statement, exercising, preventive maintenance. What things could you do regularly that would have a tremendous positive difference in your life? Also, spending time on preventing activities in Q2 will also reduce tasks of Q1.
+    **Quadrant 1** are tasks urgent and important (putting out fires). They drive our lives. We want to reduce those. They lead to stress, burnout. It is important to correctly categorize the tasks from Q1 and Q3 (not important).
+    **Quadrant 2** is the heart of effective time management. It deals with things that are not urgent but important. I.E building relationships, writing a personal mission statement, exercising, preventive maintenance. What things could you do regularly that would have a tremendous positive difference in your life? Also, spending time on preventing activities in Q2 will also reduce tasks of Q1.
     You need to plan the activities of Q2 according to your values and mission statement. This will cause natural inclination towards doing those and not spending time on Q3 and Q4.
     Activities in Q2 increase your production and production capability.
     Your planning methodology should take into account: **Coherence** with your mission statement, roles, goals, desires and discipline. **Balance**: in your life, to not neglect important areas or roles. Think about two goals you want to achieve for each role. **Q2 focus**: Your methodology should move you into Q2. **Flexibility**: your planning tool should adapt to you. If should be **portable**
@@ -359,7 +358,7 @@ The 7 Habits of Highly Effective People
     **Integrity** you should treat everyone with the same set of principles.
 
     **Habit 4: Think win/win**: Win/Win is a frame of mind and heart that constantly seeks mutual benefit in all human interactions. Agreements/solutions are mutually beneficial and satisfying. All parties feel committed to the action plan and good about the decision. Win/Win sees like as a cooperative not competitive arena.
-    *Win/Lose mentality* is used when one child is compared to another. It lies on competition not cooperation. Like school, law.
+    **Win/Lose mentality** is used when one child is compared to another. It lies on competition not cooperation. Like school, law.
     *Lose/win* is a paradigm with no expectations, standards, demands or vision. Little courage to express their own feelings and are intimidated by ego strength of others. They bury feelings and have disproportionate range or anger, overreaction to provocations. This affects relationships with others.
     **Win/win or no deal** if no solution for both is reached, we walk away.
     Win/Win performance agreements can have four types of rewards managers or parents can provide: psychic (recognition...) financial. opportunity (training), responsibility.
@@ -379,5 +378,5 @@ The 7 Habits of Highly Effective People
     The more proactive you are (habit 1), the more effectively you can exercise personal leadership (habit 2) and management (habit 3), the more Q2 activities you do (habit 7) the more you seek first to understand (habit 5), the more effectively you can find synergetic win/win solutions (habit 4 and 6).
     True financial independence relies on  continuing your education, your power to produce, to learn, create, adapt, wealth is intrinsic.
     Spending one hour a day to renew your physical and spiritual and mental dimensions is the key to the development of the 7 habits.
-    Choose purpose and priciples to live by; otherwise the vaccumm will be filled and we will lose our self-awareness. Learn, commit, do, repeat.
+    Choose purpose and principles to live by; otherwise the vacuum will be filled and we will lose our self-awareness. Learn, commit, do, repeat.
     Struggle is worthwhile and fulfilling. It gives meaning to life and enabled to love, serve and try again.
