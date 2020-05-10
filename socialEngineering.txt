@@ -565,7 +565,7 @@ Your Money or Your Life
     People is driven by fear, promise of exclusivity, guilt, greed and need of approval. Advertisement aims at throwing us off balance emotionally.
     When we are depressed or lonely we buy to make us feel better. When we want to celebrate we buy, when we are bored we buy. We try to **satisfy essentially psychological and spiritual needs with consumption**.
     When we are kids, we are told the message that **money is happiness by giving us presents**. But as an adult, more **money means more responsibilities and more worry**: more expensive car, expensive home, getting robed, tax accountants, needing a better job...
-    **The money fulfilment curve** shows that once the basic needs are covered, more money usually decreases money. **Declutering** helps reduce this.
+    **The money fulfilment curve** shows that once the basic needs are covered, more money usually decreases happiness. **Declutering** helps reduce this.
     Sell the possessions you don't use.
     Money is something we choose to trade our life energy and time for.
     Ask yourself, is this expenditure of life energy i alignment with my values and life purpose?
@@ -574,7 +574,7 @@ Your Money or Your Life
     **Financial independence** is having enough. Avoiding the drama of nine to five till you're sixty five. Making a dying.
     Discern which expenses are fitting and fulfilling and which are unnecessary extravagant.
     You can never get enough of what you don't really want.
-    Our values are those principles and qualities that matter to us. Living our values give us peace of mind. Values aer the ideas and beliefs on which we base our decisions.
+    Our values are those principles and qualities that matter to us. Living our values give us peace of mind. Values are the ideas and beliefs on which we base our decisions.
     You need to know your purpose of life.
     **Frugality** is getting good value for every minute of your life energy and from everything you have the use of. Waste lies not in the number of possessions but in the failure to enjoy them. Frugal means having a high joy-to-stuff ratio. Frugality is valuing your most precious resource: your energy.
     Often it's not material things we enjoy as much as what these things symbolize: conquest status, success, achievement...
@@ -598,7 +598,7 @@ Your Money or Your Life
     Our real work is just to live our values as best we know how.
     We forgot important jobs like loving our mates, being a decent neighbor or developing a sustaining philosophy of life.
     Happiness is our birthright.
-    The purpose of paid employment is getting paid and your real work is far bigger than this one job. By separating work and wages you can see more clearly whther you ar valuing your life energy.
+    The purpose of paid employment is getting paid and your real work is far bigger than this one job. By separating work and wages you can see more clearly whether you ar valuing your life energy.
     How much money do you need to be at the peak of fulfillment?
     Your job consist on working on someone else's agenda.
     Disconnect work from wages, say I work as a programmer, rather than saying I am a programmer.
@@ -606,9 +606,71 @@ Your Money or Your Life
     When you retire, the quality of your retirement will be enhanced if you have been able to disconnect your work from your wages. Retirement should be retirement from paid employment, not from life.
     You are not only working when earning money. Taking care of yourself, your home, your family is unpaid work.
     There is an almost universal belief in our culture that if you are unemployed your are nobody.
-    For greeks, **leisure was the highest good**, the essence of freedom, a time for self-development, and for higher pursuits. Yet we are unable to relax and ejoy our leisure.
+    For greeks, **leisure was the highest good**, the essence of freedom, a time for self-development, and for higher pursuits. Yet we are unable to relax and enjoy our leisure.
     The only purpose of paid employment is getting paid. Increase your income.
     **Savings** is money put aside for something. **Capital** is money that keeps working for you.
     Align your earning and spending with your values and with what brings you fulfillment.
     Reflect on your life while you are living it.
     Leave the nine to five straitjacket, stop climbing a career ladder, follow the promptings of your heart and mind.
+
+
+Acierta al Comprar una Vivienda
+    La piedra angular de la compra de una vivienda siempre será el precio. El precio no será lo que diga el vendedor, sinó lo que un comprador esté dispuesto a pagar.
+    Para ver el precio de mercado de una vivienda, busca en Idealista y fíjate en viviendas de similares características en el mismo barrio.
+    El **valor catastral** lo calcula cada municipio cada 10 años. Se divide en suelo y construcción.Solo el pripietario puede pedirlo en el ayuntamiento con el IBI. Según este valor pagarás más o menos IBI.
+    El **valor fiscal** es la valoración que ha hecho el gobierno de tu comunidad autónoma y puede ser superior al valor de mercado. Dependiendo de este valor pagarás más o menos ITP. Si compras por debajo de este valor, pagarás más impuestos.
+    Ambos valores vienen con el IBI. Puedes pedirle al propietario cuanto paga de IBI y calcular el valor fiscal en la web de Hacienda.
+    Para la compra de una vivienda de segunda mano se paga el impuesto **ITP**, es 10% en Cataluña.
+    Los gastos de compra suelen ser de 1.5% del valor de la propiedad.
+    Las **hipotecas** se paga un interés medido con el Euribor, que es el índice de referencia del interés en que se prestan dinero los bancos. Las hipotecas suelen mencionar el **TIN** y el **TAE**. A ti te interesa en TAE que agrupa todos los costes de hacer la hipoteca y hace el promedio anual.
+    En España se utiliza el sistema francés: todos los meses pagas lo mismo de hipoteca, pero los primeros años casi todo son intereses, y estos se van reduciendo a medida que amortizas.
+    Hay hipotecas fijas, variables o mixtas. Normalmente las mixtas tienen lo malo de fijas y variables al principio pagas muchos intereses, y a lo largo tienes la incertidumbre del Euribor.
+    Negocia con el banco poder amortizar más sin pagar comisión.
+    El **seguro de vida** es para pagar la hipoteca si mueres. La mayoría de entidades lo exigen.
+    El **seguro de hogar** es obligatorio por ley, puedes contrtarlo con la hipoteca o otra empresa.
+    **Dación de pago** te permite saldar la hipoteca entregando la propiedad.
+    Habla con los vecinos del inmueble que te interesa, para conocer si ha habido problemas, vecinos molestos, problemas con el ayuntamiento, obras pendientes, derramas (fachada, ascensor, filtraciones, rellano, ...)
+    **Ubicación**:observa el estado de las calles, como son los vecinos, ruidos, aceso a carreteras, servicios básicos, grafitis, aceras manchadas, fachadas antiguas, farmacias, ambulatorios, supermercados, buses, metros.
+    Las plantas bajas són las que más polvo acumulan.
+    Los metros cuadrados suelen estar mal indicados, suelen ser los no útiles o directamente estan mal en el plano. Mira la escritura y catastro y pueden no coincidir. Pasillos son no útiles. Evita distribuciones raras.
+    Lo que da un aspecto más antiguo es lo más caro de reformar: cocinas (vitro,encimera) o baños (inodoros, duchas). Fonaternia y cuadro elétricos son caros de cambiar.
+    Visita el mismo inmueble por lo menos dos veces: en un día luminoso y en uno lluvioso. No visites más de 3 inmuebles en un mismo día.
+    Las segundas viviendas se suelen vender porque el cash hace falta.
+    Para comprar un piso, tendrás que hacer una **reserva** dejando una señal en la agencia. EL siguiente paso son las **arras**, 10-15 días desde la reseva. Se paga 5k-10k si el comprador se echa para atrás lo pierde. Si el vendedor se echa para atrás lo paga.  hay cláusulas resolutorias que te permite evitar perder el dinero, si no te conceden la hipoteca, etc.. Se fijan 60 días para ir al notario y firmar, tiempo para conseguir hipoteca.
+    Cuando se transmite la vivienda, se hace libre de cargas. Para que no quede nada pendiente.
+
+
+The Book on Rental Property Investing
+    Rental properties are great because they let you **bug with leverage**, you buy with bank's money to increase the potential return and risk.
+    Rental property investing lets you manager your own investment, you are directly responsible for the outcome. People always need a place to live, demand won't end. The equity is fairly stable and predictable.
+    **Appreciation** is an increase in the value of an asset over time. It can be natural: tendency for prices to rise over time, or forced: doing an improvement to the place to increases it. Counting on appreciation to be profitable is especulating and not recommended.
+    **Cash flow** is the amount of income left after paying all the bills. Usually expressed as monthly dollar amount. It is the most important wealth generator for rental property investors.
+    A **loan payment** has a principal and interest. The principal goes directly into the equity of your property.
+    The more leverage you use, the greater the risk you take.
+    **Price does not equal value**. Warren Buffet: Price is what you pay, value is what you get.
+    Having cash reserve to cover problems you might face is imperative. The amount depends on a number of factors, such as the number of properties. ~Six month expenses for each unit.
+    The more risk, more reward. You need to do the right math to get the right profit.
+    **Compound interest** is the profit earned by reinvesting profits.
+    You should set-up a plan: I.E Buy each unit at 80% of the actual value, force 10% appreciation the first year through improvements, property must appreciate at least 3% each year after year one.
+    A solid team can help you turn your from a new investor into a successful real estate mogul.
+    Most important factors to analyze: Cash flow and appreciation.
+    **Buy an hold investor**.
+    The key to calculating income is **estimating the fair market rent**. Determined by the market. Will depend on location, bedrooms and bathrooms, amenities (parking, aircon), size, ...
+    When a unit is vacant, try to bump up the rent. If the market will bear the increased price. If in a week or so there are no takers, start easing down the price until it rents to find the market rate. Too many applications? Rise the rent.
+    You should include in your math a 5% or so **vacancy rate**. A 5%-15% **repairs** rate depending on the age, and also **capital expenditures** (replacing roof, plumbing, windows, paint...) This is fixed cost and will be a bigger percentage if it's a low income rental.
+    **Cash on cash return on investment (CoCROI)** it shows the yield our money is making us based on the cash flow. It ignores appreciation and loan pay-down). It lets you compare this investment against other investments, like stock market or mutual funds. It is the ratio between how much cash flow we received over one year and how much money we invested it.
+    **CoCROI=Total annual cashflow/total investment**.
+    **The 50% rule**: Rental properties expenses tend to be 50% of their income, not including mortgage principal and interest payment. **Cash flow = Income * 0.5 - Mortgage**
+    **The 2% rule** is the ration between rental income and purchase price. If the monthly rental income is less than 2% of the purchase price, it's probably a bad deal. But depends on the local market/area.
+    To find a good deal you should look at 100 homes in screen, offer on 10, and get only one accepted. If you get more than one accepted, you are offering too much. Don't be afraid to submit a lot of offers.
+    Understanding the location you are investing is key to being successful with the investment. **Rate locations A to D**. Class A are locations with newest buildings, hottest restaurants, best schools. Class C are lower income area with 30 year old homes or more. Class D is where you wouldn't travel alone. A lot of crime or drugs, high unemployment. Avoid D. Don't buy a property in a neighborhood that has an unsolvable problem. The property will be difficult to rent, the tenants will trash the house, you will have to deal with evictions late rent.
+    Check the price to rent ratio for each location to determine the areas of higher yield.
+    Focus on the deals that need work. Homes that have some problems are avoided by most of the buyers, so it's easier to get a deal.
+    Paint the home before renting it, it increases the value. Kitchens and baths sell houses. Consider fixing them. Sometimes it's easy and cheap to transform an old kitchen into a newer one with some painting and tails.
+    Make your offer without many **contingencies**. You can specify anything as contingency. Typical ones are inspection and funding.
+    Use a professional **inspector** to check out the property before buying it. They will make a details report of the state of the property.
+    You can show the seller you are serious about the offer by **adding more as earnest money** that is required. He will be more likely to accept. If the offer is turned down, you can conteroffer again a bit more. If the initial offer is accepted, you probably offered too much. **A little back and forth is a good thing**.
+    You need to be **prepared to walk away**.
+    Find the real motivation for selling the property, it can help in the negotiation.
+    Appeal to the math in your negotiation, Expenses will be X, I can only rent it for Y, I need to pay Z to get W% return.
+    Ask the seller what is the lowest price. Then go lower.
