@@ -844,3 +844,69 @@ The Bogleheads' Guide to Investing
     **Mental accounting* is treating money differently depending on where it comes from.
     **Anchoring** is sticking to a broker without analysing if he is doing better than the market.
     **Procrastination** and not taking care of your finances is the biggest mistake.
+
+The Manager's Path: A Guide for Tech Leaders Navigating Growth and Change
+    Managers should help you grow in your career, teach skills, provide valuable feedback, navigate difficult situations, help you figure out what you need to learn, help you understand what is important to focus on and to have that focus.
+    **One to one meetings** with your direct manager are essential. They **create human connection** between you both, letting your manager into your life is important. Being able to talk important personal events or noticing if your reporter is under stress is important. Your manager should know that you have life outside work and you should spend some time talking about it. The second purpose is to speak privately about matters with your manager. 1:1s are not status meetings. Come with an agenda for things to discuss. Every week is good frequency.
+   Managers should **provide feedback**. If you do something good or bad they should let you know. The sooner the better. Keep track of this feedback, use it in reviews. Public if it's praise, as it reinforces positive behavior in the team, and private if it's criticism.
+   Managers should show the larger picture of how your work fits into the team's goals and provide purpose.
+   The more senior, the less the personal feedback you will get. You will instead get strategy related input.
+    Managers help with **career growth** via training, promotion, and compensation. They should point out to projects, feedback on areas to develop and learn. Good managers know how the promotion system works and help reporters build those achievements and skills. Strong managers have strong networks, they can get ICs attention and feedback from important people.
+    ICs should advocate for themselves,
+    Use someone who recently onboarded as **onboard buddy**.
+    **Interns** are useful to identify potential new hires. Get them to work on a project. Check once a week progress. Plan him to present the work at the end of the program.
+    People are not good at saying precisely what they mean in a way that others can exactly understand. We constantly push complex ideas through the eye of the needle of language.
+    If you expect your ICs to research things before asking you a question, communicate it.
+    Your team should have **onboarding documents** that get updated by new hires.
+    It's important to have a strong network of trusted people to share information and ideas.
+    The **alpha geek** is driven to be the best engineer in the team and always have the right answer, and to solve all the hard problems. Values intelligence and tech skills above all other traits. Tries to create a culture of excellence but ends up creating culture of fear. They are bad managers.
+    **What you measure, you improve**. Help your team succeed by creating clear, focused, measurable goals.
+    **Be curious and open-minded**: As you grow in your career, you'll experience a lot of teachable leassons in how things show or should not be.
+    The **teach lead** is not a position for a person who wants to deply focus on the details of her own code. He has 1:1 for career growth, progression towards goals, identify areas for learning. The **scale themselves by delegating** work effectively without micromanaging. They focus on the whole's team productivity and strive to **increase the impact of the team**. Learn how to **partner efficiently with other teams**. Do project management. **Understand business requirements and translate into software**.
+    You sometimes have to **go slow in order to go fast in the future**.
+    **Balancing is one of the core challenges**. Doing things you know and like, with others you don't.
+    Avoid being constantly interrupted by meetings. Put **meetings early or late in the day concentrated**. Stay concentrated for long streches of time.
+    **Project management** is the act of breaking a complex end goal into smaller pieces. Identifying what can be done in parallel, and tease out the unknowns. Break down the work into smaller pieces.
+    **Principles of the Agile Manifesto** Individuals and interactions over processes and tools. Working software over comprehensive documentation, customer collaboration over contract negotiation, responding to change over following a plan.
+    Look for self-regulating processes.
+    Working on the less exciting parts of the codebase can teach you a lot about where the process is broken.
+    Some decisions need to be made by you, others delegated to more people with more expertise, and otehrs needs the whole team to decide.
+    You represent the team in the meetings, communicate their needs and bring information from the meeting back to the team.
+    Speak in team meetings, speak in meetups, and get practice standing up in front of an audience.
+    Main tasks for managing people: Holding regular 1:1s, giving feedback on careers growth and progression, identify areas of learning. Do them in the morning before things get busy. 1:1s are creative discussions to discuss whatever the IC thinks its important. 1:1s for early career employees can be used for informal feedback and coaching. Talk about family, friends, hobbies, pets. Get to know their career so far, ask them log term goals. Show that you care and are invested in helpting them now and in the future. You can do 1:1s as walking meetings, or over a coffee or launch to get out of the office.
+    **Ask your ICs**: Why did you decide to work here? What are you excited about? Any manager behaviour I should avoid? An career goal I should know? any surprises since you joined? Ask them how their trip/weekend was, humanize Ics. Teams that are friendly and happier produce better results. Do you want to work with people you hate?
+    Have onboarding documentation. Every new hire gets up to seppd and has to update it.
+    Get as much feedback as possible from new hires in the first 90 days. Fresh eyes see things that are hard for established members to see.
+    **To-DO list meetings** team comes with a list of objectives to cover, in order of importance. Updates are given, decisions are made or discussed, planning happens.
+    Problems in the workplace need to be dealt with or put aside. Avoid repeatedly focusing on drama.
+    **Progress reports** when you are managing managers you can have meetings to get the status of projects being worked.
+    Avoid **micromanagement**. Sometimes you will have to do it for projects assigned to junior engineers. Avoid it as habit. You can ask how they are measuing success and make it visible to you as ongoing basis. If the team is making progress, the system is stable, and PM happy, we are good. Team should know and understand the quareter goals, year, etc...
+    Delegation is not abdication. You are still expected to ensure the project succeeds.
+    Create a culture of **continious feedback**. Managers and peers should note when things are giong well and raise issues as they happen. Every week there should be one thing you can recognize about someone in your team. If a misstep happens, provide the feedback quickly.
+    Managers are responsible for **providing feedback**, aggregating it and summaraizing it to the person. Account for the whole year. Keep notes. Use concrete examples. Spend time on accomplishments and strengths. Keep areas of improvement focused. Don't report blidnly all feedback. Filter out the useful one. Feedback should indicate skills needed to expand to promote. Avoid big surprises, if someone underperforms they should know already.
+    As a manager, you need to learn how the game is played in your company.
+    **Firing underperformers** is hard. You write a performence improvement plan, with objectives and a fixed period of time. Sometimes it's not accomplishable and it's a nice way to give the person time to look for another job. There should be no surprises, you should have provided and recorded feedback many times.
+    As a manager, you need to stay enough in code to understand botlenecks, and process problems.
+    Infrequent releases can hide pain points such as poor tooling, heavy manual testing, features too big.
+    The **bullshit umbrella* your team should be able to focus on what needs to be done, without being distracted by the wider drama, politics, changes happening in the company. Help your team focus on the key important goals.
+    Managers are accountable for team's progress.
+    Create a **data driven team culture**. You should know how much time we spend working on features, QA, outages.
+    A manager should **think two steps ahead** and know where the product roadmap is going.
+    Run **retrospective meetings** for the day to day processes or every release. Is the team happy about how they get the requirements, do they feel good about the code quality?
+    You should have an environment where disagreement works itself out, not one where we pretend disagreement doesn't exist.
+    Setup processes to **depersonalize decisions**. Start with understanding risk, goals, etc... Someone on the team owns making the decision.
+    The **brilliant jerk** is a toxic employee that produces outsized results, but is ego-driven, creates a mix of fear and dislike.
+    You will have to do **project management** work: estimate if the team can take certain projects, decide which ones to take, and push back. You will have to decide when to push for a hack implementation and when to hold back for the right one.
+    Pairing with engineers when you join a company is useful to understand the rythm.
+    **Managing managers** involve headcount management and planning, career growth and training for the org, ensuring smooth execution of complex deliverables. Very strong communicator, can explain technical concepts to non-technical partners, and business direction to the technology team. Helping teams articulate goals that support the business initiatives. At this point there is probably no time for technical work.
+    Need to **differenciate between urgent and important**. I.E preparing meetings to drive them in a health way is important but not urgent. Have agendas upfront. There should be expected procedure and outcomes. If people is doing other things, the meeting is useless.
+    Thinking about the future is important and not urgent: Writing job descriptions for roles you are hiring, developing a hiring plan, reviewing a project plan, talk to another manager if there are discrepancies about a project.
+    You must **balance breath and depth of thinking**, for knowing the details of your teams today but knowing where you are going and what you need to do to get there.
+    Have a mental list of things you are monitoring, things you are trying to fix.
+    Delegate tasks that ocurr frequently.
+    Always respond with your manager yes, we can do this project, but will delay something else, etc...
+    Durable teams are built on a shared purpose that comes from the company itself, and align themselves with the company's values. They have clear understanding on the company mission.
+    We engineers automate so we can focus on the fun stuff.
+    Don't answer emails after work, do vacation, don't overwork, do something fun at the weekend to **avoid burnout**.
+    **Skip-level meetings** help manager get perspective on the health and focus of the teams. You can treat what do you like most/less, who do you work with recently, who in the team does well, feedback for the manager. You can do it in group, with lunch.
+    Managers should be helping ICs succeed, and avoid: unstable product roadmap, errant tech lead, fulltime firefighting mode.
