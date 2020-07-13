@@ -848,9 +848,9 @@ The Bogleheads' Guide to Investing
 The Manager's Path: A Guide for Tech Leaders Navigating Growth and Change
     Managers should help you grow in your career, teach skills, provide valuable feedback, navigate difficult situations, help you figure out what you need to learn, help you understand what is important to focus on and to have that focus.
     **One to one meetings** with your direct manager are essential. They **create human connection** between you both, letting your manager into your life is important. Being able to talk important personal events or noticing if your reporter is under stress is important. Your manager should know that you have life outside work and you should spend some time talking about it. The second purpose is to speak privately about matters with your manager. 1:1s are not status meetings. Come with an agenda for things to discuss. Every week is good frequency.
-   Managers should **provide feedback**. If you do something good or bad they should let you know. The sooner the better. Keep track of this feedback, use it in reviews. Public if it's praise, as it reinforces positive behavior in the team, and private if it's criticism.
-   Managers should show the larger picture of how your work fits into the team's goals and provide purpose.
-   The more senior, the less the personal feedback you will get. You will instead get strategy related input.
+    Managers should **provide feedback**. If you do something good or bad they should let you know. The sooner the better. Keep track of this feedback, use it in reviews. Public if it's praise, as it reinforces positive behavior in the team, and private if it's criticism.
+    Managers should show the larger picture of how your work fits into the team's goals and provide purpose.
+    The more senior, the less the personal feedback you will get. You will instead get strategy related input.
     Managers help with **career growth** via training, promotion, and compensation. They should point out to projects, feedback on areas to develop and learn. Good managers know how the promotion system works and help reporters build those achievements and skills. Strong managers have strong networks, they can get ICs attention and feedback from important people.
     ICs should advocate for themselves,
     Use someone who recently onboarded as **onboard buddy**.
