@@ -1,8 +1,24 @@
-*Manuals*
+*$ man*
+
+Vi
+    Filter out unwanted lines
+    *:%!grep -v foo*
+    Remove duplicates
+    *:%!sort -u*
+    Send output to vim
+    *| vim -*
+    Repeat the last step
+    *.*
+    Vertical selection
+    *CTRL+v*
 
 Bash tricks
     Append a character at the end of every line of the file:
     *$ sed '/.*?/ ! s/$/new_suffix/' in.txt > out.txt*
+
+tar
+    tar -czvf out.tar.gz folder/ # compress folder
+    tar -xvf out.tar.gz # decompress archive
 
 recon ng
     > show modules
