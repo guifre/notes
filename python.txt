@@ -29,3 +29,11 @@ list = [elem.func() for elem in list]*
     *list = [elem.func() for elem in list
 if elem != ""]*
 
+pyenv
+    *$ mkdir foo ;\
+virtualenv foo ;\
+cd foo ;\
+source ./bin/activate ;\
+pip install bar ;\
+python baz.py ;\
+deactivate*
