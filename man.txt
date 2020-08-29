@@ -1,20 +1,19 @@
 *$ man*
 
 Vi
-    Filter out unwanted lines
-    *:%!grep -v foo*
-    Remove duplicates
-    *:%!sort -u*
-    Send output to vim
-    *| vim -*
-    Repeat the last step
-    *.*
-    Vertical selection
-    *CTRL+v*
+    *:%!grep -v foo # Filter out unwanted lines*
+    *:%!sort -u # Remove duplicates*
+    *| vim - # Send output to vim*
+    *.* # Repeat the last step
+    *CTRL+v # Vertical selection
+    *10x # Delete the 10 following characters*
+    *10dw # Delete the 10 following words*
+    *6dd # Delete 10 lines*
 
 Bash tricks
     Append a character at the end of every line of the file:
     *$ sed '/.*?/ ! s/$/new_suffix/' in.txt > out.txt*
+    *$ find . -type f -exec mv {} . \; # finds all files and moves them to the root (mac tested).*
 
 tar
     tar -czvf out.tar.gz folder/ # compress folder
@@ -78,8 +77,8 @@ nmap
     Nmap search through Nmap Scripts for a specific keyword
     *$  ls /usr/share/nmap/scripts/\* | grep ftp *
 
-Metaslpoit
-    Statring metasploit
+Metasploit
+    Starting metasploit
     *$ service postgesql start; update-rc.d postgresql enable; msfconsole; db_rebuild_cache*
     MSFconsole
         Entry point for the framework
@@ -182,13 +181,6 @@ tcp.flags.reset == 0*
     Find packet with specific sequence number:
     *tcp.seq == xxxx*
 
-Vi
-    Delete the 10 following characters:
-    **10x**
-    Delete the 10 following words:
-    **10dw**
-    Delete 10 lines:
-    **6dd**
 
 Tcpdump
     *$ tcpdump -r file.pcap # saves output to file.pcap*
@@ -300,11 +292,11 @@ Bash quoting
 16 | "${arr[0]}" | apple       | array access works inside ""
 17 | $'$a\''     | $a'         | single quotes can be escaped inside ANSI-C quoting
 ---+-------------+-------------+--------------------------------------------------------------------*
+
 Tcpdump
     options: host, net, and port.
     host:  src, dst
     Proto: tcp, udp, icmp, ah
-
 
 File parsing
     Print the 9th line of a  file that matches a regex.

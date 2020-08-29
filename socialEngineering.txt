@@ -935,7 +935,6 @@ The Manager's Path: A Guide for Tech Leaders Navigating Growth and Change
     Don't answer emails after work, do vacation, don't overwork, do something fun at the weekend to **avoid burnout**.
     **Skip-level meetings** help manager get perspective on the health and focus of the teams. You can treat what do you like most/less, who do you work with recently, who in the team does well, feedback for the manager. You can do it in group, with lunch.
     Managers should be helping ICs succeed, and avoid: unstable product roadmap, errant tech lead, fulltime firefighting mode.
-Manager path
 
     Managers should make skip manager life easier, so they don’t have to focus on the details but only on the big picture.
     If the team does a lot of fire fighting, the manager should put together a plan to tackle this. If needed hire more.
@@ -969,3 +968,18 @@ Manager path
     Great managers are masters of **working through conflict**. Take your ego out of the conversation. To find a clear view of a complex situation, you must see past your interpretations.
     Use **curiosity** to get away from your ego. Write a page or two every day of free flow thoughts to clear your mind.
     Investigate your emotional reactions, when they make it hard to see what is going on, and learn from them.
+
+Extreme Ownership
+    The only meaningful measure for a leader is whether the team succeeds or fails. **Effective leaders** lead successful teams that accomplish their mission ans win.
+    A leader takes **complete ownership** of everything that goes wrong with his team. Even if it means getting fired. This will help you make the right decisions to win.
+    If a IC doesn't do what they should, it's the leader responsibility for not explaining the strategic mission, developing tactics, or securing the training etc... to successfully execute.
+    You must **remove individual ego** and personal agenda and have extreme ownership to succeed. It's all about the mission.
+    Own every failure or shortfail, look for solutions to prevent it.
+    Leaders must be able to detach from the tactical mission and understand how it fits into strategic goals.
+    You must understand the decisions coming from your leadership so you can explain and make sense of them.
+    **Ego clouds** disrupt everything: planning process, ability to take good advice, and accept constructive criticism.
+    Check your ego and **operate with high degree of humility**.
+    Every Ic fault is your fault. Maybe documentation wasn't clear, procedures, etc..
+    Departments and groups must work together towards the same goal.
+    Leaders must start by understanding the mission, analyzing it and giving directives to the team.
+
