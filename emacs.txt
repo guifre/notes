@@ -1,0 +1,16 @@
+
+Headlines
+    *\* Top level headline
+    \*\* Second level
+    \*\*\* Third level
+    some text
+    \*\*\* Third level
+    more text
+    \* Another top level headline*
+
+Files
+    C-x C-s # save document
+    C-x C-f # open document
+
+Others
+    TAB # fold/unfolds
