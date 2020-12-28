@@ -1,6 +1,6 @@
 *Social engineering*
 
-How to make friends and influence people
+How to win friends and influence people
     Find below some pointers on how to behave when addressing a conversation with someone. So far, mostly extracted from the book: How to make friends and influence people by Dale Carnegie.
 
     **Do no criticize, condemn or complain**; it makes you look bad. To teach something to someone, **punishment for bad behavior works worse than reward for good one**. Incentivize people. I.E a pilot almost dies because a mechanic used the wrong fuel for the plane. Instead of being mad at him, he tells the mechanic to service again the plane for tomorrow, that he is sure that it won't happen again.
@@ -788,7 +788,7 @@ Mr Money Mustache Blog
 
     Companies that have recently been enjoying growing profits, and are flashy and exciting and thus expected to see continued profit growth, are rewarded with higher P/E ratios and thus higher stock prices. A good example of a currently stylish company is Google, which trades at a P/E of 20 (Google's shares are worth $500 each, because their earnings per share are $25, multiplied by the P/E of 20). A less flashy but still very profitable counterexample would be the oil company Chevron. Its share price is only about $100 – earnings per share are $10.30 and the P/E ratio is a nice conservative 9.71. If the P/E ratio were the same as Google, Chevron stock would be worth over $200! This is because investors expect Google to grow much faster than Chevron over the coming years. But since nobody can really predict
 
-    You ask the typical person, even here in the United States: What would you rather have: A gigantic amount of money, but be overweight and/or fragil to the point of needing an elevator to get up to the sixth floor of a building, or just a comfortable amount of money and a gold-quality, healthy energetic mind and body that keeps you jumping around having fun with no health issues until you're 100 years old. But yet the surprising truth is that most people are actually spending most of their time (40+ hours per week) pursuing the Wealth rather than the Health. Then the Wealth is often invested in unhealthy activities like sedentary sightseeing vacations, eating two-thousand-calorie restaurant meals, and gas-powered recreational pastimes like motorboating and ATV riding.
+    You ask the typical person, even here in the United States: What would you rather have: A gigantic amount of money, but be overweight and/or fragile to the point of needing an elevator to get up to the sixth floor of a building, or just a comfortable amount of money and a gold-quality, healthy energetic mind and body that keeps you jumping around having fun with no health issues until you're 100 years old. But yet the surprising truth is that most people are actually spending most of their time (40+ hours per week) pursuing the Wealth rather than the Health. Then the Wealth is often invested in unhealthy activities like sedentary sightseeing vacations, eating two-thousand-calorie restaurant meals, and gas-powered recreational pastimes like motorboating and ATV riding.
 
     Your **new snack around the house is almonds and walnuts. Bananas with all-natural peanut butter. Apples, mangos, cheese, eggs, beans of all sorts, delicious slabs of fish, chicken, rice, all the olive oil you want, lots of spices, whey protein powder mixed with milk, burritos, cilantro, salads with rich natural oily dressing.. stuff like that. You're not on a low fat diet – you're just on a low-processing diet. Your appetite will adjust to start taking in the right number of calories (instead of too many) as soon as you drop refined flour and sugar from the diet.
 
@@ -1052,7 +1052,16 @@ Invicto: Logra Más, Sufre Menos
 
     **La gratitud** sirve para evitar la envidia.
 
-    Hay las siguiented **distoriones cognitivas**: 1) **Razonamiento emocional**: asumimos que nuestras emociones son un reflejo fiel de la realidad. 2) **Catastrofizar**: Magnificamos nuestros problemas. 3) **Generalizar con exceso**: Asumimos que ciertos eventos puntuales son representativos del global. 4) **Pensamiento blanco y negro**: éxito o fracaso. La realidad es compleja y casi siempre hay una gran gamma de grises. 5) **Filtro negativo**: Aspectos negativos nos impiden ver lo positivo. 6) **Descalificación de lo positivo**: Tendemos a minimizar lo positivo. 7) **Adivinar el futuro**: Asumimos que la experiencias pasadas predicen las futuras. O **Profecía autocumplida** si empiezas una dieta con pocas aspectativas es probable que no la termines. 8) **Lectura del pensamiento** Asumimos que sabemos lo que otros piensan sin tener pruebas. Sin evidencia, asume que la ignoracia tiene más que ver que la mala fe. 9) **Etiquetamiento**: Evaluamos personas a partir de incidentes muy concreto.
+    Hay las siguiented **distoriones cognitivas**:
+        **Razonamiento emocional**: asumimos que nuestras emociones son un reflejo fiel de la realidad.
+        **Catastrofizar**: Magnificamos nuestros problemas.
+        **Generalizar con exceso**: Asumimos que ciertos eventos puntuales son representativos del global.
+        **Pensamiento blanco y negro**: éxito o fracaso. La realidad es compleja y casi siempre hay una gran gamma de grises.
+        **Filtro negativo**: Aspectos negativos nos impiden ver lo positivo.
+        **Descalificación de lo positivo**: Tendemos a minimizar lo positivo.
+        **Adivinar el futuro**: Asumimos que la experiencias pasadas predicen las futuras. O **Profecía autocumplida** si empiezas una dieta con pocas aspectativas es probable que no la termines.
+        **Lectura del pensamiento** Asumimos que sabemos lo que otros piensan sin tener pruebas. Sin evidencia, asume que la ignoracia tiene más que ver que la mala fe.
+        **Etiquetamiento**: Evaluamos personas a partir de incidentes muy concreto.
 
     Detecta tus **pensamientos automáticos** y evalua si es una hipótesis que puede no ser cierta o si se ajusta a la realidad.
 
@@ -1106,9 +1115,67 @@ The One Minute Manager
     Leading with collaboration is far more effective than the 'command and control' system.
     Purpose of the team meeting is to let the team make keyu decisions about what they're going to do next.
     People who feel good about themselves produce good results.
-    A good manager doesn't make a decision for the IC, he shows them how to make decissions.
+    A good manager doesn't make a decision for the IC, he shows them how to make decisions.
     Manager makes sure ICs know what good performance looks like, and what are their goals. Feedback is important.
     **One minute praising**: Manager needs to catch people doing something right, and needs to tell ICs what they did right and how good the manager feels about it, and how it helps, asap. Encourage doing more of the same.
     **One minute redirects**: Everybody is a learner, things change quick. It helps people learn, as what they need to do differently. Make sure the goal set is understood, take responsability otherwhise. Remind the IC what he did wrong, tell him how you feel about it and the impact it has. Remind him that he is better than the mistake and that he has confidence and trust he will do better in the future.
     In order for managers to look good in the org, they need to catch ICs doing things wrong. You have to have a few winners, loosers, and people in the middle.
     Try catching ICs doing things approximately right and praise them.
+
+The Obstacle Is the Way: The Timeless Art of Turning Trials into Triumph
+    People blame politicians, other people, bosses, etc.. Only one thing is at fault: our attitude and approach.
+
+    Great individuals and great companies find a way to **transform weakness into strength**.
+
+    **The obstacle in the path becomes the path**.
+
+    Many of our problems come from having too much: rapid technological disruption, junk food, traditions that tell us how we are supposed to live our lives. Abundance can be its own obstacle.
+
+    Overcoming obstacles a discipline of three critical steps: 1) how we look at our specific problems, attitude or approach. 2) The energy and creativity with which we break them down and turn them into opportunities 3) cultivation and maintenance of inner will that lets us handle struggle.
+
+    **Obstacles are not to be expected but embraced**.
+
+    **Perception** is how we see and understand what occurs around us. Where one person sees a crisis, another can see opportunity. Where one loses control of emotions, another one can remain calm.
+
+    Humans keep biological baggage, we perceive threats that no longer exist.
+
+    **Discipline** lets you see the advantage and proper course of action in every situation, without panic or fear.
+
+    Situations are not good or bad, some people might perceive them as so. There is only the **story we tell ourselves about what it means**. Don't let negativity in, avoid panicking, so you can focus your energy on solving problems, rather than reacting to them.
+
+    Even in prison, deprived of nearly everything, some freedoms remain. Your mind remains your own.
+
+    Many problems come from applying judgment to things we don't control.
+
+    Most of the problems come from subjectivity. When someone explain us their problem we see clearly the solution and can help because we can be objectives.
+
+    If someone or a crowd intimidates you, picture them nude having sex.
+
+    **Perspective is everything**. What we tell ourselves what an obstacle means determines how daunting and trying it will be to overcome.
+
+    **What is up to us**? Our emotions, judgments, creativity, attitude, perspective, desires, decisions. **What isn't?** Everything else:weather, economy, circumstances, trends, disasters...
+
+    You live in the current moment. No matter if you have a good or bad job, bad economy etc.. the moment is the moment. The more you embrace it the easier it is to face and move.
+
+    If you think more about the obstacle than in the goal, which will triumph?
+
+    **Adversarial growth** what doesn't kill me makes me stronger is a fact. The struggle against an obstacle inevitably propels the fighter to a new level of functioning. Each obstacle we overcome makes us stronger for the next one.
+
+    In life, it doesn't matter what happens to you or where you came from. It matters wha you do with what happens and with that you've been given.
+
+    We must all **either wear out or rust out**.
+
+    **Defeat is nothing but education**. The first steps towards something better.
+
+    **Failure is an asset** if you learn something new.
+
+    Make difficult obstacles resolve themselves. I.E an impenetrable fortress can be turned into a prison when surrounded.
+
+
+
+Naval Podcast
+    **Over-achievers: you are not happy because you know too much. If you are so smart, why aren't you happy?
+    What you renounce will become your prison (prostitue
+    **Health is the most important thing we have** a sick man only wants one thing, a healthy man wants a thousand things
+    Everything great comes from something bad: bad health leaving caffeeine
+
