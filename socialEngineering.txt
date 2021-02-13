@@ -1327,4 +1327,112 @@ Almanack of Naval Ravikant
 
     **Modern struggle** Lone individuals summoning inhuman willpower, fasting, meditation and exercising. Against armies of scientists and statisticians weaponizing food, screens and medicine into junk food, clickbait news, porn, games, drugs.
 
-    Try everying, test it, be skeptical, keep what's useful, discard what's not.
+    Try everything, test it, be skeptical, keep what's useful, discard what's not.
+
+
+The Making of a Manager
+    Learn by doing. Make mistakes: try something figure out what works and what doesn't, and then you get better. You are a multiplier effect on your collective outcome.
+    Manager's **job** is:
+        have meetings with reports to help them solve problems
+        Share feedback about what is or isn't going well
+        Figure out who should be promoted and who should be fired
+        Build a team that works well together
+        Support members to reach career goals
+        Create processes to get work done efficiently
+        Make the team successful, make it deliver results and achieve great outcomes
+        Hire good individuals
+
+    To increase team's **likelihood of succeeding**:
+        Have a real team (clear boundaries, stable membership)
+        Compelling direction
+        Enabling structure
+        Supportive organizational context
+        Expert couching
+
+    Your work as manager is divided in three buckets:
+        **Purpose** is the outcome your team is trying to accomplish. Or the why, why we work on this instead of anything else we could do?
+        Your first job as a manager is to **ensure your team knows what success looks like** and cares about achieving.
+        **People**, if you don't have the right people for the right job, you in the environment they can thrive, then you're going to have problems.
+        To manage people well, you must develop a trusting relationship with them, understand their strengths and weaknesses and make good decisions about who should do what, coach, and fire.
+        **Process** or how your team works together. Running effective meetings, future proofing against past mistakes, planning for tomorrow, having a healthy culture.
+
+    You are judged on your team's outcomes, your job is to do whatever most helps them succeed. If your team lacks key skills, you need to hire or train. Make your individuals thrive.
+
+    **You are accountable** for the decisions you make. Those must be on the best interest of the team. Bad calls loses trust and makes you ineffective.
+
+    Role of a manager can be given or taken away, but leadership is something that must be earned. If your ICs don't trust or respect you, you will have limited ability to influence them.
+
+    When you join the team, make a list of the things that are awesome and the ones that could be better. Spend time calibrating with leadership group's goals, values and processes.
+
+    **Being a coach**: Your job now includes understanding your peer's career goals, projects suited to their strengths and interests, what they need help with, and how they are doing relative to the expectations. Give them feedback about what they are doing well and what they can improve.
+
+    Build a network of leaders with similar role as you outside your org.
+    During your first month, ask questions to calibrate expectations
+        What does it mean to do a great job vs an overage or poor job?
+        Can you share impressions of how you think project Y or metting X went?
+        I noticed X happened the other day, is this normal or should I be concerned?
+        What keeps you up at night? Why?
+        How do you determine what things to prioritize?
+
+    **Managing is caring**. You must respect and care about your report, there is no faking it. Focus on your report, his career aspirations, how he feels about his work.
+    **1:1** should be focused on helping him to be successful:
+        **Discuss top priorities**: critical outcomes for your report, how to tackle challenges.
+        **Calibrate what great looks like**
+        **Share feedback**: what can your report tell you that will make you more effective as a manager?
+        **Reflect on how things are going**
+
+    Empower your reports to find answers by themselves. They have more context.
+    Questions to ask in 1:1s.
+    To **identify** what matters to him:
+        What's on top of your mind right now?
+        What priorities are you thinking this week?
+        What is the best use of your time today?
+    To **understand** the root of the problem:
+        What does your ideal outcome look like?
+        What is hard in getting that outcome?
+        What do you care about?
+        What do you think is the best course of action?
+        What is the worst case scenario?
+    To **support** :
+        How can I help you?
+        What can I do to make you more successful?
+        What was the most useful part of our conversation today?
+
+    **Be transparent about your report's performance**. He should have a clear sense at all times of what your expectations and where he stands? He should know at all time what you think of them.
+    **Apologize**, admit that you screwed up when you do the wrong thing. People will forget what you did and what you said, but **they will never forget how you made them feel**.
+    **Empathy** is the most helpful action in tough times, not advice or answers.
+    Reports are more likely to succeed when using their strengths.
+    Don't let your worst performers dominate your time.
+    If a report is not set to succeed in his current role, support him in moving on.
+    
+    If a report **wants to be promoted**, make sure you point out the gaps he needs to work on to achieve it.
+
+    The best way to **provide feedback** is to make the listener feel safe, that you care about him and want him to succeed. Always ask after providing the feedback if this makes sense to him. If you are not sure if he understood, ask: let's make sure we are on the same page, what are your takeaways and next steps?
+    Template: When I [heard/observed/reflected on] your [action/behavior/output] I felt concerned because ... I'd like to understand your perspective and resolve it.
+
+    **Ask your manager to calibrate yourself**: What opportunities do you see for me to do more of what I do well? What do you think are the bigger things holding me back from having more impact? What skills an hypothetical perfect person should have?
+
+    **Understand yourself at your best and your worst**: Learn about what enabled you to be your best, I.E: sleep at lest 8h. do something productive in the morning to keep motivated, understand the outcome you want, have trust, feel like you are learning and growing.
+
+    **Journal** write something everyday that you are proud of. Exercise 15 mins in the morning to get a sense of accomplishment.
+
+    **What great meetings look like**: Are simple and straightforward, makes you feel: It was a good use of your time, I learnt something new to do my job mor effectively, I have a clear sense of what to do next, everyone was engaged, I felt welcomed.
+
+    Sometimes you have to **disagree and commit* for the sake of moving forward quickly. **Great decision making meetings**: Gets a decision made, include people affected by the decision and other decision makers, presents all credible options with relevant info, include's team recommendation, equal time for each option.
+
+    **Informational meetings**: Get together periodically with your team to highlight important work, share new tools, processes, discuss lessons learned. They should accomplish: team should feel like they learned something useful, conveys key messages, keeps audience attention.
+
+    **Brainstorming meetings**: produces non-obvious solutions, people has time to think of ideas, helps ideas evolve, ends with a clear next steps.
+
+    **Team bonding meetings**: creates better understanding and trust between participants, encourages people to be open and authentic, makes people feel cared about.
+
+    Ensure only the necessary people is in the meetings, it will be more productive.
+    After each meeting, send a recap, with action items, and who owns them and ECD.
+
+    **Hiring**: Understand how they have done in the past in similar projects to see how they will perform in the new role. That's why internships are useful, to assess the quality of their output.
+
+    **Interview questions**: kinds or challenges they like, favourite projects, to see what they are passionate about. Ask what they want to do in 3 years to see ambitions. Hardest conflict? to see how they work with other people.
+
+    **80/20 rule** 20% of the work produces 80% of the results. Identify what is this 20%.
+
+    **Cultivate playbooks**: How to run an effective meeting, how to close a new hire, how to complete a project.
