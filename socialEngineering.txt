@@ -1219,7 +1219,7 @@ Almanack of Naval Ravikant
 
     Play iterated games. All returns in life (wealth, relationships, knowledge) come from **compound interest**. The same happens with reputation, keep building it.
 
-    Wealth creation is an evolutionarily recent **positive-sum game**. Status is an old **zero-sum game**, it's hierarchical, playing it since money tribes. Politics and sports are examples of status game. To be athe winner, there must be a  loser. They are a necessary evil but you shouldn't like them.
+    Wealth creation is an evolutionarily recent **positive-sum game**. Status is an old **zero-sum game**, it's hierarchical, playing it since money tribes. Politics and sports are examples of status game. To be athe winner, there must be a loser. They are a necessary evil but you shouldn't like them.
 
     **long term game** is a positive sum, we are all baking the pie and make it as big as possible. In the **short term game** we're cutting the pie.
 
@@ -1444,7 +1444,7 @@ How to Fail at Almost Everything and Still Win Big
         Experts
         Scientific Studies
         Common Sense
-        Pattern recorgnition
+        Pattern recognition
     I.E if after eating popcorn you fart every time a lot, it's a good pattern, not science but still useful.
 
     Failure always brings something valuable with it.
@@ -1607,3 +1607,98 @@ Trillion Dollar Coach
     Listen, observe and fill the communication and understanding gaps between people.
 
     **Build communities** inside and outside work. A place is much stronger when people are connected.
+
+
+Working Backwards
+    long-term interest of share-owners are perfectly aligned with the interest of customers.
+    Amazon culture:
+        **Customer obsession** instead of competitor obsession
+        Willingness to **think long term**, longer investment horizon than most of our peers
+        **Eagerness to invent** and willingness to fail
+        Taking professional pride in **operational excellence**
+
+    Practical methodologies to make culture actionable:
+        **Bar Raiser hiring program**: Ensures that the company continues to acquire top talent.
+        Bias for **separable teams run by leaders with a singular focus** that optimizes for speed of delivery and innovation
+        Use of **written narratives** instead to slide decks to help understand complex issues.
+        Relentless **focus on input metrics** to ensure teams work on activities that propel the business.
+        **Working backwards**: from the customer experience.
+
+    **Bar Raising program**: Allows the company with methods to make strongest hires efficiently without cutting corners.
+
+    For each initiative, there is a **single leader** whose focus in that project alone.
+
+    PowerPoint is not the best format to communicate complex information. **Six-page narratives** enables everyone in a meeting to get up to speed quickly on the project that the team is working on.
+
+    Narratives for quarterly and yearly business updates require both the writer and reader to dive deep and insist on the highest standards.
+
+    The Press Release/FAQ process reinforces customer obsession, starting with the customer needs and working backwards from there.
+
+
+    **Data-driven decision making** and frequent auditing from everyone we work with is the basis for **dive deep** lp.
+    Leaders have relentlessly high standards. Many people think these standards are unreasonably high.
+    Phrase that appears in LPs and tenets: **Unless you know better ones**. Reminds people to always seek and improve status quo.
+    LPs
+        Customer obsession
+        Ownership
+        Invent and Simplify
+        Are Right, A lot.
+        Learn and Be Curious
+        Hire and Develop the Best
+        Insist on Highest Standards
+        Think Big
+        Bias for Action
+        Frugality
+        Earn Trust: Be self-critical.
+        Dive Deep: Leaders operate at all levels, stay connected to details, audit frequently, and are skeptical when metrics and anecdotes differ, no task in beneath them.
+        Hack Backbone, Disagree and Commit
+        Deliver Results
+
+    These principals are codified in every one of our core processes (hiring, performance management, planning, operating cadence, career development).
+    **Good intentions don't work. Mechanisms do**. If you don't change the underlying condition that created a problem, the problem will recur.
+
+    S-Team goals must be Specific, Measurable, Attainable, Relevant, and Timely (SMART). Only 3/4 of the goals should be achieved. If you do all, it means you set a bar too low. Goals are tracked with status: green (on track), yellow (risks of missing the goal), or red ( will not likely hit the goal).
+
+    **Hiring**: We want missionaries not mercenaries.
+    **Confirmation bias** tendency for people to focus on the positive elements that others identify and ignore the negatives, and contradictory signals.
+    **Personal bias**: instinct to surround yourself with people who are like you (education, professional experience, life experience).
+
+    **Bar Riser program**: creates a scalable, repeatable, formal process for consistently making appropriate and successful hiring decisions.
+    New hires should **raise the bar** be better in one important way than the other members of the team they join. Aimed at reducing personal bias, and maximize data-based hiring decisions.
+
+    Direct reports should now interview a prospective boss. Direct report will learn about the candidate's weaknesses and other employees views on those. During the interview behavioral questions try to understand if they personally have solved similar problems to the ones they will face. We don't ask about their resume.
+
+    **STAR** interview mechanism: what was the situation, what were you tasked with, what actions did you take, what was the result? What the interviewee solved vs the team.
+
+    Only four options: strongly inclined/not inclined. No undecided option. You can't see others feedback until you submitted yours.
+
+    **Velocity**: Measures both speed and direction.
+
+    **Single-Threaded-Leadership**: single person, owns a single major initiative.
+
+    Amazon focuses on controllable input metrics instead of output metrics. Morale is an output metric, freedom to invent an build an input metric. If you clear the impediment of building, morale takes care of itself.
+
+    **Two pizza team**: The team should not be larger than the number of people you can feed with two large pizzas.
+        **Be small**: no more than 10 people.
+        **Be autonomous**: no need to coordinate with other teams to do work.
+        **Be evaluated** by a well-defined fitness function. I.E in charge of adding selection in a product category: how many new items, how many units of those items.
+        **Be monitored in real time**
+        **Be the business owner**: team takes all the decisions for the product.
+        **Be lead by a multi-disciplined top-flight leader**: who must have good business judgement. Also known as **Single threaded leader**.
+
+    **Microservices** Helped assign ownership to code and let teams use API to integrate, reducing integration time.
+
+    **Six-Pager** Is used to describe, review, or propose just about any type of idea, process, or business.
+
+    **Press Release/FAQ**: Linked to the working backwards process for new product development.
+
+    **Ban to PowerPoint**: No matter how complex or nuanced the concepts are, they are presented as small blocks of text, short bullet pointed lists, or graphics. The slide deck alone is insufficient to convey or serve as a record of the complete argument at hand. Also, the stage presence or charm of the presenter cna unintentionally blind the audience's questions/concerns.
+
+    **Written narrative** contains seven to nine times the information density of our typical powerpoint presentation.
+
+    **People read three times faster than the typical presenter talks**.
+
+    **How to conduct a meeting with narratives**: Narratives are distributed at the start of the meeting and read by all in the attendance during the time that would normally be taken by the slide deck presentation (20 minutes aprox). People take notes. Once everyone finishes the conversation about the doc begins. Two-Thirds of the meeting is for discussing what we read. The discussion main points are captured, and become part of the output.
+
+    **Six Pager**: First, it calls out key tenets that the proposal relies upon, a foundational element of the reasoning that led us to make this recommendation. Tenets give the reader an anchor point to evaluate the rest. Strong six-pages will contain FAQs anticipating counterarguments, points of contention, or statements that might be miss-interpreted. Quarterly business review narrative: Introduction, Tenets, Accomplishments, Misses, Proposal for Next Steps, Period, headcount, P&L, FAQ, Appendices.
+
