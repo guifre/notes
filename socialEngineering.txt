@@ -1649,7 +1649,7 @@ Working Backwards
         Think Big
         Bias for Action
         Frugality
-        Earn Trust: Be self-critical.
+        Earn Trust: Leaders listen attentively, speak candidly, and trat others respectfully. They are vocally self-critical.
         Dive Deep: Leaders operate at all levels, stay connected to details, audit frequently, and are skeptical when metrics and anecdotes differ, no task in beneath them.
         Hack Backbone, Disagree and Commit
         Deliver Results
@@ -1701,4 +1701,33 @@ Working Backwards
     **How to conduct a meeting with narratives**: Narratives are distributed at the start of the meeting and read by all in the attendance during the time that would normally be taken by the slide deck presentation (20 minutes aprox). People take notes. Once everyone finishes the conversation about the doc begins. Two-Thirds of the meeting is for discussing what we read. The discussion main points are captured, and become part of the output.
 
     **Six Pager**: First, it calls out key tenets that the proposal relies upon, a foundational element of the reasoning that led us to make this recommendation. Tenets give the reader an anchor point to evaluate the rest. Strong six-pages will contain FAQs anticipating counterarguments, points of contention, or statements that might be miss-interpreted. Quarterly business review narrative: Introduction, Tenets, Accomplishments, Misses, Proposal for Next Steps, Period, headcount, P&L, FAQ, Appendices.
+
+    **Working backwards**: Start with the customer and work backwards. Systematic way to vet ideas and create new products. Key tenet is to start defining the customer experience and iteratively work backwards from that until the team achieves clarity of thought around what to build.
+
+    **PR/FAQ**: Writing the press release and FAQ before building the product. It let's you focus on the most important issues moving forward. Highlights the customer experience. The most senior attendees speak last to avoid influencing others. it's a living document that will be reviewed and maintained. Parts of the doc:
+        Heading
+        Subheading: describe the product in one sentence.
+        Summary Paragraph: summary of the product and benefit
+        Problem Paragraph: describe the problem the product is designed to solve, written from the customer point of view.
+        Solution Paragraph: Describe the product in details and how it solves the problem.
+        FAQ component
+
+    **Metrics**: We have little direct control over output metrics. It's important to focus on the **controllable input metrics**, activities you directly control, which ultimately affect output metrics. start with the customer and work backwards to align metrics with customer experience.
+        Inputs can be selection, price, or convenience. Things you can control and customers care. They measure things that if done right bring the desired result to output metrics.
+        Output metrics are things like orders, revenue, and profit. They are important but can't be manipulated in a sustainable manner over the long term.
+
+    **Weekly Business Review (WBR)**: Provides insights about the business. It's a tactical operational meeting to analyzer performance trends of the prior week. First you need to select and define the metrics you want to measure. For that, you need to understand how inputs affect outputs in your system. There's a deck of metrics and each person is responsible for its section. Metrics are monitored in real time. Each service receives an alarm to identify outages instantly. A good dack uses consistent format throughout. During the meeting attendees focus on variances. The goal of the meeting is to discus exceptions and what is being done.
+
+    Business owners own metrics and are prepared to explain variances.
+
+    Operational and strategic discussions are kept separate.
+
+
+    **Flywheel spins faster**: A Close loop of input metrics driving a single output (growth). Inputs are customer experience, traffic, sellers, selection.  The better customer experience the leads to more traffic, which attracts more sellers, which leads to wider selection, which improves customer experience. The cycle drives growth which lowers cost structure.
+
+    **Correction of errors (CEOs) process is based on the 5 whys method. When you see an anomaly ask why it happened and iterate with another why? until you get to the underlying factor.
+
+    Mistakes should be acknowledged as a change to take ownership, understand root cause and learn from experience. Culture encourages to discuss mistakes.
+
+    **Andon Cord** When a worker notices a quality problem they can pull a cord that stops the entire assembly line.
 
