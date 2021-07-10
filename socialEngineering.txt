@@ -423,7 +423,7 @@ The 7 Habits of Highly Effective People
 Rich Dad, Poor Dad
     **Rat race**: Working for your salary, increasing your expenses/taxes when your salary goes up and being stuck in this cycle.
     Education is the foundation of success.
-    The reason the rich get richer, the poor poorer and the middle class strugles is because the subject of money is taught at home, not in school.
+    The reason the rich get richer, the poor poorer and the middle class struggles is because the subject of money is taught at home, not in school.
     Saying 'I can't afford it' makes your brain stop thinking. Saying 'how can I afford it' makes you think.
     Your house is a liability not an investment.
     Don't work for money, make your money work for you.
@@ -464,7 +464,7 @@ Rich Dad, Poor Dad
     **You want to learn a little about a lot**. I was a shy person so I became a salesman at Xerox.
     Job is an acronym for just over broke. Workers work hard enough to not be fired, and owners pay just enough so workers won't quit.
     Every year you get a pay raise and every year you will be disappointed.
-    Life is much like going to the gym, the hardest part is deciding to go. Oncee workout is over, you are always glad you went.
+    Life is much like going to the gym, the hardest part is deciding to go. Once workout is over, you are always glad you went.
     Maybe McDonal's does not make the best burger, but they are the best at delivering an average burger.
     The main management skills needed for success are: management of cash flow, management if systems, management of people, sales and marketing.
     Communication skills such as writing, speaking and negotiating are crucial to life success.
@@ -547,7 +547,7 @@ Atomic Habits
     We teach for standardized test instead of emphasizing learning, curiosity and critical thinking. **We optimize for what we measure**. When the measure becomes the target, it ceases to be a good measure.
     The more immediate and costly a mistake is, the faster you learn from it. I.E bad reviews. If you want to prevent bad habits adding an instant cost to the action is a great way.
     Having an **accountability partner** is useful. Knowing that someone is watching can be a powerful motivator.
-    Big five personality traits: curious and inventive vs cautious and consitent, organized and efficient vs easygoing and spontaneous, introvert vs extrovert, friendly vs challenging, anxious and sensitive vs confident and calm. You should build habits that work for your personality. Shape the exercise around your interest (I.E gym vs cycling). Work hard on the things that come easy.
+    Big five personality traits: curious and inventive vs cautious and consistent, organized and efficient vs easygoing and spontaneous, introvert vs extrovert, friendly vs challenging, anxious and sensitive vs confident and calm. You should build habits that work for your personality. Shape the exercise around your interest (I.E gym vs cycling). Work hard on the things that come easy.
     The human brain loves challenges, but only if it's within an optimal zone of difficulty. I.E playing tennis against someone who is much better than you is boring.
     The **Goldilock rule** states that humans experience peak motivation when working on tasks that are right on the edge of their current abilities.
     Reflection and review enables the long term improvement of all habits because it makes you aware of your mistakes and helps you consider possible paths for improvement.
@@ -1241,7 +1241,7 @@ Almanack of Naval Ravikant
 
     Your desires collide with reality. This is why it's easy to provide advice to friends (this girl wasn't for you, get over it. Try to acknowledge things publicly. Not hiding it to others you won't delude from what is going on.
 
-    Your ego is constructed in your first two decades by environment, parents and society. Then we spend the rest of our lifes trying to make our ego happy.
+    Your ego is constructed in your first two decades by environment, parents and society. Then we spend the rest of our life trying to make our ego happy.
 
     Tension is who you think you should be. Relaxation is who you are.
 
@@ -1255,7 +1255,7 @@ Almanack of Naval Ravikant
     When you are faced with **difficult choices**? Should I marry this person? Should I take this job? buy this house? If you can't decide, then the answer is no. Modern society is full of options.
     If you can't decide, then **take the path that is more painful short term**. Conflict avoidance is trying to push off the short term pain. You want to lean into things with short term pain and long term gain.
 
-    **Genuine love for reading is a super power**. Every pice of knowledge ever written is a fingertip away. Read an hour per day and you will be in the upper 0.%. Most of the books have one point to make, do not feel like you need to finish them.
+    **Genuine love for reading is a super power**. Every piece of knowledge ever written is a fingertip away. Read an hour per day and you will be in the upper 0.%. Most of the books have one point to make, do not feel like you need to finish them.
 
     Explain what you lean to someone, teaching forces learning.
 
@@ -1369,7 +1369,7 @@ The Making of a Manager
     Build a network of leaders with similar role as you outside your org.
     During your first month, ask questions to calibrate expectations
         What does it mean to do a great job vs an overage or poor job?
-        Can you share impressions of how you think project Y or metting X went?
+        Can you share impressions of how you think project Y or meeting X went?
         I noticed X happened the other day, is this normal or should I be concerned?
         What keeps you up at night? Why?
         How do you determine what things to prioritize?
@@ -1455,7 +1455,7 @@ How to Fail at Almost Everything and Still Win Big
 
     **Goal-oriented people** exist in a state of nearly continuous presuccess failure at best, and permanent failure at worst.
     **System people** success every time they apply their system (they did what intended to do). I.E loosing 2kg vs eating right and exercising regularly.
-    A system is something you do on a regultar basis that increases your odds of happiness in the long run.
+    A system is something you do on a regular basis that increases your odds of happiness in the long run.
 
     **We cheat our own future to appear generous today**. I.E skipping exercise to help 1h more at home, eat fast food to help a co-worker with a problem.
     Generous people take care of their own needs first, the world needs you at your best.
@@ -1491,9 +1491,9 @@ How to Fail at Almost Everything and Still Win Big
 
     Fake it until you make it. A promotion makes you more confident? Fake it today.
 
-    Where there is tolerance for risk as a kid, there is usually talent. I.E a kid accepting emarrassemnt risk in front of a crowd might become a good actor.
+    Where there is tolerance for risk as a kid, there is usually talent. I.E a kid accepting embarrassment risk in front of a crowd might become a good actor.
 
-    Successwise, you're better off being good at two complementary skilsl than excellent at one. I am not world class on any skills, but all combined give me a good market force.
+    Successwise, you're better off being good at two complementary skills than excellent at one. I am not world class on any skills, but all combined give me a good market force.
 
     People don't use reason for important decisions.
 
@@ -1543,7 +1543,7 @@ How to Fail at Almost Everything and Still Win Big
 
     **Bad mood* is deficit of: Flexible schedule imagination, sleep, diet or exercise.
 
-    No one wants to believe that the formula for happiness is as simple as daydreaming, contorlling your schedule, nappig, eating right, and being active every day.
+    No one wants to believe that the formula for happiness is as simple as daydreaming, controlling your schedule, napping, eating right, and being active every day.
 
     **Carvings can be manipulated** Once you enjoy the right type of food, you will be healthier.
 
@@ -1649,7 +1649,7 @@ Working Backwards
         Think Big
         Bias for Action
         Frugality
-        Earn Trust: Leaders listen attentively, speak candidly, and trat others respectfully. They are vocally self-critical.
+        Earn Trust: Leaders listen attentively, speak candidly, and treat others respectfully. They are vocally self-critical.
         Dive Deep: Leaders operate at all levels, stay connected to details, audit frequently, and are skeptical when metrics and anecdotes differ, no task in beneath them.
         Hack Backbone, Disagree and Commit
         Deliver Results
@@ -1716,7 +1716,7 @@ Working Backwards
         Inputs can be selection, price, or convenience. Things you can control and customers care. They measure things that if done right bring the desired result to output metrics.
         Output metrics are things like orders, revenue, and profit. They are important but can't be manipulated in a sustainable manner over the long term.
 
-    **Weekly Business Review (WBR)**: Provides insights about the business. It's a tactical operational meeting to analyzer performance trends of the prior week. First you need to select and define the metrics you want to measure. For that, you need to understand how inputs affect outputs in your system. There's a deck of metrics and each person is responsible for its section. Metrics are monitored in real time. Each service receives an alarm to identify outages instantly. A good dack uses consistent format throughout. During the meeting attendees focus on variances. The goal of the meeting is to discus exceptions and what is being done.
+    **Weekly Business Review (WBR)**: Provides insights about the business. It's a tactical operational meeting to analyzer performance trends of the prior week. First you need to select and define the metrics you want to measure. For that, you need to understand how inputs affect outputs in your system. There's a deck of metrics and each person is responsible for its section. Metrics are monitored in real time. Each service receives an alarm to identify outages instantly. A good deck uses consistent format throughout. During the meeting attendees focus on variances. The goal of the meeting is to discus exceptions and what is being done.
 
     Business owners own metrics and are prepared to explain variances.
 
@@ -1725,7 +1725,7 @@ Working Backwards
 
     **Flywheel spins faster**: A Close loop of input metrics driving a single output (growth). Inputs are customer experience, traffic, sellers, selection.  The better customer experience the leads to more traffic, which attracts more sellers, which leads to wider selection, which improves customer experience. The cycle drives growth which lowers cost structure.
 
-    **Correction of errors (CEOs) process is based on the 5 whys method. When you see an anomaly ask why it happened and iterate with another why? until you get to the underlying factor.
+    **Correction of errors (CEOs)** process is based on the 5 whys method. When you see an anomaly ask why it happened and iterate with another why? until you get to the underlying factor.
 
     Mistakes should be acknowledged as a change to take ownership, understand root cause and learn from experience. Culture encourages to discuss mistakes.
 
