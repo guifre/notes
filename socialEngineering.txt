@@ -938,21 +938,21 @@ The Manager's Path: A Guide for Tech Leaders Navigating Growth and Change
     **Skip-level meetings** help manager get perspective on the health and focus of the teams. You can treat what do you like most/less, who do you work with recently, who in the team does well, feedback for the manager. You can do it in group, with lunch.
     Managers should be helping ICs succeed, and avoid: unstable product roadmap, errant tech lead, fulltime firefighting mode.
 
-    Managers should make skip manager life easier, so they don’t have to focus on the details but only on the big picture.
+    Managers should make skip manager life easier, so they don't have to focus on the details but only on the big picture.
     If the team does a lot of fire fighting, the manager should put together a plan to tackle this. If needed hire more.
-    As a manager don’t try to make everyone happy, align with your manager and org.
+    As a manager don't try to make everyone happy, align with your manager and org.
     Ask your ICs about the daily work they do you should understand it, be curious. Focus on the areas you are less comfortable with.
-    **handling roadmap** split it into series if small deliverable. Don’t over-promise. Dedicate 20% of the time to tackle technical debt.
+    **handling roadmap** split it into series if small deliverable. Don't over-promise. Dedicate 20% of the time to tackle technical debt.
     Pick unknown areas and ask an engineer to explain it to you.
     Attend post-mortems. Keep up with the business trends.
     Ask the engineering team where the pain points are. Find productivity bottlenecks. Study how technology landscape might change in the future.
     Communicate bad news personally in 1:1 if possible not to big groups or impersonal emails.
-    Ask for advice to people. Don’t be afraid to repeat yourself. Ask if there is more you can do to help. Actively look for coaching and skill development in other places.
+    Ask for advice to people. Don't be afraid to repeat yourself. Ask if there is more you can do to help. Actively look for coaching and skill development in other places.
     Learn to communicate to non technical managers. Skill the tech details.
-    You are the model for your team: if you yell they will learn yelling is ok. If you apologise they will learn that it’s ok to make mistakes.
-    Don’t share worries that they can’t do anything about to mitigate.
+    You are the model for your team: if you yell they will learn yelling is ok. If you apologise they will learn that it's ok to make mistakes.
+    Don't share worries that they can't do anything about to mitigate.
     Take as much time as possible to learn about your employees life. They should feel they belong to a group that cares about them.
-    Instead of being angry, get curious when things don’t go well.
+    Instead of being angry, get curious when things don't go well.
     You want a team that can take risks and make mistakes. You need a bit of time of small talk to get sense of belonging and confidence.
     **Apologise** when you screw up. Do it honestly and briefly. The goal is to show you are aware your behaviour has impact on others.
     **be curious** learn how to turn disagreement into honest questioning.
@@ -964,8 +964,8 @@ The Manager's Path: A Guide for Tech Leaders Navigating Growth and Change
     Give **shout outs** for keeping it dope.
     Use **performance reviews** to align and evaluate team members values and company values. Reinforce desired behaviour in a positive way.
     Teams should be Cross functional: one team with backend fronted and PM working on the same product.
-    **Code review** is a valuable tool to ensure stability and long term quality of the codebase.  You want it to be straightforward and efficient since it’s in the critical path. Be clear about the expectations. It’s a socialization exercise so everyone gets familiar with the code.
-    **Outage postmorten** or learning review is not used to determine the cause but to learn from the incident. Don’t blame. Some takeaways might be more important than others.
+    **Code review** is a valuable tool to ensure stability and long term quality of the codebase.  You want it to be straightforward and efficient since it's in the critical path. Be clear about the expectations. It's a socialization exercise so everyone gets familiar with the code.
+    **Outage postmorten** or learning review is not used to determine the cause but to learn from the incident. Don't blame. Some takeaways might be more important than others.
     **Architecture reviews** is to familiarize the changes to the appropriate group.
     Great managers are masters of **working through conflict**. Take your ego out of the conversation. To find a clear view of a complex situation, you must see past your interpretations.
     Use **curiosity** to get away from your ego. Write a page or two every day of free flow thoughts to clear your mind.
@@ -1762,7 +1762,7 @@ The Culture Code
         Small, attentive courtesies (thank-yous, opening doors, etc.)
 
 
-    **Belonging cues** can’t be reduced to an isolated moment but rather consist of a steady pulse of interactions within a social relationship. Their function is to answer the ancient, ever-present questions glowing in our brains: Are we safe here? What's our future with these people? Are there dangers lurking? Modern society is an incredibly recent phenomenon/
+    **Belonging cues** can't be reduced to an isolated moment but rather consist of a steady pulse of interactions within a social relationship. Their function is to answer the ancient, ever-present questions glowing in our brains: Are we safe here? What's our future with these people? Are there dangers lurking? Modern society is an incredibly recent phenomenon/
 
     For hundreds of thousands of years, we needed ways to develop cohesion because we depended so much on each other.
 
@@ -1776,7 +1776,7 @@ The Culture Code
     Cohesion happens not when members of a group are smarter but when they are lit up by clear, steady signals of safe connection.
 
 
-    Building an environment that answers basic questions: Are we connected? Do we share a future? Are we safe? Let’s take them one by one.
+    Building an environment that answers basic questions: Are we connected? Do we share a future? Are we safe? Let's take them one by one.
 
 
     Team performance is driven by **five measurable factors**:
@@ -1801,7 +1801,7 @@ The Culture Code
 
     What mattered most in creating a successful team had less to do with intelligence and experience and more to do with where the desks happened to be located.
 
-    I used to like to try to make a lot of small clever remarks in conversation, trying to be funny, sometimes in a cutting way, he says. Now I see how negatively those signals can impact the group. So I try to show that I'm listening. When they're talking, I'm looking at their face, nodding, saying ‘What do you mean by that, ‘Could you tell me more about this, or asking their opinions about what we should do, drawing people out.”
+    I used to like to try to make a lot of small clever remarks in conversation, trying to be funny, sometimes in a cutting way, he says. Now I see how negatively those signals can impact the group. So I try to show that I'm listening. When they're talking, I'm looking at their face, nodding, saying ‘What do you mean by that, ‘Could you tell me more about this, or asking their opinions about what we should do, drawing people out."
 
     Top salespeople **hardly ever interrupt people**, and then rate them on that scale, you can deliver a powerful message,
 
@@ -1819,7 +1819,7 @@ The Culture Code
 
     kind of moment happens all the time in highly successful groups, because it has less to do with thanks than affirming the relationship.
 
-    Thank you for allowing me to coach you. The most powerful person in a group publicly express gratitude for one of the group’s least powerful members.
+    Thank you for allowing me to coach you. The most powerful person in a group publicly express gratitude for one of the group's least powerful members.
 
     Whatever you were before, you are a filmmaker now. We need you to help us make our films better. A closer look shows that it creates belonging by placing power and trust in the hands of the people doing the work.
 
@@ -1839,5 +1839,111 @@ The Culture Code
 
     Good listening is about more than nodding attentively; it's about adding insight and creating moments of mutual discovery.
 
-    Skilled listeners do not interrupt with phrases like Hey, here's an idea or Let me tell you what worked for me in a similar situation because they understand that it’s not about them. They use a repertoire of gestures and phrases that keep the other person talking.
+    Skilled listeners do not interrupt with phrases like Hey, here's an idea or Let me tell you what worked for me in a similar situation because they understand that it's not about them. They use a repertoire of gestures and phrases that keep the other person talking.
 
+
+
+The Four Agreements
+    As children, we didn't have the opportunity to choose our beliefs, but we agreed with the information that was passed to us from the dream of the planet via other humans.
+
+    We may have rebelled against them, but we were not strong enough to win the rebellion. The result is **surrender to the beliefs with our agreement**. I call this process the **domestication of humans**. And through this domestication we learn how to live and how to dream.
+
+    **Children are domesticated** the same way that we domesticate a dog, a cat, or any other animal. In order to teach a dog we punish the dog and we give it rewards. We train our children whom we love so much the same way that we train any domesticated animal: with a **system of punishment and reward**. We are told, "You're a good boy," or "You're a good girl.
+
+    **The reward feels good**, and we keep doing what others want us to do in order to get the reward. With that **fear of being punished** and that fear of not getting the reward, we start **pretending to be what we are not**, just to please others.
+
+    After a certain time we are afraid because we know that every time we do something wrong we are going to be punished.
+
+    **We are an autodomesticated animal**. We can now domesticate ourselves according to the same belief system we were given, and using the same system of punishment and reward. We punish ourselves when we don't follow the rules according to our belief system; we reward ourselves when we do.
+
+    There is **something in our minds that judges everybody and everything**, including the weather, the dog, the cat — everything. The inner Judge uses what is in our Book of Law to judge everything we do and don't do, everything we think and don't think, and everything we feel and don't feel. Everything lives under the tyranny of this Judge.
+
+    There is **another part of us that receives the judgments**, and this part is called the Victim. The Victim carries the blame, the guilt, and the shame. It is the part of us that says, "Poor me, I'm not good enough, I'm not intelligent enough, I'm not attractive enough, I'm not worthy of love, poor me."
+
+    Every time we do something that goes against the Book of Law, the Judge says we are guilty, we need to be punished, we should be ashamed. This happens many times a day, day after day, for all the years of our lives. And this is all based on a belief system that we never chose to believe.
+
+    Death is not the biggest fear we have; our biggest fear is taking the risk to be alive. The risk to be alive and express what we really are.
+
+    We have learned to live by other people's points of view because of the fear of not being accepted and of not being good enough for someone else.
+
+    During the process of domestication, we form an image of what perfection is in order to try to be good enough. We create an image of how we should be in order to be accepted by everybody.
+
+    We know we are not what we believe we are supposed to be and so we feel false, frustrated, and dishonest. We try to hide ourselves, and we pretend to be what we are not. The result is that we feel unauthentic and wear social masks to keep others from noticing this.
+
+    **Nobody abuses us more than we abuse ourselves**, and it is the Judge, the Victim, and the belief system that make us do this.
+
+    If someone abuses you a little more than you abuse yourself, you will probably walk away from that person. But if someone abuses you a little less than you abuse yourself, you will probably stay in the relationship and tolerate it endlessly. **The more self-love we have, the less we will experience self-abuse**.
+
+    Self-abuse comes from self-rejection, and self-rejection comes from having an image of what it means to be perfect and never measuring up to that ideal.
+
+    **The most important agreements are the ones you made with yourself**. In these agreements you tell yourself who you are, what you feel, what you believe, and how to behave. The result is what you call your personality.
+
+    We have many agreements that make us suffer, that make us fail in life. If you want to live a life of joy and fulfillment, you have to find the courage to break those agreements that are fear-based and claim your personal power.
+
+    How can we change the entire dream of our life when we have no power to change even the smallest agreement?
+
+    When we are finally ready to change our agreements, there are four very powerful agreements that will help us to break those agreements that come from fear and deplete our energy.
+
+    You will see the drama of hell disappear right before your very eyes. Instead of living in a dream of hell, you will be creating a new dream — your personal dream of heaven.
+
+    First agreement: **Be impeccable with your word**. Word is a sword with two edges, The word is the most powerful tool you have as a human; the word can set you free, or it can enslave you even more than you know.
+
+    Look, this girl is ugly!" The girl listens, believes she is ugly, and grows up with the idea that she is ugly. It doesn't matter how beautiful she is; as long as she has that agreement, she will believe that she is ugly. That is the spell she is under.
+
+    You go against yourself when you judge or blame yourself for anything.
+
+    Being impeccable with your word is not using the word against yourself.
+
+    **Gossip is black magic at its very worst because it is pure poison**. We learned how to gossip by agreement. When we were children, we heard the adults around us gossiping all the time, openly giving their opinions about other people. They even had opinions about people they didn't know.
+
+    Your opinion is nothing but your point of view. It is not necessarily true. Your opinion comes from your beliefs, your own ego, and your own dream.
+
+    Use white magic, beginning with yourself. Tell yourself how wonderful you are, how great you are. Tell yourself how much you love yourself. Use the word to break all those teeny, tiny agreements that make you suffer.
+
+    The second agreement is **don't take anything personally**. Whatever happens around you, don't take it personally. That person tried to send poison to you and if you take it personally, then you take that poison and it becomes yours.
+
+    Immunity to poison in the middle of hell is the gift of this agreement.
+
+    Even the opinions you have about yourself are not necessarily true; therefore, you don't need to take whatever you hear in your own mind personally.
+
+    Do not expect people to tell you the truth because they also lie to themselves.
+
+    If someone is not treating you with love and respect, it is a gift if they walk away from you. Your anger, jealousy, and envy will disappear, and even your sadness will simply disappear if you don't take things personally.
+
+    Third agreement **Don't make assumptions**.  The problem with making assumptions is that we believe they are the truth.
+
+    Making assumptions in relationships leads to a lot of fights, a lot of difficulties, a lot of misunderstandings with people we supposedly love.
+
+    A whole drama is created because we make this assumption and then put more assumptions on top of it.
+
+    we assume they should do, we feel hurt and think, How could you do that?
+
+    We make all sorts of assumptions because we don't have the courage to ask questions.
+
+    We make the assumption that everyone sees life the way we do.
+
+    We have a fear of being ourselves around others. Because we think everyone else will judge us, victimize us, abuse us, and blame us as we do ourselves. So even before others have a chance to reject us, we have already rejected ourselves. That is the way the human mind works. We also
+
+    We have to be what we are, so we don't have to present a false image. If you love me the way I am, "Okay, take me." If you don't love me the way I am, "Okay, bye-bye".
+
+    The fourth agreement is about the action of the first three: **Always do your best**. No more and no less. Your best is never going to be the same from one moment to the next. Just do your best — in any circumstance in your life.
+
+    If you always do your best there is no way you can judge yourself. And if you don't judge yourself there is no way you are going to suffer from guilt, blame, and self-punishment. By always doing your best, you will break a big spell that you have been under.
+
+    If we like what we do, if we always do our best, then we are really enjoying life. We are having fun, we don't get bored, we don't have frustrations.
+
+    You do your best because doing your best all the time makes you so happy. When you are doing your best just for the pleasure of doing it, you are taking action because you enjoy the action.
+
+    Inaction is sitting in front of the television every day for years because you are afraid to be alive and to take the risk of expressing what you are.
+
+    I do my best to fulfill the needs of my body. I do my best to give to my body and to receive what my body gives to me.
+
+    By doing your best, the habits of misusing your word, taking things personally, and making assumptions will become weaker and less frequent with time. You don't need to judge yourself, feel guilty, or punish yourself if you cannot keep these agreements. If you're doing your best, you will feel good about yourself even if you still make assumptions.
+
+    Practice makes the master. By doing your best you become a master. Action is what makes the difference.
+
+    You learned to write, to drive, and even to walk by repetition.
+
+    use every moment to be happy, to do what we really enjoy doing.
+
+    The parasite wants us to carry the past with us and that makes it so heavy to be alive. When we try to live in the past, how can we enjoy the present? When we dream of the future, why must we carry the burden of the past? When are we going to live in the present? That is what the angel of death teaches us to do.
