@@ -76,7 +76,7 @@ The Compound Effect
 
     Identify behaviors leading to that goal and the ones blocking you from achieving it. People fit have good gym habits, people thin have good food habits, etc...
 
-    Monitor how much time you spend watching tv, reading the news etc and change habits. News tend to be negative and depressing, avoid 	spending too much time on them.
+    Monitor how much time you spend watching tv, reading the news etc and change habits. News tend to be negative and depressing, avoid     spending too much time on them.
 
     If you tell friends or people about your goals and tracking you are more likely to commit to them due to social pressure
 
@@ -2634,27 +2634,27 @@ Become an Effective Software Engineering Manager: How to Be the Leader Your Deve
     **False beliefs**: both your manager and the team have a conflicting observation or belief from your own.
 
     Based on the snapshot that you made, sort your observations into different buckets:
-    * Items to talk about with your team
-    * Items to talk about with your manager:
+    Items to talk about with your team
+    Items to talk about with your manager:
 
     Organize yourself so that you don't forget anything. Categorize your activities throughout the day.
 
     **Measure your output** in a way that helps you make priority decisions about how best to spend your time.
 
     Only put the following things in your calendar:
-    * Meetings with other people.
-    * Activities that indicate that you are busy (for example, lunch, out of office, doctor's appointment).
-    * Blocks of time to prevent others from booking over them (for instance, when you need to focus).
+    Meetings with other people.
+    Activities that indicate that you are busy (for example, lunch, out of office, doctor's appointment).
+    Blocks of time to prevent others from booking over them (for instance, when you need to focus).
 
     This system boils down to four tools that form your tool belt:
-    * Your calendar: for organizing your time.
-    * Your to-do list: for organizing your tasks.
-    * Your email inbox: for organizing your incoming messages.
-    * Your place to capture information: for when you're not in front of the other three tools.
+    Your calendar: for organizing your time.
+    Your to-do list: for organizing your tasks.
+    Your email inbox: for organizing your incoming messages.
+    Your place to capture information: for when you're not in front of the other three tools.
 
     The core principle of the system is this: you want to keep as little information in your head as possible.
 
-    **Block out regular chunks of time to focus**. Simply put an entry in your calendar, usually of a few hours in length, called “no meetings please.” Those are the times when you can close your email, put on your headphones, and concentrate on a task. It's well within your right to do so.
+    **Block out regular chunks of time to focus**. Simply put an entry in your calendar, usually of a few hours in length, called "no meetings please." Those are the times when you can close your email, put on your headphones, and concentrate on a task. It's well within your right to do so.
 
     Open your calendar as your first task at work every morning and review the day; this allows you to prioritize any preparations if necessary. Get in the habit of shifting meetings around to batch them together to give you a chance at achieving flow.
 
@@ -2885,10 +2885,10 @@ Become an Effective Software Engineering Manager: How to Be the Leader Your Deve
 
 
     if you'd like some inspiration for an initial conversation with your manager:
-    * What traits does a high-performing manager have?
-    * What do they say and do regularly that make them so? How do you measure that a manager's team is doing a good job?
-    * Is it simply through the output of their team, or is it through team happiness, retention, or all of these things? In the spaces between doing hands-on managerial activities, what is a successful manager doing? Are they getting stuck-in with coding, or are they working with their manager and peers on making the department a better place? If it's the latter, then what sort of activities does that entail?
-    * How connected should a team's manager be across the organization? Should they primarily be concerned about their team, or should they also be regularly talking to designers, product managers, and sales and customer success staff?
+        What traits does a high-performing manager have?
+        What do they say and do regularly that make them so? How do you measure that a manager's team is doing a good job?
+        Is it simply through the output of their team, or is it through team happiness, retention, or all of these things? In the spaces between doing hands-on managerial activities, what is a successful manager doing? Are they getting stuck-in with coding, or are they working with their manager and peers on making the department a better place? If it's the latter, then what sort of activities does that entail?
+        How connected should a team's manager be across the organization? Should they primarily be concerned about their team, or should they also be regularly talking to designers, product managers, and sales and customer success staff?
 
     A simple technique is to ask questions during your one-to-one meetings.
 
@@ -2900,16 +2900,16 @@ Become an Effective Software Engineering Manager: How to Be the Leader Your Deve
 
 
     It shows that you're interested in career progression and growing outside of the confines of your role. It strengthens your relationship because you are taking an active interest in their world.
-    * So what's been on your mind this week?
-    * What's your biggest worry at the moment?
-    * How are your other staff doing?
-    * What are your peers working on?
+        So what's been on your mind this week?
+        What's your biggest worry at the moment?
+        How are your other staff doing?
+        What are your peers working on?
 
     journaling in one's personal life can have a positive effect on mood and well-being. I've found the same to be true about weekly journaling at work.
-    * **Progress**: What has happened since last time you wrote?
-    * **Problems**: What issues have occurred and what needs addressing?
-    * **Plans**: How are you going to approach those issues going forward?
-    * **People**: How are the individuals on the team? Are they doing well or are they having a hard time? What could be improved?
+         **Progress**: What has happened since last time you wrote?
+         **Problems**: What issues have occurred and what needs addressing?
+         **Plans**: How are you going to approach those issues going forward?
+         **People**: How are the individuals on the team? Are they doing well or are they having a hard time? What could be improved?
 
     Pick a suitable time to do it and make it a recurring to-do.
 
@@ -2927,27 +2927,27 @@ Become an Effective Software Engineering Manager: How to Be the Leader Your Deve
 
 
     Contains:
-    * Which Areas Would You Like the Most Support With?
-    * How Would You Like to Receive Feedback and Support?
-    * What Could Be a Challenge of Us Working Together?
-    * How Might We Know if the Support I'm Offering Isn't Going Well?
-    * How Confidential Is the Content of Our Meetings?
+        Which Areas Would You Like the Most Support With?
+        How Would You Like to Receive Feedback and Support?
+        What Could Be a Challenge of Us Working Together?
+        How Might We Know if the Support I'm Offering Isn't Going Well?
+        How Confidential Is the Content of Our Meetings?
 
 
     pre-fill the agenda with some items. These can be anything from: Observations from the past week, either about their work or the team's. These can be good or bad observations, or even just areas where I'd like to probe a bit further and find out more. A deep dive into a project or piece of architecture that they're working on. Updates that will be interesting for my staff, such as what has recently gone on in any other meetings that I'm part of, or in my case, anything my own manager has told me, such as relevant things discussed at the last board meeting. Coaching. We'll learn more about coaching in Chapter
 
-    the meeting is theirs, not yours. What this means is that you must “keep the thought bubble over their head” for as much of the meeting as possible. Do this by asking leading questions, nudging the conversation in particular directions, and most of all, by listening.
+    the meeting is theirs, not yours. What this means is that you must "keep the thought bubble over their head" for as much of the meeting as possible. Do this by asking leading questions, nudging the conversation in particular directions, and most of all, by listening.
 
 
     your direct reports to do 70% of the talking. If you feel like solving their problem for them, don't. Ask another question and let them arrive at the conclusion themselves.
 
     I.E
-    * How has your work been going this week?
-    * What are you working on today?
-    * Tell me about those production issues we had last week.
-    * Do you think that we're measuring our uptime well enough?
-    * How are you feeling about our deadline in June?
-    * How best could we ensure that we've got all of the right metrics being logged ahead of time?
+        How has your work been going this week?
+        What are you working on today?
+        Tell me about those production issues we had last week.
+        Do you think that we're measuring our uptime well enough?
+        How are you feeling about our deadline in June?
+        How best could we ensure that we've got all of the right metrics being logged ahead of time?
 
     asking lots of leading questions,
 
@@ -2960,9 +2960,9 @@ Become an Effective Software Engineering Manager: How to Be the Leader Your Deve
     Ideally there's already another place where you could find out this information if you wanted to, such as the team's tickets.
 
     Instead of just nodding and listening to what they've been doing, why not probe deeper by asking some questions?
-    * How could we deploy that into production quicker?
-    * Is this the correct technical approach? What are some alternatives?
-    * Have you seen any open source software that could solve that problem for us?
+        How could we deploy that into production quicker?
+        Is this the correct technical approach? What are some alternatives?
+        Have you seen any open source software that could solve that problem for us?
 
     If you have a particularly quiet direct report, or if you're just looking to mix up the material a bit, then here's a whole bunch of example topics that you're welcome to use for yourself.
 
@@ -2989,11 +2989,11 @@ Become an Effective Software Engineering Manager: How to Be the Leader Your Deve
 
 
     **Maslow's model**:
-    * You want to be paid fairly for what you do and to have some reasonable benefits.
-    * Safety. You want job security and a safe working environment.
-    * Love/belonging. You want to work with colleagues that you like and that inspire you, and you want to build good relationships with your team and your manager.
-    * Esteem. You want to be recognized for what you do, both informally through feedback and formally through your job title and promotions.
-    * Self-actualization. You want to be challenged so that you grow and continually expand your skills. You want to feel that there is always somewhere to advance next in your career.
+        You want to be paid fairly for what you do and to have some reasonable benefits.
+        Safety. You want job security and a safe working environment.
+        Love/belonging. You want to work with colleagues that you like and that inspire you, and you want to build good relationships with your team and your manager.
+        Esteem. You want to be recognized for what you do, both informally through feedback and formally through your job title and promotions.
+        Self-actualization. You want to be challenged so that you grow and continually expand your skills. You want to feel that there is always somewhere to advance next in your career.
 
     Framed in this way, you can see why those with highly paid but extremely frustrating or boring jobs eventually quit.
 
@@ -3008,127 +3008,127 @@ Become an Effective Software Engineering Manager: How to Be the Leader Your Deve
     Once the person has understood and completed the task, they are able to take on tasks of even higher difficulty, pushing their zone of proximal development toward harder and harder tasks.
 
     Ensure:
-    * They are being given the tasks that sit within their zone of proximal development.
-    * There are suitable individuals with more knowledge to help them complete those tasks with assistance.
+        They are being given the tasks that sit within their zone of proximal development.
+        There are suitable individuals with more knowledge to help them complete those tasks with assistance.
 
 
     two things that are important in order to ensure that learners are continually improving their skills:
-    * You should give tasks to staff that are in their zone of proximal development.
+    You should give tasks to staff that are in their zone of proximal development.
 
 
     Perhaps one day they'd like to be a CTO in their own company, or they'd like to rearchitect the search infrastructure at Google. These are admirable and lofty goals, but in reality, they may be a long way from becoming a reality. However, as their manager, you can work with them to place these career achievements at the bottom of their own skill tree and then plan out the milestones along the way that they can aim for to make measurable progress—thus pushing the frontier of their zone of proximal development further and further.
 
 
     **The cathedral model**, in which software is free and open source but is developed by the aforementioned hermit wizards. In the book, the GCC compiler is given as an example. These projects have long release intervals and are controlled tightly by the development team.
-    **The bazaar model**, in which the entire world contributes and opens their development to the public, despite the chaos. They operate under the tenet that “given enough eyeballs, all bugs are shallow.” There's less to lose if occasional issues slip out. Linux is described as the poster child for this movement.
+    **The bazaar model**, in which the entire world contributes and opens their development to the public, despite the chaos. They operate under the tenet that "given enough eyeballs, all bugs are shallow." There's less to lose if occasional issues slip out. Linux is described as the poster child for this movement.
 
 
     some individuals are highly motivated by control and stability and others are motivated by chaos and change.
 
 
     **Cathedral Constructors**: Your cathedral constructors yearn for focus, stability, purism, and craftsmanship
-    * To become subject-matter experts.
-    * To be a cornerstone of the team.
-    * To go deep, not wide.
-    * To show others their own ways.
-    * To revel in the detail.
+        To become subject-matter experts.
+        To be a cornerstone of the team.
+        To go deep, not wide.
+        To show others their own ways.
+        To revel in the detail.
 
 
     **Bazaar Browsers**: wishes to sample the sights and sounds of as much as possible. They want excitement, variety, chaos, and change. This is where they thrive and grow. You need to be able to offer them the following opportunities: To get as much newness as possible.
-    * To build and throw away.
-    * To avoid stagnation.
+         To build and throw away.
+         To avoid stagnation.
 
 
-	**Annual Self Evaluation** should include
-		* Your own observations about what your staff member has achieved and areas in which they should seek to develop next.
-		* Your direct report's observations on the same topics.
-		*The goals that you have mutually agreed upon for this period
-		*The goals that you have mutually agreed upon for the next period
+    **Annual Self Evaluation** should include
+        Your own observations about what your staff member has achieved and areas in which they should seek to develop next.
+        Your direct report's observations on the same topics.
+        The goals that you have mutually agreed upon for this period
+        The goals that you have mutually agreed upon for the next period
 
-	ICs will usually include:
-		* Their **achievements** over the period of the time since the last review.
-		* A **reflection** over the time period for their role, projects, and career. Areas that they would like to develop in the coming period. Thoughts about the future of their role from where they currently stand.
+    ICs will usually include:
+        Their **achievements** over the period of the time since the last review.
+        A **reflection** over the time period for their role, projects, and career. Areas that they would like to develop in the coming period. Thoughts about the future of their role from where they currently stand.
 
-	ICs will try to answer:
-		* What have you **accomplished** that makes you proud and why?
-		* **Reflection Question**: How do you feel in your role right now? Has that changed for the better or worse since your last review?
-		* **Development Question**: Is there anything that could have gone better during the period? What skills do you think that you need to develop?
-		* **The Future Question**: Consider your future at the company. Where are you aiming to go? What would you ideally like to accomplish or work on? Or are you happy where you are now?
-		* **Support Question**: What sort of support do you need in order to get to where you want to go in future?
+    ICs will try to answer:
+        What have you **accomplished** that makes you proud and why?
+        **Reflection Question**: How do you feel in your role right now? Has that changed for the better or worse since your last review?
+        **Development Question**: Is there anything that could have gone better during the period? What skills do you think that you need to develop?
+        **The Future Question**: Consider your future at the company. Where are you aiming to go? What would you ideally like to accomplish or work on? Or are you happy where you are now?
+        **Support Question**: What sort of support do you need in order to get to where you want to go in future?
 
-	Manager Questions to Answer
-		* **Your own view of their achievements** over the period. Where you think that they should focus on developing. The themes that you noticed in their peer feedback.
-		* **Achievements Question**: What has this person done in the last six months that has impressed you? What do you consider their biggest achievements?
-		* **Development Question**: Where do you think that this person should focus on developing? What traits and skills could they work on and how can you help them get there?
-		* **Peer Feedback Question**: What were the key themes from this person's peer feedback? Does it reinforce what you both already know, or are there any new observations?
+    Manager Questions to Answer
+        **Your own view of their achievements** over the period. Where you think that they should focus on developing. The themes that you noticed in their peer feedback.
+        **Achievements Question**: What has this person done in the last six months that has impressed you? What do you consider their biggest achievements?
+        **Development Question**: Where do you think that this person should focus on developing? What traits and skills could they work on and how can you help them get there?
+        **Peer Feedback Question**: What were the key themes from this person's peer feedback? Does it reinforce what you both already know, or are there any new observations?
 
-	What to Do on the Day
-	Split the meeting into three parts of equal size:
-		* A reflective discussion about the period that has just passed.
-		* A forward-thinking discussion about the future.
-		* A collaborative session drafting goals that they can achieve.
+    What to Do on the Day
+    Split the meeting into three parts of equal size:
+        A reflective discussion about the period that has just passed.
+        A forward-thinking discussion about the future.
+        A collaborative session drafting goals that they can achieve.
 
-		In the first two parts, keep the discussion loose and let them do the talking. Ask questions and nudge them along to explore how they feel.
+        In the first two parts, keep the discussion loose and let them do the talking. Ask questions and nudge them along to explore how they feel.
 
-	Some leading questions that you could ask in reference to the content of the written review form:
-		* What is it about that achievement that made you feel so proud?
-		* Do you feel like that often, or was this a unique occasion?
-		* You've mentioned that you want to develop that particular area. How do you think you can do that, and how can I support you in doing so?
-		* How do you feel about your team? Who in particular do you most like working with? Is there anyone that you find harder to work with? Why is that?
-		* How challenging is the work that you're doing now compared to the last few years?
-		* Are you getting enough opportunity to stretch yourself and to learn new things?
-		* How does your current role compare to where you predicted that you'd be five years ago? Why is that?
-		* What do you think of my performance as your manager? What can I do to support you and the team better?
+    Some leading questions that you could ask in reference to the content of the written review form:
+        What is it about that achievement that made you feel so proud?
+        Do you feel like that often, or was this a unique occasion?
+        You've mentioned that you want to develop that particular area. How do you think you can do that, and how can I support you in doing so?
+        How do you feel about your team? Who in particular do you most like working with? Is there anyone that you find harder to work with? Why is that?
+        How challenging is the work that you're doing now compared to the last few years?
+        Are you getting enough opportunity to stretch yourself and to learn new things?
+        How does your current role compare to where you predicted that you'd be five years ago? Why is that?
+        What do you think of my performance as your manager? What can I do to support you and the team better?
 
-		During the last third of the review, begin drafting some goals for the next six months together. You don't need to complete them in the review, but you should begin the thought process collaboratively.
+        During the last third of the review, begin drafting some goals for the next six months together. You don't need to complete them in the review, but you should begin the thought process collaboratively.
 
-	Future work questions:
-		* What's one thing at the company that you would love to work on?
-		* Is there anyone here that you look up to, and what traits do they have?
-		* How can you increase your impact in your work and in your relationships with your colleagues?
-		* What could you achieve in the near future that would make you feel proud?
+    Future work questions:
+        What's one thing at the company that you would love to work on?
+        Is there anyone here that you look up to, and what traits do they have?
+        How can you increase your impact in your work and in your relationships with your colleagues?
+        What could you achieve in the near future that would make you feel proud?
 
-	**Performance managing**
+    **Performance managing**
     Build conversations into your one-to-ones regularly about: Career progression.
-        * How often are you talking to your staff about their careers?
-        * Where do they want to go in the next six months, two years, and beyond?
+        How often are you talking to your staff about their careers?
+        Where do they want to go in the next six months, two years, and beyond?
 
-	**Poor performants**: The bar that you set for acceptable performance is firmly fixed at the level of your worst performer. The longer you go without attempting to fix the problem, the lower your bar is as a manager.
+    **Poor performants**: The bar that you set for acceptable performance is firmly fixed at the level of your worst performer. The longer you go without attempting to fix the problem, the lower your bar is as a manager.
 
-	**Going Beyond Your Team**. Your output is measured by:
-		* Information gathering
-		* Decision-making
-		* Nudging
-		* Being a role model
+    **Going Beyond Your Team**. Your output is measured by:
+        Information gathering
+        Decision-making
+        Nudging
+        Being a role model
 
-	**Mentoring** is a relationship in which one person shares their experience, skills, and knowledge with another person in order for them to progress in their career. Mentoring relationships typically last for months or years.  it's a relationship that is primarily directive: the mentor is teaching skills to the mentee.
-	**Coaching**: technique for helping your staff improve their performance. the primary focus is trying to shift the conversation to follow their interests, which magically allows them to solve problems all by themselves.
-
-
-	Follow their interests and encourage them to come to the conclusion on their own:
-		* What's the difficulty with doing it in that way?
-		* Why did you pick that method?
-		* What's up with Bill this week?
-		* Why's that?
-		* Tell me more about that API.
-		* Walk me through your thought process.
-		* Can you draw me a diagram on the whiteboard?
-		* So what you're saying is…
-		* So am I right in thinking that…
-
-	Coaching relationships can be long-lived, or they can even just be a one-off session to tackle a particular problem.
-
-	**GROW model** For a given topic or problem, you'll want to iterate through:
-		* **Goal**: What's the goal of this session? What problem are we trying to solve?
-		* **Reality**: What's the situation like now? Who, what, where, and how much?
-		* **Options**: What are all the different ways in which we can tackle this issue?
-		* **Wrap-up**: Become clear on a choice, commit to it, and discuss what support is needed.
-
-	GROW model in mind will help you keep the conversation on track if it begins to deviate.
-	Example: Goal: We need to work out how to store the data in some way that's fast enough to support our use case. Reality: We know a lot about relational databases, but they won't be fast enough for this problem. We have a hard deadline and we need to get some support. Options: We could get an external consultant, but that's very expensive and they might not be available immediately. We could try out some different databases ourselves, but we're not expert enough to make an informed decision about what to use in production. We could see whether anyone else in the company has had to solve a similar problem and seek their advice. Wrap-up: We've decided to seek advice from Alice's team because they may have implemented a similar solution in the past. We're meeting with her later, and we'll loop back with a decision on how we're going to proceed. Then we'll make a call on what to do.
+    **Mentoring** is a relationship in which one person shares their experience, skills, and knowledge with another person in order for them to progress in their career. Mentoring relationships typically last for months or years.  it's a relationship that is primarily directive: the mentor is teaching skills to the mentee.
+    **Coaching**: technique for helping your staff improve their performance. the primary focus is trying to shift the conversation to follow their interests, which magically allows them to solve problems all by themselves.
 
 
-	**Managing difficult situations**
+    Follow their interests and encourage them to come to the conclusion on their own:
+        What's the difficulty with doing it in that way?
+        Why did you pick that method?
+        What's up with Bill this week?
+        Why's that?
+        Tell me more about that API.
+        Walk me through your thought process.
+        Can you draw me a diagram on the whiteboard?
+        So what you're saying is…
+        So am I right in thinking that…
+
+    Coaching relationships can be long-lived, or they can even just be a one-off session to tackle a particular problem.
+
+    **GROW model** For a given topic or problem, you'll want to iterate through:
+        **Goal**: What's the goal of this session? What problem are we trying to solve?
+        **Reality**: What's the situation like now? Who, what, where, and how much?
+        **Options**: What are all the different ways in which we can tackle this issue?
+        **Wrap-up**: Become clear on a choice, commit to it, and discuss what support is needed.
+
+    GROW model in mind will help you keep the conversation on track if it begins to deviate.
+    Example: Goal: We need to work out how to store the data in some way that's fast enough to support our use case. Reality: We know a lot about relational databases, but they won't be fast enough for this problem. We have a hard deadline and we need to get some support. Options: We could get an external consultant, but that's very expensive and they might not be available immediately. We could try out some different databases ourselves, but we're not expert enough to make an informed decision about what to use in production. We could see whether anyone else in the company has had to solve a similar problem and seek their advice. Wrap-up: We've decided to seek advice from Alice's team because they may have implemented a similar solution in the past. We're meeting with her later, and we'll loop back with a decision on how we're going to proceed. Then we'll make a call on what to do.
+
+
+    **Managing difficult situations**
 
     First skill to practice is mindfully listening and observing without judgment. If a bad situation is unfolding, focus on your breathing, sit (or stand) straight and hear the other parties out.
 
@@ -3138,7 +3138,7 @@ Become an Effective Software Engineering Manager: How to Be the Leader Your Deve
 
     **Two stick-like tools** that you could use to make a team perform better.
     **The whip**, which is the metaphorical way of telling them to work harder and faster against their will.
-    * **The carrot**, dangled at the end of the stick, which makes them work harder because they feel motivated to do so.
+    **The carrot**, dangled at the end of the stick, which makes them work harder because they feel motivated to do so.
 
     Being a good manager is about turning that whip into a carrot.
 
@@ -3153,9 +3153,9 @@ Become an Effective Software Engineering Manager: How to Be the Leader Your Deve
     increase throughput comes through fostering purpose and passion in your team.
 
     A useful model is that of **autonomy, mastery, and purpose**:
-    * **Autonomy**: We have a desire to be self-directed. Management as way of ensuring conformity and compliance runs against this principle. Instead, how can you create the conditions within your team to allow them to choose their own path while still working toward the collective goal? Can you delegate more to give your team more empowering work? Can you give them more choice over the way in which they solve problems and the tools they use? Can you let them approach problems in their own ways rather than having them take the same path that you take?
-    * **Mastery**: Everyone likes to improve their skills. It's incredibly satisfying. How can you delegate work within the team to ensure that your staff are in the zone of proximal development How can you foster a culture of mentorship so that the team learns from each other while they are doing what is expected of them in their jobs?
-    * **Purpose**: We want to contribute to something greater than ourselves. Are the projects that your team is responsible for clearly defined in terms of their purpose within the wider world? Are you able to create and continually refer to this message?
+        **Autonomy**: We have a desire to be self-directed. Management as way of ensuring conformity and compliance runs against this principle. Instead, how can you create the conditions within your team to allow them to choose their own path while still working toward the collective goal? Can you delegate more to give your team more empowering work? Can you give them more choice over the way in which they solve problems and the tools they use? Can you let them approach problems in their own ways rather than having them take the same path that you take?
+        **Mastery**: Everyone likes to improve their skills. It's incredibly satisfying. How can you delegate work within the team to ensure that your staff are in the zone of proximal development How can you foster a culture of mentorship so that the team learns from each other while they are doing what is expected of them in their jobs?
+        **Purpose**: We want to contribute to something greater than ourselves. Are the projects that your team is responsible for clearly defined in terms of their purpose within the wider world? Are you able to create and continually refer to this message?
 
     In many social and intellectual domains, people tend to hold overly favorable views of their abilities. Not only does this lead to poor decisions, it also means that people are unaware that they are making them!
 
@@ -3174,10 +3174,10 @@ Become an Effective Software Engineering Manager: How to Be the Leader Your Deve
     **Are users going to benefit from this work in some way**, now or in future? If not, don't do it. You should also encourage **the campsite rule**, where each area of the code that they touch is left better than when they arrived. You can also encourage investment in future efficiency by **reserving a percentage of time** during each sprint or timebox to removing technical debt (why not try 20%?). Also, never be afraid of deleting features.
 
     Encourage **categorization of features into must, should, could, and won't**.
-        * Work labeled as “must” absolutely needs to happen.
-        * Anything with the “should” label is important, but you could probably get away without it for the initial milestone or deadline.
-        * Those labeled “could” are desirable but not necessary.
-        * The “won't” category notes that something has been thought of and consciously decided against.
+        Work labeled as "must" absolutely needs to happen.
+        Anything with the "should" label is important, but you could probably get away without it for the initial milestone or deadline.
+        Those labeled "could" are desirable but not necessary.
+        The "won't" category notes that something has been thought of and consciously decided against.
 
     Encourage **stretch goals**. After labeling the features and ranking them in order of prioritization, work with your product owner and team to decide where the milestones are.
 
@@ -3190,9 +3190,9 @@ Become an Effective Software Engineering Manager: How to Be the Leader Your Deve
     Adding more people to a slow project has the effect of making it slower
 
     **Be honest and trustworthy**
-        * We should **never attempt to obtain information without the permission of the holder of the information**.
-        * We should **never attempt to obtain information for the benefit of another party**.
-        * We should **never attempt to obtain information using deceitful means**.
+        We should **never attempt to obtain information without the permission of the holder of the information**.
+        We should **never attempt to obtain information for the benefit of another party**.
+        We should **never attempt to obtain information using deceitful means**.
 
     I was accidentally sent a spreadsheet from Finance containing the salary information of everyone in the engineering department, rather than the filtered version showing only my teams. What did I do? I told them what they'd done and deleted the spreadsheet without opening it. I didn't have permission to see that, despite having been sent it.
 
@@ -3201,9 +3201,9 @@ Become an Effective Software Engineering Manager: How to Be the Leader Your Deve
     **Gatekeeping in communication**. Much like a gatekeeper would control access to the gate of an ancient city, gatekeeping is the action of filtering information for further distribution. Typically it represents how information is filtered by the media before it is presented to the public.
 
     You have to:
-        * Decide **what information** should be heard by which parties.
-        * Decide **when that information** should be shared.
-        * Decide **how that information** should be framed.
+        Decide **what information** should be heard by which parties.
+        Decide **when that information** should be shared.
+        Decide **how that information** should be framed.
 
     **The Hippocratic Oath**: an oath of ethics historically taken by doctors, shortened here to the following succinct phrase: first, do no harm.
 
@@ -3240,10 +3240,10 @@ Become an Effective Software Engineering Manager: How to Be the Leader Your Deve
     **Level-Jumping**: you need to make sure that you go via the proper channels and bring your own manager along for the ride.
 
     If you wish to be influential and effective as a manager, then you need to engage with others professionally, respectfully, and kindly. Avoid
-        * Being Unprofessional
-        * Misuse of Power
-        * Going Rogue
-        * Personal Gain
+    Being Unprofessional
+    Misuse of Power
+    Going Rogue
+    Personal Gain
 
     Abusing your position to make others feel small, powerless, or marginalized is the worst form of politicking and will always catch up with you. Just don't. Ever. You are here to serve others, not yourself.
 
@@ -3271,13 +3271,13 @@ Become an Effective Software Engineering Manager: How to Be the Leader Your Deve
     **Escaping the False Productivity Trap**: We live in an age of distraction.
 
     The brain is modeled as a dual-CPU. Only one of those two CPUs can work at any given time, and
-    * The first CPU is a slow, linear, traditional Von Neumann architecture. Instructions are processed one after another in order.
-    * The second CPU is a digital signal processor: it searches and pattern matches asynchronously. It can magically find links between unrelated things, but you have no control over it.
+    The first CPU is a slow, linear, traditional Von Neumann architecture. Instructions are processed one after another in order.
+        The second CPU is a digital signal processor: it searches and pattern matches asynchronously. It can magically find links between unrelated things, but you have no control over it.
 
     They share the same memory bus, so if one is working, the other isn't.
 
-    * The first CPU is called **L-mode**, where the L stands for linear.
-    * The second CPU is called **R-mode**, where the R stands for the rich creative and holistic processing it does,
+    The first CPU is called **L-mode**, where the L stands for linear.
+    The second CPU is called **R-mode**, where the R stands for the rich creative and holistic processing it does,
 
     You need both of these modes. R-mode helps you innovate, come up with new ideas and connections, and break through walls. L-mode lets you execute the details.
 
