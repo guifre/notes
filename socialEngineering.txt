@@ -2906,10 +2906,10 @@ Become an Effective Software Engineering Manager: How to Be the Leader Your Deve
         What are your peers working on?
 
     journaling in one's personal life can have a positive effect on mood and well-being. I've found the same to be true about weekly journaling at work.
-         **Progress**: What has happened since last time you wrote?
-         **Problems**: What issues have occurred and what needs addressing?
-         **Plans**: How are you going to approach those issues going forward?
-         **People**: How are the individuals on the team? Are they doing well or are they having a hard time? What could be improved?
+        **Progress**: What has happened since last time you wrote?
+        **Problems**: What issues have occurred and what needs addressing?
+        **Plans**: How are you going to approach those issues going forward?
+        **People**: How are the individuals on the team? Are they doing well or are they having a hard time? What could be improved?
 
     Pick a suitable time to do it and make it a recurring to-do.
 
@@ -3035,8 +3035,8 @@ Become an Effective Software Engineering Manager: How to Be the Leader Your Deve
 
 
     **Bazaar Browsers**: wishes to sample the sights and sounds of as much as possible. They want excitement, variety, chaos, and change. This is where they thrive and grow. You need to be able to offer them the following opportunities: To get as much newness as possible.
-         To build and throw away.
-         To avoid stagnation.
+        To build and throw away.
+        To avoid stagnation.
 
 
     **Annual Self Evaluation** should include
