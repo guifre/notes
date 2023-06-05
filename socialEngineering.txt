@@ -3270,7 +3270,7 @@ Become an Effective Software Engineering Manager: How to Be the Leader Your Deve
 
     **Escaping the False Productivity Trap**: We live in an age of distraction.
 
-The brain is modeled as a dual-CPU. Only one of those two CPUs can work at any given time, and
+    The brain is modeled as a dual-CPU. Only one of those two CPUs can work at any given time, and
     * The first CPU is a slow, linear, traditional Von Neumann architecture. Instructions are processed one after another in order.
     * The second CPU is a digital signal processor: it searches and pattern matches asynchronously. It can magically find links between unrelated things, but you have no control over it.
 
@@ -3329,7 +3329,7 @@ The brain is modeled as a dual-CPU. Only one of those two CPUs can work at any g
 
     **Communication Dictates Software Design** If you get communication right within a department, there's a wealth of benefit to be had. Notably: Individuals are aligned with the collective purpose and vision supporting what is being built, and each individual understands the part that they and their team are playing toward achieving it. The department learns collectively as progress and new discoveries are shared, individuals normalize on best practice,
 
-Individuals feel engaged and motivated, since they have maximal opportunities for learning from others
+    Individuals feel engaged and motivated, since they have maximal opportunities for learning from others
 
     **Breaking Silos with Guilds** A guild is a group of people who work on different teams but share a common interest or skill set.
 
