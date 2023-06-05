@@ -2618,10 +2618,10 @@ The Whole-Brain Child: 12 Revolutionary Strategies to Nurture Your Child's Devel
 Become an Effective Software Engineering Manager: How to Be the Leader Your Development Team Needs
 
     As a manager you can
-        * Create the conditions that allow others to succeed, to learn, to feel psychologically safe, and to be creative.
-        * You can be the person who helps your staff grow and achieve way beyond the level they thought was possible.
-        * You can create the team that allows people to enjoy turning up to work each day, ready to tackle challenging problems together.
-        * Twenty years from now, you can be front of mind when your staff are asked where their careers began to take off. Yes, that really can be you.
+        Create the conditions that allow others to succeed, to learn, to feel psychologically safe, and to be creative.
+        You can be the person who helps your staff grow and achieve way beyond the level they thought was possible.
+        You can create the team that allows people to enjoy turning up to work each day, ready to tackle challenging problems together.
+        Twenty years from now, you can be front of mind when your staff are asked where their careers began to take off. Yes, that really can be you.
 
     You'll also want to invite their opinion about what they like about the team and what is going well compared to what they currently find most challenging and needs improving.
 
