@@ -4465,3 +4465,130 @@ Fitness revolucionario: Lecciones ancestrales para una salud salvaje
     somos ecosistemas altamente integrados, y los ecosistemas diversos son más resistentes ante perturbaciones externas.
 
     **MÁS CONTACTO CON LA TIERRA** cuidar un huerto o un jardín. En el proceso de plantar, trasplantar y abonar entrarás en contacto con la tierra, exponiéndote a bacterias que permitirán reentrenar tu sistema inmune.
+
+
+
+Thinking in Bets: Making Smarter Decisions When You Don't Have All the Facts
+    Life Is Poker, Not Chess. we have the tendency to **equate the quality of a decision with the quality of its outcome**. Poker players have a word for this: "resulting."
+
+    Drawing an overly tight relationship between results and decision quality affects our decisions every day, potentially with far-reaching, catastrophic consequences.
+
+    **Hindsight bias** is the tendency, after an outcome is known, to see the outcome as having been inevitable. When we say, "I should have known that would happen," or, "I should have seen it coming," we are succumbing to hindsight bias.
+
+    Those beliefs develop from an overly tight connection between outcomes and decisions.
+
+    Making a connection between "rustling" and "lions" could save their lives on later occasions. Finding predictable connections is, literally, how our species survived.
+
+    In chess, outcomes correlate more tightly with decision quality. In poker, it is much easier to get lucky and win, or get unlucky and lose.
+
+    The quality of our lives is the **sum of decision quality plus luck**.
+
+    Getting **comfortable with "I'm not sure"** is a vital step to being a better decision-maker.
+
+    What makes a decision great is not that it has a great outcome. **A great decision is the result of a good process**, and that process must include an attempt to accurately represent our own state of knowledge.
+
+    Decisions are bets on the future, and they aren't "right" or "wrong" based on whether they turn out well on any particular iteration.
+
+    Being wrong hurts us more than being right feels good. Losses in general feel about two times as bad as wins feel good.
+
+    In most of our decisions, we are not betting against another person. Rather, we are betting against all the future versions of ourselves that we are not choosing.
+
+    Sadly, this is not the way it works. We form beliefs without vetting most of them, and maintain them even after receiving clear, corrective information.
+
+    The better you are with numbers, the better you are at spinning those numbers to conform to and support your beliefs.
+
+    We are wired to protect our beliefs even when our goal is to truthseek.
+
+    There is no sin in finding out there is evidence that contradicts what we believe. The only sin is in not using that evidence as objectively as possible to refine that belief going forward.
+
+    100% of our bad outcomes aren't because we got unlucky and 100% of our good outcomes aren't because we are so awesome. Yet that is how we process the future as it unfolds.
+
+    Black-and-white thinking, uncolored by the reality of uncertainty, is a driver of both motivated reasoning and self-serving bias.
+
+    Blaming others for their bad results and failing to give them credit for their good ones is under the influence of ego. Taking credit for a win lifts our personal narrative. So too does knocking down a peer by finding them at fault for a loss. That's schadenfreude: deriving pleasure from someone else's misfortune. Schadenfreude is basically the opposite of compassion.
+
+    It's not enough to boost our self-image solely by our own successes. If someone we view as a peer is winning, we feel like we're losing by comparison. We benchmark ourselves to them.
+
+    Perspective taking gets us closer to the truth because that truth generally lies in the middle of the way we field outcomes for ourselves and the way we field them for others. By taking someone else's perspective, we are more likely to land in that middle ground.
+
+    **Confirmatory thought** amplifies bias, promoting and encouraging motivated reasoning because its main purpose is justification.
+
+    **Exploratory thought**, on the other hand, encourages an open-minded and objective consideration of alternative hypotheses and a tolerance of dissent to combat bias.
+
+    Exploratory thought helps the members of a group reason toward a more accurate representation of the world.
+
+    This is why it's so important to have intellectual and ideological diversity within any group or institution whose goal is to find truth.
+
+    Once we are in a group that regularly reinforces exploratory thought, the routine becomes reflexive, running on its own.
+
+    **The importance of diversity of opinion**. Diversity and dissent are not only checks on fallibility, but the only means of testing the ultimate truth of an opinion:
+
+    hearing what can be said about it by persons of every variety of opinion, and studying all modes in which it can be looked at by every character of mind.
+
+    On our own, we have just one viewpoint. That's our limitation as humans. But if we take a bunch of people with that limitation and put them together in a group, we get exposed to diverse opinions, can test alternative hypotheses, and move toward accuracy.
+
+    To get a more objective view of the world, we need an environment that exposes us to alternate hypotheses and different perspectives.
+
+    The more homogeneous we get, the more the group will promote and amplify confirmatory thought.
+
+    Getting our information from sources we know will share our view of the world. We often don't even realize when we are in the echo chamber ourselves, because we're so in love with our own ideas that it all just sounds sensible and right.
+
+    There is a natural drift toward homogeneity and confirmatory thought.
+
+    When we have a negative opinion about the person delivering the message, we close our minds to what they are saying and miss a lot of learning opportunities because of it. Likewise, when we have a positive opinion of the messenger, we tend to accept the message without much vetting. Both are bad.
+
+    Our brains have built-in conflicts of interest, interpreting the world around us to confirm our beliefs, to avoid having to admit ignorance or error,
+
+    Skepticism is about approaching the world by asking why things might not be true rather than why they are true.
+
+    Thinking in bets embodies skepticism by encouraging us to examine what we do and don't know and what our level of confidence is in our beliefs and predictions. This moves us closer to what is objectively true.
+
+    when the new information is presented as supplementing rather than negating what has come before, our listeners will be much more open to what we have to say.
+
+    "I agree with you that [insert specific concepts and ideas we agree with], AND " After "and," add the additional information.
+
+    that challenge puts people on the defensive. "And" is an offer to contribute. "But" is a denial and repudiation
+
+    We can think of this broadly as an attempt to avoid the language of "no." In the performance art of improvisation, the first advice is that when someone starts a scene, you should respond with "yes, and".
+
+    When Night Jerry stays up late, it's because it benefits him now; he discounts the benefits that come later from going to bed.
+
+    We are built for temporal discounting, for using the resources that are available to us now as opposed to saving them for a future version of us that we aren't particularly in touch with in the moment of the decision.
+
+    Bringing our future-self into the decision gets us started thinking about the future consequences of those in-the-moment decisions.
+
+    regret can do nothing to change what has already happened. We just wallow in remorse about something over which we no longer have any control. But if regret occurred before a decision instead of after, the experience of regret might get us to change a choice likely to result in a bad outcome.
+
+    The decisions driven by the emotions of the moment can become a self-fulfilling prophecy, degrading the quality of the bets we make, increasing the chances of bad outcomes, and making things worse.
+
+    The way we field outcomes is path dependent. It doesn't so much matter where we end up as how we got there.
+
+    So you're sad that you won $100 and happy that you lost $100.
+
+    in-the-moment emotions affect the quality of the decisions we make in those moments, and we are very willing to make decisions when we are not emotionally fit to do so.
+
+    "bad outcomes can have an impact on your emotions that compromise your decision-making going forward so that you make emotionally charged, irrational decisions
+
+    "Do you think maybe you are/were on tilt?" We can follow that with time-traveling questions like, "Do you think this will really matter in the long run?"
+
+    signal that we might be not be our most rational selves.
+
+    Signs of the illusion of certainty: "I know," "I'm sure," "I knew it," "It always happens this way," "I'm
+
+    Overconfidence: similar terms to the illusion of certainty. Irrational outcome fielding: "I can't believe how unlucky I got,"
+
+    Any kind of moaning or complaining about bad luck just to off-load it, with no real point to the story other than to get sympathy.
+
+    Generalized characterizations of people meant to dismiss their ideas: insulting, pejorative characterizations of others, like "idiot" or, in poker, "donkey."
+
+    Other violations of the Mertonian norm of universalism, shooting the message because we don't think much of the messenger.
+
+    Signals that we have zoomed in on a moment, out of proportion with the scope of time: "worst day ever," "the day from hell." Expressions that explicitly signal motivated reasoning, accepting or rejecting information without much evidence, like "conventional wisdom" or "if you ask anybody" or "Can you prove that it's not true?"
+
+    participating in an echo chamber, like "everyone agrees with me." The word "wrong," which deserves its own swear jar. The Mertonian norm of organized skepticism allows little place in exploratory discussion for the word "wrong." "Wrong" is a conclusion, not a rationale. And it's not a particularly accurate conclusion since, as we know, nearly nothing is 100% or 0%.
+
+    Infecting our listeners with a conflict of interest, including our own conclusion or belief when asking for advice or informing the listener of the outcome before getting their input. Terms that discourage engagement of others and their opinions, including expressions of certainty and also initial phrasing inconsistent with that great lesson from improvisation—"yes,
+
+    by mapping out the potential futures and probabilities, we are less likely to fall prey to resulting or hindsight bias,
+
+    hindsight bias is, and we're all running amok through the forest with a chainsaw once we get an outcome. Once something occurs, we no longer think of it as probabilistic—or as ever having been probabilistic. This is how we get into the frame of mind where we say, "I should have known" or "I told you so." This is where unproductive regret comes from. By
