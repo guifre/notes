@@ -4747,9 +4747,9 @@ Building a Second Brain
     **"CODE" Process**-Capture; Organize; Distill; Express.
         **Capture: Keep What Resonates**. we can't consume every bit of this information stream.O nly the ideas and insights we think are truly noteworthy.
         **Keep only what resonates** in a trusted place that you control, and to leave the rest aside. Instead of jumping at every new headline and notification, we can choose to consume information that adds value to our lives and consciously let go of the rest.
-    **Organize: Save for Actionability**. Organize for action, according to the active projects you are working on right now. Consider new information in terms of its utility,
-    **Distill: Find the Essence Once** Every idea has an "essence": the heart and soul of what it is trying to communicate.
-    **Express: Show Your Work**. Personal knowledge management exists to support taking action-anything else is a distraction.
+        **Organize: Save for Actionability**. Organize for action, according to the active projects you are working on right now. Consider new information in terms of its utility,
+        **Distill: Find the Essence Once** Every idea has an "essence": the heart and soul of what it is trying to communicate.
+        **Express: Show Your Work**. Personal knowledge management exists to support taking action-anything else is a distraction.
 
     shift as much of your time and effort as possible **from consuming to creating**.
 
@@ -4835,7 +4835,7 @@ The Montessori Toddler: A Parent's Guide to Raising a Curious and Responsible Hu
     **Absorbent mind**: children under 6 years old take in everything without effort, just as a sponge soaks up water.
 
     **Toddlers live in the present moment**
-    **Toddlers are enormously capable.
+    **Toddlers are enormously capable.**
     **Toddlers are innocent**. I don't think any toddler has a mean bone in their body. If they see someone playing with a toy, they may simply think, I'd like to play with that toy right now and take it from the other child. They are simply impulsive, following their every urge.
     **Toddlers are also amazingly forgiving.**
     **Toddlers are authentic**. I love spending time with toddlers because they are direct and honest.
@@ -4845,9 +4845,9 @@ The Montessori Toddler: A Parent's Guide to Raising a Curious and Responsible Hu
 
     **Toddlers need to explore** and discover the world around them.
 
-    **Toddlers need freedom**. This freedom will help them grow to be curious learners, to experience things for themselves, to make discoveries,
+    **Toddlers need freedom**. This freedom will help them grow to be curious learners, to experience things for themselves, to make discoveries
 
-    **Toddlers need limits**. These limits will keep them safe, teach them to respect others and their environment,
+    **Toddlers need limits**. These limits will keep them safe, teach them to respect others and their environment
 
     **Toddlers need order and consistency**. Toddlers prefer things to be exactly the same every day-the same routine, things in the same place, and the same rules.
 
@@ -4868,15 +4868,14 @@ The Montessori Toddler: A Parent's Guide to Raising a Curious and Responsible Hu
 
         **Hands-on, concrete learning**: The materials in a Montessori classroom are so beautifully prepared and attractive that the child is drawn to them to make discoveries for themselves, with their hands.
 
-        **Freedom and limits**:    children to live by to learn respect and responsibility for themselves, others, and the environment around them. Within these limits, children have freedom of choice, of movement, and of will.
+        **Freedom and limits**: children to live by to learn respect and responsibility for themselves, others, and the environment around them. Within these limits, children have freedom of choice, of movement, and of will.
         **Sensitive periods** When a child shows a particular interest in one area-for example, movement, language, math, reading-it is known as a sensitive period. This describes a moment when the child is particularly attuned to learning a certain skill or concept
 
     Sensitive periods for toddlers
-
         **LANGUAGE** A sensitive period for spoken language. They watch our mouth, they babble, they start parroting what we say.
         **ORDER** Toddlers love order. Use routines so the child knows what to expect next. Have "a place for everything and everything in its place."
-        **TINY DETAIL** From 18 months to 3 years, the child is attracted to the smallest objects and the minutest detail. • Provide exquisite details in the home: art, flowers, handmade crafts.
-        **MOVEMENT** The young toddler acquires gross- and fine-motor movement-they
+        **TINY DETAIL** From 18 months to 3 years, the child is attracted to the smallest objects and the minutest detail. Provide exquisite details in the home: art, flowers, handmade crafts.
+        **MOVEMENT** The young toddler acquires gross- and fine-motor movement
         **SENSORIAL** Toddlers are fascinated by color, taste, smells, touch, and sounds through exploration.
         **EXPLORATION** exploration of the environment. The older toddler begins to classify and organize these impressions. Give access to a rich indoor and outdoor environment to be explored with al the senses. Provide time to explore freely. Make discoveries together.
 
@@ -4907,23 +4906,19 @@ The Montessori Toddler: A Parent's Guide to Raising a Curious and Responsible Hu
 
     Activity should be exactly at their level-challenging enough that it is not too easy yet not so difficult that they give up.
 
-    A child has the freedom to choose an activity.
-
-    Let them choose the activity they are interested in and try it for as long as they can without interfering. Even if they drop something, we can sit on our hands to see if they will react and pick it up themselves. When we see that they are struggling and getting frustrated, we can step in and say, "Watch," and then show them, slowly, for example, how to turn the lid of the jar.
+    A child has the freedom to choose an activity. Let them choose the activity they are interested in and try it for as long as they can without interfering. Even if they drop something, we can sit on our hands to see if they will react and pick it up themselves. When we see that they are struggling and getting frustrated, we can step in and say, "Watch," and then show them, slowly, for example, how to turn the lid of the jar.
 
     Tips for showing an activity to the child: Make precise, slow hand movements so the child can observe clearly. **Avoid talking** as we demonstrate-otherwise the child won't know whether to look at us while we talk or watch our hands. Try to show them the same way each time to make it easier for them to pick up
 
-    Don't interrupt our child's deep focus.
+    **Don't interrupt our child's deep focus.**
 
-    **Avoid quizzing the child** We may not realize we are doing it, but we are constantly quizzing our children. "What color is this?" "How many apples am I holding?" "Can you show Grandma how you can walk?"
+    **Avoid quizzing the child** We may not realize we are doing it, but we are constantly quizzing our children. "What color is this?" "How many apples am I holding?" "Can you show Grandma how you can walk?" This prompting is a kind of test for a child. And there is generally only one correct answer, so if the answer they give is wrong, we have no other option than to say, "No, that flower is yellow, not blue." **Not exactly great for building a child's confidence.**
 
-    this prompting is a kind of test for a child. And there is generally only one correct answer, so if the answer they give is wrong, we have no other option than to say, "No, that flower is yellow, not blue." Not exactly great for building a child's confidence.
-
-    if the child is using the objects inappropriately, we may gently step in. For example, "I can't let you bang that glass on the window." We could then show them that the glasses are for drinking or show them an activity that allows them to use that skill, for example, banging a drum or doing a small hammer-and-nail activity.
+    if the child is using the objects inappropriately, we may gently step in. For example, "I can't let you bang that glass on the window." We could then **show them that the glasses are for drinking or show them an activity that allows them to use that skill**, for example, banging a drum or doing a small hammer-and-nail activity.
 
     Modify to meet their level We may be able to modify an activity to make it easier or more difficult.
 
-    Movement We can provide many movement opportunities for our children:, running, jumping, skipping, hopping, brachiating (swinging like a monkey), biking, climbing, sliding, balancing, kicking and throwing balls
+    We can **provide many movement opportunities** for our children:, running, jumping, skipping, hopping, brachiating (swinging like a monkey), biking, climbing, sliding, balancing, kicking and throwing balls
 
     **Focus on the process, not the result**. When the child helps, the task will take longer and the result may not look perfect, but the child is learning to master these skills and will become a lifelong helper at home.
 
