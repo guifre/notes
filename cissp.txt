@@ -1,0 +1,309 @@
+General Info
+    Four different types of questions 
+        **Multiple-choice**: where you will be given a question and four answers, and you must select the BEST answer. The vast majority of questions on the exam will be multiple choice.
+        **Scenario-based**: where a scenario will be presented, essentially a few paragraphs of text, and there will be a multiple choice-question pertaining to the scenario.
+        **Drag-and-drop**: where two lists-one on the left and one on the right-need to be matched. Terms and definitions are most often used in these types of questions.
+        **Hot-spot question**: where you will be asked to click on a spot on a diagram-the hot spot-that represents what the question is asking. For example, a question might ask, “Where's the best place to install a firewall?” and present a network diagram, and you will be asked to select the desired location on that diagram. Hot-spot questions are exceedingly rare.
+
+    passing the CISSP exam is adopting a **managerial mindset** when answering questions
+
+    As a security professional, you must always focus on helping the organization achieve its goals and objectives. You must be an enabler to the business.
+
+DOMAIN 1 SECURITY AND RISK MANAGEMENT
+
+    Ethics are based on doing nothing that is harmful to anyone else.
+    To have consistent ethics, they must be codified in corporate laws (policies)
+    Security must support the business in achieving its goals and objectives
+    Security must increase the value of the organization
+
+    The goal of governance is to enhance organizational value
+    Corporate governance is based upon the goals and objectives of the organization
+    Security must be managed top down instead of bottom up
+    Scoping and tailoring are used to align security objectives with organizational goals and objectives
+    Security governance must be aligned with corporate governance
+
+    Security should be a proactive enabler rather than a reactive function, but this requires senior management to have strong convictions about the need for security.
+
+    Only **one person** or group or entity must be **accountable**
+    Multiple people can be responsible
+    Accountability can never be delegated
+    Responsibility can be delegated
+
+    The **owner/controller** is the person that created, bought, or is most familiar with an asset
+        Asset owners are in the best position to know the value of the assets they control, and they can best determine how much security is needed to protect those assets, do classification, approving access and retention and destruction
+    **The processor** is the person, function, or group responsible for data and who do things on behalf of the controller
+
+    The asset belongs to an owner, but the **custodian** is entrusted with it and is responsible for protecting the asset while it's in their custody.
+
+    **Due care** is the responsible protection of assets
+        Due care would be the owner of a system requesting that a penetration test
+    **Due diligence** is the ability to prove due care
+        Due diligence would then be providing proof that the vulnerabilities were addressed
+
+    Controls should align with compliance requirements. Legal, privacy, and audit/compliance functions are usually the best sources to determine compliance requirements
+
+    how to determine compliance needs
+        Laws. e.g HIPPA, GLBA, COPPA.
+        Regulations: e.g. ITAR, EAR
+        Industry Standards: e.g. NIST, ISO
+        Import/Export Controls
+        Transborder data flow Regulations
+        Personal Data
+        Corporate Policies
+
+    Understand legal and regulatory issues
+
+    The goal of **intellectual property laws** is to encourage the creation of intellectual goods (inventions, literary and artistic works, designs, symbols, and names) and to protect the same.
+        **Trade Secret Patent** protects business information
+        **copyright** expression of an idea
+        **trademark** symbol used to distringuish one product
+
+    **Transborder data flow laws** restrict the transfer of data across country borders. When sharing data across borders, applicable laws must be considered. Enforcement of requirements in one country may not apply to other countries
+
+    **Privacy** is the state or condition of being free from being observed or disturbed by other people
+
+    **Personal data** is information on its own or in combination that uniquely identifies an individual
+        PI-Personal Information
+        PII-Personally Identifiable Information
+        SPI-Sensitive Personal Information
+        PHI-Personal Health Information
+
+    **Identifiers** can be direct or indirect (more than one needed), or online (ip,email).
+
+    Supervisory authorities are independent authorities in each EU state that investigate privacy complaints
+
+    **Data Owners**: define classification, approve access, retention and destruction. Types of owners: process owners, system owners.
+    **Data Custodians**: protect data based on input from owners. Need training
+    **Data Processor**: Process personal data on behalf of the owner/controller
+    **Data Subjects**: individual whom personal data relates
+
+    **GDPR**
+        Applies to all EU
+        seven principles: Lawfulness, Fairness, Transparency, Purpose limitation, Data Minimization, Accuracy, Storage, United States
+    **Gramm-Leach Bileley Act (GLBA)**
+    Health Insurance Portability and Accountability Act (HIPPA)
+    Canada: PIPEDA
+    Argentina: PDPL
+
+
+    OECD has developed guidelines that would help to harmonize national privacy legislation
+        Collection Limitation Principle
+        Data Quality Principle
+        Purpose Specification Principle
+        Use Limitation Principle
+        Security Safeguards Principle
+        Openness Principle
+        Individual Participation Principle
+        Accountability Principle
+
+    **Privacy Impact Assessment (PIA)** is a process undertaken on behalf of an organization to determine if personal data is being protected appropriately and to minimize risks to personal data where appropriate.
+    A PIA is performed with a goal to:
+        1. Identify/evaluate risks relating to privacy breaches
+        2. Identify what controls should be applied to mitigate privacy risks
+        3. Offer organizational compliance to privacy legislations
+
+    PIA/DPIA Steps:
+        Identify the needs for a DIPA
+        Describe the data processing
+        Consult interested parties
+        Identify and asses risk
+        Sign off and record outcomes
+        Monitor and review
+
+
+    **Policies** = Corporate Laws. Policies document and communicate management's goals and objectives. Overarching security policy must come from upper management (tone from the top)
+    **Procedures** = Step-by-Step instructions
+    **Standards** = Specific information related to solutions.
+    **Baselines** = Defined minimal implementation levels
+    **Guidelines** = Recommendations or suggestions
+
+    CEO and upper management are ACCOUNTABLE, but also that EVERYONE in the organization is RESPONSIBLE for security and protecting the value of assets.
+
+    Hiring, onboarding, and terminating employees
+    Employment controls and associated cost-effectiveness
+
+    Enforce organizational personnel policies and controls for contractors and vendors
+    Contracts, agreements, and NDAs are tools that can be used to enforce personnel security controls
+    Attestation and audit are tools that can monitor and show compliance with personnel security controls
+
+    **Risk management** is the identification, assessment, and prioritization of risks and the economical application of resources to minimize, monitor, and control the probability and/or impact of these risks. Risk management steps: value, risk, and treatment
+
+    **Asset Valuation** Before risks can be identified and managed, valuable assets of the organization must first be identified
+    **Risk Analysis** Process of identifying threats and vulnerabilities related to an asset. Identify risks and understand probability/impact of risk occurring
+    **Asset**: anything of value to the organization
+    **Threat**: any potential danger; anything that causes damage to an asset,
+    **Vulnerability**: a weakness that exists; anything that allows a threat to take advantage of it to inflict damage to the organization.
+    **The impact** is whatever negative consequences there may be to the organization if a risk occurs. Finally, the probability/likelihood is how often a given risk is expected to occur.
+    **Threat Agent** Entity that has the potential to cause damage to an asset (e.g., external attackers, internal attackers, disgruntled employees)
+    **Threat** Any potential danger
+    **Attack** Any harmful action that exploits a vulnerability
+    **Vulnerability** A weakness in an asset that could be exploited by a threat
+    **Risk** Significant exposure to a threat or vulnerability (a weakness that exists in an architecture, process, function, technology, or asset)
+    **Asset** Anything that is valued by the organization
+    **Exposure/Impact** Negative consequences to an asset if the risk is realized (e.g., loss of life, reputational damage, downtime, etc.)
+    **Countermeasures and Safeguards** Controls implemented to reduce threat agents, threats, and vulnerabilities and reduce the negative impact of a risk being realized
+    **Residual Risk**The risk that remains after countermeasures and safeguards (controls) are implemented
+
+    Quantitative analysis as part of ranking risks requires calculating how much a risk is expected to cost the organization annually
+    **Annualized Loss Expectancy (ALE)**. The ALE can be calculated using this formula: **ALE = SLE (AV x EF) x ARO**
+
+    **A complete control** is a combination of preventive, detective, and corrective controls
+    In defense-in-depth (layered security), a complete control should be implemented at each layer
+
+
+    **Directive Directive controls** direct, confine, or control the actions of subjects to force or encourage compliance with security policies. An example is a fire exit sign.
+    **Deterrent Deterrent controls** discourage violation of security policies. An example is a sign warning that a piece of land is private property and trespassers will be shot. Nothing prevents someone from walking past the sign, but it's a good deterrent.
+    **Preventive Preventive controls** can prevent undesired actions or events. For example, a fence that prevents someone from walking onto a private property. Or not having flammable materials around and therefore preventing a fire from starting..
+    **Detective Detective controls** are designed to identify if a risk has occurred. Importantly, detective controls operate after an event has already occurred. An example is a smoke alarm detecting smoke..
+    **Corrective Corrective controls** are used to minimize the negative impact of a risk occurring-minimize the damage. They are used to alleviate the impact of an event that has resulted in a loss and to respond to incidents in a manner that will minimize risk. An example is a fire suppression system activating.
+    **Recovery Recovery controls** are designed to recover a system or process and return to normal operation following an incident. An example is a data backup policy allowing restoration of data on an affected server after an incident has taken place.
+    **Compensating Compensating controls** are typically deployed in conjunction with other controls to aid in enforcement and support of the other controls. However, compensating controls can also be used in place of another control to provide the needed security. An example is deploying a Host Intrusion Prevention System (HIPS) on a critical server, in addition to having a Network Intrusion Protection System (NIPS) operating on that server's subnet. This way, if any offending traffic manages to slip by the NIPS tool, the HIPS on the server may still be able to prevent malware from damaging it.  Table
+
+    **Safeguards = proactive**
+    **Countermeasures = reactive**
+    Categories of controls: administrative, physical, and logical/technical
+
+    Functional = control must do what it is designed to do
+    Assurance = control can be evaluated to confirm working correctly
+
+    Assurance Control performs the function it was designed to address/does what it is meant to do. For example, a firewall filtering traffic between different subnets.   Control can be proven to be functioning properly on an ongoing basis. Usually proven through testing, assessments, logging, and monitoring, etc. 
+
+    Selected controls must support organizational goals and objectives
+    Selected controls must be cost-effective
+
+    Risk management methodologies should be applied to all vendors, suppliers, service providers
+
+    Risk management frameworks provide comprehensive guidance for structuring and conducting risk management
+
+    **Risk management frameworks**
+        **NIST 800-37**
+        ISO 31000
+        COSO
+        ISACA
+
+    **Threat modeling** is used to systematically identify, enumerate, and prioritize threats related to an asset
+        **STRIDE**
+        **Attack Simulation and Threat Analysis (PASTA)**, contrary to STRIDE, is an attacker-focused, risk-centric methodology.
+        **DREAD** is a threat model primarily used to measure and rank the severity of threats. DREAD is often used in combination with the STRIDE model,
+
+
+    **Social engineering** = manipulation of people's actions through intimidation and/or deception It's a prevalent means of attack against organizations
+        **Phishing** is where an attacker sends many emails with the hope that the target will open an email and click on a link or open a file that leads to a malicious action.
+        **Spear Phishing** Spear phishing is a targeted form of phishing that typically focuses on certain individuals or groups of individuals. Through a bit of discovery, the attacker determines what might prompt the targeted individual(s) to click on a link in an email, and the hook is then baited. A classic example is an attacker sending a malicious PDF posing as an invoice to the accounts payable team.
+        **Whaling** spear phishing, this is also an email attack and targets the big fish-the whales-in an organization. Typically, people like the CEO, COO, and CFO are the targets of a whaling attack.
+        **Smishing** is a form of phishing that targets mobile phone users. Typically, an attacker purporting to be from a legitimate company sends a fraudulent text/SMS message to a potential victim, with the hope that the target will click a link in the message. Smishing attacks can be simple, with the hope that a victim will click on a link and then reveal sensitive information, or they can be sophisticated and allow the attacker to control the victim's phone and thereby gain access to bank accounts, corporate resources, and other sensitive material.
+        **Vishing** is another form of phishing, and the name refers to the way it is typically presented to a potential victim-via voice over IP (VoIP) phone systems (though attacks can take place over mobile phones, landlines, or voice mail).
+        **Pretexting** involves the attacker creating a scenario, almost like a script, that very ingeniously and subtly spurs the
+
+    Security must be considered for all acquisitions
+    Security must be part of procurement process
+    Security requirements must be clearly communicated (e.g., SLAs) to suppliers/vendors/service providers
+    Security metrics must demonstrate that security controls are operating effectively
+
+    **Service Level Requirements (SLR)** SLR outlines:
+        Detailed service descriptions
+        Detailed service level targets
+        Mutual responsibilities
+
+    **Service Level Agreement (SLA)** SLAs often include expectations and stipulations related to:
+        Service Levels (performance levels)
+        Governance-the customer and the service provider know who is responsible for what
+        Security-expected security controls put in place by the service provider
+
+    **Liability/Indemnification** when any element of the SLA is not met or is below threshold standards
+
+    Everyone is responsible for security; however, they must know what to do
+        **Training** provides specific skills needed to perform tasks related to security. It often focuses on the technical aspects of a role.
+        **Education** provides understanding and decision-making capability
+        **Awareness within an organization** is fostered with the goal of creating cultural sensitivity to a given topic or issue.
+
+
+
+
+
+
+DOMAIN 2 ASSET SECURITY
+
+    Asset classification policies, procedures, and processes help achieve proper protection of assets. Should always be cost-effective.
+
+    As the value of an asset increases, so does the effort invested in protecting it. Less valuable assets might not warrant costly protection.
+
+    Proper asset classification ensures that assets receive an appropriate level of protection based on the value that they represent to the organization.
+
+    Asset classification begins with a detailed asset inventory
+    Asset owners determine the classification assigned to an asset
+    Asset classification is an ongoing process
+
+    **Classification** refers to a system of classes, ordered according to value
+    **Categorization** refers to the act of sorting assets into defined classes
+
+    Classification Examples
+        Top secret, secret, confidential, sensitive but unclassified, and unclassified
+        Financially sensitive
+        Company restricted
+
+    **Labeling** refers to the classification of the asset and is system-readable
+    **Marking** refers to the handling instructions of the asset and is human-readable
+
+    Marking refers to specific asset data handling instructions, based on the asset label. Security marking is often used to direct handling of an asset according to external laws and organizational policies. For example, something labeled "top secret" might be marked with instructions not to remove it from the premises. A
+
+
+    Labeling
+        System-readable
+        Association of security attributes with subjects and objects represented by internal data structures
+        Enables system-based enforcement
+    Marking
+        Human-readable
+        Association of security attributes with objects in a human-readable form
+        Enables process-based enforcement
+
+    owners are accountable for protecting the value of that asset (including its classification and categorization) and approving access to it.
+
+    Data classification policy is concerned with the management of information to ensure that sensitive and valuable information is protected and handled accordingly
+
+    Data classification policy considers laws, regulations, privacy requirements, customer requirements, cost of creation, operational impact, liability, and reputation
+
+    Data must be protected at each phase
+
+    **Data remanence** refers to residual representation of information even after attempts to securely delete or remove the data
+    Categories of sanitization-destruction, purging, clearing
+    Secure removal of data in the cloud
+
+    **Defensible destruction** means being able to prove that there's no possible way for anyone to recover data that has been securely destroyed. Data owners are responsible for ensuring the proper sanitization of the data
+
+
+    **Destroy Physical** destruction of media; this is the most effective means of sanitization.
+    **Purge Logical/physical** techniques used to sanitize; data cannot be reconstructed.
+    **Clear Logical** techniques used to sanitize; data may be reconstructed. This is the least effective means of sanitization.
+
+    **Media Destruction (Incinerate)** The most effective means by which data can assuredly be removed from media is through physical destruction, ideally in the form of incineration that renders a puddle of metal.
+    **Shred Disintegrate Drill** If incineration is not an option, due to cost or availability, the next best sanitization methods include shredding, disintegrating, or drilling holes in the media. Though effective, these techniques are not foolproof because the right tools in the hands of a skilled and determined attacker could allow some data to be recovered. For example, though drilling a hole (or holes) in a hard drive may render the drive unusable, most of the data on the platters is still very much intact and accessible via different means.
+    **Degauss Degaussing** is the process of applying a very strong magnetic field to magnetic media like hard drives or tapes. The strong magnetic field destroys the underlying data. However, degaussing may also render the media itself unusable. This explains why degaussing sits between destruction and purging in Figure 2-4.
+    **Encryption (Crypto Shredding/ Crypto Erase)** is the best method to use when attempting to remove data from a third-party environment, like that provided by a cloud provider. Crypto shredding encompasses encrypting the data and then securely destroying all copies of the key.
+
+    **Data archiving** is part of the asset life cycle, includes requirements for protecting archived data, should be driven by an appropriate retention policy
+
+    Methods used to protect data at rest-encryption, access control, backup, and restoration
+
+    Inactive data that is stored (resting) on media: hard disks, tapes, databases, spreadsheets, etc. Protection:    Encryption    Access Control      Backup and Restoration  Data flowing across a network, such as the internet. Protection:    Access Control    Network Encryption    End-to-end    Link      Onion  Data being used in computational activities. Protection:    Homomorphic Encryption    RBAC    DRP      DLP
+
+    Methods used to protect data in transit-end-to-end encryption, link encryption, onion network
+
+    **onion network** the source and destination addresses remain hidden throughout the transmission.
+
+
+    **Obfuscation (or masking)** makes something harder to understand. Obfuscation methods:
+        **Concealing data** unlike pruning (noted below), completely removes access to sensitive data. Users do not have access, nor do they have visibility and the attribute field does not appear on computer screens and reports.
+        **Information Pruning/Pruning Data** primarily takes place in nonproduction environments and involves the removal of sensitive data from attributes. The attribute will still be visible as a field on computer screens and reports, but it will not be populated with data.
+        **Fabricating data** Especially when testing the functionality of a system or in cases where particularly sensitive data exists, fabrication of data is often used.
+        1.Creating fake data to replace real data facilitates full functional testing.
+        2.Creating fake data to replace sensitive data prevents unauthorized access and viewing of the actual data.
+        **Trimming data**  unlike pruning, removes part of an attribute's value and is typically used for purposes of identification. Common examples of trimming involve Social Security numbers (SSN) and credit card numbers, where only the last four digits are visible and the remaining digits are masked.
+
+    **DRM** protects intellectual property (IP) assets and the rights of asset owners
+    Legal basis for protection in the United States through the Digital Millennium Copyright Act (DMCA)
+
+    Data loss prevention focuses on the identification, monitoring, and protection of data.
+    DLP data activities take place in three contexts: data in use, data in motion, data at rest.
+    DLP takes place for multiple reasons.
+
