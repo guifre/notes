@@ -3,29 +3,113 @@ Basic Docker Commands
     List all available images
     *$ docker images*
 
-    List all the running containers
-    *$ docker ps*
-
-    Run a command within the container
-    *$ docker exec -ti [container_name/container_id] /bin/bash*
-
-    Run an image
-    *$ docker run -t [image_name] .*
-
-    Run an image and get a shell bash
-    *$ docker run -ti [container_name/container_id] /bin/bash*
-
-    Stop a container
-    *$ docker stop/kill [container_name]*
-
-    Show logs
-    *$ docker logs [container]*
-
     Build an image
     *$ docker build -t [image_name] .*
 
+    Build an image with a version tag
+    *$ docker build -t [image_name]:[version] .*
+
+    Tag an image for a registry
+    *$ docker tag [image_name]:[version] [registry/image_name:version]*
+
     Push image to registry
-    *$ docker push -t [registry/image_name:version]*
+    *$ docker push [registry/image_name:version]*
 
     Pull an image from registry
-    *$ docker pull -t [registry/image_name:version]*
+    *$ docker pull [registry/image_name:version]*
+
+    Run an image
+    *$ docker run [image_name]*
+
+    Run an image with port mapping
+    *$ docker run --name [container_name] -p [host_port]:[container_port] [image_name]*
+
+    Run an image in background
+    *$ docker run -d --name [container_name] -p [host_port]:[container_port] [image_name]*
+
+    Run an image with environment variables
+    *$ docker run -e [KEY]=[VALUE] [image_name]*
+
+    Run an image and get a shell
+    *$ docker run --rm -it [image_name] /bin/bash*
+
+    List running containers
+    *$ docker ps*
+
+    List all containers
+    *$ docker ps -a*
+
+    Run a command within the container
+    *$ docker exec -it [container_name/container_id] /bin/bash*
+
+    Stop a container gracefully
+    *$ docker stop [container_name]*
+
+    Kill a container immediately
+    *$ docker kill [container_name]*
+
+    Start a stopped container
+    *$ docker start [container_name]*
+
+    Remove a container
+    *$ docker rm [container_name]*
+
+    Remove an image
+    *$ docker rmi [image_name]*
+
+    Show logs
+    *$ docker logs [container_name]*
+
+    Follow logs live
+    *$ docker logs -f [container_name]*
+
+    Inspect full container details
+    *$ docker inspect [container_name]*
+
+
+*Docker Compose*
+Most Important Docker Compose Commands
+    Start all services
+    *$ docker compose up*
+
+    Start all services and rebuild images
+    *$ docker compose up --build*
+
+    Start all services in background
+    *$ docker compose up -d*
+
+    Show running services
+    *$ docker compose ps*
+
+    Show logs
+    *$ docker compose logs*
+
+    Follow logs live
+    *$ docker compose logs -f*
+
+    Open a shell in a running service
+    *$ docker compose exec [service_name] sh*
+
+    Stop services
+    *$ docker compose stop*
+
+    Stop and remove the stack
+    *$ docker compose down*
+
+    Stop and remove the stack including volumes
+    *$ docker compose down -v*
+
+    Validate the compose file
+    *$ docker compose config*
+
+
+*Docker Concepts*
+    **Image** Blueprint used to create containers
+
+    **Container** Running instance of an image
+
+    **Volume** Persistent storage for container data
+
+    **Network** Way for containers to communicate
+
+    **Registry** Remote place to store and pull images
