@@ -113,3 +113,35 @@ Most Important Docker Compose Commands
     **Network** Way for containers to communicate
 
     **Registry** Remote place to store and pull images
+
+*Kubernetes*
+
+    Check cluster
+    *$ kubectl cluster-info*
+
+    Deploy app
+    *$ kubectl apply -k [k8s_folder]*
+
+    Check resources
+    *$ kubectl get all -n [namespace]*
+
+    Wait for rollout
+    *$ kubectl rollout status deployment/[app-name] -n [namespace]*
+
+    Expose locally
+    *$ kubectl port-forward svc/[service-name] 5000:5000 -n [namespace]*
+
+    View logs
+    *$ kubectl logs deployment/[app-name] -n [namespace]*
+
+    Debug shell
+    *$ kubectl exec -it deployment/[app-name] -n [namespace] -- sh*
+
+    Restart after update
+    *$ kubectl rollout restart deployment/[app-name] -n [namespace]*
+
+    Scale app
+    *$ kubectl scale deployment/[app-name] --replicas=[number] -n [namespace]*
+
+    Delete app
+    *$ kubectl delete -k [k8s_folder]*
