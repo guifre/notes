@@ -104,9 +104,9 @@ Most Important Docker Compose Commands
 
 
 *Docker Concepts*
-    **Image** Blueprint used to create containers
+    **Image** Packaged filesystem and startup configuration used to create containers
 
-    **Container** Running instance of an image
+    **Container** Instance of an image with its own runtime state; can be running or stopped
 
     **Volume** Persistent storage for container data
 
@@ -116,20 +116,52 @@ Most Important Docker Compose Commands
 
 *Kubernetes*
 
+Mental Model
+    **Namespace** Groups resources; not a security boundary by itself.
+    **Deployment** Keeps the desired number of Pods running and manages updates.
+    **Pod** Runs one or more containers sharing networking and optionally volumes.
+    **Service** Stable network endpoint; usually selects Pods by labels, not names.
+    **Management** Deployment -> ReplicaSet (maintains replica count) -> Pods -> containers.
+    **Traffic** Client -> Service -> ready Pod. The Deployment is not in the traffic path.
+
+Key Fields and Gotchas
+    **---** separates resource definitions within a YAML file.
+    **replicas** sets the desired Pod count, not the number of Services.
+    A Service's **selector** matches Pod **labels** within the same namespace.
+    **port** is the Service port; **targetPort** is the destination port number or named container port.
+    **spec.template** is the Pod blueprint; changing its image or env triggers a rollout when applied.
+    **ClusterIP** exposes the Service inside the cluster. **containerPort** alone publishes nothing.
+    **imagePullPolicy: Never** requires the image to already exist on the node; no registry pull.
+    **Readiness** controls traffic eligibility; **liveness** restarts unhealthy containers after repeated failures.
+    **requests** guide scheduling; **limits** constrain usage (CPU throttling, possible memory OOM kill).
+    Delete a Deployment-managed Pod: its ReplicaSet creates a replacement.
+    **port-forward** connects to one backing Pod; it does not demonstrate Service load balancing.
+
+Commands
+    Commands below use the current context. Check it before mutations; add **--context [context]** to target a specific cluster.
+    *$ kubectl config current-context*
+
     Check cluster
     *$ kubectl cluster-info*
 
-    Deploy app
+    Apply objects from a YAML manifest
+    *$ kubectl apply -f [manifest.yaml]*
+
+    Apply a Kustomize directory (requires a kustomization file)
     *$ kubectl apply -k [k8s_folder]*
 
-    Check resources
+    Check common workload resources (get all does not include every resource type)
     *$ kubectl get all -n [namespace]*
+
+    Inspect Pod labels and Service selectors
+    *$ kubectl get pods --show-labels -n [namespace]*
+    *$ kubectl describe service [service-name] -n [namespace]*
 
     Wait for rollout
     *$ kubectl rollout status deployment/[app-name] -n [namespace]*
 
     Expose locally
-    *$ kubectl port-forward svc/[service-name] 5000:5000 -n [namespace]*
+    *$ kubectl port-forward svc/[service-name] [local_port]:[service_port] -n [namespace]*
 
     View logs
     *$ kubectl logs deployment/[app-name] -n [namespace]*
@@ -137,11 +169,20 @@ Most Important Docker Compose Commands
     Debug shell
     *$ kubectl exec -it deployment/[app-name] -n [namespace] -- sh*
 
-    Restart after update
+    Force a new rollout (does not rebuild the image)
     *$ kubectl rollout restart deployment/[app-name] -n [namespace]*
 
     Scale app
     *$ kubectl scale deployment/[app-name] --replicas=[number] -n [namespace]*
 
-    Delete app
+    Delete objects from a YAML manifest; deleting a declared Namespace also deletes everything inside it
+    *$ kubectl delete -f [manifest.yaml]*
+
+    Delete a Kustomize app
     *$ kubectl delete -k [k8s_folder]*
+
+References
+    Deployments: https://kubernetes.io/docs/concepts/workloads/controllers/deployment/
+    Services: https://kubernetes.io/docs/concepts/services-networking/service/
+    Probes: https://kubernetes.io/docs/concepts/workloads/pods/probes/
+    Resources: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
